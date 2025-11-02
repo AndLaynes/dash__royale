@@ -40,7 +40,7 @@ def save_json(data, filename):
         json.dump(data, f, ensure_ascii=False, indent=4)
     print(f"Dados salvos em: {filepath}")
 
-def fetch_data(endpoint):
+def fetch_data(endpoint, params=None):
     """
     Busca dados de um endpoint específico da API.
     """
@@ -51,43 +51,68 @@ def fetch_data(endpoint):
     url = f"{BASE_API_URL}{endpoint}"
 
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()  # Lança um erro para códigos de status HTTP 4xx/5xx
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"Erro ao acessar a API: {e}")
         return None
 
+def fetch_paginated_data(endpoint):
+    """
+    Busca dados paginados de um endpoint, agregando todos os resultados.
+    """
+    all_items = []
+    params = {'limit': 100}  # Busca o máximo de itens por página para reduzir as requisições
+
+    while True:
+        print(f"Buscando página (cursor: {params.get('after', 'inicial')})...")
+        json_response = fetch_data(endpoint, params=params)
+
+        if not json_response:
+            print("Falha ao buscar dados paginados. Interrompendo.")
+            break
+
+        items = json_response.get('items', [])
+        all_items.extend(items)
+
+        # Verifica se há uma próxima página
+        if 'paging' in json_response and 'cursors' in json_response['paging'] and 'after' in json_response['paging']['cursors']:
+            params['after'] = json_response['paging']['cursors']['after']
+        else:
+            break  # Sai do loop se não houver mais páginas
+
+    return {"items": all_items}
+
 def main():
     """
     Função principal para buscar e salvar os dados do clã.
     """
     try:
-        # Verifica se a tag do clã foi definida
         if CLAN_TAG == "SUA_TAG_AQUI":
             print("!!! ATENÇÃO !!!")
             print("Por favor, substitua 'SUA_TAG_AQUI' pela tag do seu clã no script.")
             return
 
-        # Formata a tag do clã para uso na URL (remove o '#')
         clan_tag_formatted = CLAN_TAG.replace("#", "%23")
-
-        # --- Endpoints da API ---
-        endpoints = {
-            "current_war": f"/clans/{clan_tag_formatted}/currentriverrace",
-            "war_log": f"/clans/{clan_tag_formatted}/riverracelog"
-        }
-
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-        # Busca e salva os dados de cada endpoint
-        for name, endpoint_url in endpoints.items():
-            print(f"Buscando dados de: {name}...")
-            data = fetch_data(endpoint_url)
+        # --- Endpoint da Guerra Atual (não paginado) ---
+        print("Buscando dados de: current_war...")
+        current_war_endpoint = f"/clans/{clan_tag_formatted}/currentriverrace"
+        current_war_data = fetch_data(current_war_endpoint)
+        if current_war_data:
+            filename = f"current_war_{timestamp}.json"
+            save_json(current_war_data, filename)
 
-            if data:
-                filename = f"{name}_{timestamp}.json"
-                save_json(data, filename)
+        # --- Endpoint do Histórico de Guerras (paginado) ---
+        print("\nBuscando dados de: war_log (todo o histórico)...")
+        war_log_endpoint = f"/clans/{clan_tag_formatted}/riverracelog"
+        war_log_data = fetch_paginated_data(war_log_endpoint)
+        # Salva apenas se encontrar algum item
+        if war_log_data and war_log_data['items']:
+            filename = f"war_log_full_{timestamp}.json"
+            save_json(war_log_data, filename)
 
         print("\nDownload dos dados concluído!")
     except ValueError as e:
