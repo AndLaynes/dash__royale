@@ -29,7 +29,7 @@ def parse_date(date_str):
 def process_war_data(war_log_file):
     """Lê, filtra e processa os dados de guerra do arquivo JSON."""
     with open(war_log_file, 'r', encoding='utf-8') as f:
-        data = json.load()
+        data = json.load(f)
 
     all_wars_data = []
     player_names = {}
