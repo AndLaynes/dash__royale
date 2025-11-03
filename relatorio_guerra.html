@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Dashboard do Clã{% endblock %}</title>
+    <title>Relatório de Guerra do Clã</title>
     <!-- CSS do DataTables e extensões de Botões -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
@@ -128,12 +128,73 @@
             color: #6B7280 !important;
         }
     </style>
-    {% block extra_css %}{% endblock %}
+
 </head>
 <body>
     <div class="container">
-        {% block content %}
-        {% endblock %}
+
+<header>
+    <h1>Histórico de Participação em Guerras</h1>
+    <p>Dados oficiais da Supercell, atualizados em: 03/11/2025 22:16:14</p>
+    <div class="metrics-info">
+        <strong>Métricas do Player Status:</strong><br>
+        - <strong>Campeão:</strong> Usou 16 ou mais decks em ambas as duas últimas guerras.<br>
+        - <strong>Ok:</strong> Performance consistente, com 12 a 15 decks usados.<br>
+        - <strong>Verificar:</strong> Usou 11 ou menos decks em alguma das duas últimas guerras, ou é um jogador sem histórico.<br>
+        - O símbolo <strong>'-'</strong> indica que o jogador não estava no clã naquela guerra específica.
+    </div>
+    <form action="/update" method="get">
+        <button type="submit" class="update-button">Atualizar Dados</button>
+    </form>
+</header>
+
+<div class="table-container">
+    <table id="war-report-table" class="display">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Player Status</th>
+                <th>Última Guerra</th>
+                <th>Guerra -2</th>
+                <th>Guerra -3</th>
+                <th>Guerra -4</th>
+                <th>Guerra -5</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>Player 1</td>
+                <td>
+                    <span class="status status-verificar">
+                        Verificar
+                    </span>
+                </td>
+                <td>4</td>
+                <td>4</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+
+            <tr>
+                <td>Player 2</td>
+                <td>
+                    <span class="status status-verificar">
+                        Verificar
+                    </span>
+                </td>
+                <td>4</td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
     </div>
 
     <!-- JavaScript do jQuery, DataTables e extensões -->
@@ -144,6 +205,29 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 
-    {% block extra_js %}{% endblock %}
+
+<script>
+$(document).ready(function() {
+    $('#war-report-table').DataTable({
+        dom: 'Bfrtip', // Adiciona os botões ao DOM
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                text: 'Exportar para PDF',
+                title: 'Relatorio de Guerra - 03/11/2025 22:16:14',
+                orientation: 'landscape',
+                pageSize: 'A4'
+            }
+        ],
+        paging: false,
+        info: false,
+        language: {
+            search: "Buscar:",
+            zeroRecords: "Nenhum resultado encontrado"
+        }
+    });
+});
+</script>
+
 </body>
 </html>
