@@ -1,107 +1,79 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Guerra do Clã</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #5a2a88;
-            text-align: center;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        thead {
-            background-color: #5a2a88;
-            color: #fff;
-        }
-        tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        tbody tr:hover {
-            background-color: #e9e2f3;
-        }
-        .status {
-            font-weight: bold;
-            padding: 5px;
-            border-radius: 4px;
-            color: #fff;
-        }
-        .status-campeao { background-color: #28a745; } /* Verde */
-        .status-ok { background-color: #17a2b8; }      /* Azul */
-        .status-verificar { background-color: #dc3545; } /* Vermelho */
+{% extends "base.html" %}
 
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Histórico de Participação em Guerras</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Player Status</th>
-                    <th>Última Guerra</th>
-                    <th>Guerra -2</th>
-                    <th>Guerra -3</th>
-                    <th>Guerra -4</th>
-                    <th>Guerra -5</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for player in players %}
-                <tr>
-                    <td>{{ player['Nome'] }}</td>
-                    <td>
-                        <span class="status status-{{ player['Player Status'] | lower | replace(' ', '-') }}">
-                            {{ player['Player Status'] }}
-                        </span>
-                    </td>
-                    <td>{{ player['Última Guerra'] }}</td>
-                    <td>{{ player['Guerra -2'] }}</td>
-                    <td>{{ player['Guerra -3'] }}</td>
-                    <td>{{ player['Guerra -4'] }}</td>
-                    <td>{{ player['Guerra -5'] }}</td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="7">Nenhum dado de jogador encontrado.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <footer>
-            <p>Relatório gerado em: {{ report_date }}</p>
-        </footer>
+{% block title %}Relatório de Guerra do Clã{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Histórico de Participação em Guerras</h1>
+    <p>Dados oficiais da Supercell, atualizados em: {{ report_date }}</p>
+    <div class="metrics-info">
+        <strong>Métricas do Player Status:</strong><br>
+        - <strong>Campeão:</strong> Usou 16 ou mais decks em ambas as duas últimas guerras.<br>
+        - <strong>Ok:</strong> Performance consistente, com 12 a 15 decks usados.<br>
+        - <strong>Verificar:</strong> Usou 11 ou menos decks em alguma das duas últimas guerras, ou é um jogador sem histórico.<br>
+        - O símbolo <strong>'-'</strong> indica que o jogador não participou daquela guerra específica.
     </div>
-</body>
-</html>
+</header>
+
+<div class="table-container">
+    <table id="war-report-table" class="display">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Player Status</th>
+                <th>Última Guerra</th>
+                <th>Guerra -2</th>
+                <th>Guerra -3</th>
+                <th>Guerra -4</th>
+                <th>Guerra -5</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player['Nome'] }}</td>
+                <td>
+                    <span class="status status-{{ player['Player Status'] | lower }}">
+                        {{ player['Player Status'] }}
+                    </span>
+                </td>
+                <td>{{ player['Última Guerra'] }}</td>
+                <td>{{ player['Guerra -2'] }}</td>
+                <td>{{ player['Guerra -3'] }}</td>
+                <td>{{ player['Guerra -4'] }}</td>
+                <td>{{ player['Guerra -5'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7">Nenhum dado de jogador encontrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    $('#war-report-table').DataTable({
+        dom: 'Bfrtip', // Adiciona os botões ao DOM
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                text: 'Exportar para PDF',
+                title: 'Relatorio de Guerra - {{ report_date }}',
+                orientation: 'landscape',
+                pageSize: 'A4'
+            }
+        ],
+        paging: false,
+        info: false,
+        language: {
+            search: "Buscar:",
+            zeroRecords: "Nenhum resultado encontrado"
+        }
+    });
+});
+</script>
+{% endblock %}
