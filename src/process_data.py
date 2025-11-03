@@ -6,7 +6,6 @@ from datetime import datetime
 # --- Configuração ---
 DATA_DIR = "data"
 OUTPUT_FILE = "relatorio_de_guerra.xlsx"
-DIAS_DE_GUERRA = [3, 4, 5, 6]  # Quinta, Sexta, Sábado, Domingo (Segunda=0)
 NUMERO_DE_GUERRAS_NO_RELATORIO = 5
 
 # --- Funções Auxiliares ---
@@ -27,7 +26,7 @@ def parse_date(date_str):
 # --- Lógica de Processamento ---
 
 def process_war_data(war_log_file):
-    """Lê, filtra e processa os dados de guerra do arquivo JSON."""
+    """Lê e processa os dados de guerra do arquivo JSON."""
     with open(war_log_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
@@ -36,21 +35,19 @@ def process_war_data(war_log_file):
 
     for war in data.get("items", []):
         created_date = parse_date(war["createdDate"])
+        season_id = war.get("seasonId")
+        section_index = war.get("sectionIndex") # Usado para identificar a guerra
 
-        if created_date.weekday() in DIAS_DE_GUERRA:
-            season_id = war.get("seasonId")
-            section_index = war.get("sectionIndex") # Usado para identificar a guerra
+        for player in war.get("participants", []):
+            player_tag = player["tag"]
+            player_names[player_tag] = player["name"]
 
-            for player in war.get("participants", []):
-                player_tag = player["tag"]
-                player_names[player_tag] = player["name"]
-
-                all_wars_data.append({
-                    "war_id": f"S{season_id}-W{section_index}",
-                    "created_date": created_date,
-                    "player_tag": player_tag,
-                    "decks_used": player.get("decksUsed", 0)
-                })
+            all_wars_data.append({
+                "war_id": f"S{season_id}-W{section_index}",
+                "created_date": created_date,
+                "player_tag": player_tag,
+                "decks_used": player.get("decksUsed", 0)
+            })
 
     if not all_wars_data:
         return None, None
