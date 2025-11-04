@@ -19,6 +19,7 @@
 </header>
 
 <div class="table-container">
+    {% if players %}
     <table id="war-report-table" class="display">
         <thead>
             <tr>
@@ -46,17 +47,17 @@
                 <td>{{ player['Guerra -4'] }}</td>
                 <td>{{ player['Guerra -5'] }}</td>
             </tr>
-            {% else %}
-            <tr>
-                <td colspan="7">Nenhum dado de jogador encontrado.</td>
-            </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <p>Nenhum dado de jogador encontrado. Verifique se o Clan Tag está correto e se há uma guerra ativa.</p>
+    {% endif %}
 </div>
 {% endblock %}
 
 {% block extra_js %}
+{% if players %}
 <script>
 $(document).ready(function() {
     $('#war-report-table').DataTable({
@@ -79,4 +80,5 @@ $(document).ready(function() {
     });
 });
 </script>
+{% endif %}
 {% endblock %}
