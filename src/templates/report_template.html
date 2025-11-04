@@ -21,29 +21,25 @@
         <table id="war-report-table" class="display">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Player Status</th>
-                    <th>Última Guerra</th>
-                    <th>Guerra -2</th>
-                    <th>Guerra -3</th>
-                    <th>Guerra -4</th>
-                    <th>Guerra -5</th>
+                    {% for key, value in column_headers.items() %}
+                        <th>{{ value }}</th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
                 {% for player in players %}
                 <tr>
-                    <td>{{ player['Nome'] }}</td>
-                    <td>
-                        <span class="status status-{{ player['Player Status'] | lower }}">
-                            {{ player['Player Status'] }}
-                        </span>
-                    </td>
-                    <td>{{ player['Última Guerra'] }}</td>
-                    <td>{{ player['Guerra -2'] }}</td>
-                    <td>{{ player['Guerra -3'] }}</td>
-                    <td>{{ player['Guerra -4'] }}</td>
-                    <td>{{ player['Guerra -5'] }}</td>
+                    {% for key in column_headers.keys() %}
+                        <td>
+                            {% if key == 'Player Status' %}
+                                <span class="status status-{{ player[key] | lower }}">
+                                    {{ player[key] }}
+                                </span>
+                            {% else %}
+                                {{ player[key] }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
                 </tr>
                 {% endfor %}
             </tbody>

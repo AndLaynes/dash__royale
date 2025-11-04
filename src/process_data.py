@@ -39,17 +39,18 @@ def get_war_history_data():
     warlog_data = load_json_file(history_file_path)
     if not warlog_data or not warlog_data.get('items'):
         log_and_print("-> Info: Histórico de guerras não encontrado ou vazio.")
-        return {}
+        return {}, {}
 
     items = warlog_data['items']
     log_and_print(f"-> Encontrados {len(items)} registros de guerra no histórico.")
 
     war_history = {}
+    war_season_ids = {} # Novo dicionário para mapear data -> seasonId
     war_dates_found = set()
     clan_tag_env = os.environ.get('CLAN_TAG')
     if not clan_tag_env:
         log_and_print("-> Erro Crítico: A variável de ambiente CLAN_TAG não está definida.")
-        return {}
+        return {}, {}
 
     normalized_clan_tag_env = clan_tag_env.lstrip('#')
     log_and_print(f"-> Buscando pelo CLAN_TAG (normalizado): '{normalized_clan_tag_env}' no histórico...")
@@ -63,6 +64,12 @@ def get_war_history_data():
                 continue
             war_date = datetime.strptime(finish_time_str, '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
             war_dates_found.add(war_date)
+
+            # Extrai o seasonId e o armazena no novo dicionário
+            season_id = war.get('seasonId')
+            if season_id:
+                war_season_ids[war_date] = season_id
+
         except (ValueError, TypeError) as e:
             log_and_print(f"-> Alerta: Formato de data inválido para a guerra de índice {i} ('{finish_time_str}'). Detalhes: {e}. Pulando.")
             continue
@@ -88,12 +95,12 @@ def get_war_history_data():
                     if tag not in war_history:
                         war_history[tag] = {}
 
-                    decks_used = participant.get('decksUsed', 0)
+                    decks_used = participant.get('decksUsed', d, 0)
                     war_history[tag][war_date] = decks_used
                 break
 
     log_and_print(f"-> Processados dados históricos de {len(war_history)} jogadores únicos de {len(war_dates_found)} guerras.")
-    return war_history
+    return war_history, war_season_ids
 
 def generate_report():
     """
@@ -161,7 +168,7 @@ def generate_report():
         df = pd.DataFrame(list(clan_members.items()), columns=['Tag', 'Nome'])
         df['Fonte de Dados'] = data_source
 
-        war_history = get_war_history_data()
+        war_history, war_season_ids = get_war_history_data()
         all_war_dates = sorted({date for history in war_history.values() for date in history}, reverse=True)
         log_and_print(f"-> Encontradas {len(all_war_dates)} datas de guerras únicas no histórico.")
 
@@ -194,6 +201,12 @@ def generate_report():
     output_path = os.path.join(data_dir, 'relatorio_participacao_guerra.xlsx')
     df.to_excel(output_path, index=False)
     log_and_print(f"Relatório salvo com sucesso em '{os.path.basename(output_path)}'.")
+
+    # Salva os IDs das temporadas de guerra para uso no template
+    season_ids_path = os.path.join(data_dir, 'war_season_ids.json')
+    with open(season_ids_path, 'w', encoding='utf-8') as f:
+        json.dump(war_season_ids, f, ensure_ascii=False, indent=4)
+    log_and_print(f"IDs das temporadas de guerra salvos em '{os.path.basename(season_ids_path)}'.")
 
     log_output_path = os.path.join(data_dir, 'process_log.json')
     with open(log_output_path, 'w', encoding='utf-8') as f:
