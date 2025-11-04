@@ -45,18 +45,46 @@ def get_war_history_data():
     log_and_print(f"-> Encontrados {len(items)} registros de guerra no histórico.")
 
     war_history = {}
-    for war in items:
-        finish_time_str = war.get('finishTime', war.get('createdDate'))
-        war_date = datetime.strptime(finish_time_str, '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
+    war_dates_found = set()
+    clan_tag_env = os.environ.get('CLAN_TAG')
+    if not clan_tag_env:
+        log_and_print("-> Erro Crítico: A variável de ambiente CLAN_TAG não está definida.")
+        return {}
 
-        for clan in war.get('clans', []):
-            for participant in clan.get('participants', []):
-                tag = participant['tag']
-                if tag not in war_history:
-                    war_history[tag] = {}
-                war_history[tag][war_date] = participant.get('decksUsed', 0)
+    for i, war in enumerate(items):
+        try:
+            # A API do riverracelog usa 'createdDate', que marca o início da semana da guerra.
+            finish_time_str = war.get('createdDate')
+            if not finish_time_str:
+                log_and_print(f"-> Alerta: Registro de guerra de índice {i} não tem 'createdDate'. Pulando.")
+                continue
+            war_date = datetime.strptime(finish_time_str, '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
+            war_dates_found.add(war_date)
+        except (ValueError, TypeError) as e:
+            log_and_print(f"-> Alerta: Formato de data inválido para a guerra de índice {i} ('{finish_time_str}'). Detalhes: {e}. Pulando.")
+            continue
 
-    log_and_print(f"-> Processados dados históricos de {len(war_history)} jogadores únicos.")
+        standings = war.get('standings')
+        if not standings:
+            log_and_print(f"-> Info: A guerra de {war_date} não contém 'standings'.")
+            continue
+
+        for standing in standings:
+            if standing.get('clan', {}).get('tag') == clan_tag_env:
+                participants = standing.get('participants', [])
+                for participant in participants:
+                    tag = participant.get('tag')
+                    if not tag:
+                        continue
+
+                    if tag not in war_history:
+                        war_history[tag] = {}
+
+                    decks_used = participant.get('decksUsed', 0)
+                    war_history[tag][war_date] = decks_used
+                break
+
+    log_and_print(f"-> Processados dados históricos de {len(war_history)} jogadores únicos de {len(war_dates_found)} guerras.")
     return war_history
 
 def generate_report():
@@ -89,15 +117,25 @@ def generate_report():
         history_file_path = os.path.join(data_dir, 'riverracelog.json')
         log_and_print(f"Verificando `{os.path.basename(history_file_path)}` para definir a lista de membros do clã...")
         warlog_data = load_json_file(history_file_path)
+
         if warlog_data and warlog_data.get('items'):
-            latest_war = warlog_data['items'][0]
-            participants = [p for clan in latest_war.get('clans', []) for p in clan.get('participants', [])]
-            if participants:
-                finish_time = datetime.strptime(latest_war['finishTime'], '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
-                log_and_print(f"-> Sucesso: Usando a guerra de {finish_time} com {len(participants)} participantes como base para a lista de membros.")
-                data_source = f"Histórico ({finish_time})"
+            clan_tag_env = os.environ.get('CLAN_TAG')
+            if not clan_tag_env:
+                log_and_print("-> Erro Crítico: A variável de ambiente CLAN_TAG não está definida.")
             else:
-                log_and_print("-> Alerta: Nenhuma guerra com participantes foi encontrada no histórico.")
+                latest_war = warlog_data['items'][0]
+                participants = []
+                for standing in latest_war.get('standings', []):
+                    if standing.get('clan', {}).get('tag') == clan_tag_env:
+                        participants = standing.get('participants', [])
+                        break
+
+                if participants:
+                    war_date = datetime.strptime(latest_war['createdDate'], '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
+                    log_and_print(f"-> Sucesso: Usando a guerra de {war_date} com {len(participants)} participantes como base para a lista de membros.")
+                    data_source = f"Histórico ({war_date})"
+                else:
+                    log_and_print("-> Alerta: O clã não foi encontrado na guerra mais recente do histórico.")
         else:
             log_and_print("-> Alerta: Histórico de guerras não encontrado ou vazio.")
 
