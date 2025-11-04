@@ -1,53 +1,30 @@
-from flask import Flask, send_from_directory, redirect, url_for
-import subprocess
+from flask import Flask, send_from_directory, abort
 import os
 
 app = Flask(__name__)
 
-# Rota para servir o relatório HTML como um arquivo estático
+# Define o caminho absoluto para o arquivo de relatório
+report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'relatorio_guerra.html')
+
 @app.route('/')
 def index():
+    """
+    Serve o arquivo 'relatorio_guerra.html'.
+    Se o arquivo não existir, retorna um erro 404 com uma mensagem útil.
+    """
+    if not os.path.exists(report_path):
+        # Retorna uma mensagem de erro clara se o relatório não foi gerado ainda
+        return """
+        <h1>Erro: Relatório não encontrado</h1>
+        <p>O arquivo <code>relatorio_guerra.html</code> não foi encontrado.</p>
+        <p>Por favor, execute o script <code>python run_update.py</code> para gerar o relatório antes de iniciar o servidor.</p>
+        """, 404
+
+    # Serve o arquivo do diretório raiz do projeto
     return send_from_directory('.', 'relatorio_guerra.html')
 
-# Rota para acionar a atualização dos dados
-@app.route('/update')
-def update():
-    try:
-        # Executa os scripts em sequência
-        print("Atualizando dados: executando get_data.py...")
-        subprocess.run(['python', 'src/get_data.py'], check=True)
-        print("Atualizando dados: executando process_data.py...")
-        subprocess.run(['python', 'src/process_data.py'], check=True)
-        print("Atualizando dados: executando generate_html_report.py...")
-        subprocess.run(['python', 'src/generate_html_report.py'], check=True)
-        print("Atualização concluída com sucesso.")
-    except subprocess.CalledProcessError as e:
-        # Se algum script falhar, pode-se adicionar um log ou tratamento de erro
-        print(f"Erro ao executar o script: {e}")
-        # Opcional: retornar uma página de erro
-        return "Ocorreu um erro ao atualizar os dados.", 500
-
-    # Redireciona de volta para a página principal
-    return redirect(url_for('index'))
-
-def generate_initial_report():
-    """Gera o relatório inicial se ele não existir."""
-    if not os.path.exists('relatorio_guerra.html'):
-        print("Arquivo 'relatorio_guerra.html' não encontrado. Gerando um novo...")
-        try:
-            print("Geração inicial: executando get_data.py...")
-            subprocess.run(['python', 'src/get_data.py'], check=True)
-            print("Geração inicial: executando process_data.py...")
-            subprocess.run(['python', 'src/process_data.py'], check=True)
-            print("Geração inicial: executando generate_html_report.py...")
-            subprocess.run(['python', 'src/generate_html_report.py'], check=True)
-            print("Geração inicial concluída com sucesso.")
-        except subprocess.CalledProcessError as e:
-            print(f"Erro ao gerar o relatório inicial: {e}")
-            # Se a geração falhar, o servidor não deve iniciar
-            exit(1)
-
 if __name__ == '__main__':
-    generate_initial_report()
     print("Iniciando o servidor Flask...")
+    print(f"Acesse o dashboard em http://127.0.0.1:5000")
+    # O modo de depuração é mantido para facilitar o desenvolvimento, mas pode ser desativado
     app.run(debug=True)
