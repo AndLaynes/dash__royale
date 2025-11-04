@@ -134,8 +134,8 @@
     <div class="container">
 
 <header>
-    <h1>Histórico de Participação em Guerras</h1>
-    <p>Dados oficiais da Supercell, atualizados em: 03/11/2025 22:16:14</p>
+    <h1>Resultado da Última Guerra</h1>
+    <p>Dados oficiais da Supercell, atualizados em: 04/11/2025 01:54:15</p>
     <div class="metrics-info">
         <strong>Métricas do Player Status:</strong><br>
         - <strong>Campeão:</strong> Usou 16 ou mais decks em ambas as duas últimas guerras.<br>
@@ -149,6 +149,7 @@
 </header>
 
 <div class="table-container">
+
     <table id="war-report-table" class="display">
         <thead>
             <tr>
@@ -164,28 +165,28 @@
         <tbody>
 
             <tr>
-                <td>Player 1</td>
+                <td>Jogador Um</td>
                 <td>
                     <span class="status status-verificar">
                         Verificar
                     </span>
                 </td>
-                <td>4</td>
-                <td>4</td>
+                <td>16</td>
+                <td>-</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
             </tr>
 
             <tr>
-                <td>Player 2</td>
+                <td>Jogador Dois</td>
                 <td>
                     <span class="status status-verificar">
                         Verificar
                     </span>
                 </td>
-                <td>4</td>
-                <td>3</td>
+                <td>12</td>
+                <td>-</td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
@@ -193,6 +194,7 @@
 
         </tbody>
     </table>
+
 </div>
 
     </div>
@@ -206,6 +208,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 
 
+
 <script>
 $(document).ready(function() {
     $('#war-report-table').DataTable({
@@ -214,7 +217,7 @@ $(document).ready(function() {
             {
                 extend: 'pdfHtml5',
                 text: 'Exportar para PDF',
-                title: 'Relatorio de Guerra - 03/11/2025 22:16:14',
+                title: 'Relatorio de Guerra - 04/11/2025 01:54:15',
                 orientation: 'landscape',
                 pageSize: 'A4'
             }
@@ -228,6 +231,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 </body>
 </html>
