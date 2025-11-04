@@ -29,18 +29,19 @@ def get_war_history():
 def generate_report():
     """
     Gera o relatório de participação em guerras.
-    Se uma guerra estiver ativa, usa os dados dela.
-    Caso contrário, usa os dados da última guerra registrada no histórico.
+    Prioriza a guerra atual. Se não estiver ativa, busca a última guerra VÁLIDA no histórico.
     """
 
     participants = []
     data_source = ""
 
+    # Etapa 1: Tenta obter dados da guerra atual
     try:
         current_war_path = os.path.join(data_dir, 'current_war.json')
         with open(current_war_path, 'r', encoding='utf-8') as f:
             current_war_data = json.load(f)
         participants = current_war_data.get('participants', [])
+
         if participants:
             print(f"Diagnóstico: Encontrados {len(participants)} participantes na guerra atual.")
             data_source = "Guerra Atual"
@@ -51,25 +52,29 @@ def generate_report():
         print("Diagnóstico: Arquivo 'current_war.json' não encontrado ou inválido. Verificando histórico.")
         participants = []
 
+    # Etapa 2: Se não houver guerra atual, busca a última guerra VÁLIDA no histórico
     if not participants:
         try:
             warlog_path = os.path.join(data_dir, 'warlog.json')
             with open(warlog_path, 'r', encoding='utf-8') as f:
                 warlog_data = json.load(f)
-            warlog_items = warlog_data.get('items', [])
-            if warlog_items:
-                last_war = warlog_items[0]
-                participants = last_war.get('participants', [])
+
+            # Itera sobre as guerras no histórico, da mais recente para a mais antiga
+            for war in warlog_data.get('items', []):
+                participants = war.get('participants', [])
                 if participants:
-                    print(f"Diagnóstico: Usando dados da última guerra do histórico com {len(participants)} participantes.")
-                    data_source = "Última Guerra"
-                else:
-                    print("Diagnóstico: A última guerra no histórico não tem participantes.")
-            else:
-                print("Diagnóstico: Histórico de guerras está vazio.")
+                    war_date = datetime.strptime(war['createdDate'], '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
+                    print(f"Diagnóstico: Usando dados da última guerra válida do histórico ({war_date}) com {len(participants)} participantes.")
+                    data_source = "Última Guerra Válida"
+                    break # Encontrou uma guerra válida, para o loop
+
+            if not participants:
+                print("Diagnóstico: Nenhuma guerra com participantes foi encontrada no histórico.")
+
         except (FileNotFoundError, json.JSONDecodeError):
             print("Diagnóstico: Arquivo de histórico de guerras não encontrado ou inválido.")
 
+    # Etapa 3: Se ainda não houver participantes, gera um relatório vazio
     if not participants:
         print("Diagnóstico: Nenhuma informação de participantes encontrada. Gerando relatório vazio.")
         df = pd.DataFrame(columns=['Nome', 'Player Status', 'Fonte de Dados', 'Última Guerra', 'Guerra -2', 'Guerra -3', 'Guerra -4', 'Guerra -5'])
@@ -78,6 +83,7 @@ def generate_report():
         print(f"Relatório vazio gerado em '{output_path}'.")
         return
 
+    # Etapa 4: Monta e processa o relatório com os dados encontrados
     clan_members = {p['tag']: p['name'] for p in participants}
     df = pd.DataFrame(list(clan_members.items()), columns=['Tag', 'Nome'])
     df['Fonte de Dados'] = data_source
@@ -94,15 +100,10 @@ def generate_report():
             df[col_name] = '-'
 
     def get_player_status(row):
-        """Função corrigida para lidar com inteiros e valores ausentes."""
-        # Converte para numérico, transformando erros (como '-') em NaN (Not a Number)
         last_war_decks = pd.to_numeric(row['Última Guerra'], errors='coerce')
         war_minus_2_decks = pd.to_numeric(row.get('Guerra -2'), errors='coerce')
-
-        # Substitui NaN por 0 para os cálculos
         last_war_decks = 0 if pd.isna(last_war_decks) else last_war_decks
         war_minus_2_decks = 0 if pd.isna(war_minus_2_decks) else war_minus_2_decks
-
         if last_war_decks >= 16 and war_minus_2_decks >= 16:
             return 'Campeão'
         elif last_war_decks >= 12 and war_minus_2_decks >= 12:
