@@ -95,7 +95,7 @@ def get_war_history_data():
                     if tag not in war_history:
                         war_history[tag] = {}
 
-                    decks_used = participant.get('decksUsed', d, 0)
+                    decks_used = participant.get('decksUsed', 0)
                     war_history[tag][war_date] = decks_used
                 break
 
@@ -108,6 +108,7 @@ def generate_report():
     """
     global log_messages
     log_messages = []
+    war_season_ids = {}  # Inicializa a variável aqui
 
     log_and_print("Iniciando processamento de dados...")
 
