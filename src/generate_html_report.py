@@ -11,7 +11,7 @@ template_dir = os.path.join(project_dir, 'src', 'templates')
 
 data_file = os.path.join(data_dir, 'relatorio_participacao_guerra.xlsx')
 log_file = os.path.join(data_dir, 'process_log.json')
-output_file = os.path.join(project_dir, 'relatorio_guerra.html')
+output_file = os.path.join(project_dir, 'index.html')
 
 def generate_html_report():
     """Lê os dados processados e os logs para gerar um relatório HTML completo."""
