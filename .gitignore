@@ -1,5 +1,9 @@
-# Ignore the data directory
+# Ignore the entire data directory
 data/
+
+# Ignore specific data files if they are ever created outside the data directory
+warlog.json
+riverracelog.json
 
 # Ignore python cache files
 __pycache__/

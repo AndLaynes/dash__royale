@@ -14,73 +14,112 @@ def handle_api_error(response, endpoint_name):
     try:
         error_data = response.json()
     except json.JSONDecodeError:
-        error_data = response.text
+        error_data = {"raw_response": response.text}
 
     error_messages = {
         400: "Erro de requisição (Bad Request). Verifique os parâmetros enviados.",
         403: "Erro de autenticação (Forbidden). A sua chave da API (CLASH_ROYALE_API_KEY) é inválida ou não foi definida corretamente.",
-        404: f"Recurso não encontrado (Not Found). O Clan Tag pode estar incorreto. Verifique o clan_tag no início deste script.",
+        404: f"Recurso não encontrado (Not Found). O Clan Tag pode estar incorreto. Verifique a variável de ambiente CLAN_TAG.",
         500: "Erro interno no servidor da Supercell (Internal Server Error). Tente novamente mais tarde.",
-        503: "Serviço indisponível (Service Unavailable). A API da Supercell pode estar em manutenção. Tente novamente mais tarde."
+        503: "Serviço indisponível (Service Unavailable). A API da Supercell pode estar em manutenção."
     }
 
-    print(f"Erro Crítico ao buscar dados de '{endpoint_name}' (Código: {status_code}).")
-    print(error_messages.get(status_code, "Um erro inesperado ocorreu."))
-    print("Detalhes do erro:", error_data)
-    sys.exit(1) # Interrompe a execução
+    print(f"Erro Crítico ao buscar dados de '{endpoint_name}' (Código: {status_code}).", file=sys.stderr)
+    print(error_messages.get(status_code, "Um erro inesperado ocorreu."), file=sys.stderr)
+    print("Detalhes do erro:", json.dumps(error_data, indent=2), file=sys.stderr)
+    sys.exit(1)
+
+def get_full_river_race_log(clan_tag, headers):
+    """
+    Busca o histórico completo de guerras (`riverracelog`), tratando a paginação.
+    """
+    all_items = []
+
+    # Define o limite de itens por página (o máximo permitido pela API é 50)
+    params = {'limit': 50}
+
+    url = f'https://api.clashroyale.com/v1/clans/{clan_tag}/riverracelog'
+
+    page_count = 0
+    while True:
+        page_count += 1
+        print(f"Buscando página {page_count} do histórico de guerras...")
+
+        response = requests.get(url, headers=headers, params=params, timeout=20)
+
+        if response.status_code != 200:
+            handle_api_error(response, f"riverracelog (página {page_count})")
+
+        data = response.json()
+        items = data.get('items', [])
+        all_items.extend(items)
+
+        # Verifica se há uma próxima página
+        if 'paging' in data and 'cursors' in data['paging'] and 'after' in data['paging']['cursors']:
+            params['after'] = data['paging']['cursors']['after']
+            time.sleep(1) # Pausa respeitosa entre as chamadas
+        else:
+            # Não há mais páginas
+            break
+
+    print(f"Total de {len(all_items)} registros de guerra baixados de {page_count} página(s).")
+    return {'items': all_items}
 
 def download_data():
     """
-    Baixa os dados da guerra atual e o histórico de guerras da API do Clash Royale.
+    Baixa os dados da guerra atual e o histórico completo da API do Clash Royale.
     """
     api_key = os.getenv('CLASH_ROYALE_API_KEY')
+    clan_tag = os.getenv('CLAN_TAG')
+
     if not api_key:
-        print("Erro Crítico: A variável de ambiente 'CLASH_ROYALE_API_KEY' não está definida.")
-        print("Por favor, configure a variável de ambiente com sua chave da API e tente novamente.")
+        print("Erro Crítico: A variável de ambiente 'CLASH_ROYALE_API_KEY' não está definida.", file=sys.stderr)
+        sys.exit(1)
+    if not clan_tag:
+        print("Erro Crítico: A variável de ambiente 'CLAN_TAG' não está definida.", file=sys.stderr)
+        sys.exit(1)
+
+    if not clan_tag.startswith('#'):
+        print(f"Erro Crítico: O formato do CLAN_TAG '{clan_tag}' é inválido. Deve começar com '#'.", file=sys.stderr)
         sys.exit(1)
 
     headers = {'Authorization': f'Bearer {api_key}'}
-    clan_tag = '#9PJRJRPC'
-
-    # Validação básica do formato do Clan Tag
-    if not clan_tag.startswith('#') or len(clan_tag) < 4:
-        print(f"Erro Crítico: O formato do Clan Tag '{clan_tag}' parece ser inválido.")
-        sys.exit(1)
-
-    # Codifica o Clan Tag para ser usado na URL
     encoded_clan_tag = '%23' + clan_tag[1:]
 
-    endpoints = {
-        'current_war': f'https://api.clashroyale.com/v1/clans/{encoded_clan_tag}/currentriverrace',
-        'warlog': f'https://api.clashroyale.com/v1/clans/{encoded_clan_tag}/riverracelog'
-    }
+    os.makedirs(data_dir, exist_ok=True)
 
-    if not os.path.exists(data_dir):
-        os.makedirs(data_dir)
+    # 1. Baixar dados da guerra atual
+    try:
+        current_war_url = f'https://api.clashroyale.com/v1/clans/{encoded_clan_tag}/currentriverrace'
+        print("Buscando dados de 'currentriverrace'...")
+        response = requests.get(current_war_url, headers=headers, timeout=10)
 
-    for name, url in endpoints.items():
-        print(f"Buscando dados de '{name}'...")
-        try:
-            response = requests.get(url, headers=headers, timeout=10) # Timeout de 10 segundos
-            # Verifica se a resposta foi bem-sucedida
-            if response.status_code != 200:
-                handle_api_error(response, name)
+        if response.status_code != 200:
+            handle_api_error(response, 'currentriverrace')
 
-            data = response.json()
+        current_war_data = response.json()
+        file_path = os.path.join(data_dir, 'current_war.json')
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(current_war_data, f, indent=4, ensure_ascii=False)
+        print(f"Dados de 'currentriverrace' salvos com sucesso em '{os.path.basename(file_path)}'.")
 
-            file_path = os.path.join(data_dir, f'{name}.json')
-            with open(file_path, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=4, ensure_ascii=False)
-            print(f"Dados de '{name}' salvos com sucesso em '{file_path}'.")
+    except requests.exceptions.RequestException as e:
+        print(f"Erro Crítico de conexão ao buscar 'currentriverrace'. Detalhes: {e}", file=sys.stderr)
+        sys.exit(1)
 
-        except requests.exceptions.RequestException as e:
-            print(f"Erro Crítico de conexão ao buscar '{name}'.")
-            print("Verifique sua conexão com a internet.")
-            print("Detalhes do erro:", e)
-            sys.exit(1)
+    time.sleep(1)
 
-        # Pausa para não sobrecarregar a API
-        time.sleep(1)
+    # 2. Baixar o histórico completo de guerras (riverracelog)
+    try:
+        full_log_data = get_full_river_race_log(encoded_clan_tag, headers)
+        file_path = os.path.join(data_dir, 'riverracelog.json')
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(full_log_data, f, indent=4, ensure_ascii=False)
+        print(f"Histórico completo de guerras salvo com sucesso em '{os.path.basename(file_path)}'.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Erro Crítico de conexão ao buscar o histórico de guerras. Detalhes: {e}", file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == "__main__":
     download_data()

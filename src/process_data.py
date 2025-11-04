@@ -27,34 +27,44 @@ def load_json_file(file_path):
     except (json.JSONDecodeError, IOError) as e:
         log_and_print(f"Erro Crítico: Falha ao ler ou decodificar o arquivo '{os.path.basename(file_path)}'.")
         log_and_print(f"Detalhes: {e}")
-        # Salva os logs antes de sair para que o erro seja visível no dashboard
         with open(os.path.join(data_dir, 'process_log.json'), 'w', encoding='utf-8') as f:
             json.dump(log_messages, f, ensure_ascii=False, indent=4)
         sys.exit(1)
 
 def get_war_history_data():
     """Processa o histórico de guerras para extrair a participação de cada jogador."""
-    warlog_data = load_json_file(os.path.join(data_dir, 'warlog.json'))
+    history_file_path = os.path.join(data_dir, 'riverracelog.json')
+    log_and_print(f"Analisando dados do histórico de guerras (`{os.path.basename(history_file_path)}`)...")
+
+    warlog_data = load_json_file(history_file_path)
     if not warlog_data or not warlog_data.get('items'):
+        log_and_print("-> Info: Histórico de guerras não encontrado ou vazio.")
         return {}
 
+    items = warlog_data['items']
+    log_and_print(f"-> Encontrados {len(items)} registros de guerra no histórico.")
+
     war_history = {}
-    for war in warlog_data['items']:
-        war_date = datetime.strptime(war['createdDate'], '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
-        for participant in war.get('participants', []):
-            tag = participant['tag']
-            if tag not in war_history:
-                war_history[tag] = {}
-            war_history[tag][war_date] = participant.get('cardsUsed', 0)
+    for war in items:
+        finish_time_str = war.get('finishTime', war.get('createdDate'))
+        war_date = datetime.strptime(finish_time_str, '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
+
+        for clan in war.get('clans', []):
+            for participant in clan.get('participants', []):
+                tag = participant['tag']
+                if tag not in war_history:
+                    war_history[tag] = {}
+                war_history[tag][war_date] = participant.get('decksUsed', 0)
+
+    log_and_print(f"-> Processados dados históricos de {len(war_history)} jogadores únicos.")
     return war_history
 
 def generate_report():
     """
-    Gera o relatório de participação em guerras com diagnósticos detalhados
-    e salva os logs em um arquivo JSON.
+    Gera o relatório de participação em guerras com diagnósticos detalhados.
     """
     global log_messages
-    log_messages = [] # Limpa os logs para a execução atual
+    log_messages = []
 
     log_and_print("Iniciando processamento de dados...")
 
@@ -62,31 +72,31 @@ def generate_report():
     data_source = ""
 
     # Etapa 1: Tenta obter dados da guerra atual
-    log_and_print("Verificando dados da guerra atual...")
+    log_and_print("Verificando dados da guerra atual (`current_war.json`)...")
     current_war_data = load_json_file(os.path.join(data_dir, 'current_war.json'))
-    if current_war_data:
+    if current_war_data and current_war_data.get('state') != 'notInWar':
         participants = current_war_data.get('clan', {}).get('participants', [])
         if participants:
             log_and_print(f"-> Sucesso: {len(participants)} participantes encontrados na guerra atual.")
             data_source = "Guerra Atual"
         else:
-            log_and_print("-> Info: Nenhum participante na guerra atual. Buscando no histórico.")
+            log_and_print("-> Info: Clã está em guerra, mas não há lista de participantes. Buscando no histórico.")
     else:
-        log_and_print("-> Info: Dados da guerra atual não disponíveis. Buscando no histórico.")
+        log_and_print("-> Info: Clã não está em guerra (`notInWar`) ou arquivo não encontrado. Buscando no histórico.")
 
     # Etapa 2: Se não houver guerra atual, busca a última guerra VÁLIDA no histórico
     if not participants:
-        log_and_print("Verificando histórico de guerras...")
-        warlog_data = load_json_file(os.path.join(data_dir, 'warlog.json'))
+        history_file_path = os.path.join(data_dir, 'riverracelog.json')
+        log_and_print(f"Verificando `{os.path.basename(history_file_path)}` para definir a lista de membros do clã...")
+        warlog_data = load_json_file(history_file_path)
         if warlog_data and warlog_data.get('items'):
-            for i, war in enumerate(warlog_data['items']):
-                participants = war.get('participants', [])
-                if participants:
-                    war_date = datetime.strptime(war['createdDate'], '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
-                    log_and_print(f"-> Sucesso: Encontrada guerra válida na posição {i} do histórico (Data: {war_date}) com {len(participants)} participantes.")
-                    data_source = f"Histórico ({war_date})"
-                    break
-            if not participants:
+            latest_war = warlog_data['items'][0]
+            participants = [p for clan in latest_war.get('clans', []) for p in clan.get('participants', [])]
+            if participants:
+                finish_time = datetime.strptime(latest_war['finishTime'], '%Y%m%dT%H%M%S.%fZ').strftime('%Y-%m-%d')
+                log_and_print(f"-> Sucesso: Usando a guerra de {finish_time} com {len(participants)} participantes como base para a lista de membros.")
+                data_source = f"Histórico ({finish_time})"
+            else:
                 log_and_print("-> Alerta: Nenhuma guerra com participantes foi encontrada no histórico.")
         else:
             log_and_print("-> Alerta: Histórico de guerras não encontrado ou vazio.")
@@ -96,14 +106,17 @@ def generate_report():
         log_and_print("\nConclusão: Nenhuma fonte de dados com participantes encontrada. O relatório de jogadores estará vazio.")
         df = pd.DataFrame(columns=['Nome', 'Player Status', 'Fonte de Dados', 'Última Guerra', 'Guerra -2', 'Guerra -3', 'Guerra -4', 'Guerra -5'])
     else:
-        log_and_print(f"Gerando relatório com base em: '{data_source}'.")
+        log_and_print(f"Gerando relatório para {len(participants)} jogadores com base em: '{data_source}'.")
         clan_members = {p['tag']: p['name'] for p in participants}
         df = pd.DataFrame(list(clan_members.items()), columns=['Tag', 'Nome'])
         df['Fonte de Dados'] = data_source
 
         war_history = get_war_history_data()
-        all_war_dates = sorted([date for history in war_history.values() for date in history], reverse=True)
-        unique_war_dates = sorted(list(set(all_war_dates)), reverse=True)
+        all_war_dates = sorted({date for history in war_history.values() for date in history}, reverse=True)
+        log_and_print(f"-> Encontradas {len(all_war_dates)} datas de guerras únicas no histórico.")
+
+        unique_war_dates = all_war_dates[:5]
+        log_and_print(f"-> Usando as 5 datas mais recentes para o relatório: {unique_war_dates}")
 
         for i in range(5):
             col_name = f'Guerra -{i+1}' if i > 0 else 'Última Guerra'
@@ -132,16 +145,10 @@ def generate_report():
     df.to_excel(output_path, index=False)
     log_and_print(f"Relatório salvo com sucesso em '{os.path.basename(output_path)}'.")
 
-    # Salva os logs em um arquivo JSON
     log_output_path = os.path.join(data_dir, 'process_log.json')
-    try:
-        with open(log_output_path, 'w', encoding='utf-8') as f:
-            json.dump(log_messages, f, ensure_ascii=False, indent=4)
-        print(f"Logs de diagnóstico salvos em '{os.path.basename(log_output_path)}'.")
-    except IOError as e:
-        print(f"Erro Crítico: Não foi possível salvar o arquivo de log em '{log_output_path}'.")
-        print(f"Detalhes: {e}")
-        sys.exit(1)
+    with open(log_output_path, 'w', encoding='utf-8') as f:
+        json.dump(log_messages, f, ensure_ascii=False, indent=4)
+    print(f"Logs de diagnóstico salvos em '{os.path.basename(log_output_path)}'.")
 
 if __name__ == "__main__":
     generate_report()
