@@ -51,6 +51,9 @@ def get_war_history_data():
         log_and_print("-> Erro Crítico: A variável de ambiente CLAN_TAG não está definida.")
         return {}
 
+    normalized_clan_tag_env = clan_tag_env.lstrip('#')
+    log_and_print(f"-> Buscando pelo CLAN_TAG (normalizado): '{normalized_clan_tag_env}' no histórico...")
+
     for i, war in enumerate(items):
         try:
             # A API do riverracelog usa 'createdDate', que marca o início da semana da guerra.
@@ -69,8 +72,13 @@ def get_war_history_data():
             log_and_print(f"-> Info: A guerra de {war_date} não contém 'standings'.")
             continue
 
+        normalized_clan_tag_env = clan_tag_env.lstrip('#')
+
         for standing in standings:
-            if standing.get('clan', {}).get('tag') == clan_tag_env:
+            clan_info = standing.get('clan', {})
+            clan_tag_from_data = clan_info.get('tag', '')
+
+            if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
                 participants = standing.get('participants', [])
                 for participant in participants:
                     tag = participant.get('tag')
@@ -123,10 +131,13 @@ def generate_report():
             if not clan_tag_env:
                 log_and_print("-> Erro Crítico: A variável de ambiente CLAN_TAG não está definida.")
             else:
+                normalized_clan_tag_env = clan_tag_env.lstrip('#')
                 latest_war = warlog_data['items'][0]
                 participants = []
                 for standing in latest_war.get('standings', []):
-                    if standing.get('clan', {}).get('tag') == clan_tag_env:
+                    clan_info = standing.get('clan', {})
+                    clan_tag_from_data = clan_info.get('tag', '')
+                    if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
                         participants = standing.get('participants', [])
                         break
 
