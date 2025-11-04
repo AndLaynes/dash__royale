@@ -84,6 +84,7 @@ def get_war_history_data():
             if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
                 clan_found_in_war = True
                 participants = standing.get('participants', [])
+                log_and_print(f"  -> [Confirmação] Clã correspondente encontrado! Processando {len(participants)} participante(s).")
                 for participant in participants:
                     tag = participant.get('tag')
                     if not tag:
