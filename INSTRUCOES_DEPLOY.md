@@ -1,15 +1,15 @@
-# Instruções para Publicar o Dashboard no GitHub Pages
+# Instruções Corrigidas para Publicar o Dashboard no GitHub Pages
 
-Este guia explica como publicar e atualizar seu dashboard de forma segura, enviando **apenas o arquivo HTML final** (`index.html`) para a internet. Todo o seu código-fonte, scripts e chaves de API permanecerão privados no seu computador.
+Este guia (agora corrigido) explica como publicar e atualizar seu dashboard de forma segura, enviando **apenas e somente o arquivo `index.html`** para a internet. O erro anterior, que publicava outros arquivos como o `README.md`, foi resolvido.
 
-O processo utiliza um branch especial do Git chamado `gh-pages`, que o GitHub usa para hospedar sites estáticos.
+O processo utiliza um método seguro que cria um branch "órfão" — um branch totalmente limpo e independente — para garantir que apenas o relatório seja publicado.
 
 ---
 
 ### Configuração Inicial (Você só faz isso uma vez)
 
-1.  **Execute o Processo de Publicação Pela Primeira Vez:**
-    *   Siga os passos na seção "Como Atualizar o Dashboard" abaixo para enviar o branch `gh-pages` para o seu repositório no GitHub pela primeira vez.
+1.  **Siga os Passos de Atualização:**
+    *   Execute pela primeira vez os passos descritos na seção **"Como Atualizar o Dashboard Online"** abaixo. Isso irá criar e enviar o branch `gh-pages` para o seu repositório no GitHub.
 
 2.  **Ative o GitHub Pages no Seu Repositório:**
     *   Vá para a página do seu repositório no GitHub.
@@ -22,43 +22,41 @@ O GitHub levará alguns minutos para publicar seu site. O link ficará visível 
 
 ---
 
-### Como Atualizar o Dashboard (Passos para cada atualização)
+### Como Atualizar o Dashboard Online (Processo Corrigido)
 
 Siga estes passos no seu terminal (como o PowerShell ou Git Bash) sempre que quiser atualizar o relatório que está online.
 
 **Passo 1: Gere o Relatório Mais Recente**
-Execute o script principal para baixar os dados mais recentes e gerar o arquivo `index.html`.
+Este passo continua o mesmo. Ele gera o arquivo `index.html` na raiz do seu projeto.
 
 ```bash
 python run_update.py
 ```
 
-**Passo 2: "Empacote" o Relatório para Envio**
-Os comandos abaixo criam um branch temporário (`gh-pages`) que conterá apenas o seu `index.html`. É um processo seguro e automatizado.
-
-*   **Atenção:** Se você tiver alterações não salvas (não "commitadas"), o Git pode pedir para você salvá-las primeiro. Se isso acontecer, você pode "commitar" suas alterações no branch principal ou usar `git stash` para guardá-las temporariamente.
+**Passo 2: Publique Apenas o Relatório**
+Os comandos abaixo foram redesenhados para isolar completamente o `index.html` e enviá-lo para o branch `gh-pages` sem nenhum outro arquivo do projeto.
 
 ```bash
-# Cria e/ou acessa o branch de publicação.
-git checkout -B gh-pages
+# Cria um branch temporário e totalmente limpo, sem nenhum arquivo do projeto.
+git checkout --orphan gh-pages-temp
 
-# Puxa a versão mais recente do index.html do seu branch principal (assumindo que seja 'main').
-# Se o seu branch principal tiver outro nome (ex: 'master'), substitua 'main' no comando abaixo.
-git checkout main -- index.html
-
-# Adiciona o arquivo ao "pacote" de envio.
-git add index.html
+# Adiciona FORÇADAMENTE apenas o arquivo index.html.
+# O '--force' é necessário porque o index.html está no seu .gitignore.
+git add --force index.html
 
 # Cria um registro da atualização.
-git commit -m "Atualiza relatório do dashboard"
+git commit -m "Deploy: Atualiza relatório do dashboard"
 
-# Envia o relatório para o GitHub.
-# O '--force' é necessário aqui porque estamos substituindo o relatório antigo pelo novo.
-# É seguro usar neste caso específico.
-git push origin gh-pages --force
+# Envia este branch limpo para o branch 'gh-pages' do GitHub.
+# Isto irá substituir completamente o que estava lá antes. É seguro e desejado.
+git push -f origin gh-pages-temp:gh-pages
 
-# Volta para o seu branch de trabalho principal.
+# Volta para o seu branch de trabalho principal (ex: 'main' ou 'master').
+# Se seu branch principal tiver outro nome, ajuste o comando abaixo.
 git checkout main
+
+# Deleta o branch temporário do seu computador para manter tudo limpo.
+git branch -D gh-pages-temp
 ```
 
-**Pronto!** Após alguns minutos, suas alterações estarão visíveis no link do seu GitHub Pages.
+**Pronto!** Agora, com certeza, apenas o `index.html` foi publicado. Após alguns minutos, suas atualizações estarão visíveis no link do seu GitHub Pages. Peço desculpas novamente pelo erro anterior!
