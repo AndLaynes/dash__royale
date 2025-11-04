@@ -11,3 +11,7 @@ __pycache__/
 
 # Ignore environment files
 .env
+
+# Ignore generated reports and logs
+relatorio_guerra.html
+app.log
