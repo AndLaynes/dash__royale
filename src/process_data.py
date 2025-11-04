@@ -72,13 +72,17 @@ def get_war_history_data():
             log_and_print(f"-> Info: A guerra de {war_date} não contém 'standings'.")
             continue
 
-        normalized_clan_tag_env = clan_tag_env.lstrip('#')
+        # Log de diagnóstico: registrar todas as tags de clã encontradas nesta guerra
+        clan_tags_found = [s.get('clan', {}).get('tag', 'N/A') for s in standings]
+        log_and_print(f"-> [Diagnóstico Guerra {war_date}] Clãs encontrados: {clan_tags_found}")
 
+        clan_found_in_war = False
         for standing in standings:
             clan_info = standing.get('clan', {})
             clan_tag_from_data = clan_info.get('tag', '')
 
             if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
+                clan_found_in_war = True
                 participants = standing.get('participants', [])
                 for participant in participants:
                     tag = participant.get('tag')
