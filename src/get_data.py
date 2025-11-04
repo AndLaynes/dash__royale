@@ -34,7 +34,7 @@ def download_data():
         sys.exit(1)
 
     headers = {'Authorization': f'Bearer {api_key}'}
-    clan_tag = '#L2Y82L'  # IMPORTANTE: Verifique se este é o tag correto do seu clã.
+    clan_tag = '#9PJRJRPC'  # IMPORTANTE: Verifique se este é o tag correto do seu clã.
 
     endpoints = {
         'current_war': f'https://api.clashroyale.com/v1/clans/%23{clan_tag[1:]}/currentriverrace',

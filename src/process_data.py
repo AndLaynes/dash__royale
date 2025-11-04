@@ -13,8 +13,11 @@ def get_clan_members():
     with open(file_path, 'r') as f:
         data = json.load(f)
 
+    participants = data.get('participants', [])
+    print(f"Diagnóstico: Encontrados {len(participants)} participantes na guerra atual.")
+
     members = {}
-    for participant in data.get('participants', []):
+    for participant in participants:
         members[participant['tag']] = participant['name']
     return members
 
