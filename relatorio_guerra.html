@@ -56,6 +56,7 @@
         table.dataTable {
             width: 100% !important;
             border-collapse: collapse;
+            color: #333; /* Cor padrão escura para o texto da tabela */
         }
         th, td {
             padding: 12px 15px;
@@ -65,13 +66,19 @@
         }
         thead {
             background-color: #374151; /* Cabeçalho da tabela */
-            color: #F9FAFB;
+            color: #F9FAFB; /* Texto do cabeçalho branco */
+        }
+        tbody tr {
+            background-color: #F9FAFB; /* Fundo claro para linhas do corpo */
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #F3F4F6; /* Fundo um pouco mais escuro para linhas ímpares (zebrado) */
         }
         .status {
             font-weight: bold;
             padding: 5px 10px;
             border-radius: 15px; /* Bordas arredondadas para status */
-            color: #fff;
+            color: #fff; /* O texto do status permanece branco */
             display: inline-block;
             border: 1px solid transparent;
         }
@@ -119,8 +126,8 @@
     <div class="container">
 
 <header>
-    <h1>Histórico de Participação em Guerras</h1>
-    <p>Dados oficiais da Supercell, atualizados em: 04/11/2025 17:57:45</p>
+    <h1>Análise da Guerra Atual</h1>
+    <p>Dados oficiais da Supercell, atualizados em: 04/11/2025 18:29:23</p>
     <div class="metrics-info">
         <strong>Métricas do Player Status:</strong><br>
         - <strong>Campeão:</strong> Usou 16 ou mais decks em ambas as duas últimas guerras.<br>
@@ -132,22 +139,79 @@
 
 <div class="content-container">
 
-    <div class="diagnostic-container">
-        <h2>Diagnóstico da Última Atualização</h2>
-        <p>Nenhum dado de jogador foi encontrado. Veja abaixo o log do processo de atualização para entender o motivo:</p>
-        <div class="log-box">
-            <ul>
+    <div class="table-container">
+        <table id="war-report-table" class="display">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Player Status</th>
+                    <th>Última Guerra</th>
+                    <th>Guerra -2</th>
+                    <th>Guerra -3</th>
+                    <th>Guerra -4</th>
+                    <th>Guerra -5</th>
+                </tr>
+            </thead>
+            <tbody>
 
-                <li>Nenhum log de diagnóstico foi encontrado. Execute o processo de atualização.</li>
+                <tr>
+                    <td>Jogador A</td>
+                    <td>
+                        <span class="status status-campeão">
+                            Campeão
+                        </span>
+                    </td>
+                    <td>16</td>
+                    <td>16</td>
+                    <td>16</td>
+                    <td>16</td>
+                    <td>16</td>
+                </tr>
 
-            </ul>
-        </div>
-        <p><strong>Possíveis causas:</strong></p>
-        <ul>
-            <li>A <strong>Clan Tag</strong> configurada na sua variável de ambiente do Windows pode estar incorreta.</li>
-            <li>O clã pode não estar em uma guerra no momento e não há histórico de guerras com participantes.</li>
-            <li>A API da Supercell pode estar temporariamente indisponível. Verifique o status em <a href="https://developer.clashroyale.com/" target="_blank">developer.clashroyale.com</a>.</li>
-        </ul>
+                <tr>
+                    <td>Jogador B</td>
+                    <td>
+                        <span class="status status-ok">
+                            Ok
+                        </span>
+                    </td>
+                    <td>14</td>
+                    <td>12</td>
+                    <td>15</td>
+                    <td>13</td>
+                    <td>12</td>
+                </tr>
+
+                <tr>
+                    <td>Jogador C</td>
+                    <td>
+                        <span class="status status-verificar">
+                            Verificar
+                        </span>
+                    </td>
+                    <td>8</td>
+                    <td>10</td>
+                    <td>-</td>
+                    <td>9</td>
+                    <td>11</td>
+                </tr>
+
+                <tr>
+                    <td>Jogador D</td>
+                    <td>
+                        <span class="status status-ok">
+                            Ok
+                        </span>
+                    </td>
+                    <td>15</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>12</td>
+                    <td>13</td>
+                </tr>
+
+            </tbody>
+        </table>
     </div>
 
 </div>
@@ -163,6 +227,34 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 
 
+
+<script>
+$(document).ready(function() {
+    $('#war-report-table').DataTable({
+        "responsive": true,
+        "pageLength": 25,
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Exportar para Excel',
+                title: 'Relatorio de Guerra - 04/11/2025 18:29:23'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: 'Exportar para PDF',
+                title: 'Relatorio de Guerra - 04/11/2025 18:29:23',
+                orientation: 'landscape',
+                pageSize: 'A4'
+            }
+        ]
+    });
+});
+</script>
 
 
 </body>

@@ -1,56 +1,80 @@
 import subprocess
 import sys
+import locale
 
 def run_script(script_path):
     """
-    Executa um script Python, capturando e exibindo stdout e stderr em tempo real.
-    Levanta uma exceção se o script retornar um código de erro.
+    Executa um script Python de forma robusta, usando a codificação de caracteres
+    nativa do sistema e tratando erros de forma rigorosa.
     """
     print(f"--- Executando {script_path} ---")
-    # Usa sys.executable para garantir o uso do mesmo ambiente Python
-    # O processo é executado e suas saídas (stdout, stderr) são capturadas
-    process = subprocess.Popen(
-        [sys.executable, script_path],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        encoding='utf-8'
-    )
+    try:
+        # Detecta a codificação de caracteres preferida do sistema (ex: 'cp1252' no Windows)
+        system_encoding = locale.getpreferredencoding(False)
 
-    # Lê e imprime a saída em tempo real
-    stdout, stderr = process.communicate()
+        # subprocess.run é uma forma mais moderna e segura de executar processos.
+        # - check=True: Levanta uma exceção (CalledProcessError) se o script retornar um erro.
+        # - capture_output=True: Captura stdout e stderr.
+        # - text=True: Decodifica a saída como texto usando a codificação especificada.
+        result = subprocess.run(
+            [sys.executable, script_path],
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding=system_encoding
+        )
 
-    if stdout:
-        print(stdout)
-    if stderr:
-        # Imprime a saída de erro, crucial para a depuração
-        print(stderr, file=sys.stderr)
+        # Imprime a saída padrão do script apenas se ele for bem-sucedido
+        if result.stdout:
+            print(result.stdout)
 
-    if process.returncode != 0:
-        # Levanta uma exceção para interromper o processo de atualização
-        raise subprocess.CalledProcessError(process.returncode, process.args)
+        # A saída de erro (stderr) será capturada na exceção em caso de falha
+
+    except subprocess.CalledProcessError as e:
+        # Este erro é capturado se o script filho terminar com um código de erro (ex: falhou ao rodar)
+        print(f"ERRO: O script '{script_path}' retornou um código de erro.", file=sys.stderr)
+        if e.stdout:
+            print("--- Saída Padrão (stdout) ---", file=sys.stderr)
+            print(e.stdout, file=sys.stderr)
+        if e.stderr:
+            print("--- Saída de Erro (stderr) ---", file=sys.stderr)
+            print(e.stderr, file=sys.stderr)
+        # Re-levanta a exceção para que o loop principal pare
+        raise e
+    except UnicodeDecodeError as e:
+        # Este erro é capturado se, mesmo com a codificação do sistema, algo der errado
+        print(f"ERRO: Falha ao decodificar a saída do script '{script_path}'.", file=sys.stderr)
+        print(f"Detalhes: {e}", file=sys.stderr)
+        # Encerra o processo levantando um erro genérico
+        raise RuntimeError(f"Falha de codificação em {script_path}") from e
 
 def main():
     """
-    Ponto de entrada principal para o processo de atualização de dados.
+    Ponto de entrada principal que executa a sequência de scripts de atualização.
     """
     print("Iniciando o processo de atualização de dados do Clash Royale...")
 
-    try:
-        run_script('src/get_data.py')
-        run_script('src/process_data.py')
-        run_script('src/generate_html_report.py')
+    scripts_to_run = [
+        'src/get_data.py',
+        'src/process_data.py',
+        'src/generate_html_report.py'
+    ]
 
-        print("\n\033[92mProcesso de atualização concluído com sucesso!\033[0m")
-        print("Você já pode iniciar o servidor com 'python app.py'.")
+    # Executa cada script sequencialmente e para imediatamente em caso de erro
+    for script in scripts_to_run:
+        try:
+            run_script(script)
+        except (subprocess.CalledProcessError, RuntimeError):
+            print(f"\n\033[91mO processo de atualização FALHOU durante a execução de '{script}'.\033[0m")
+            print("Revise os erros detalhados acima.")
+            sys.exit(1) # Encerra o script com um código de erro
+        except Exception as e:
+            print(f"\n\033[91mOcorreu um erro inesperado e fatal durante a execução de '{script}': {e}\033[0m")
+            sys.exit(1)
 
-    except subprocess.CalledProcessError:
-        # A mensagem de erro específica já foi impressa pela função run_script
-        print("\n\033[91mO processo de atualização falhou. Veja os erros acima para mais detalhes.\033[0m")
-        sys.exit(1)
-    except Exception as e:
-        print(f"\n\033[91mOcorreu um erro inesperado: {e}\033[0m")
-        sys.exit(1)
+    # Esta mensagem só será exibida se TODOS os scripts forem executados com sucesso
+    print("\n\033[92mProcesso de atualização concluído com sucesso!\033[0m")
+    print("Você já pode iniciar o servidor com 'python app.py'.")
 
 if __name__ == "__main__":
     main()
