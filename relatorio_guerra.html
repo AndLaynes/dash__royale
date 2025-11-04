@@ -95,21 +95,6 @@
             background-color: #2563EB; /* Azul mais escuro no hover */
         }
 
-        .update-button {
-            background-color: #059669; /* Verde, como o status 'Ok' */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            margin-top: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 1em;
-        }
-
-        .update-button:hover {
-            background-color: #047857; /* Verde mais escuro */
-        }
 
         /* Ajustes de cores para os controles do DataTables */
         .dataTables_wrapper .dataTables_length,
@@ -135,7 +120,7 @@
 
 <header>
     <h1>Histórico de Participação em Guerras</h1>
-    <p>Dados oficiais da Supercell, atualizados em: 04/11/2025 02:09:44</p>
+    <p>Dados oficiais da Supercell, atualizados em: 04/11/2025 17:57:45</p>
     <div class="metrics-info">
         <strong>Métricas do Player Status:</strong><br>
         - <strong>Campeão:</strong> Usou 16 ou mais decks em ambas as duas últimas guerras.<br>
@@ -143,14 +128,27 @@
         - <strong>Verificar:</strong> Usou 11 ou menos decks em alguma das duas últimas guerras, ou é um jogador sem histórico.<br>
         - O símbolo <strong>'-'</strong> indica que o jogador não estava no clã naquela guerra específica.
     </div>
-    <form action="/update" method="get">
-        <button type="submit" class="update-button">Atualizar Dados</button>
-    </form>
 </header>
 
-<div class="table-container">
+<div class="content-container">
 
-    <p>Nenhum dado de jogador encontrado. Verifique se o Clan Tag está correto e se há uma guerra ativa.</p>
+    <div class="diagnostic-container">
+        <h2>Diagnóstico da Última Atualização</h2>
+        <p>Nenhum dado de jogador foi encontrado. Veja abaixo o log do processo de atualização para entender o motivo:</p>
+        <div class="log-box">
+            <ul>
+
+                <li>Nenhum log de diagnóstico foi encontrado. Execute o processo de atualização.</li>
+
+            </ul>
+        </div>
+        <p><strong>Possíveis causas:</strong></p>
+        <ul>
+            <li>A <strong>Clan Tag</strong> configurada na sua variável de ambiente do Windows pode estar incorreta.</li>
+            <li>O clã pode não estar em uma guerra no momento e não há histórico de guerras com participantes.</li>
+            <li>A API da Supercell pode estar temporariamente indisponível. Verifique o status em <a href="https://developer.clashroyale.com/" target="_blank">developer.clashroyale.com</a>.</li>
+        </ul>
+    </div>
 
 </div>
 

@@ -15,51 +15,82 @@
     </div>
 </header>
 
-<div class="table-container">
-    {% if players %}
-    <table id="war-report-table" class="display">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Player Status</th>
-                <th>Última Guerra</th>
-                <th>Guerra -2</th>
-                <th>Guerra -3</th>
-                <th>Guerra -4</th>
-                <th>Guerra -5</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for player in players %}
-            <tr>
-                <td>{{ player['Nome'] }}</td>
-                <td>
-                    <span class="status status-{{ player['Player Status'] | lower }}">
-                        {{ player['Player Status'] }}
-                    </span>
-                </td>
-                <td>{{ player['Última Guerra'] }}</td>
-                <td>{{ player['Guerra -2'] }}</td>
-                <td>{{ player['Guerra -3'] }}</td>
-                <td>{{ player['Guerra -4'] }}</td>
-                <td>{{ player['Guerra -5'] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="content-container">
+    {% if data_found %}
+    <div class="table-container">
+        <table id="war-report-table" class="display">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Player Status</th>
+                    <th>Última Guerra</th>
+                    <th>Guerra -2</th>
+                    <th>Guerra -3</th>
+                    <th>Guerra -4</th>
+                    <th>Guerra -5</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                <tr>
+                    <td>{{ player['Nome'] }}</td>
+                    <td>
+                        <span class="status status-{{ player['Player Status'] | lower }}">
+                            {{ player['Player Status'] }}
+                        </span>
+                    </td>
+                    <td>{{ player['Última Guerra'] }}</td>
+                    <td>{{ player['Guerra -2'] }}</td>
+                    <td>{{ player['Guerra -3'] }}</td>
+                    <td>{{ player['Guerra -4'] }}</td>
+                    <td>{{ player['Guerra -5'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% else %}
-    <p>Nenhum dado de jogador encontrado. Verifique se o Clan Tag está correto e se há uma guerra ativa.</p>
+    <div class="diagnostic-container">
+        <h2>Diagnóstico da Última Atualização</h2>
+        <p>Nenhum dado de jogador foi encontrado. Veja abaixo o log do processo de atualização para entender o motivo:</p>
+        <div class="log-box">
+            <ul>
+                {% for msg in log_messages %}
+                <li>{{ msg }}</li>
+                {% else %}
+                <li>Nenhum log de diagnóstico foi encontrado. Execute o processo de atualização.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <p><strong>Possíveis causas:</strong></p>
+        <ul>
+            <li>A <strong>Clan Tag</strong> configurada na sua variável de ambiente do Windows pode estar incorreta.</li>
+            <li>O clã pode não estar em uma guerra no momento e não há histórico de guerras com participantes.</li>
+            <li>A API da Supercell pode estar temporariamente indisponível. Verifique o status em <a href="https://developer.clashroyale.com/" target="_blank">developer.clashroyale.com</a>.</li>
+        </ul>
+    </div>
     {% endif %}
 </div>
 {% endblock %}
 
 {% block extra_js %}
-{% if players %}
+{% if data_found %}
 <script>
 $(document).ready(function() {
     $('#war-report-table').DataTable({
-        dom: 'Bfrtip', // Adiciona os botões ao DOM
+        "responsive": true,
+        "pageLength": 25,
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+        },
+        dom: 'Bfrtip',
         buttons: [
+            {
+                extend: 'excelHtml5',
+                text: 'Exportar para Excel',
+                title: 'Relatorio de Guerra - {{ report_date }}'
+            },
             {
                 extend: 'pdfHtml5',
                 text: 'Exportar para PDF',
@@ -67,13 +98,7 @@ $(document).ready(function() {
                 orientation: 'landscape',
                 pageSize: 'A4'
             }
-        ],
-        paging: false,
-        info: false,
-        language: {
-            search: "Buscar:",
-            zeroRecords: "Nenhum resultado encontrado"
-        }
+        ]
     });
 });
 </script>
