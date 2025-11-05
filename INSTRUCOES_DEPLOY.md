@@ -1,62 +1,44 @@
-# Instruções Corrigidas para Publicar o Dashboard no GitHub Pages
+# Guia Completo: Como Atualizar o Dashboard Online
 
-Este guia (agora corrigido) explica como publicar e atualizar seu dashboard de forma segura, enviando **apenas e somente o arquivo `index.html`** para a internet. O erro anterior, que publicava outros arquivos como o `README.md`, foi resolvido.
+Este arquivo contém o processo completo e simplificado para atualizar seu site do dashboard. O fluxo de trabalho é sempre o mesmo: **Sincronizar, Gerar e Publicar.**
 
-O processo utiliza um método seguro que cria um branch "órfão" — um branch totalmente limpo e independente — para garantir que apenas o relatório seja publicado.
-
----
-
-### Configuração Inicial (Você só faz isso uma vez)
-
-1.  **Siga os Passos de Atualização:**
-    *   Execute pela primeira vez os passos descritos na seção **"Como Atualizar o Dashboard Online"** abaixo. Isso irá criar e enviar o branch `gh-pages` para o seu repositório no GitHub.
-
-2.  **Ative o GitHub Pages no Seu Repositório:**
-    *   Vá para a página do seu repositório no GitHub.
-    *   Clique em **"Settings"** (Configurações).
-    *   No menu lateral esquerdo, clique em **"Pages"**.
-    *   Em "Source", selecione o branch `gh-pages` e a pasta `/ (root)`.
-    *   Clique em **"Save"**.
-
-O GitHub levará alguns minutos para publicar seu site. O link ficará visível nessa mesma página e terá o formato: `https://<seu-usuario>.github.io/<nome-do-repositorio>/`.
+**Seu branch de trabalho principal é:** `feature-data-collection-script`
+**Seu site está publicado em:** `https://andlaynes.github.io/dash__royale/`
 
 ---
 
-### Como Atualizar o Dashboard Online (Processo Corrigido)
+### Processo de Atualização (Passo a Passo)
 
-Siga estes passos no seu terminal (como o PowerShell ou Git Bash) sempre que quiser atualizar o relatório que está online.
+Execute os comandos abaixo no seu terminal (PowerShell, Git Bash, etc.) sempre que quiser atualizar o site com as novas funcionalidades do projeto e os dados mais recentes do Clash Royale.
 
-**Passo 1: Gere o Relatório Mais Recente**
-Este passo continua o mesmo. Ele gera o arquivo `index.html` na raiz do seu projeto.
+Você pode copiar e colar o bloco de código inteiro de uma só vez.
 
 ```bash
+# PASSO 1: SINCRONIZAR O CÓDIGO
+# Garante que você está no seu branch de trabalho e baixa as últimas atualizações que foram feitas no projeto.
+git checkout feature-data-collection-script
+git pull origin feature-data-collection-script
+
+# PASSO 2: GERAR O NOVO RELATÓRIO
+# Executa o script principal para baixar os dados mais recentes da Supercell e criar o arquivo `index.html`.
 python run_update.py
-```
 
-**Passo 2: Publique Apenas o Relatório**
-Os comandos abaixo foram redesenhados para isolar completamente o `index.html` e enviá-lo para o branch `gh-pages` sem nenhum outro arquivo do projeto.
-
-```bash
-# Cria um branch temporário e totalmente limpo, sem nenhum arquivo do projeto.
+# PASSO 3: PUBLICAR O NOVO SITE
+# Pega o `index.html` recém-criado, o envia de forma segura para o branch `gh-pages` e limpa o ambiente.
 git checkout --orphan gh-pages-temp
-
-# Adiciona FORÇADAMENTE apenas o arquivo index.html.
-# O '--force' é necessário porque o index.html está no seu .gitignore.
 git add --force index.html
-
-# Cria um registro da atualização.
-git commit -m "Deploy: Atualiza relatório do dashboard"
-
-# Envia este branch limpo para o branch 'gh-pages' do GitHub.
-# Isto irá substituir completamente o que estava lá antes. É seguro e desejado.
+git commit -m "Deploy: Atualiza o site com a versão mais recente"
 git push -f origin gh-pages-temp:gh-pages
-
-# Volta para o seu branch de trabalho principal (ex: 'main' ou 'master').
-# Se seu branch principal tiver outro nome, ajuste o comando abaixo.
-git checkout main
-
-# Deleta o branch temporário do seu computador para manter tudo limpo.
+git checkout feature-data-collection-script
 git branch -D gh-pages-temp
 ```
 
-**Pronto!** Agora, com certeza, apenas o `index.html` foi publicado. Após alguns minutos, suas atualizações estarão visíveis no link do seu GitHub Pages. Peço desculpas novamente pelo erro anterior!
+---
+
+### Como Isso Funciona?
+
+*   **Passo 1 (Sincronizar):** `git pull` baixa qualquer alteração que eu tenha feito (como melhorias de layout, correção de bugs, etc.) para o seu computador.
+*   **Passo 2 (Gerar):** `python run_update.py` cria o arquivo `index.html`, que é a "fotografia" mais recente do seu dashboard, já com as novas funcionalidades e os dados atuais do clã.
+*   **Passo 3 (Publicar):** Os comandos `git` seguintes pegam **apenas e somente** esse arquivo `index.html` e o colocam no branch `gh-pages`, que é o branch que o seu site lê.
+
+Após executar o último comando, espere um ou dois minutos. Ao recarregar a página do seu site, as novas alterações já estarão visíveis.
