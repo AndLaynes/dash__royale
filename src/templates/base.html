@@ -123,6 +123,35 @@
         .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
             color: #6B7280 !important;
         }
+
+        /* --- Estilos Responsivos para Dispositivos Móveis --- */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px; /* Reduz o padding do corpo em telas pequenas */
+            }
+
+            .container {
+                padding: 15px; /* Reduz o padding do container principal */
+            }
+
+            h1 {
+                font-size: 1.5em; /* Reduz o tamanho do título principal */
+            }
+
+            .metrics-info {
+                font-size: 0.75em; /* Reduz a fonte da caixa de métricas */
+            }
+
+            th, td {
+                padding: 8px 10px; /* Reduz o padding das células da tabela */
+                font-size: 0.9em; /* Diminui a fonte na tabela */
+            }
+
+            .dt-buttons .dt-button {
+                padding: 8px 15px; /* Ajusta o padding dos botões de exportação */
+                font-size: 0.9em;
+            }
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
