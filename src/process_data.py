@@ -182,12 +182,12 @@ def generate_report():
             df[col_name] = df['Tag'].apply(lambda tag: war_history.get(tag, {}).get(war_date, 0) if war_date else 0)
 
         def get_player_status(row):
-            last_war_decks = pd.to_numeric(row['Última Guerra'], errors='coerce').fillna(0)
-            war_minus_2_decks = pd.to_numeric(row['Guerra -2'], errors='coerce').fillna(0)
+            last_war_decks = pd.to_numeric(row['Última Guerra'], errors='coerce')
+            war_minus_2_decks = pd.to_numeric(row['Guerra -2'], errors='coerce')
 
             # Garante que estamos lidando com números
-            last_war_decks = 0 if pd.isna(last_war_decks) else last_war_decks
-            war_minus_2_decks = 0 if pd.isna(war_minus_2_decks) else war_minus_2_decks
+            last_war_decks = 0 if pd.isna(last_war_decks) else int(last_war_decks)
+            war_minus_2_decks = 0 if pd.isna(war_minus_2_decks) else int(war_minus_2_decks)
 
             if last_war_decks >= 16 and war_minus_2_decks >= 16:
                 return 'Campeão'
