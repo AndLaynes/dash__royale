@@ -30,11 +30,30 @@
                 {% for player in players %}
                 <tr>
                     {% for key in column_headers.keys() %}
-                        <td>
+                        {# Define a classe do heatmap com base nos decks usados #}
+                        {% set war_data = player[key] %}
+                        {% set decks_used = war_data.get('decks_used', -1) if war_data is mapping else -1 %}
+                        {% set heatmap_class = 'heatmap-high' if decks_used == 16 else
+                                             'heatmap-medium' if decks_used >= 12 else
+                                             'heatmap-low' if decks_used >= 8 else
+                                             'heatmap-critical' if decks_used >= 0 else '' %}
+
+                        <td class="{{ heatmap_class if key.startswith('Guerra') or key == 'Última Guerra' else '' }}">
                             {% if key == 'Player Status' %}
                                 <span class="status status-{{ player[key] | lower }}">
                                     {{ player[key] }}
                                 </span>
+                            {% elif player[key] is mapping %}
+                                {# Verifica se o valor é um dicionário (mapeamento) #}
+                                {% if player[key] %}
+                                    <div class="war-data">
+                                        <span class="decks-used">{{ player[key].get('decks_used', '-') }}</span> /
+                                        <span class="fame">{{ player[key].get('fame', '-') }}</span>
+                                        <span class="decks-remaining">({{ player[key].get('decks_remaining', '-') }})</span>
+                                    </div>
+                                {% else %}
+                                    -
+                                {% endif %}
                             {% else %}
                                 {{ player[key] }}
                             {% endif %}

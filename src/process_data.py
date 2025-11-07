@@ -85,8 +85,8 @@ def get_war_history_data():
 
             if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
                 clan_found_in_war = True
-                # Correção: 'participants' está DENTRO de 'clan_info'
-                participants = clan_info.get('participants', [])
+                # Correção BUG: A lista de 'participants' é um item irmão de 'clan' no objeto 'standing'.
+                participants = standing.get('participants', [])
                 for participant in participants:
                     tag = participant.get('tag')
                     if not tag:
@@ -96,7 +96,22 @@ def get_war_history_data():
                         war_history[tag] = {}
 
                     decks_used = participant.get('decksUsed', 0)
-                    war_history[tag][war_date] = decks_used
+                    fame = participant.get('fame', 0)
+                    # A API informa 'decksUsed' e 'decksUsedToday'. O total de decks disponíveis é a soma desses.
+                    # No histórico, 'decksUsedToday' geralmente é 0, então o total é o próprio 'decksUsed'.
+                    # A métrica mais segura para 'decks_available' é 4 por dia de guerra, mas isso não é fornecido.
+                    # A API fornece 'decksUsed' e 'decksAvailable' no endpoint da guerra atual, mas não no histórico.
+                    # Para o cálculo de 'decks_remaining', vamos assumir um total de 16 para simplificar,
+                    # já que não temos o dado exato no histórico.
+                    decks_available = participant.get('decksAvailable', decks_used) # Fallback para o histórico
+                    decks_remaining = max(0, decks_available - decks_used) if decks_available else (16 - decks_used)
+
+
+                    war_history[tag][war_date] = {
+                        "decks_used": decks_used,
+                        "fame": fame,
+                        "decks_remaining": decks_remaining
+                    }
                 break
 
     log_and_print(f"-> Processados dados históricos de {len(war_history)} jogadores únicos de {len(war_dates_found)} guerras.")
@@ -146,8 +161,8 @@ def generate_report():
                     clan_info = standing.get('clan', {})
                     clan_tag_from_data = clan_info.get('tag', '')
                     if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
-                        # Correção: 'participants' está DENTRO de 'clan_info'
-                        participants = clan_info.get('participants', [])
+                        # Correção BUG: A lista de 'participants' é um item irmão de 'clan' no objeto 'standing'.
+                        participants = standing.get('participants', [])
                         break
 
                 if participants:
@@ -180,13 +195,19 @@ def generate_report():
             col_name = f'Guerra -{i+1}' if i > 0 else 'Última Guerra'
             war_date = unique_war_dates[i] if i < len(unique_war_dates) else None
             if war_date:
-                df[col_name] = df['Tag'].apply(lambda tag: war_history.get(tag, {}).get(war_date, '-'))
+                # Agora, em vez de um número, atribuímos o dicionário inteiro. O padrão é um dicionário vazio.
+                df[col_name] = df['Tag'].apply(lambda tag: war_history.get(tag, {}).get(war_date, {}))
             else:
-                df[col_name] = '-'
+                # Se não houver data, a coluna recebe um dicionário vazio.
+                df[col_name] = [{} for _ in range(len(df))]
 
         def get_player_status(row):
-            last_war_decks = pd.to_numeric(row['Última Guerra'], errors='coerce')
-            war_minus_2_decks = pd.to_numeric(row.get('Guerra -2'), errors='coerce')
+            # Acessa o número de decks usados de dentro do dicionário
+            last_war_info = row['Última Guerra']
+            war_minus_2_info = row.get('Guerra -2', {})
+
+            last_war_decks = pd.to_numeric(last_war_info.get('decks_used') if isinstance(last_war_info, dict) else last_war_info, errors='coerce')
+            war_minus_2_decks = pd.to_numeric(war_minus_2_info.get('decks_used') if isinstance(war_minus_2_info, dict) else war_minus_2_info, errors='coerce')
             last_war_decks = 0 if pd.isna(last_war_decks) else last_war_decks
             war_minus_2_decks = 0 if pd.isna(war_minus_2_decks) else war_minus_2_decks
             if last_war_decks >= 16 and war_minus_2_decks >= 16:
