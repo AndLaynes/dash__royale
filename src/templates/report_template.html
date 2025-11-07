@@ -31,31 +31,20 @@
                 <tr>
                     {% for key in column_headers.keys() %}
                         {# Define a classe do heatmap com base nos decks usados #}
-                        {% set war_data = player[key] %}
-                        {% set decks_used = war_data.get('decks_used', -1) if war_data is mapping else -1 %}
-                        {% set heatmap_class = 'heatmap-high' if decks_used == 16 else
-                                             'heatmap-medium' if decks_used >= 12 else
-                                             'heatmap-low' if decks_used >= 8 else
-                                             'heatmap-critical' if decks_used >= 0 else '' %}
-
-                        <td class="{{ heatmap_class if key.startswith('Guerra') or key == 'Última Guerra' else '' }}">
+                        <td>
                             {% if key == 'Player Status' %}
                                 <span class="status status-{{ player[key] | lower }}">
                                     {{ player[key] }}
                                 </span>
-                            {% elif player[key] is mapping %}
-                                {# Verifica se o valor é um dicionário (mapeamento) #}
-                                {% if player[key] %}
-                                    <div class="war-data">
-                                        <span class="decks-used">{{ player[key].get('decks_used', '-') }}</span> /
-                                        <span class="fame">{{ player[key].get('fame', '-') }}</span>
-                                        <span class="decks-remaining">({{ player[key].get('decks_remaining', '-') }})</span>
-                                    </div>
-                                {% else %}
-                                    -
-                                {% endif %}
-                            {% else %}
+                            {% elif player[key] is number %}
+                                {# Se for um número, exiba-o diretamente. #}
                                 {{ player[key] }}
+                            {% elif player[key] == 0 %}
+                                {# Se for 0, também exiba. #}
+                                0
+                            {% else %}
+                                {# Para outros casos (como nulo ou texto), exiba como está ou um padrão. #}
+                                {{ player[key] or '-' }}
                             {% endif %}
                         </td>
                     {% endfor %}
