@@ -84,9 +84,12 @@ def get_war_history_data():
             clan_tag_from_data = clan_info.get('tag', '')
 
             if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
-                clan_found_in_war = True
-                # Correção BUG: A lista de 'participants' é um item irmão de 'clan' no objeto 'standing'.
-                participants = standing.get('participants', [])
+                # CORREÇÃO: A lista de 'participants' está dentro do objeto 'clan'.
+                participants = standing.get('clan', {}).get('participants', [])
+                if not participants:
+                    log_and_print(f"-> Info: Clã encontrado na guerra de {war_date}, mas a lista de participantes está vazia. Pulando.")
+                    continue
+
                 for participant in participants:
                     tag = participant.get('tag')
                     if not tag:
@@ -146,8 +149,8 @@ def generate_report():
                     clan_info = standing.get('clan', {})
                     clan_tag_from_data = clan_info.get('tag', '')
                     if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
-                        # Correção BUG: A lista de 'participants' é um item irmão de 'clan' no objeto 'standing'.
-                        participants = standing.get('participants', [])
+                        # CORREÇÃO: O caminho correto para a lista de participantes.
+                        participants = standing.get('clan', {}).get('participants', [])
                         break
 
                 if participants:
