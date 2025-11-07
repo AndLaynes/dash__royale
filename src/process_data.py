@@ -55,6 +55,7 @@ def get_war_history_data():
     normalized_clan_tag_env = clan_tag_env.lstrip('#')
     log_and_print(f"-> Buscando pelo CLAN_TAG (normalizado): '{normalized_clan_tag_env}' no histórico...")
 
+    clan_found_in_any_war = False
     for i, war in enumerate(items):
         try:
             # A API do riverracelog usa 'createdDate', que marca o início da semana da guerra.
@@ -84,6 +85,7 @@ def get_war_history_data():
             clan_tag_from_data = clan_info.get('tag', '')
 
             if clan_tag_from_data.lstrip('#') == normalized_clan_tag_env:
+                clan_found_in_any_war = True # Marca que o clã foi encontrado pelo menos uma vez
                 # CORREÇÃO: A lista de 'participants' está dentro do objeto 'clan'.
                 participants = standing.get('clan', {}).get('participants', [])
                 if not participants:
@@ -101,6 +103,9 @@ def get_war_history_data():
                     decks_used = participant.get('decksUsed', 0)
                     war_history[tag][war_date] = decks_used
                 break
+
+    if not clan_found_in_any_war:
+        log_and_print(f"-> ALERTA DE DIAGNÓSTICO: O CLAN_TAG '{normalized_clan_tag_env}' não foi encontrado em NENHUM dos {len(items)} registros de guerra do histórico.")
 
     log_and_print(f"-> Processados dados históricos de {len(war_history)} jogadores únicos de {len(war_dates_found)} guerras.")
     return war_history, war_season_ids
