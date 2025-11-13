@@ -191,16 +191,14 @@ def generate_report():
 
         def get_player_status(row):
             last_war_decks = pd.to_numeric(row['Última Guerra'], errors='coerce')
-            war_minus_2_decks = pd.to_numeric(row['Guerra -2'], errors='coerce')
 
-            # Garante que estamos lidando com números
+            # Garante que estamos lidando com um número
             last_war_decks = 0 if pd.isna(last_war_decks) else int(last_war_decks)
-            war_minus_2_decks = 0 if pd.isna(war_minus_2_decks) else int(war_minus_2_decks)
 
-            if last_war_decks >= 16 and war_minus_2_decks >= 16:
-                return 'Campeão'
-            elif last_war_decks >= 12 and war_minus_2_decks >= 12:
+            if last_war_decks >= 16:
                 return 'Ok'
+            elif last_war_decks >= 12:
+                return 'Razoável'
             else:
                 return 'Verificar'
 
