@@ -104,5 +104,45 @@ def generate_html_report():
     except IOError as e:
         print(f"Erro Crítico: Não foi possível salvar o relatório HTML em '{os.path.basename(output_file)}'. Detalhes: {e}")
 
+
+def generate_daily_report():
+    """Gera o relatório de acompanhamento diário da guerra atual."""
+    print("Iniciando a geração do relatório de acompanhamento diário...")
+
+    daily_data_file = os.path.join(data_dir, 'daily_war_data.json')
+    daily_output_file = os.path.join(project_dir, 'acompanhamento_diario.html')
+
+    if not os.path.exists(daily_data_file):
+        print(f"Alerta: Arquivo de dados diários '{os.path.basename(daily_data_file)}' não encontrado. O relatório não será gerado.")
+        return
+
+    try:
+        with open(daily_data_file, 'r', encoding='utf-8') as f:
+            daily_data = json.load(f)
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"Erro ao ler o arquivo de dados diários: {e}")
+        return
+
+    # Configurar o ambiente do Jinja2
+    env = Environment(loader=FileSystemLoader(template_dir))
+    template = env.get_template('daily_report_template.html')
+
+    update_timestamp = datetime.fromtimestamp(os.path.getmtime(daily_data_file))
+
+    html_content = template.render(
+        report_date=update_timestamp.strftime('%d/%m/%Y %H:%M:%S'),
+        in_war=daily_data.get('inWar', False),
+        players=daily_data.get('participants', [])
+    )
+
+    try:
+        with open(daily_output_file, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+        print(f"Relatório de acompanhamento diário gerado com sucesso em '{os.path.basename(daily_output_file)}'.")
+    except IOError as e:
+        print(f"Erro Crítico: Não foi possível salvar o relatório diário em '{os.path.basename(daily_output_file)}'. Detalhes: {e}")
+
+
 if __name__ == "__main__":
     generate_html_report()
+    generate_daily_report()

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Acompanhamento Diário da Guerra{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Acompanhamento Diário da Guerra</h1>
+    <p>Dados oficiais da Supercell, atualizados em: {{ report_date }}</p>
+    <div class="navigation-links">
+        <a href="index.html">Ver Relatório Histórico Completo</a>
+    </div>
+</header>
+
+<div class="content-container">
+    {% if in_war %}
+    <div class="table-container">
+        <table id="daily-report-table" class="display">
+            <thead>
+                <tr>
+                    <th>Nome do Jogador</th>
+                    <th>Decks Usados Hoje</th>
+                    <th>Decks Usados (Total)</th>
+                    <th>Fama (Total)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                {# Adiciona uma classe de destaque para quem ainda não atacou hoje #}
+                <tr class="{{ 'not-attacked-today' if player.decksUsedToday == 0 }}">
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.decksUsedToday }}</td>
+                    <td>{{ player.decksUsed }}</td>
+                    <td>{{ player.fame }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="diagnostic-container">
+        <h2>Clã não está em Guerra</h2>
+        <p>No momento, o clã não está participando de uma guerra. Esta página será atualizada assim que uma nova guerra começar.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% if in_war %}
+<script>
+$(document).ready(function() {
+    $('#daily-report-table').DataTable({
+        "responsive": true,
+        "pageLength": 50, // Mostrar todos os 50 membros por padrão
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+        },
+        "ordering": false // Desativa a ordenação inicial para manter a ordem do script
+    });
+});
+</script>
+{% endif %}
+{% endblock %}

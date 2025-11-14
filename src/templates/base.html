@@ -50,6 +50,19 @@
             text-align: center;
             margin-top: 0;
         }
+        .navigation-links {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .navigation-links a {
+            color: #60A5FA;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        .navigation-links a:hover {
+            color: #93C5FD;
+        }
         .table-container {
             overflow-x: auto;
         }
@@ -73,6 +86,11 @@
         }
         tbody tr:nth-child(odd) {
             background-color: #F3F4F6; /* Fundo um pouco mais escuro para linhas ímpares (zebrado) */
+        }
+        /* Destaque para quem não atacou no relatório diário */
+        tr.not-attacked-today {
+            background-color: #FECACA !important; /* Vermelho claro */
+            color: #7F1D1D !important; /* Texto vermelho escuro */
         }
         .status {
             font-weight: bold;

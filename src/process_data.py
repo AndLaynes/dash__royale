@@ -220,5 +220,40 @@ def generate_report():
         json.dump(log_messages, f, ensure_ascii=False, indent=4)
     print(f"Logs de diagnóstico salvos em '{os.path.basename(log_output_path)}'.")
 
+def process_daily_data():
+    """
+    Processa os dados da guerra atual para o relatório de acompanhamento diário.
+    """
+    log_and_print("\nIniciando processamento de dados diários da guerra...")
+
+    current_war_data = load_json_file(os.path.join(data_dir, 'current_war.json'))
+
+    if not current_war_data or current_war_data.get('state') == 'notInWar':
+        log_and_print("-> Clã não está em guerra. Relatório diário não será gerado.")
+        # Cria um arquivo vazio ou com uma flag para o template lidar com isso
+        daily_data = {"inWar": False, "participants": []}
+    else:
+        participants = current_war_data.get('clan', {}).get('participants', [])
+        log_and_print(f"-> Processando dados diários para {len(participants)} participantes.")
+
+        daily_data = {"inWar": True, "participants": []}
+        for p in participants:
+            daily_data["participants"].append({
+                "name": p.get('name'),
+                "decksUsedToday": p.get('decksUsedToday', 0),
+                "decksUsed": p.get('decksUsed', 0),
+                "fame": p.get('fame', 0)
+            })
+
+        # Opcional: Ordenar por decks usados hoje para destacar quem não atacou
+        daily_data["participants"].sort(key=lambda x: x['decksUsedToday'])
+
+    output_path = os.path.join(data_dir, 'daily_war_data.json')
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(daily_data, f, ensure_ascii=False, indent=4)
+    log_and_print(f"Dados diários da guerra salvos com sucesso em '{os.path.basename(output_path)}'.")
+
+
 if __name__ == "__main__":
     generate_report()
+    process_daily_data()
