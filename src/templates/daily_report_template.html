@@ -1,36 +1,41 @@
 {% extends "base.html" %}
 
-{% block title %}Acompanhamento Diário da Guerra{% endblock %}
+{% block title %}Acompanhamento Acumulado da Guerra{% endblock %}
 
 {% block content %}
 <header>
-    <h1>Acompanhamento Diário da Guerra</h1>
-    <p>Dados oficiais da Supercell, atualizados em: {{ report_date }}</p>
+    <h1>Acompanhamento Acumulado da Guerra</h1>
+    <p>Este relatório acumula os dados de participação diária na guerra atual. Atualizado em: {{ report_date }}</p>
     <div class="navigation-links">
-        <a href="index.html">Ver Relatório Histórico Completo</a>
+        <a href="/">Ver Relatório Histórico Completo</a>
     </div>
 </header>
 
 <div class="content-container">
-    {% if in_war %}
+    {# A variável 'war_data' virá do script de geração #}
+    {% if war_data and war_data.inWar %}
     <div class="table-container">
         <table id="daily-report-table" class="display">
             <thead>
                 <tr>
                     <th>Nome do Jogador</th>
-                    <th>Decks Usados Hoje</th>
-                    <th>Decks Usados (Total)</th>
-                    <th>Fama (Total)</th>
+                    {# Cabeçalhos dos dias são gerados dinamicamente #}
+                    {% for day_header in war_data.day_headers %}
+                        <th>{{ day_header }}</th>
+                    {% endfor %}
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
-                {% for player in players %}
-                {# Adiciona uma classe de destaque para quem ainda não atacou hoje #}
-                <tr class="{{ 'not-attacked-today' if player.decksUsedToday == 0 }}">
+                {% for player in war_data.player_stats %}
+                <tr>
                     <td>{{ player.name }}</td>
-                    <td>{{ player.decksUsedToday }}</td>
-                    <td>{{ player.decksUsed }}</td>
-                    <td>{{ player.fame }}</td>
+                    {# Dados de decks usados para cada dia #}
+                    {% for decks in player.daily_decks %}
+                        <td class="{{ 'not-attacked-on-day' if decks == 0 }}">{{ decks }}</td>
+                    {% endfor %}
+                    {# Coluna com o total de decks usados na semana #}
+                    <td>{{ player.total_decks }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -46,17 +51,18 @@
 {% endblock %}
 
 {% block extra_js %}
-{% if in_war %}
+{% if war_data and war_data.inWar %}
 <script>
 $(document).ready(function() {
     $('#daily-report-table').DataTable({
         "responsive": true,
-        "pageLength": 50, // Mostrar todos os 50 membros por padrão
+        "pageLength": 50,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
         },
-        "ordering": false // Desativa a ordenação inicial para manter a ordem do script
+        // Ordena pela última coluna (Total) em ordem decrescente por padrão
+        "order": [[ {{ war_data.day_headers|length + 1 }}, "desc" ]]
     });
 });
 </script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Dashboard do Clã{% endblock %}</title>
+    <title>Acompanhamento Acumulado da Guerra</title>
     <!-- CSS do DataTables e extensões de Botões -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
@@ -170,12 +170,72 @@
             }
         }
     </style>
-    {% block extra_css %}{% endblock %}
+
 </head>
 <body>
     <div class="container">
-        {% block content %}
-        {% endblock %}
+
+<header>
+    <h1>Acompanhamento Acumulado da Guerra</h1>
+    <p>Este relatório acumula os dados de participação diária na guerra atual. Atualizado em: 14/11/2025 22:23:24</p>
+    <div class="navigation-links">
+        <a href="/">Ver Relatório Histórico Completo</a>
+    </div>
+</header>
+
+<div class="content-container">
+
+
+    <div class="table-container">
+        <table id="daily-report-table" class="display">
+            <thead>
+                <tr>
+                    <th>Nome do Jogador</th>
+
+
+                        <th>Sexta (14/11)</th>
+
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>Jules, o Engenheiro</td>
+
+
+                        <td class="">4</td>
+
+
+                    <td>4</td>
+                </tr>
+
+                <tr>
+                    <td>Jogador Beta</td>
+
+
+                        <td class="">2</td>
+
+
+                    <td>2</td>
+                </tr>
+
+                <tr>
+                    <td>Jogador Gama</td>
+
+
+                        <td class="not-attacked-on-day">0</td>
+
+
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
     </div>
 
     <!-- JavaScript do jQuery, DataTables e extensões -->
@@ -186,6 +246,23 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 
-    {% block extra_js %}{% endblock %}
+
+
+<script>
+$(document).ready(function() {
+    $('#daily-report-table').DataTable({
+        "responsive": true,
+        "pageLength": 50,
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+        },
+        // Ordena pela última coluna (Total) em ordem decrescente por padrão
+        "order": [[ 2, "desc" ]]
+    });
+});
+</script>
+
+
 </body>
 </html>

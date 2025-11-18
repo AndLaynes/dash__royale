@@ -7,7 +7,7 @@
     <h1>{{ report_title }}</h1>
     <p>Dados oficiais da Supercell, atualizados em: {{ report_date }}</p>
     <div class="navigation-links">
-        <a href="acompanhamento_diario.html">Ver Acompanhamento Diário da Guerra</a>
+        <a href="/acompanhamento_diario">Ver Acompanhamento Diário da Guerra</a>
     </div>
     <div class="metrics-info">
         <strong>Definição do Player Status (Baseado na Última Guerra)</strong><br>
@@ -84,28 +84,76 @@
 {% if data_found %}
 <script>
 $(document).ready(function() {
-    $('#war-report-table').DataTable({
+    // Adiciona uma linha de filtro no cabeçalho da tabela
+    $('#war-report-table thead tr').clone(true).addClass('filters').appendTo('#war-report-table thead');
+
+    var table = $('#war-report-table').DataTable({
         "responsive": true,
         "pageLength": 25,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
         },
-        dom: 'Bfrtip',
+        "orderCellsTop": true, // Garante que a ordenação seja aplicada à linha original do cabeçalho
+        "fixedHeader": true,
+        // Configuração dos botões de exportação e do DOM para incluir todos os controles
+        dom: 'Blfrtip', // B(Botões), l(length), f(filtering), r(processing), t(table), i(info), p(pagination)
         buttons: [
             {
                 extend: 'excelHtml5',
                 text: 'Exportar para Excel',
-                title: 'Relatorio de Guerra - {{ report_date }}'
+                title: 'Relatorio de Guerra - {{ report_date }}',
+                exportOptions: {
+                    columns: ':visible'
+                }
             },
             {
                 extend: 'pdfHtml5',
                 text: 'Exportar para PDF',
                 title: 'Relatorio de Guerra - {{ report_date }}',
                 orientation: 'landscape',
-                pageSize: 'A4'
+                pageSize: 'A4',
+                exportOptions: {
+                    columns: ':visible'
+                }
             }
-        ]
+        ],
+        initComplete: function () {
+            var api = this.api();
+
+            // Para cada coluna, adiciona um input de texto para filtro
+            api.columns().eq(0).each(function (colIdx) {
+                var cell = $('.filters th').eq(
+                    $(api.column(colIdx).header()).index()
+                );
+                var title = $(cell).text();
+                $(cell).html('<input type="text" placeholder="Filtrar ' + title + '" />');
+
+                // Ação ao digitar no filtro
+                $('input', $('.filters th').eq($(api.column(colIdx).header()).index()))
+                    .off('keyup change')
+                    .on('keyup change', function (e) {
+                        e.stopPropagation();
+                        $(this).attr('title', $(this).val());
+                        var regexr = '({search})';
+                        var cursorPosition = this.selectionStart;
+                        api
+                            .column(colIdx)
+                            .search(
+                                this.value != ''
+                                    ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                    : '',
+                                this.value != '',
+                                this.value == ''
+                            )
+                            .draw();
+
+                        $(this)
+                            .focus()[0]
+                            .setSelectionRange(cursorPosition, cursorPosition);
+                    });
+            });
+        },
     });
 });
 </script>

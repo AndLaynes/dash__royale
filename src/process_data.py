@@ -222,36 +222,81 @@ def generate_report():
 
 def process_daily_data():
     """
-    Processa os dados da guerra atual para o relatório de acompanhamento diário.
+    Processa e acumula os dados diários da guerra atual, mantendo um histórico.
     """
-    log_and_print("\nIniciando processamento de dados diários da guerra...")
+    log_and_print("\nIniciando processamento de dados diários da guerra (com histórico)...")
 
+    # Caminho para o arquivo de histórico
+    history_file_path = os.path.join(data_dir, 'daily_war_history.json')
+
+    # Carrega os dados da guerra atual
     current_war_data = load_json_file(os.path.join(data_dir, 'current_war.json'))
 
+    # Verifica se o clã está em guerra
     if not current_war_data or current_war_data.get('state') == 'notInWar':
-        log_and_print("-> Clã não está em guerra. Relatório diário não será gerado.")
-        # Cria um arquivo vazio ou com uma flag para o template lidar com isso
-        daily_data = {"inWar": False, "participants": []}
-    else:
-        participants = current_war_data.get('clan', {}).get('participants', [])
-        log_and_print(f"-> Processando dados diários para {len(participants)} participantes.")
+        log_and_print("-> Clã não está em guerra. O histórico diário não será atualizado.")
+        # Garante que um arquivo "fora de guerra" exista para o gerador de relatório
+        with open(history_file_path, 'w', encoding='utf-8') as f:
+            json.dump({"inWar": False}, f, ensure_ascii=False, indent=4)
+        return
 
-        daily_data = {"inWar": True, "participants": []}
-        for p in participants:
-            daily_data["participants"].append({
-                "name": p.get('name'),
-                "decksUsedToday": p.get('decksUsedToday', 0),
-                "decksUsed": p.get('decksUsed', 0),
-                "fame": p.get('fame', 0)
-            })
+    # Tenta obter um ID único para a guerra atual a partir do periodLogs
+    try:
+        # A API retorna o log do período mais recente primeiro
+        war_id = current_war_data['periodLogs'][0]['createdDate']
+    except (IndexError, KeyError):
+        log_and_print("-> Alerta: Não foi possível encontrar 'createdDate' em 'periodLogs' para identificar a guerra.")
+        # Como fallback, podemos usar o 'seasonId', mas é menos preciso para o reset semanal
+        war_id = current_war_data.get('seasonId', 'unknown_war_id')
+        log_and_print(f"-> Usando fallback de war_id: {war_id}")
 
-        # Opcional: Ordenar por decks usados hoje para destacar quem não atacou
-        daily_data["participants"].sort(key=lambda x: x['decksUsedToday'])
+    # Carrega o histórico existente, se houver
+    history_data = load_json_file(history_file_path)
+    if not history_data or history_data.get('warId') != war_id:
+        log_and_print(f"-> Detectada uma nova guerra (ID: {war_id}) ou histórico inexistente. Iniciando novo registro.")
+        history_data = {
+            "warId": war_id,
+            "inWar": True,
+            "warDays": [],
+            "players": {}
+        }
 
-    output_path = os.path.join(data_dir, 'daily_war_data.json')
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(daily_data, f, ensure_ascii=False, indent=4)
-    log_and_print(f"Dados diários da guerra salvos com sucesso em '{os.path.basename(output_path)}'.")
+    # Obtém a data de hoje para usar como chave
+    today_str = datetime.now().strftime('%Y-%m-%d')
+    # Adiciona a data de hoje à lista de dias de guerra, se ainda não estiver lá
+    if today_str not in history_data['warDays']:
+        history_data['warDays'].append(today_str)
+        history_data['warDays'].sort() # Mantém a ordem cronológica
+
+    # Atualiza os dados dos jogadores
+    participants = current_war_data.get('clan', {}).get('participants', [])
+    log_and_print(f"-> Atualizando histórico com dados de {len(participants)} participantes para o dia {today_str}.")
+
+    for p in participants:
+        tag = p.get('tag')
+        if not tag:
+            continue
+
+        player_name = p.get('name')
+        decks_used_today = p.get('decksUsedToday', 0)
+
+        # Se o jogador não está no histórico, adiciona
+        if tag not in history_data['players']:
+            history_data['players'][tag] = {
+                "name": player_name,
+                "history": {}
+            }
+
+        # Garante que o nome do jogador esteja atualizado
+        history_data['players'][tag]['name'] = player_name
+
+        # Atualiza o número de decks usados para o dia de hoje
+        history_data['players'][tag]['history'][today_str] = decks_used_today
+
+    # Salva o histórico atualizado de volta no arquivo
+    with open(history_file_path, 'w', encoding='utf-8') as f:
+        json.dump(history_data, f, ensure_ascii=False, indent=4)
+    log_and_print(f"Histórico diário da guerra salvo com sucesso em '{os.path.basename(history_file_path)}'.")
 
 
 if __name__ == "__main__":

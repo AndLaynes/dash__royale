@@ -106,33 +106,69 @@ def generate_html_report():
 
 
 def generate_daily_report():
-    """Gera o relatório de acompanhamento diário da guerra atual."""
-    print("Iniciando a geração do relatório de acompanhamento diário...")
+    """Gera o relatório de acompanhamento diário acumulado a partir do histórico."""
+    print("Iniciando a geração do relatório de acompanhamento diário acumulado...")
 
-    daily_data_file = os.path.join(data_dir, 'daily_war_data.json')
+    history_file = os.path.join(data_dir, 'daily_war_history.json')
     daily_output_file = os.path.join(project_dir, 'acompanhamento_diario.html')
 
-    if not os.path.exists(daily_data_file):
-        print(f"Alerta: Arquivo de dados diários '{os.path.basename(daily_data_file)}' não encontrado. O relatório não será gerado.")
+    # Carrega os dados do histórico
+    if not os.path.exists(history_file):
+        print(f"Alerta: Arquivo de histórico '{os.path.basename(history_file)}' não encontrado. O relatório não será gerado.")
+        return
+    try:
+        with open(history_file, 'r', encoding='utf-8') as f:
+            history_data = json.load(f)
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"Erro ao ler o arquivo de histórico diário: {e}")
         return
 
-    try:
-        with open(daily_data_file, 'r', encoding='utf-8') as f:
-            daily_data = json.load(f)
-    except (json.JSONDecodeError, IOError) as e:
-        print(f"Erro ao ler o arquivo de dados diários: {e}")
-        return
+    # Prepara os dados para o template
+    war_data_for_template = {
+        "inWar": history_data.get('inWar', False),
+        "day_headers": [],
+        "player_stats": []
+    }
+
+    if war_data_for_template["inWar"]:
+        # Mapeia o dia da semana em inglês para português
+        day_map = {
+            'Monday': 'Segunda', 'Tuesday': 'Terça', 'Wednesday': 'Quarta',
+            'Thursday': 'Quinta', 'Friday': 'Sexta', 'Saturday': 'Sábado', 'Sunday': 'Domingo'
+        }
+
+        # Cria os cabeçalhos dos dias (ex: "Quinta (14/11)")
+        war_days = sorted(history_data.get('warDays', []))
+        for day_str in war_days:
+            date_obj = datetime.strptime(day_str, '%Y-%m-%d')
+            day_name = day_map.get(date_obj.strftime('%A'), '')
+            war_data_for_template['day_headers'].append(f"{day_name} ({date_obj.strftime('%d/%m')})")
+
+        # Processa os dados de cada jogador
+        for tag, player_data in history_data.get('players', {}).items():
+            player_stats = {
+                "name": player_data.get('name'),
+                "daily_decks": [],
+                "total_decks": 0
+            }
+            # Garante que os ataques de cada dia correspondam aos cabeçalhos
+            for day_str in war_days:
+                decks = player_data.get('history', {}).get(day_str, 0)
+                player_stats['daily_decks'].append(decks)
+                player_stats['total_decks'] += decks
+
+            war_data_for_template['player_stats'].append(player_stats)
 
     # Configurar o ambiente do Jinja2
     env = Environment(loader=FileSystemLoader(template_dir))
     template = env.get_template('daily_report_template.html')
 
-    update_timestamp = datetime.fromtimestamp(os.path.getmtime(daily_data_file))
+    update_timestamp = datetime.fromtimestamp(os.path.getmtime(history_file))
 
+    # Renderiza o template com os dados processados
     html_content = template.render(
         report_date=update_timestamp.strftime('%d/%m/%Y %H:%M:%S'),
-        in_war=daily_data.get('inWar', False),
-        players=daily_data.get('participants', [])
+        war_data=war_data_for_template
     )
 
     try:

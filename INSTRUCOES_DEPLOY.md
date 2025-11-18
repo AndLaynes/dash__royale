@@ -38,14 +38,14 @@ Se este passo falhar, pare e me envie o log de erro.
 
 #### PASSO 3: Publicação no GitHub Pages
 
-Este é o processo final para enviar **apenas o `index.html`** para o seu site.
+Este é o processo final para enviar **os arquivos `index.html` e `acompanhamento_diario.html`** para o seu site.
 
 ```bash
 # Cria um branch temporário e limpo para o deploy
 git checkout --orphan gh-pages-temp
 
-# Adiciona SOMENTE o arquivo index.html, ignorando todo o resto
-git add --force index.html
+# Adiciona SOMENTE os arquivos HTML necessários, ignorando todo o resto
+git add --force index.html acompanhamento_diario.html
 
 # Cria o commit
 git commit -m "Deploy: Atualiza o relatório do site"
