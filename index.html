@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - {{ clan.name if clan else 'Clã' }}</title>
+    <title>Dashboard - OS GUARDIÕES</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -13,35 +13,71 @@
 
 <body>
     <div class="app-container">
-        {% set page = 'home' %}
-        {% include '_header.html' %}
+        
+        <!-- Header Unificado - Inclua em todos os templates -->
+<header class="main-header">
+    <div class="header-bg-pattern"></div>
+    <div class="logo-area">
+        <img src="https://cdn-icons-png.flaticon.com/512/1165/1165305.png" alt="Clash Royale Logo"
+            class="cr-logo pulse">
+        <div class="clan-info">
+            <h1 class="clan-name">OS GUARDIÕES</h1>
+            <div class="clan-meta">
+                <span class="clan-tag">#9PJRJRPC</span>
+                <span class="clan-trophies">🏆 3097</span>
+            </div>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Visão Geral</span>
+        </a>
+        <a href="war_history.html" class="nav-link ">
+            <span class="nav-icon">⚔️</span>
+            <span class="nav-text">Guerras</span>
+        </a>
+        <a href="members_stats.html" class="nav-link ">
+            <span class="nav-icon">👥</span>
+            <span class="nav-text">Membros</span>
+        </a>
+        <a href="ranking.html" class="nav-link ">
+            <span class="nav-icon">🏅</span>
+            <span class="nav-text">Ranking</span>
+        </a>
+    </nav>
+    <div class="update-info">
+        <span class="update-icon">🔄</span>
+        <span class="update-text">19/11/2025 19:03</span>
+    </div>
+</header>
 
         <main class="dashboard-grid">
             <section class="stats-cards">
                 <div class="card">
                     <h3>🏆 Troféus de Guerra</h3>
-                    <div class="value">{{ clan.clanWarTrophies if clan else '---' }}</div>
+                    <div class="value">3097</div>
                 </div>
                 <div class="card">
                     <h3>👥 Membros Ativos</h3>
-                    <div class="value">{{ clan.members if clan else '0' }}/50</div>
+                    <div class="value">50/50</div>
                 </div>
                 <div class="card">
                     <h3>🎁 Doações / Semana</h3>
-                    <div class="value">{{ clan.donationsPerWeek if clan else '0' }}</div>
+                    <div class="value">5036</div>
                 </div>
             </section>
 
-            {% if war %}
+            
             <section class="card">
                 <h2>⚔️ Guerra Atual</h2>
                 <div class="war-details" style="margin-top: 15px;">
-                    <p style="font-size: 1.1rem;">Estado: <strong style="color: var(--gold);">{{ war.state }}</strong>
+                    <p style="font-size: 1.1rem;">Estado: <strong style="color: var(--gold);">full</strong>
                     </p>
-                    <p style="color: var(--text-muted);">Seção: {{ war.sectionIndex }}</p>
+                    <p style="color: var(--text-muted);">Seção: 2</p>
                 </div>
             </section>
-            {% endif %}
+            
 
             <section class="card">
                 <div class="card-header">
@@ -59,26 +95,139 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% if clan and clan.memberList %}
-                            {% for member in clan.memberList [:10] %}
+                            
+                            
                             <tr>
-                                <td>{{ member.clanRank }}</td>
+                                <td>1</td>
                                 <td>
                                     <div class="member-name">
-                                        <strong>{{ member.name }}</strong>
-                                        <span class="member-tag">{{ member.tag }}</span>
+                                        <strong>51 é pinga</strong>
+                                        <span class="member-tag">#UJRLJY0L2</span>
                                     </div>
                                 </td>
-                                <td><span class="role-badge {{ member.role }}">{{ member.role }}</span></td>
-                                <td>{{ member.trophies }} 🏆</td>
-                                <td>{{ member.donations }}</td>
+                                <td><span class="role-badge coLeader">coLeader</span></td>
+                                <td>10000 🏆</td>
+                                <td>94</td>
                             </tr>
-                            {% endfor %}
-                            {% else %}
+                            
                             <tr>
-                                <td colspan="5" style="text-align: center;">Nenhum membro encontrado.</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>DavidSantana</strong>
+                                        <span class="member-tag">#9QG0U8YCQ</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge elder">elder</span></td>
+                                <td>10000 🏆</td>
+                                <td>237</td>
                             </tr>
-                            {% endif %}
+                            
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>JOAOVITOR:D</strong>
+                                        <span class="member-tag">#Y8R9V2URG</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge elder">elder</span></td>
+                                <td>10000 🏆</td>
+                                <td>36</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>Bruno</strong>
+                                        <span class="member-tag">#UPR022QUR</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge elder">elder</span></td>
+                                <td>10000 🏆</td>
+                                <td>0</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>PeitinDoGalego</strong>
+                                        <span class="member-tag">#J8JQ8LQUY</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge member">member</span></td>
+                                <td>10000 🏆</td>
+                                <td>246</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>6</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>AUGUSTO</strong>
+                                        <span class="member-tag">#VLYU9Y2Y</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge member">member</span></td>
+                                <td>10000 🏆</td>
+                                <td>304</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>7</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>Chetto</strong>
+                                        <span class="member-tag">#2LR0RR89Q</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge elder">elder</span></td>
+                                <td>10000 🏆</td>
+                                <td>175</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>8</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>joão3:16</strong>
+                                        <span class="member-tag">#U220VCULP</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge coLeader">coLeader</span></td>
+                                <td>10000 🏆</td>
+                                <td>66</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>9</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>tavin</strong>
+                                        <span class="member-tag">#U8VP8L8L0</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge elder">elder</span></td>
+                                <td>10000 🏆</td>
+                                <td>203</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>10</td>
+                                <td>
+                                    <div class="member-name">
+                                        <strong>Theus Carvalho</strong>
+                                        <span class="member-tag">#82QC0YL2C</span>
+                                    </div>
+                                </td>
+                                <td><span class="role-badge elder">elder</span></td>
+                                <td>10000 🏆</td>
+                                <td>66</td>
+                            </tr>
+                            
+                            
                         </tbody>
                     </table>
                 </div>
