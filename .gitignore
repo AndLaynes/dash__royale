@@ -1,0 +1,41 @@
+# ===== DADOS SENSÍVEIS =====
+# Dados locais (cache da API)
+data/
+*.json
+
+# Arquivos HTML gerados (podem ser regenerados)
+index.html
+war_history.html
+members_stats.html
+ranking.html
+
+# ===== PYTHON =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# ===== CHAVES E CONFIGURAÇÕES (CRÍTICO!) =====
+.env
+*.key
+config.json
+secrets.json
+api_key.txt
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== LOGS =====
+*.log
