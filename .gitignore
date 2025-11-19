@@ -3,11 +3,11 @@
 data/
 *.json
 
-# Arquivos HTML gerados (podem ser regenerados)
-index.html
-war_history.html
-members_stats.html
-ranking.html
+# Arquivos HTML gerados (COMENTADO para GitHub Pages)
+# index.html
+# war_history.html
+# members_stats.html
+# ranking.html
 
 # ===== PYTHON =====
 __pycache__/
