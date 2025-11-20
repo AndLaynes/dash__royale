@@ -1,6 +1,20 @@
-<div class="app-container">
-    
-    <!-- Header Unificado - Inclua em todos os templates -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoria Diária - OS GUARDIÕES</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        
+        <!-- Header Unificado - Inclua em todos os templates -->
 <header class="main-header">
     <div class="header-bg-pattern"></div>
     <div class="logo-area">
@@ -38,74 +52,78 @@
     </nav>
     <div class="update-info">
         <span class="update-icon">🔄</span>
-        <span class="update-text">20/11/2025 15:56</span>
+        <span class="update-text">20/11/2025 16:12</span>
     </div>
 </header>
 
-    <main class="dashboard-grid">
-        <!-- Cabeçalho da Auditoria -->
-        <section class="audit-header-section">
-            <div class="audit-card">
-                <div class="audit-info">
-                    <h2 class="audit-title">
-                        <i class="fas fa-clipboard-check"></i> Auditoria Diária
-                    </h2>
-                    
-                    <p class="audit-subtitle">Hoje é dia de treino/descanso.</p>
-                    <div class="audit-target-badge training">
-                        <span>Sem Meta Ativa</span>
+        <main class="dashboard-grid">
+            <!-- Cabeçalho da Auditoria -->
+            <section class="audit-header-section">
+                <div class="audit-card">
+                    <div class="audit-info">
+                        <h2 class="audit-title">
+                            <i class="fas fa-clipboard-check"></i> Auditoria Diária
+                        </h2>
+                        
+                        <p class="audit-subtitle">Hoje é dia de treino/descanso.</p>
+                        <div class="audit-target-badge training">
+                            <span>Sem Meta Ativa</span>
+                        </div>
+                        
                     </div>
+
                     
                 </div>
+            </section>
 
-                
-            </div>
-        </section>
+            <!-- Explicação da Métrica -->
+            <section class="card">
+                <div class="card-header">
+                    <h2>ℹ️ Como funciona a Auditoria?</h2>
+                </div>
+                <div style="padding: 0 20px;">
+                    <p style="color: var(--text-muted); margin-bottom: 15px;">
+                        O sistema verifica os decks usados de forma <strong>retrospectiva</strong> para garantir que
+                        todos
+                        jogaram no dia anterior.
+                    </p>
+                    <ul style="list-style: none; color: var(--text-muted); display: grid; gap: 10px;">
+                        <li style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--gold); font-weight: 700;">Sexta-feira:</span> Audita Quinta (Meta:
+                            4
+                            Decks)
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--gold); font-weight: 700;">Sábado:</span> Audita Sexta (Meta: 8
+                            Decks)
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--gold); font-weight: 700;">Domingo:</span> Audita Sábado (Meta: 12
+                            Decks)
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--gold); font-weight: 700;">Segunda-feira:</span> Audita Domingo
+                            (Meta:
+                            16 Decks)
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
-        <!-- Explicação da Métrica -->
-        <section class="card">
-            <div class="card-header">
-                <h2>ℹ️ Como funciona a Auditoria?</h2>
-            </div>
-            <div style="padding: 0 20px;">
-                <p style="color: var(--text-muted); margin-bottom: 15px;">
-                    O sistema verifica os decks usados de forma <strong>retrospectiva</strong> para garantir que todos
-                    jogaram no dia anterior.
-                </p>
-                <ul style="list-style: none; color: var(--text-muted); display: grid; gap: 10px;">
-                    <li style="display: flex; align-items: center; gap: 10px;">
-                        <span style="color: var(--gold); font-weight: 700;">Sexta-feira:</span> Audita Quinta (Meta: 4
-                        Decks)
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 10px;">
-                        <span style="color: var(--gold); font-weight: 700;">Sábado:</span> Audita Sexta (Meta: 8 Decks)
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 10px;">
-                        <span style="color: var(--gold); font-weight: 700;">Domingo:</span> Audita Sábado (Meta: 12
-                        Decks)
-                    </li>
-                    <li style="display: flex; align-items: center; gap: 10px;">
-                        <span style="color: var(--gold); font-weight: 700;">Segunda-feira:</span> Audita Domingo (Meta:
-                        16 Decks)
-                    </li>
-                </ul>
-            </div>
-        </section>
+            
+            <section class="audit-empty-state">
+                <div class="empty-content">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Relaxe, Guerreiro!</h3>
+                    <p>Hoje não há auditoria de guerra ativa. Aproveite para treinar seus decks.</p>
+                </div>
+            </section>
+            
 
-        
-        <section class="audit-empty-state">
-            <div class="empty-content">
-                <i class="fas fa-coffee"></i>
-                <h3>Relaxe, Guerreiro!</h3>
-                <p>Hoje não há auditoria de guerra ativa. Aproveite para treinar seus decks.</p>
-            </div>
-        </section>
-        
+        </main>
+    </div>
 
-    </main>
-</div>
-
-<script src="static/table-sort.js"></script>
+    <script src="static/table-sort.js"></script>
 </body>
 
 </html>
