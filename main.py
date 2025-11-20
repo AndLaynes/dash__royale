@@ -301,8 +301,8 @@ def main():
     war_trophies = clan_info.get("clanWarTrophies", 0) if clan_info else 0
     league_name, next_threshold, trophies_to_next, progress_pct, next_league_name = calculate_league(war_trophies)
     
-    # Processar dados históricos para o gráfico
-    war_chart_data = {"labels": [], "fame": []}
+    # Processar dados históricos para o gráfico (Pontuação do Clã)
+    war_chart_data = {"labels": [], "scores": []}
     if war_log and "items" in war_log:
         # Limitar às últimas 10 guerras para o gráfico
         recent_wars = war_log["items"][:10]
@@ -312,8 +312,12 @@ def main():
         for idx, war in enumerate(recent_wars):
             my_clan_data = next((s for s in war.get("standings", []) if s.get("clan", {}).get("tag") == target_tag), None)
             if my_clan_data:
-                war_chart_data["labels"].append(f"S{war.get('sectionIndex', idx+1)}")
-                war_chart_data["fame"].append(my_clan_data["clan"].get("fame", 0))
+                season_id = war.get('seasonId', 0)
+                section_index = war.get('sectionIndex', idx+1)
+                # Formato: "Temporada X - Seção Y"
+                label = f"T{season_id}-S{section_index}"
+                war_chart_data["labels"].append(label)
+                war_chart_data["scores"].append(my_clan_data["clan"].get("clanScore", 0))
     
     history_context.update({
         "league_name": league_name,

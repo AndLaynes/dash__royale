@@ -17,6 +17,10 @@
     - [x] Add "Fame vs Decks" explanation to `war_history.html` <!-- id: 11 -->
     - [x] Add "Audit Logic" explanation to `daily_war.html` <!-- id: 12 -->
     - [x] Add "Roles Legend" to `members_stats.html` <!-- id: 13 -->
+- [x] **War Score History Chart** <!-- id: 17 -->
+    - [x] Extract historical scores in `main.py` <!-- id: 18 -->
+    - [x] Add Chart.js to `war_history.html` <!-- id: 19 -->
+    - [x] Render line chart with historical data <!-- id: 20 -->
 - [x] Corrigir filtro: exibir apenas jogadores ativos (memberList) <!-- id: 14 -->
 - [x] Adicionar exportação para PDF <!-- id: 15 -->
 - [x] Criar página de Estatísticas de Membros <!-- id: 16 -->

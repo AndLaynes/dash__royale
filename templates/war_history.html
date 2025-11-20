@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
 </head>
 
 <body>
@@ -69,6 +70,16 @@
                 </div>
             </section>
 
+            <!-- Gráfico de Evolução de Pontuação -->
+            <section class="card">
+                <div class="card-header">
+                    <h2>📈 Evolução de Pontuação</h2>
+                </div>
+                <div class="chart-container" style="padding: 20px; position: relative; height: 350px;">
+                    <canvas id="warScoreChart"></canvas>
+                </div>
+            </section>
+
             <!-- Histórico de Guerras -->
             <section class="card">
                 <div class="card-header">
@@ -126,6 +137,81 @@
     </div>
 
     <script src="static/table-sort.js"></script>
+    <script>
+        // Dados do gráfico de pontuação histórica
+        const warScoreData = {{ war_chart_data | tojson }};
+
+        // Configuração do gráfico
+        const ctx = document.getElementById('warScoreChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: warScoreData.labels,
+                datasets: [{
+                    label: 'Pontuação do Clã',
+                    data: warScoreData.scores,
+                    borderColor: '#ffd700',
+                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#ffd700',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#ffd700',
+                        bodyColor: '#fff',
+                        borderColor: '#ffd700',
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false,
+                        callbacks: {
+                            label: function (context) {
+                                return 'Pontuação: ' + context.parsed.y;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                size: 12
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                size: 11
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
