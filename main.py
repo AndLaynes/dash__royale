@@ -125,6 +125,34 @@ def calculate_league(war_trophies):
     
     return current_league, next_threshold, trophies_to_next, int(progress_pct), next_league
 
+def get_war_day_status():
+    """
+    Determina o status da guerra baseado no dia da semana (Retrospectivo).
+    O script roda no dia X para auditar o dia X-1.
+    
+    0 = Segunda (Audita Domingo - Fim)
+    1 = Terça (Treino)
+    2 = Quarta (Treino)
+    3 = Quinta (Treino/Início)
+    4 = Sexta (Audita Quinta - Dia 1)
+    5 = Sábado (Audita Sexta - Dia 2)
+    6 = Domingo (Audita Sábado - Dia 3)
+    """
+    today = datetime.now().weekday()
+    
+    # Mapeamento de auditoria
+    audit_map = {
+        4: {"target": 4, "day_name": "Quinta-feira (Dia 1)", "is_audit": True},
+        5: {"target": 8, "day_name": "Sexta-feira (Dia 2)", "is_audit": True},
+        6: {"target": 12, "day_name": "Sábado (Dia 3)", "is_audit": True},
+        0: {"target": 16, "day_name": "Domingo (Dia 4 - Final)", "is_audit": True}
+    }
+    
+    if today in audit_map:
+        return audit_map[today]
+    
+    return {"target": 0, "day_name": "Dia de Treino", "is_audit": False}
+
 def main():
     print("=== JULES Squad: Clash Royale Dashboard Generator ===")
     print(f"Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
@@ -205,6 +233,66 @@ def main():
         })
     
     html_content_ranking = template_ranking.render(ranking_context)
+
+    # 5.6 Processar Acompanhamento Diário (Auditoria)
+    audit_status = get_war_day_status()
+    daily_context = {
+        "clan": clan_info, 
+        "generated_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "audit": audit_status
+    }
+    
+    if audit_status["is_audit"]:
+        # Criar mapa de decks usados pelos participantes da guerra
+        participants_decks = {}
+        if current_war and "clan" in current_war and "participants" in current_war["clan"]:
+            for p in current_war["clan"]["participants"]:
+                participants_decks[p["tag"]] = p["decksUsed"]
+        
+        audit_list = []
+        if clan_info and "memberList" in clan_info:
+            for member in clan_info["memberList"]:
+                tag = member["tag"]
+                decks_used = participants_decks.get(tag, 0)
+                target = audit_status["target"]
+                
+                # Definir Status
+                if decks_used >= target:
+                    status = "ok"
+                    status_text = "Em Dia"
+                elif decks_used > 0:
+                    status = "warning"
+                    status_text = "Incompleto"
+                else:
+                    status = "critical"
+                    status_text = "Zerado"
+                
+                audit_list.append({
+                    "name": member["name"],
+                    "tag": tag,
+                    "role": member["role"],
+                    "decks_used": decks_used,
+                    "decks_missing": max(0, target - decks_used),
+                    "status": status,
+                    "status_text": status_text
+                })
+        
+        # Ordenar: Críticos primeiro, depois Warning, depois OK
+        # Dentro do status, ordenar por decks faltantes (desc)
+        audit_list.sort(key=lambda x: (
+            0 if x["status"] == "critical" else 1 if x["status"] == "warning" else 2, 
+            -x["decks_missing"]
+        ))
+        
+        daily_context["audit_list"] = audit_list
+        
+        # Contadores
+        daily_context["count_ok"] = sum(1 for x in audit_list if x["status"] == "ok")
+        daily_context["count_warning"] = sum(1 for x in audit_list if x["status"] == "warning")
+        daily_context["count_critical"] = sum(1 for x in audit_list if x["status"] == "critical")
+
+    template_daily = env.get_template("daily_war.html")
+    html_content_daily = template_daily.render(daily_context)
 
     # 4. Processar Histórico de Guerra (Última Guerra)
     history_context = {"clan": clan_info, "generated_at": datetime.now().strftime("%d/%m/%Y %H:%M")}
@@ -317,6 +405,9 @@ def main():
     
     with open("ranking.html", "w", encoding="utf-8") as f:
         f.write(html_content_ranking)
+
+    with open("daily_war.html", "w", encoding="utf-8") as f:
+        f.write(html_content_daily)
     
     print(f"\n=== SUCESSO ===")
     print(f"Arquivos gerados:")

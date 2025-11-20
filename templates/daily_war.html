@@ -1,0 +1,137 @@
+<div class="app-container">
+    {% set page = 'daily' %}
+    {% include '_header.html' %}
+
+    <main class="dashboard-grid">
+        <!-- Cabeçalho da Auditoria -->
+        <section class="audit-header-section">
+            <div class="audit-card">
+                <div class="audit-info">
+                    <h2 class="audit-title">
+                        <i class="fas fa-clipboard-check"></i> Auditoria Diária
+                    </h2>
+                    {% if audit.is_audit %}
+                    <p class="audit-subtitle">Analisando performance de: <strong>{{ audit.day_name }}</strong></p>
+                    <div class="audit-target-badge">
+                        <span>Meta do Dia:</span>
+                        <strong>{{ audit.target }} Decks</strong>
+                    </div>
+                    {% else %}
+                    <p class="audit-subtitle">Hoje é dia de treino/descanso.</p>
+                    <div class="audit-target-badge training">
+                        <span>Sem Meta Ativa</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if audit.is_audit %}
+                <div class="audit-stats">
+                    <div class="stat-item ok">
+                        <span class="stat-value">{{ count_ok }}</span>
+                        <span class="stat-label">Em Dia</span>
+                    </div>
+                    <div class="stat-item warning">
+                        <span class="stat-value">{{ count_warning }}</span>
+                        <span class="stat-label">Incompleto</span>
+                    </div>
+                    <div class="stat-item critical">
+                        <span class="stat-value">{{ count_critical }}</span>
+                        <span class="stat-label">Zerado</span>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Explicação da Métrica -->
+        <section class="card">
+            <div class="card-header">
+                <h2>ℹ️ Como funciona a Auditoria?</h2>
+            </div>
+            <div style="padding: 0 20px;">
+                <p style="color: var(--text-muted); margin-bottom: 15px;">
+                    O sistema verifica os decks usados de forma <strong>retrospectiva</strong> para garantir que todos
+                    jogaram no dia anterior.
+                </p>
+                <ul style="list-style: none; color: var(--text-muted); display: grid; gap: 10px;">
+                    <li style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--gold); font-weight: 700;">Sexta-feira:</span> Audita Quinta (Meta: 4
+                        Decks)
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--gold); font-weight: 700;">Sábado:</span> Audita Sexta (Meta: 8 Decks)
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--gold); font-weight: 700;">Domingo:</span> Audita Sábado (Meta: 12
+                        Decks)
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--gold); font-weight: 700;">Segunda-feira:</span> Audita Domingo (Meta:
+                        16 Decks)
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        {% if audit.is_audit %}
+        <!-- Lista de Auditoria -->
+        <section class="audit-list-section">
+            <div class="table-container">
+                <table class="audit-table">
+                    <thead>
+                        <tr>
+                            <th>Jogador</th>
+                            <th>Cargo</th>
+                            <th class="text-center">Decks Usados</th>
+                            <th class="text-center">Faltam</th>
+                            <th class="text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for member in audit_list %}
+                        <tr class="status-row-{{ member.status }}">
+                            <td>
+                                <div class="player-info">
+                                    <span class="player-name">{{ member.name }}</span>
+                                    <span class="player-tag">{{ member.tag }}</span>
+                                </div>
+                            </td>
+                            <td>{{ member.role }}</td>
+                            <td class="text-center">
+                                <span class="decks-badge">{{ member.decks_used }} / {{ audit.target }}</span>
+                            </td>
+                            <td class="text-center">
+                                {% if member.decks_missing > 0 %}
+                                <span class="missing-badge">-{{ member.decks_missing }}</span>
+                                {% else %}
+                                <span class="check-icon"><i class="fas fa-check"></i></span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <span class="status-pill {{ member.status }}">
+                                    {{ member.status_text }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        {% else %}
+        <section class="audit-empty-state">
+            <div class="empty-content">
+                <i class="fas fa-coffee"></i>
+                <h3>Relaxe, Guerreiro!</h3>
+                <p>Hoje não há auditoria de guerra ativa. Aproveite para treinar seus decks.</p>
+            </div>
+        </section>
+        {% endif %}
+
+    </main>
+</div>
+
+<script src="static/table-sort.js"></script>
+</body>
+
+</html>

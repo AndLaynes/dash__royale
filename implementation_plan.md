@@ -15,26 +15,6 @@ Criar um script Python que busca dados da API do Clash Royale e gera um dashboar
     *   Renderiza um template HTML usando `jinja2`.
     *   Salva o resultado como `index.html`.
 
-2.  **Template (`templates/index.html`)**:
-    *   HTML5 + CSS3 (Vanilla).
-    *   Design responsivo e temático (Clash Royale).
-    *   Uso de Jinja2 para iterar sobre membros e guerras.
-
-3.  **Estilos (`static/style.css`)**:
-    *   Variáveis CSS para cores e fontes.
-    *   Layout Grid/Flexbox.
-    *   Animações sutis.
-
-## Estrutura de Arquivos
-- `main.py`: Script principal.
-- `requirements.txt`: Dependências (`requests`, `jinja2`).
-- `templates/index.html`: Template Jinja2.
-- `static/style.css`: Folha de estilos (será embutida ou linkada, preferencialmente embutida para arquivo único se desejado, mas linkada é melhor para organização. O script pode ler o CSS e injetar no HTML para um único arquivo final se o usuário preferir, mas padrão web é melhor). *Decisão: Vamos gerar um `index.html` que referencia `style.css` e `assets` se necessário, ou tentar fazer tudo inline se o usuário quiser portabilidade total. Para "repositório online", arquivos separados são ok.*
-
-## Verificação
-- Configurar variável de ambiente `CR_API_KEY` com uma chave de teste (ou mock se não tivermos uma real).
-- Rodar `python main.py`.
-- Abrir `index.html` no navegador e verificar se os dados aparecem e o layout está correto.
 
 ## Funcionalidade: Histórico de Guerra
 ### Nova Página: `war_history.html`

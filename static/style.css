@@ -1256,3 +1256,230 @@ tr:hover {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
+/* ===== DAILY AUDIT ===== */
+.audit-header-section {
+    margin-bottom: 30px;
+}
+
+.audit-card {
+    background: linear-gradient(135deg, rgba(15, 52, 96, 0.9), rgba(22, 33, 62, 0.95));
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.audit-info {
+    flex: 1;
+}
+
+.audit-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.audit-title i {
+    color: var(--gold);
+}
+
+.audit-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.audit-target-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--gold);
+    padding: 8px 16px;
+    border-radius: 12px;
+    color: var(--gold);
+    font-size: 1.1rem;
+}
+
+.audit-target-badge.training {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-muted);
+}
+
+.audit-stats {
+    display: flex;
+    gap: 15px;
+}
+
+.stat-item {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 25px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 100px;
+    border: 1px solid transparent;
+}
+
+.stat-item.ok {
+    border-color: var(--success);
+    background: rgba(46, 204, 113, 0.1);
+}
+
+.stat-item.warning {
+    border-color: var(--warning);
+    background: rgba(241, 196, 15, 0.1);
+}
+
+.stat-item.critical {
+    border-color: var(--danger);
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.stat-item .stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+}
+
+.stat-item.ok .stat-value { color: var(--success); }
+.stat-item.warning .stat-value { color: var(--warning); }
+.stat-item.critical .stat-value { color: var(--danger); }
+
+.stat-item .stat-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* Audit Table */
+.audit-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.audit-table th {
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    padding: 10px 20px;
+}
+
+.audit-table tbody tr {
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.audit-table tbody tr:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.audit-table td {
+    padding: 15px 20px;
+    border: none;
+}
+
+.audit-table td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.audit-table td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Status Rows */
+.status-row-ok {
+    border-left: 4px solid var(--success);
+}
+
+.status-row-warning {
+    border-left: 4px solid var(--warning);
+    background: rgba(241, 196, 15, 0.05) !important;
+}
+
+.status-row-critical {
+    border-left: 4px solid var(--danger);
+    background: rgba(231, 76, 60, 0.05) !important;
+}
+
+.decks-badge {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+
+.missing-badge {
+    background: var(--danger);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.check-icon {
+    color: var(--success);
+    font-size: 1.2rem;
+}
+
+.status-pill {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-pill.ok {
+    background: rgba(46, 204, 113, 0.2);
+    color: var(--success);
+}
+
+.status-pill.warning {
+    background: rgba(241, 196, 15, 0.2);
+    color: var(--warning);
+}
+
+.status-pill.critical {
+    background: rgba(231, 76, 60, 0.2);
+    color: var(--danger);
+}
+
+.audit-empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+}
+
+.audit-empty-state i {
+    font-size: 4rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.audit-empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--gold);
+}
+
+.audit-empty-state p {
+    color: var(--text-muted);
+}
+

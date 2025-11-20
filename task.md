@@ -1,19 +1,22 @@
-# Tarefas - Dashboard Clash Royale (Python + Static HTML)
-
-- [x] Configurar ambiente Python e dependências (`requests`, `jinja2`) <!-- id: 0 -->
-- [x] Criar script Python para buscar dados da API do Clash Royale <!-- id: 1 -->
-- [x] Criar template HTML (Jinja2) com Design System moderno <!-- id: 2 -->
-- [x] Implementar lógica de geração do `index.html` com dados reais <!-- id: 3 -->
-- [x] Estilizar Dashboard (CSS) - Tema Clash Royale <!-- id: 4 -->
-- [x] Validar fluxo: Rodar Script -> Gerar HTML -> Verificar Visual <!-- id: 5 -->
-- [ ] Criar template `war_history.html` com tabela dinâmica <!-- id: 6 -->
-- [ ] Atualizar `main.py` para processar dados de histórico de guerra e gerar nova página <!-- id: 7 -->
 - [ ] Implementar lógica de classificação de membros (Campeão, Atenção, Perigo) <!-- id: 8 -->
 - [ ] Adicionar navegação (Links) entre Home e Histórico <!-- id: 9 -->
 - [x] Adicionar JavaScript para ordenação da tabela <!-- id: 10 -->
 - [x] Implementar sistema de cache local (salvar JSONs) <!-- id: 11 -->
 - [x] Refatorar `main.py` para priorizar dados locais e atualizar apenas se possível <!-- id: 12 -->
 - [x] Garantir funcionamento offline (sem API Key) usando cache <!-- id: 13 -->
+- [x] **Daily War Tracking** <!-- id: 1 -->
+    - [x] Implement `get_war_day_status` in `main.py` <!-- id: 2 -->
+    - [x] Process member status based on daily goal <!-- id: 3 -->
+    - [x] Create `templates/daily_war.html` <!-- id: 4 -->
+    - [x] Update `templates/_header.html` navigation <!-- id: 5 -->
+    - [x] Add CSS for daily war view <!-- id: 6 -->
+    - [x] Verify with mock dates <!-- id: 7 -->
+- [x] **UI Refinement & Metrics** <!-- id: 8 -->
+    - [x] Standardize `daily_war.html` layout <!-- id: 9 -->
+    - [x] Add "War Score" explanation to `ranking.html` <!-- id: 10 -->
+    - [x] Add "Fame vs Decks" explanation to `war_history.html` <!-- id: 11 -->
+    - [x] Add "Audit Logic" explanation to `daily_war.html` <!-- id: 12 -->
+    - [x] Add "Roles Legend" to `members_stats.html` <!-- id: 13 -->
 - [x] Corrigir filtro: exibir apenas jogadores ativos (memberList) <!-- id: 14 -->
 - [x] Adicionar exportação para PDF <!-- id: 15 -->
 - [x] Criar página de Estatísticas de Membros <!-- id: 16 -->
