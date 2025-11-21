@@ -52,7 +52,7 @@
     </nav>
     <div class="update-info">
         <span class="update-icon">🔄</span>
-        <span class="update-text">20/11/2025 17:16</span>
+        <span class="update-text">21/11/2025 10:14</span>
     </div>
 </header>
 
@@ -65,13 +65,29 @@
                             <i class="fas fa-clipboard-check"></i> Auditoria Diária
                         </h2>
                         
-                        <p class="audit-subtitle">Hoje é dia de treino/descanso.</p>
-                        <div class="audit-target-badge training">
-                            <span>Sem Meta Ativa</span>
+                        <p class="audit-subtitle">Analisando performance de: <strong>Quinta-feira (Dia 1)</strong></p>
+                        <div class="audit-target-badge">
+                            <span>Meta do Dia:</span>
+                            <strong>4 Decks</strong>
                         </div>
                         
                     </div>
 
+                    
+                    <div class="audit-stats">
+                        <div class="stat-item ok">
+                            <span class="stat-value">44</span>
+                            <span class="stat-label">Em Dia</span>
+                        </div>
+                        <div class="stat-item warning">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">Incompleto</span>
+                        </div>
+                        <div class="stat-item critical">
+                            <span class="stat-value">4</span>
+                            <span class="stat-label">Zerado</span>
+                        </div>
+                    </div>
                     
                 </div>
             </section>
@@ -111,11 +127,1173 @@
             </section>
 
             
-            <section class="audit-empty-state">
-                <div class="empty-content">
-                    <i class="fas fa-coffee"></i>
-                    <h3>Relaxe, Guerreiro!</h3>
-                    <p>Hoje não há auditoria de guerra ativa. Aproveite para treinar seus decks.</p>
+            <!-- Lista de Auditoria -->
+            <section class="audit-list-section">
+                <div class="table-container">
+                    <table class="audit-table">
+                        <thead>
+                            <tr>
+                                <th>Jogador</th>
+                                <th>Cargo</th>
+                                <th class="text-center">Decks Usados</th>
+                                <th class="text-center">Faltam</th>
+                                <th class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr class="status-row-critical">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">tavin</span>
+                                        <span class="player-tag">#U8VP8L8L0</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">0 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="missing-badge">-4</span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill critical">
+                                        Zerado
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-critical">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">PeitinDoGalego</span>
+                                        <span class="player-tag">#J8JQ8LQUY</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">0 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="missing-badge">-4</span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill critical">
+                                        Zerado
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-critical">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">AUGUSTO</span>
+                                        <span class="player-tag">#VLYU9Y2Y</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">0 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="missing-badge">-4</span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill critical">
+                                        Zerado
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-critical">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Alvaro</span>
+                                        <span class="player-tag">#8JULVVL0J</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">0 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="missing-badge">-4</span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill critical">
+                                        Zerado
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-warning">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Reus</span>
+                                        <span class="player-tag">#R29QRVQGU</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">1 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="missing-badge">-3</span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill warning">
+                                        Incompleto
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-warning">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Theus Carvalho</span>
+                                        <span class="player-tag">#82QC0YL2C</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">1 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="missing-badge">-3</span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill warning">
+                                        Incompleto
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">JOAOVITOR:D</span>
+                                        <span class="player-tag">#Y8R9V2URG</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Bruno</span>
+                                        <span class="player-tag">#UPR022QUR</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">51 é pinga</span>
+                                        <span class="player-tag">#UJRLJY0L2</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">DavidSantana</span>
+                                        <span class="player-tag">#9QG0U8YCQ</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">RobaFrag</span>
+                                        <span class="player-tag">#8U008PQU8</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Guizx7</span>
+                                        <span class="player-tag">#9GPRG9QPL</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">luba</span>
+                                        <span class="player-tag">#PQV9QQRQ0</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">MJK⚡️SPARKY</span>
+                                        <span class="player-tag">#22CGYQ2UP</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Vinícius</span>
+                                        <span class="player-tag">#YPJUU2ULU</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Chetto</span>
+                                        <span class="player-tag">#2LR0RR89Q</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">PedrinhoR14</span>
+                                        <span class="player-tag">#PJL0Q2J2</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">EDDIE</span>
+                                        <span class="player-tag">#2VLR9U90</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">antedeguemon</span>
+                                        <span class="player-tag">#208JPG9R</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Dockz</span>
+                                        <span class="player-tag">#YJUG9Y88</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Mila</span>
+                                        <span class="player-tag">#90U8CVP90</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">ZackThunder</span>
+                                        <span class="player-tag">#R9UP0QLR9</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Zenitsu愛</span>
+                                        <span class="player-tag">#8C8RY8GL9</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">MegaJoaoReal</span>
+                                        <span class="player-tag">#RUQ90VLVP</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">ArthurNoSkill●</span>
+                                        <span class="player-tag">#9PLVLLVR2</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">mathi❄️</span>
+                                        <span class="player-tag">#LLGUL2RUJ</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Sotto ツ</span>
+                                        <span class="player-tag">#2P299V0CU</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">joão3:16</span>
+                                        <span class="player-tag">#U220VCULP</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Daniele❤</span>
+                                        <span class="player-tag">#8R2LRC80Q</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">gabiggoughost</span>
+                                        <span class="player-tag">#V9PCU0LCV</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">super</span>
+                                        <span class="player-tag">#UU0RCRLQU</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">O GUARDIÃO</span>
+                                        <span class="player-tag">#UJRQ2L09</span>
+                                    </div>
+                                </td>
+                                <td>leader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Sasuke</span>
+                                        <span class="player-tag">#Q8098VGG</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">andrebts</span>
+                                        <span class="player-tag">#VUQ0PV8PV</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">carlos Daniel</span>
+                                        <span class="player-tag">#8CVU0PP00</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">domador de but</span>
+                                        <span class="player-tag">#GRY890GY2</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Gustavo Clash</span>
+                                        <span class="player-tag">#28PQJJU2G</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">santsx777</span>
+                                        <span class="player-tag">#C8G9JJL89</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">5 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Luciano</span>
+                                        <span class="player-tag">#LVGCLQQ8L</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">Rodolfos</span>
+                                        <span class="player-tag">#200JYCVYGY</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">petrus</span>
+                                        <span class="player-tag">#88U9PLGVV</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">yNoobZy</span>
+                                        <span class="player-tag">#C9PY8URJQ</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">NEGUIM244</span>
+                                        <span class="player-tag">#PYVJVURP0</span>
+                                    </div>
+                                </td>
+                                <td>member</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">polaris</span>
+                                        <span class="player-tag">#PCPCJU20Y</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">isp</span>
+                                        <span class="player-tag">#C8C20C0JQ</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">luisinn7</span>
+                                        <span class="player-tag">#9PCQY89PV</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">OneDePrata</span>
+                                        <span class="player-tag">#LYL9CU0P0</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">⭐O SENTINELA ⭐</span>
+                                        <span class="player-tag">#99PJ9QQPC</span>
+                                    </div>
+                                </td>
+                                <td>coLeader</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">H A R D's</span>
+                                        <span class="player-tag">#PVJULCYQQ</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">8 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr class="status-row-ok">
+                                <td>
+                                    <div class="player-info">
+                                        <span class="player-name">DGJ-DAVI</span>
+                                        <span class="player-tag">#9RPCC2VCG</span>
+                                    </div>
+                                </td>
+                                <td>elder</td>
+                                <td class="text-center">
+                                    <span class="decks-badge">4 / 4</span>
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <span class="check-icon"><i class="fas fa-check"></i></span>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-pill ok">
+                                        Em Dia
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
                 </div>
             </section>
             
