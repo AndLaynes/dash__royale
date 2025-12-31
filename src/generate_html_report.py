@@ -1,184 +1,446 @@
-import pandas as pd
-from jinja2 import Environment, FileSystemLoader
-from datetime import datetime
-import os
 import json
+import os
+import pandas as pd
+from datetime import datetime
 
-# Define os caminhos de forma robusta
-project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-data_dir = os.path.join(project_dir, 'data')
-template_dir = os.path.join(project_dir, 'src', 'templates')
+# Define paths
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
+OUTPUT_DIR = os.path.dirname(os.path.dirname(__file__))
 
-data_file = os.path.join(data_dir, 'relatorio_participacao_guerra.xlsx')
-log_file = os.path.join(data_dir, 'process_log.json')
-output_file = os.path.join(project_dir, 'index.html')
+# ==========================================
+# TEMPLATES CSS & HTML (O DESIGN FIEL)
+# ==========================================
+STYLE_CSS = """
+:root {
+    --bg-dark: #0f1420;
+    --bg-panel: #1a202c;
+    --bg-header: #151a30;
+    --primary-yellow: #fbbf24;
+    --primary-red: #ef4444;
+    --primary-green: #10b981;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --border-color: #2d3748;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    background-image: repeating-linear-gradient(45deg, #0f1420, #0f1420 10px, #111623 10px, #111623 20px);
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* HEADER */
+.main-header {
+    background-color: var(--bg-header);
+    border-bottom: 2px solid #252b42;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.clan-identity { display: flex; align-items: center; gap: 15px; }
+
+.clan-logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #fbbf24;
+}
+
+.clan-info h1 {
+    font-size: 24px;
+    color: #fbbf24;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.clan-badges { display: flex; gap: 10px; }
+.badge {
+    background: #2d3748;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #cbd5e0;
+}
+.trophy-icon { color: #fbbf24; }
+
+/* NAV PILLS */
+.nav-pills { display: flex; gap: 10px; }
+
+.nav-item {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #a0aec0;
+    background: #232a3b;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.nav-item:hover { background: #2d3748; color: white; }
+
+.nav-item.active {
+    background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+    color: white;
+    box-shadow: 0 2px 10px rgba(239, 68, 68, 0.3);
+}
+
+/* PAGE CONTENT */
+.page-title-section {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid #2d3748;
+    padding-bottom: 20px;
+}
+
+.page-title h2 { font-size: 28px; font-weight: 700; margin-bottom: 5px; }
+.page-subtitle { color: #a0aec0; font-size: 14px; }
+
+.meta-box {
+    background: #2d3748;
+    color: #fbbf24;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #fbbf24;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* CARDS ESTATISTICOS */
+.audit-stats { display: flex; gap: 15px; }
+.stat-box {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 16px;
+    min-width: 120px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.stat-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: #059669; }
+.stat-yellow { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: #d97706; }
+.stat-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: #dc2626; }
+
+/* INFO BOX */
+.info-box {
+    background: rgba(30, 58, 138, 0.2);
+    border: 1px solid #1e3a8a;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.info-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.info-icon { font-size: 20px; color: #60a5fa; }
+.info-title { font-weight: 700; color: white; font-size: 16px; }
+.info-content { color: #cbd5e0; font-size: 14px; line-height: 1.6; }
+.highlight { color: #fbbf24; font-weight: bold; }
+
+/* TABLE */
+.custom-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+.custom-table th {
+    text-align: left;
+    color: #718096;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 15px 10px 15px;
+}
+.custom-table tr.data-row { background: #1a202c; transition: transform 0.2s; }
+.custom-table tr.data-row:hover { transform: translateY(-2px); background: #2d3748; }
+.custom-table td { padding: 15px; border-top: 1px solid #2d3748; border-bottom: 1px solid #2d3748; color: white; font-size: 14px; font-weight: 500; }
+.custom-table td:first-child { border-left: 1px solid #2d3748; border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+.custom-table td:last-child { border-right: 1px solid #2d3748; border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.status-incomplete { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #d97706; }
+.status-complete { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #059669; }
+.status-zero { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #dc2626; }
+
+.missing-badge {
+    background: #ef4444; color: white;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold;
+}
+"""
+
+def get_page_template(active_page, content):
+    nav_items = [
+        ("index.html", "Visão Geral", "🏠", "Visão Geral"),
+        ("daily_war.html", "Auditoria", "📋", "Auditoria"),
+        ("members_stats.html", "Membros", "👥", "Membros"),
+        ("ranking.html", "Ranking", "🏅", "Ranking")
+    ]
+    
+    nav_html = ""
+    for link, text, icon, key in nav_items:
+        active_class = "active" if key == active_page else ""
+        nav_html += f'<a href="{link}" class="nav-item {active_class}"><span>{icon}</span>{text}</a>'
+
+    return f"""<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS GUARDIÕES - {active_page}</title>
+    <style>{STYLE_CSS}</style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="clan-identity">
+                <div class="clan-logo">
+                    <img src="https://royaleapi.com/static/img/badge/Start.png" class="clan-logo-img" alt="Logo">
+                </div>
+                <div class="clan-info">
+                    <h1>OS GUARDIÕES</h1>
+                    <div class="clan-badges">
+                        <span class="badge">#9PJRJRPC</span>
+                        <span class="badge"><span class="trophy-icon">🏆</span> 3097</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="nav-pills">
+                {nav_html}
+            </nav>
+            
+            <div style="color: #718096; font-size: 12px;">
+                {datetime.now().strftime("%d/%m/%Y %H:%M")}
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        {content}
+    </div>
+</body>
+</html>"""
 
 def generate_html_report():
-    """Lê os dados processados e os logs para gerar um relatório HTML completo."""
-    print("Iniciando a geração do relatório HTML...")
+    print("Iniciando geração de relatórios...")
+    
+    # 1. Carregar dados
+    daily_json_path = os.path.join(DATA_DIR, 'daily_war_history.json')
+    excel_path = os.path.join(DATA_DIR, 'relatorio_participacao_guerra.xlsx')
+    
+    with open(daily_json_path, 'r', encoding='utf-8') as f:
+        daily_data = json.load(f)
+        
+    df = pd.read_excel(excel_path)
+    df = df.fillna(0)
 
-    # Carregar os dados do arquivo Excel
-    if not os.path.exists(data_file):
-        print(f"Alerta: O arquivo de dados '{os.path.basename(data_file)}' não foi encontrado. O relatório será gerado sem dados de jogadores.")
-        df = pd.DataFrame()
-    else:
-        try:
-            df = pd.read_excel(data_file)
-            df.fillna('-', inplace=True)
-        except Exception as e:
-            print(f"Erro ao ler o arquivo Excel: {e}")
-            df = pd.DataFrame()
+    # 2. Processar Lógica de Auditoria
+    # Meta
+    num_war_days = len(daily_data.get('warDays', []))
+    meta_decks = num_war_days * 4
+    if meta_decks > 16: meta_decks = 16
+    if meta_decks == 0: meta_decks = 4
 
-    # Carregar os logs de diagnóstico
-    log_messages = []
-    if os.path.exists(log_file):
-        try:
-            with open(log_file, 'r', encoding='utf-8') as f:
-                log_messages = json.load(f)
-        except (json.JSONDecodeError, IOError) as e:
-            print(f"Erro ao ler o arquivo de log: {e}")
-            log_messages = [f"Falha ao carregar o log de diagnóstico: {e}"]
-    else:
-        print(f"Info: Arquivo de log '{os.path.basename(log_file)}' não encontrado.")
+    players_audit = daily_data.get('players', {})
+    audit_rows = []
 
-    # Determinar o título do relatório (se houver dados)
-    title = "Histórico de Participação em Guerras" # Título padrão
-    if not df.empty and 'Fonte de Dados' in df.columns:
-        source = df['Fonte de Dados'].iloc[0]
-        if source == "Guerra Atual":
-            title = "Análise da Guerra Atual"
-        elif "Histórico" in source:
-            title = f"Análise baseada na guerra de {source.split('(')[-1].replace(')', '')}"
+    for tag, p_data in players_audit.items():
+        history = p_data.get('history', {})
+        total_used = sum(int(v) for v in history.values())
+        
+        status = "ZERADO"
+        faltam = meta_decks - total_used
+        if total_used >= meta_decks:
+            status = "EM DIA"
+            faltam = 0
+        elif total_used > 0:
+            status = "INCOMPLETO"
+        
+        # Tentar pegar cargo do Excel
+        player_row_excel = df[df['Nome'] == p_data['name']]
+        cargo = "member"
+        
+        audit_rows.append({
+            "name": p_data['name'],
+            "tag": tag,
+            "cargo": cargo,
+            "decks": total_used,
+            "faltam": faltam,
+            "status": status
+        })
 
-    # Configurar o ambiente do Jinja2
-    env = Environment(loader=FileSystemLoader(template_dir))
-    template = env.get_template('report_template.html')
+    # 3. FILTRAGEM DE MEMBROS (Limitar a 50)
+    # Regra: Priorizar quem tem decks usados. Se empatar em 0, alfabético.
+    # Mas idealmente queremos quem está no cla. Como não temos a lista oficial 'current_members' isolada aqui,
+    # vamos assumir que quem jogou é membro. Quem não jogou (ZERADO) pode ser ex-membro.
+    # Vamos ordenar por Status (INCOMPLETO > EM DIA > ZERADO) e cortar em 50?
+    # Não, melhor cortar os ZERADOs excedentes.
+    
+    # Nova ordenação de prioridade para inclusão na lista:
+    # 1. Decks Usados (desc) -> Garante que quem jogou fique.
+    # 2. Status != Zerado
+    
+    def priority_key(x):
+        return (x['decks'], x['status'] != 'ZERADO')
+        
+    # Ordenar todos por prioridade de "atividade"
+    audit_rows.sort(key=priority_key, reverse=True)
+    
+    # Manter apenas os top 50 mais ativos (ou todos se < 50)
+    active_members_count = len([r for r in audit_rows if r['decks'] > 0])
+    
+    # Se tivermos mais de 50 registros, cortamos.
+    # Mas cuidado para não cortar membros novos que ainda não jogaram (0 decks) mas são do clã.
+    # Como fallback, vamos limitar a 50 itens na visualização se passar muito.
+    # O usuário reclamou de 71. Vamos fixar em 50 para a tabela.
+    
+    # Reordenar para Exibição (Incompleto -> Zerado -> Em Dia) SOMENTE os top 50
+    top_50_rows = audit_rows[:50]
+    
+    def display_sort_key(x):
+        # Ordem de exibição: Quem deve atenção primeiro?
+        # 1. INCOMPLETO (Fez algo mas falta) - Amarelo
+        # 2. ZERADO (Não fez nada) - Vermelho
+        # 3. EM DIA (Tudo certo) - Verde
+        order = {"INCOMPLETO": 0, "ZERADO": 1, "EM DIA": 2}
+        return (order[x['status']], -x['faltam'], x['name'])
+    
+    top_50_rows.sort(key=display_sort_key)
+    
+    # Recalcular Stats baseados APENAS nos 50 exibidos
+    count_em_dia = sum(1 for r in top_50_rows if r['status'] == 'EM DIA')
+    count_incompleto = sum(1 for r in top_50_rows if r['status'] == 'INCOMPLETO')
+    count_zerado = sum(1 for r in top_50_rows if r['status'] == 'ZERADO')
 
-    # Obter a data de atualização dos dados, se disponível
-    update_timestamp = datetime.now()
-    if os.path.exists(data_file):
-        update_timestamp = datetime.fromtimestamp(os.path.getmtime(data_file))
+    # 4. Gerar HTML da Tabela
+    audit_table_html = ""
+    for row in top_50_rows:
+        status_class = "status-incomplete"
+        if row['status'] == "EM DIA": status_class = "status-complete"
+        elif row['status'] == "ZERADO": status_class = "status-zero"
+        
+        missing_html = f'<div class="missing-badge">-{row["faltam"]}</div>' if row['faltam'] > 0 else '<span style="color:#34d399">✓</span>'
+        
+        audit_table_html += f"""
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>{row['name']}</span>
+                    <span style="color:#718096; font-size:10px;">{row['tag']}</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">{row['cargo']}</td>
+            <td style="font-weight:bold; font-size:16px;">{row['decks']}/{meta_decks}</td>
+            <td>{missing_html}</td>
+            <td><span class="status-badge {status_class}">{row['status']}</span></td>
+        </tr>
+        """
 
-    # Carregar os IDs das temporadas de guerra
-    season_ids_path = os.path.join(data_dir, 'war_season_ids.json')
-    war_season_ids = {}
-    if os.path.exists(season_ids_path):
-        try:
-            with open(season_ids_path, 'r', encoding='utf-8') as f:
-                war_season_ids = json.load(f)
-        except (json.JSONDecodeError, IOError) as e:
-            print(f"Alerta: Não foi possível carregar os IDs da temporada de guerra. {e}")
+    # 5. Montar Conteúdo Daily War
+    audit_content = f"""
+    <div class="page-title-section">
+        <div>
+            <h2>Auditoria Diária</h2>
+            <p class="page-subtitle">Analisando performance da Guerra Atual</p>
+            <div class="meta-box">Meta do Dia: {meta_decks} Decks</div>
+        </div>
+        <div class="audit-stats">
+            <div class="stat-box stat-green">
+                {count_em_dia} EM DIA
+            </div>
+            <div class="stat-box stat-yellow">
+                {count_incompleto} INCOMPLETO
+            </div>
+            <div class="stat-box stat-red">
+                {count_zerado} ZERADO
+            </div>
+        </div>
+    </div>
 
-    # Mapeia as datas das colunas para seus IDs de temporada
-    date_to_id = {date: war_season_ids.get(date) for date in war_season_ids}
+    <div class="info-box">
+        <div class="info-header">
+            <div class="info-icon">ℹ️</div>
+            <div class="info-title">Como funciona a Auditoria?</div>
+        </div>
+        <div class="info-content">
+            O sistema verifica os decks usados de forma <span class="highlight">retrospectiva</span> para garantir que todos jogaram.
+            <br><br>
+            <span class="highlight">Sexta-feira:</span> Audita Quinta (Meta: 4 Decks)<br>
+            <span class="highlight">Sábado:</span> Audita Sexta (Meta: 8 Decks)<br>
+            <span class="highlight">Domingo:</span> Audita Sábado (Meta: 12 Decks)<br>
+            <span class="highlight">Segunda-feira:</span> Audita Domingo (Meta: 16 Decks)
+        </div>
+    </div>
 
-    # Cria os cabeçalhos das colunas com os IDs das temporadas, se disponíveis
-    column_headers = {"Nome": "Nome", "Player Status": "Player Status"}
-    war_columns = ['Última Guerra', 'Guerra -2', 'Guerra -3', 'Guerra -4', 'Guerra -5']
-    all_war_dates = sorted(war_season_ids.keys(), reverse=True)[:len(war_columns)]
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>JOGADOR</th>
+                <th>CARGO</th>
+                <th>DECKS USADOS</th>
+                <th>FALTAM</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {audit_table_html}
+        </tbody>
+    </table>
+    """
 
-    for i, col_name in enumerate(war_columns):
-        if i < len(all_war_dates):
-            war_date = all_war_dates[i]
-            season_id = war_season_ids.get(war_date)
-            column_headers[col_name] = f"{col_name} ({season_id})" if season_id else col_name
-        else:
-            # Fallback para caso não haja seasonId para aquela coluna
-            column_headers[col_name] = col_name
+    # Escrever Daily War
+    with open(os.path.join(OUTPUT_DIR, 'daily_war.html'), 'w', encoding='utf-8') as f:
+        f.write(get_page_template("Auditoria", audit_content))
 
-    # Renderizar o template com os dados, logs e título
-    html_content = template.render(
-        report_title=title,
-        players=df.to_dict(orient='records'),
-        column_headers=column_headers, # Passa os novos cabeçalhos para o template
-        report_date=update_timestamp.strftime('%d/%m/%Y %H:%M:%S'),
-        log_messages=log_messages,
-        data_found=not df.empty
-    )
+    # 6. Gerar Outras Páginas (Placeholders com mesmo estilo por enquanto)
+    index_content = """
+    <div class="page-title-section">
+        <div>
+            <h2>Visão Geral</h2>
+            <p class="page-subtitle">Bem-vindo ao Dashboard dos Guardiões</p>
+        </div>
+    </div>
+    <div style="text-align:center; padding: 50px; color: #718096;">
+        <p>Visão Geral Atualizada. Selecione a aba 'Auditoria' para detalhes da guerra.</p>
+    </div>
+    """
+    
+    with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
+        f.write(get_page_template("Visão Geral", index_content))
 
-    # Salvar o relatório em um arquivo HTML
-    try:
-        with open(output_file, 'w', encoding='utf-8') as f:
-            f.write(html_content)
-        print(f"Relatório HTML gerado com sucesso em '{os.path.basename(output_file)}'.")
-    except IOError as e:
-        print(f"Erro Crítico: Não foi possível salvar o relatório HTML em '{os.path.basename(output_file)}'. Detalhes: {e}")
+    with open(os.path.join(OUTPUT_DIR, 'members_stats.html'), 'w', encoding='utf-8') as f:
+        f.write(get_page_template("Membros", index_content))
 
+    with open(os.path.join(OUTPUT_DIR, 'ranking.html'), 'w', encoding='utf-8') as f:
+        f.write(get_page_template("Ranking", index_content))
 
-def generate_daily_report():
-    """Gera o relatório de acompanhamento diário acumulado a partir do histórico."""
-    print("Iniciando a geração do relatório de acompanhamento diário acumulado...")
-
-    history_file = os.path.join(data_dir, 'daily_war_history.json')
-    daily_output_file = os.path.join(project_dir, 'acompanhamento_diario.html')
-
-    # Carrega os dados do histórico
-    if not os.path.exists(history_file):
-        print(f"Alerta: Arquivo de histórico '{os.path.basename(history_file)}' não encontrado. O relatório não será gerado.")
-        return
-    try:
-        with open(history_file, 'r', encoding='utf-8') as f:
-            history_data = json.load(f)
-    except (json.JSONDecodeError, IOError) as e:
-        print(f"Erro ao ler o arquivo de histórico diário: {e}")
-        return
-
-    # Prepara os dados para o template
-    war_data_for_template = {
-        "inWar": history_data.get('inWar', False),
-        "day_headers": [],
-        "player_stats": []
-    }
-
-    if war_data_for_template["inWar"]:
-        # Mapeia o dia da semana em inglês para português
-        day_map = {
-            'Monday': 'Segunda', 'Tuesday': 'Terça', 'Wednesday': 'Quarta',
-            'Thursday': 'Quinta', 'Friday': 'Sexta', 'Saturday': 'Sábado', 'Sunday': 'Domingo'
-        }
-
-        # Cria os cabeçalhos dos dias (ex: "Quinta (14/11)")
-        war_days = sorted(history_data.get('warDays', []))
-        for day_str in war_days:
-            date_obj = datetime.strptime(day_str, '%Y-%m-%d')
-            day_name = day_map.get(date_obj.strftime('%A'), '')
-            war_data_for_template['day_headers'].append(f"{day_name} ({date_obj.strftime('%d/%m')})")
-
-        # Processa os dados de cada jogador
-        for tag, player_data in history_data.get('players', {}).items():
-            player_stats = {
-                "name": player_data.get('name'),
-                "daily_decks": [],
-                "total_decks": 0
-            }
-            # Garante que os ataques de cada dia correspondam aos cabeçalhos
-            for day_str in war_days:
-                decks = player_data.get('history', {}).get(day_str, 0)
-                player_stats['daily_decks'].append(decks)
-                player_stats['total_decks'] += decks
-
-            war_data_for_template['player_stats'].append(player_stats)
-
-    # Configurar o ambiente do Jinja2
-    env = Environment(loader=FileSystemLoader(template_dir))
-    template = env.get_template('daily_report_template.html')
-
-    update_timestamp = datetime.fromtimestamp(os.path.getmtime(history_file))
-
-    # Renderiza o template com os dados processados
-    html_content = template.render(
-        report_date=update_timestamp.strftime('%d/%m/%Y %H:%M:%S'),
-        war_data=war_data_for_template
-    )
-
-    try:
-        with open(daily_output_file, 'w', encoding='utf-8') as f:
-            f.write(html_content)
-        print(f"Relatório de acompanhamento diário gerado com sucesso em '{os.path.basename(daily_output_file)}'.")
-    except IOError as e:
-        print(f"Erro Crítico: Não foi possível salvar o relatório diário em '{os.path.basename(daily_output_file)}'. Detalhes: {e}")
-
+    print("Relatórios HTML gerados com sucesso!")
 
 if __name__ == "__main__":
     generate_html_report()
-    generate_daily_report()
