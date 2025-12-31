@@ -3,84 +3,1198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auditoria Diária - OS GUARDIÕES</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <title>OS GUARDIÕES - Auditoria</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0e1a 0%, #0f1420 50%, #0a0e1a 100%);
-            min-height: 100vh;
-            color: #e5e7eb;
-            padding: 1rem;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        .container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
-        .glass { background: rgba(26, 31, 53, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
-        h1 { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
-        .stat-card { background: rgba(26, 31, 53, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 1.5rem; text-align: center; }
-        .stat-value { font-size: 2.5rem; font-weight: 700; margin: 0.5rem 0; }
-        .stat-label { color: #9ca3af; font-size: 0.85rem; text-transform: uppercase; }
-        table.dataTable { width: 100% !important; background: transparent !important; color: #e5e7eb; }
-        table.dataTable thead th { background: #1a1f35; color: #e5e7eb; padding: 1rem; border-bottom: 2px solid rgba(255, 255, 255, 0.1); }
-        table.dataTable tbody tr { background: transparent; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        table.dataTable tbody tr:hover { background: rgba(59, 130, 246, 0.1); }
-        table.dataTable tbody td { padding: 1rem; border: none; }
-        .status-ok { background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 0.375rem 1rem; border-radius: 999px; font-weight: 600; font-size: 0.8rem; display: inline-block; border: 1.5px solid #10b981; }
-        .status-razoável { background: rgba(245, 158, 11, 0.15); color: #f59e0b; padding: 0.375rem 1rem; border-radius: 999px; font-weight: 600; font-size: 0.8rem; display: inline-block; border: 1.5px solid #f59e0b; }
-        .status-verificar { background: rgba(239, 68, 68, 0.15); color: #ef4444; padding: 0.375rem 1rem; border-radius: 999px; font-weight: 600; font-size: 0.8rem; display: inline-block; border: 1.5px solid #ef4444; }
-        @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } }
-    </style>
+:root {
+    --bg-dark: #0f1420; /* Fundo base escuro */
+    --bg-panel: #1a202c; /* Fundo de painéis */
+    --bg-header: #151a30; /* Fundo do header */
+    --primary-yellow: #fbbf24;
+    --primary-red: #ef4444;
+    --primary-green: #10b981;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --border-color: #2d3748;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    background-image: repeating-linear-gradient(
+        45deg,
+        #0f1420,
+        #0f1420 10px,
+        #111623 10px,
+        #111623 20px
+    );
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* HEADER */
+.main-header {
+    background-color: var(--bg-header);
+    border-bottom: 2px solid #252b42;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.clan-identity { display: flex; align-items: center; gap: 15px; }
+
+.clan-logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #fbbf24;
+}
+
+.clan-info h1 {
+    font-size: 24px;
+    color: #fbbf24;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.clan-badges { display: flex; gap: 10px; }
+.badge {
+    background: #2d3748;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #cbd5e0;
+}
+.trophy-icon { color: #fbbf24; }
+
+/* NAV PILLS */
+.nav-pills { display: flex; gap: 10px; }
+
+.nav-item {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #a0aec0;
+    background: #232a3b;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.nav-item:hover { background: #2d3748; color: white; }
+
+.nav-item.active {
+    background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+    color: white;
+    box-shadow: 0 2px 10px rgba(239, 68, 68, 0.3);
+}
+
+/* PAGE CONTENT */
+.page-title-section {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid #2d3748;
+    padding-bottom: 20px;
+}
+
+.page-title h2 { font-size: 28px; font-weight: 700; margin-bottom: 5px; }
+.page-subtitle { color: #a0aec0; font-size: 14px; }
+
+.meta-box {
+    background: #2d3748;
+    color: #fbbf24;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #fbbf24;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* CARDS ESTATISTICOS */
+.audit-stats { display: flex; gap: 15px; }
+.stat-box {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 16px;
+    min-width: 120px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.stat-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: #059669; }
+.stat-yellow { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: #d97706; }
+.stat-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: #dc2626; }
+
+/* INFO BOX */
+.info-box {
+    background: rgba(30, 58, 138, 0.2);
+    border: 1px solid #1e3a8a;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.info-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.info-icon { font-size: 20px; color: #60a5fa; }
+.info-title { font-weight: 700; color: white; font-size: 16px; }
+.info-content { color: #cbd5e0; font-size: 14px; line-height: 1.6; }
+.highlight { color: #fbbf24; font-weight: bold; }
+
+/* TABLE */
+.custom-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+.custom-table th {
+    text-align: left;
+    color: #718096;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 15px 10px 15px;
+}
+.custom-table tr.data-row { background: #1a202c; transition: transform 0.2s; }
+.custom-table tr.data-row:hover { transform: translateY(-2px); background: #2d3748; }
+.custom-table td { padding: 15px; border-top: 1px solid #2d3748; border-bottom: 1px solid #2d3748; color: white; font-size: 14px; font-weight: 500; }
+.custom-table td:first-child { border-left: 1px solid #2d3748; border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+.custom-table td:last-child { border-right: 1px solid #2d3748; border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.status-incomplete { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #d97706; }
+.status-complete { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #059669; }
+.status-zero { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #dc2626; }
+
+.missing-badge {
+    background: #ef4444; color: white;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold;
+}
+</style>
 </head>
 <body>
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="clan-identity">
+                <div class="clan-logo">
+                    <img src="https://royaleapi.com/static/img/badge/Start.png" class="clan-logo-img" alt="Logo"> 
+                    <!-- Placeholder logo based on User Image (Target visual) -->
+                </div>
+                <div class="clan-info">
+                    <h1>OS GUARDIÕES</h1>
+                    <div class="clan-badges">
+                        <span class="badge">#9PJRJRPC</span>
+                        <span class="badge"><span class="trophy-icon">🏆</span> 3097</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="nav-pills">
+                <a href="index.html" class="nav-item "><span>🏠</span>Visão Geral</a><a href="daily_war.html" class="nav-item active"><span>📋</span>Auditoria</a><a href="members_stats.html" class="nav-item "><span>👥</span>Membros</a><a href="ranking.html" class="nav-item "><span>🏅</span>Ranking</a>
+            </nav>
+            
+            <div style="color: #718096; font-size: 12px;">
+                30/12/2025 21:58
+            </div>
+        </div>
+    </header>
+
     <div class="container">
-        <!-- HEADER -->
-        <div id="header"></div>
-        <script>
-            fetch('header.html').then(r => r.text()).then(html => {
-                document.getElementById('header').innerHTML = html;
-            });
-        </script>
         
-        
-<div class="glass">
-    <h1>📅 Auditoria Diária</h1>
-    <p style="color: #9ca3af;">Status: 🟢 Guerra Ativa</p>
-    
-    <div style="margin-top: 2rem;">
-        <p>Total de jogadores monitorados: 71</p>
-        <p>Dias registrados: 1</p>
+<div class="page-title-section">
+    <div>
+        <h2>Auditoria Diária</h2>
+        <p class="page-subtitle">Analisando performance da Guerra Atual</p>
+        <div class="meta-box">Meta do Dia: 4 Decks</div>
+    </div>
+    <div class="audit-stats">
+        <div class="stat-box stat-green">
+            10 EM DIA
+        </div>
+        <div class="stat-box stat-yellow">
+            3 INCOMPLETO
+        </div>
+        <div class="stat-box stat-red">
+            58 ZERADO
+        </div>
     </div>
 </div>
+
+<div class="info-box">
+    <div class="info-header">
+        <div class="info-icon">ℹ️</div>
+        <div class="info-title">Como funciona a Auditoria?</div>
     </div>
+    <div class="info-content">
+        O sistema verifica os decks usados de forma <span class="highlight">retrospectiva</span> para garantir que todos jogaram.
+        <br><br>
+        <span class="highlight">Sexta-feira:</span> Audita Quinta (Meta: 4 Decks)<br>
+        <span class="highlight">Sábado:</span> Audita Sexta (Meta: 8 Decks)<br>
+        <span class="highlight">Domingo:</span> Audita Sábado (Meta: 12 Decks)<br>
+        <span class="highlight">Segunda-feira:</span> Audita Domingo (Meta: 16 Decks)
+    </div>
+</div>
+
+<table class="custom-table">
+    <thead>
+        <tr>
+            <th>JOGADOR</th>
+            <th>CARGO</th>
+            <th>DECKS USADOS</th>
+            <th>FALTAM</th>
+            <th>STATUS</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>alm ícaro⁷⁷⁷</span>
+                <span style="color:#718096; font-size:10px;">#U0CGGG8R0</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">1/4</td>
+        <td><div class="missing-badge">-3</div></td>
+        <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
+    </tr>
     
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            if ($('.data-table').length) {
-                $('.data-table').DataTable({
-                    pageLength: 25,
-                    language: { url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json' },
-                    responsive: true
-                });
-            }
-        });
-    </script>
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>mathi❄️</span>
+                <span style="color:#718096; font-size:10px;">#LLGUL2RUJ</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">1/4</td>
+        <td><div class="missing-badge">-3</div></td>
+        <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>tavin</span>
+                <span style="color:#718096; font-size:10px;">#U8VP8L8L0</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">1/4</td>
+        <td><div class="missing-badge">-3</div></td>
+        <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>51 é pinga</span>
+                <span style="color:#718096; font-size:10px;">#UJRLJY0L2</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Alvaro</span>
+                <span style="color:#718096; font-size:10px;">#8JULVVL0J</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Bruno</span>
+                <span style="color:#718096; font-size:10px;">#UPR022QUR</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Carlos Daniel™</span>
+                <span style="color:#718096; font-size:10px;">#JY9LGUVGC</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Chetto</span>
+                <span style="color:#718096; font-size:10px;">#2LR0RR89Q</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>DGJ-DAVI</span>
+                <span style="color:#718096; font-size:10px;">#9RPCC2VCG</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>DNZ</span>
+                <span style="color:#718096; font-size:10px;">#VVJCGCG0V</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Daniele❤</span>
+                <span style="color:#718096; font-size:10px;">#8R2LRC80Q</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Destroyer Demon</span>
+                <span style="color:#718096; font-size:10px;">#98V28R98U</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Dockz</span>
+                <span style="color:#718096; font-size:10px;">#YJUG9Y88</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>ERIK_LDEA</span>
+                <span style="color:#718096; font-size:10px;">#9VL8UUV2P</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Guizx7</span>
+                <span style="color:#718096; font-size:10px;">#9GPRG9QPL</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Gustavo Clash</span>
+                <span style="color:#718096; font-size:10px;">#28PQJJU2G</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>JOSA</span>
+                <span style="color:#718096; font-size:10px;">#2LY2GLJQL</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Luciano</span>
+                <span style="color:#718096; font-size:10px;">#LVGCLQQ8L</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Luiz Fernando™</span>
+                <span style="color:#718096; font-size:10px;">#CU829GUV0</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>MJK⚡️SPARKY</span>
+                <span style="color:#718096; font-size:10px;">#22CGYQ2UP</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Mila</span>
+                <span style="color:#718096; font-size:10px;">#90U8CVP90</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>NEGUIM244</span>
+                <span style="color:#718096; font-size:10px;">#PYVJVURP0</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Nico</span>
+                <span style="color:#718096; font-size:10px;">#9RUUG2R8</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>OneDePrata</span>
+                <span style="color:#718096; font-size:10px;">#LYL9CU0P0</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>PedrinhoR14</span>
+                <span style="color:#718096; font-size:10px;">#PJL0Q2J2</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Pedro PH</span>
+                <span style="color:#718096; font-size:10px;">#90LLGLPR0</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Rhosan</span>
+                <span style="color:#718096; font-size:10px;">#GVG0CLQP</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>RobaFrag</span>
+                <span style="color:#718096; font-size:10px;">#8U008PQU8</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>SAMUKA™</span>
+                <span style="color:#718096; font-size:10px;">#9VU0ULVCG</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>SLOWBURN671</span>
+                <span style="color:#718096; font-size:10px;">#PU0UGR9Y9</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Sotto ツ</span>
+                <span style="color:#718096; font-size:10px;">#2P299V0CU</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>ThurWard</span>
+                <span style="color:#718096; font-size:10px;">#RCG2GYL8Y</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Vinícius</span>
+                <span style="color:#718096; font-size:10px;">#YPJUU2ULU</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>WEZY</span>
+                <span style="color:#718096; font-size:10px;">#9090JY2LU</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>WvCly</span>
+                <span style="color:#718096; font-size:10px;">#CJRCPL88P</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>ZackThunder</span>
+                <span style="color:#718096; font-size:10px;">#R9UP0QLR9</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Zenitsu愛</span>
+                <span style="color:#718096; font-size:10px;">#8C8RY8GL9</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>^_^^_^</span>
+                <span style="color:#718096; font-size:10px;">#PG2LUY0PP</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>andrebts</span>
+                <span style="color:#718096; font-size:10px;">#VUQ0PV8PV</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>antedeguemon</span>
+                <span style="color:#718096; font-size:10px;">#208JPG9R</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>danilo</span>
+                <span style="color:#718096; font-size:10px;">#UG2Q28P8C</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>domador de but</span>
+                <span style="color:#718096; font-size:10px;">#GRY890GY2</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>isp</span>
+                <span style="color:#718096; font-size:10px;">#C8C20C0JQ</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>john</span>
+                <span style="color:#718096; font-size:10px;">#9CP9Y9ULU</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>joão3:16</span>
+                <span style="color:#718096; font-size:10px;">#U220VCULP</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>julio</span>
+                <span style="color:#718096; font-size:10px;">#20C8G8J2V</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>kauansin777</span>
+                <span style="color:#718096; font-size:10px;">#CPQ8LRLPV</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>luba</span>
+                <span style="color:#718096; font-size:10px;">#PQV9QQRQ0</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>luck</span>
+                <span style="color:#718096; font-size:10px;">#LVQRP2LGG</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>luisinn7</span>
+                <span style="color:#718096; font-size:10px;">#9PCQY89PV</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>muerte19</span>
+                <span style="color:#718096; font-size:10px;">#UP0U9PPJP</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>nivelador</span>
+                <span style="color:#718096; font-size:10px;">#VL292PYGJ</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>polaris</span>
+                <span style="color:#718096; font-size:10px;">#PCPCJU20Y</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>santsx777</span>
+                <span style="color:#718096; font-size:10px;">#C8G9JJL89</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>sj pro</span>
+                <span style="color:#718096; font-size:10px;">#YYUQV9UQ</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>super</span>
+                <span style="color:#718096; font-size:10px;">#UU0RCRLQU</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>v1ny</span>
+                <span style="color:#718096; font-size:10px;">#RQJP2QPRL</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>zkkjoao</span>
+                <span style="color:#718096; font-size:10px;">#UC0YYLPRJ</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>•Tåvåres•</span>
+                <span style="color:#718096; font-size:10px;">#G9UJUQ9P</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>♤✌ROBERT✌♤</span>
+                <span style="color:#718096; font-size:10px;">#9P9U9CCQL</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>✨ J ✨</span>
+                <span style="color:#718096; font-size:10px;">#98R298Q2L</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">0/4</td>
+        <td><div class="missing-badge">-4</div></td>
+        <td><span class="status-badge status-zero">ZERADO</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Asten Acady</span>
+                <span style="color:#718096; font-size:10px;">#UGUULGQ8Y</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>BRS⚔️ASHURA</span>
+                <span style="color:#718096; font-size:10px;">#9QCL9JJC9</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>EDDIE</span>
+                <span style="color:#718096; font-size:10px;">#2VLR9U90</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>O GUARDIÃO</span>
+                <span style="color:#718096; font-size:10px;">#UJRQ2L09</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Rodolfos</span>
+                <span style="color:#718096; font-size:10px;">#200JYCVYGY</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>Theus Carvalho</span>
+                <span style="color:#718096; font-size:10px;">#82QC0YL2C</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>ed</span>
+                <span style="color:#718096; font-size:10px;">#UUJQVQUGG</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>gabiggoughost</span>
+                <span style="color:#718096; font-size:10px;">#V9PCU0LCV</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>gabriel 3$</span>
+                <span style="color:#718096; font-size:10px;">#28RPQGG09</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    <tr class="data-row">
+        <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span>⭐O SENTINELA ⭐</span>
+                <span style="color:#718096; font-size:10px;">#99PJ9QQPC</span>
+            </div>
+        </td>
+        <td style="color:#a0aec0;">member</td>
+        <td style="font-weight:bold; font-size:16px;">4/4</td>
+        <td><span style="color:#34d399">✓</span></td>
+        <td><span class="status-badge status-complete">EM DIA</span></td>
+    </tr>
+    
+    </tbody>
+</table>
+
+    </div>
 </body>
 </html>
