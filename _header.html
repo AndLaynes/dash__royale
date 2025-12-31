@@ -1,37 +1,85 @@
-<!-- Header Unificado - Inclua em todos os templates -->
-<header class="main-header">
-    <div class="header-bg-pattern"></div>
-    <div class="logo-area">
-        <img src="https://cdn-icons-png.flaticon.com/512/1165/1165305.png" alt="Clash Royale Logo"
-            class="cr-logo pulse">
-        <div class="clan-info">
-            <h1 class="clan-name">{{ clan.name if clan else 'Nome do Clã' }}</h1>
-            <div class="clan-meta">
-                <span class="clan-tag">{{ clan.tag if clan else '#TAG' }}</span>
-                <span class="clan-trophies">🏆 {{ clan.clanWarTrophies if clan else '0' }}</span>
-            </div>
-        </div>
+<!-- Componente de Navegação Compartilhado -->
+<nav style="
+    background: rgba(26, 31, 53, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+">
+    <div style="
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    ">
+        ⚔️ OS GUARDIÕES
     </div>
-    <nav class="main-nav">
-        <a href="index.html" class="nav-link {% if page == 'home' %}active{% endif %}">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-text">Visão Geral</span>
+
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="index.html" style="
+            background: rgba(26, 31, 53, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        " onmouseover="this.style.color='#e5e7eb'; this.style.borderColor='#3b82f6';"
+            onmouseout="this.style.color='#9ca3af'; this.style.borderColor='rgba(255,255,255,0.1)';">
+            📊 Visão Geral
         </a>
-        <a href="war_history.html" class="nav-link {% if page == 'war' %}active{% endif %}">
-            <span class="nav-icon">⚔️</span>
-            <span class="nav-text">Guerras</span>
+        <a href="daily_war.html" style="
+            background: rgba(26, 31, 53, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        " onmouseover="this.style.color='#e5e7eb'; this.style.borderColor='#3b82f6';"
+            onmouseout="this.style.color='#9ca3af'; this.style.borderColor='rgba(255,255,255,0.1)';">
+            📅 Auditoria
         </a>
-        <a href="members_stats.html" class="nav-link {% if page == 'members' %}active{% endif %}">
-            <span class="nav-icon">👥</span>
-            <span class="nav-text">Membros</span>
+        <a href="members_stats.html" style="
+            background: rgba(26, 31, 53, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        " onmouseover="this.style.color='#e5e7eb'; this.style.borderColor='#3b82f6';"
+            onmouseout="this.style.color='#9ca3af'; this.style.borderColor='rgba(255,255,255,0.1)';">
+            👥 Membros
         </a>
-        <a href="ranking.html" class="nav-link {% if page == 'ranking' %}active{% endif %}">
-            <span class="nav-icon">🏅</span>
-            <span class="nav-text">Ranking</span>
+        <a href="ranking.html" style="
+            background: rgba(26, 31, 53, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        " onmouseover="this.style.color='#e5e7eb'; this.style.borderColor='#3b82f6';"
+            onmouseout="this.style.color='#9ca3af'; this.style.borderColor='rgba(255,255,255,0.1)';">
+            🏆 Ranking
         </a>
-    </nav>
-    <div class="update-info">
-        <span class="update-icon">🔄</span>
-        <span class="update-text">{{ generated_at if generated_at else 'Carregando...' }}</span>
     </div>
-</header>
+</nav>

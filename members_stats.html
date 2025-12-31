@@ -1,752 +1,449 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estatísticas de Membros - OS GUARDIÕES</title>
+    <title>Membros - OS GUARDIÕES</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #0f1420 50%, #0a0e1a 100%);
+            min-height: 100vh;
+            color: #e5e7eb;
+            padding: 1rem;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+        .glass { background: rgba(26, 31, 53, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+        h1 { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+        .stat-card { background: rgba(26, 31, 53, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 1.5rem; text-align: center; }
+        .stat-value { font-size: 2.5rem; font-weight: 700; margin: 0.5rem 0; }
+        .stat-label { color: #9ca3af; font-size: 0.85rem; text-transform: uppercase; }
+        table.dataTable { width: 100% !important; background: transparent !important; color: #e5e7eb; }
+        table.dataTable thead th { background: #1a1f35; color: #e5e7eb; padding: 1rem; border-bottom: 2px solid rgba(255, 255, 255, 0.1); }
+        table.dataTable tbody tr { background: transparent; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        table.dataTable tbody tr:hover { background: rgba(59, 130, 246, 0.1); }
+        table.dataTable tbody td { padding: 1rem; border: none; }
+        .status-ok { background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 0.375rem 1rem; border-radius: 999px; font-weight: 600; font-size: 0.8rem; display: inline-block; border: 1.5px solid #10b981; }
+        .status-razoável { background: rgba(245, 158, 11, 0.15); color: #f59e0b; padding: 0.375rem 1rem; border-radius: 999px; font-weight: 600; font-size: 0.8rem; display: inline-block; border: 1.5px solid #f59e0b; }
+        .status-verificar { background: rgba(239, 68, 68, 0.15); color: #ef4444; padding: 0.375rem 1rem; border-radius: 999px; font-weight: 600; font-size: 0.8rem; display: inline-block; border: 1.5px solid #ef4444; }
+        @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
-
 <body>
-    <div class="app-container">
+    <div class="container">
+        <!-- HEADER -->
+        <div id="header"></div>
+        <script>
+            fetch('_header.html').then(r => r.text()).then(html => {
+                document.getElementById('header').innerHTML = html;
+            });
+        </script>
         
-        <!-- Header Unificado - Inclua em todos os templates -->
-<header class="main-header">
-    <div class="header-bg-pattern"></div>
-    <div class="logo-area">
-        <img src="https://cdn-icons-png.flaticon.com/512/1165/1165305.png" alt="Clash Royale Logo"
-            class="cr-logo pulse">
-        <div class="clan-info">
-            <h1 class="clan-name">OS GUARDIÕES</h1>
-            <div class="clan-meta">
-                <span class="clan-tag">#9PJRJRPC</span>
-                <span class="clan-trophies">🏆 3097</span>
-            </div>
-        </div>
+        
+<div class="glass">
+    <h1>👥 Estatísticas de Membros</h1>
+    <p style="color: #9ca3af; margin-bottom: 2rem;">Total de 71 membros ativos</p>
+    
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Status</th>
+                <th>Última Guerra</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+    <tr>
+        <td>JOSA</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>joão3:16</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Chetto</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>Mila</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>sj pro</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>Nico</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>RobaFrag</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Luciano</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>alm ícaro⁷⁷⁷</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Daniele❤</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>MJK⚡️SPARKY</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Vinícius</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>•Tåvåres•</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Alvaro</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>NEGUIM244</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>tavin</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>SLOWBURN671</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>51 é pinga</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Sotto ツ</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>super</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Carlos Daniel™</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>EDDIE</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>antedeguemon</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>gabriel 3$</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>^_^^_^</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>Bruno</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Zenitsu愛</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>⭐O SENTINELA ⭐</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>domador de but</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>danilo</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>WvCly</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>zkkjoao</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>PedrinhoR14</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Dockz</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>isp</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>WEZY</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Asten Acady</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Pedro PH</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>DGJ-DAVI</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>luba</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>nivelador</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>gabiggoughost</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>ed</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>ZackThunder</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Guizx7</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>O GUARDIÃO</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>BRS⚔️ASHURA</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>andrebts</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Rhosan</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>ERIK_LDEA</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>SAMUKA™</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>santsx777</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>john</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>OneDePrata</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>luck</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>Theus Carvalho</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>polaris</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Destroyer Demon</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>♤✌ROBERT✌♤</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>v1ny</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>mathi❄️</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>✨ J ✨</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>muerte19</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>luisinn7</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>ThurWard</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Rodolfos</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>julio</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>kauansin777</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>DNZ</td>
+        <td><span class="status-verificar">Verificar</span></td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Gustavo Clash</td>
+        <td><span class="status-ok">Ok</span></td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td>Luiz Fernando™</td>
+        <td><span class="status-razoável">Razoável</span></td>
+        <td>12</td>
+    </tr>
+        </tbody>
+    </table>
+</div>
     </div>
-    <nav class="main-nav">
-        <a href="index.html" class="nav-link ">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-text">Visão Geral</span>
-        </a>
-        <a href="daily_war.html" class="nav-link ">
-            <span class="nav-icon">📋</span>
-            <span class="nav-text">Auditoria</span>
-        </a>
-        <a href="war_history.html" class="nav-link ">
-            <span class="nav-icon">⚔️</span>
-            <span class="nav-text">Guerras</span>
-        </a>
-        <a href="members_stats.html" class="nav-link active">
-            <span class="nav-icon">👥</span>
-            <span class="nav-text">Membros</span>
-        </a>
-        <a href="ranking.html" class="nav-link ">
-            <span class="nav-icon">🏅</span>
-            <span class="nav-text">Ranking</span>
-        </a>
-    </nav>
-    <div class="update-info">
-        <span class="update-icon">🔄</span>
-        <span class="update-text">Carregando...</span>
-    </div>
-</header>
-
-        <main class="dashboard-grid">
-            <section class="stats-cards">
-                <div class="card" title="Total de jogadores ativos no clã">
-                    <h3>👥 Membros Ativos</h3>
-                    <div class="value">50/50</div>
-                </div>
-                <div class="card" title="Doações totais (últimos 7 dias)">
-                    <h3>🎁 Doações Semanais</h3>
-                    <table id="membersTable">
-                        <thead>
-                            <tr>
-                                <th onclick="sortTable(0)" class="sortable" title="Posição no ranking do clã"># ↕</th>
-                                <th onclick="sortTable(1)" class="sortable" title="Nome do jogador">Jogador ↕</th>
-                                <th onclick="sortTable(2)" class="sortable" title="Cargo no clã (Líder, Co-líder, etc)">
-                                    Cargo ↕</th>
-                                <th onclick="sortTable(3)" class="sortable" title="Troféus atuais na ladder">Troféus ↕
-                                </th>
-                                <th onclick="sortTable(4)" class="sortable" title="Doações de cartas (últimos 7 dias)">
-                                    Doações ↕</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>♤✌ROBERT✌♤</strong>
-                                        <span class="member-tag">#9P9U9CCQL</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>10000 🏆</td>
-                                <td>36</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Daniele❤</strong>
-                                        <span class="member-tag">#8R2LRC80Q</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>78</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>3</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Theus Carvalho</strong>
-                                        <span class="member-tag">#82QC0YL2C</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>144</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>4</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>51 é pinga</strong>
-                                        <span class="member-tag">#UJRLJY0L2</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>10000 🏆</td>
-                                <td>162</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>5</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Zenitsu愛</strong>
-                                        <span class="member-tag">#8C8RY8GL9</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>10000 🏆</td>
-                                <td>16</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>6</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>JOAOVITOR:D</strong>
-                                        <span class="member-tag">#Y8R9V2URG</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>92</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>7</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>DavidSantana</strong>
-                                        <span class="member-tag">#9QG0U8YCQ</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>658</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>8</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>tavin</strong>
-                                        <span class="member-tag">#U8VP8L8L0</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>417</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>9</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>RobaFrag</strong>
-                                        <span class="member-tag">#8U008PQU8</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>10000 🏆</td>
-                                <td>727</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>10</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>gabriel_ns</strong>
-                                        <span class="member-tag">#GVRQ2QQVP</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>10000 🏆</td>
-                                <td>33</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>11</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>MegaJoaoReal</strong>
-                                        <span class="member-tag">#RUQ90VLVP</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>10000 🏆</td>
-                                <td>90</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>12</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Guizx7</strong>
-                                        <span class="member-tag">#9GPRG9QPL</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>870</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>13</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>ZackThunder</strong>
-                                        <span class="member-tag">#R9UP0QLR9</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>98</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>14</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Bruno</strong>
-                                        <span class="member-tag">#UPR022QUR</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>0</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>15</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Sotto ツ</strong>
-                                        <span class="member-tag">#2P299V0CU</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>10000 🏆</td>
-                                <td>184</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>16</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>EDDIE</strong>
-                                        <span class="member-tag">#2VLR9U90</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>10000 🏆</td>
-                                <td>289</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>17</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>luba</strong>
-                                        <span class="member-tag">#PQV9QQRQ0</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>10000 🏆</td>
-                                <td>26</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>18</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>mathi❄️</strong>
-                                        <span class="member-tag">#LLGUL2RUJ</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>10000 🏆</td>
-                                <td>172</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>19</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>MJK⚡️SPARKY</strong>
-                                        <span class="member-tag">#22CGYQ2UP</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>226</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>20</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>joão3:16</strong>
-                                        <span class="member-tag">#U220VCULP</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>10000 🏆</td>
-                                <td>138</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>21</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Mila</strong>
-                                        <span class="member-tag">#90U8CVP90</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>10000 🏆</td>
-                                <td>59</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>22</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>gabiggoughost</strong>
-                                        <span class="member-tag">#V9PCU0LCV</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>10000 🏆</td>
-                                <td>104</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>23</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>PedrinhoR14</strong>
-                                        <span class="member-tag">#PJL0Q2J2</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>10000 🏆</td>
-                                <td>72</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>24</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Chetto</strong>
-                                        <span class="member-tag">#2LR0RR89Q</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>327</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>25</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>^_^^_^</strong>
-                                        <span class="member-tag">#PG2LUY0PP</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>10000 🏆</td>
-                                <td>0</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>26</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Vinícius</strong>
-                                        <span class="member-tag">#YPJUU2ULU</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>180</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>27</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>antedeguemon</strong>
-                                        <span class="member-tag">#208JPG9R</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>150</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>28</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>ArthurNoSkill●</strong>
-                                        <span class="member-tag">#9PLVLLVR2</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>10000 🏆</td>
-                                <td>0</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>29</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Dockz</strong>
-                                        <span class="member-tag">#YJUG9Y88</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>10000 🏆</td>
-                                <td>103</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>30</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>santsx777</strong>
-                                        <span class="member-tag">#C8G9JJL89</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>9828 🏆</td>
-                                <td>1036</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>31</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>super</strong>
-                                        <span class="member-tag">#UU0RCRLQU</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>9794 🏆</td>
-                                <td>160</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>32</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>O GUARDIÃO</strong>
-                                        <span class="member-tag">#UJRQ2L09</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge leader">leader</span></td>
-                                <td>9706 🏆</td>
-                                <td>267</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>33</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Sasuke</strong>
-                                        <span class="member-tag">#Q8098VGG</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>9589 🏆</td>
-                                <td>42</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>34</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>andrebts</strong>
-                                        <span class="member-tag">#VUQ0PV8PV</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>9576 🏆</td>
-                                <td>254</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>35</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>carlos Daniel</strong>
-                                        <span class="member-tag">#8CVU0PP00</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>9500 🏆</td>
-                                <td>214</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>36</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Gustavo Clash</strong>
-                                        <span class="member-tag">#28PQJJU2G</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>9422 🏆</td>
-                                <td>212</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>37</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>petrus</strong>
-                                        <span class="member-tag">#88U9PLGVV</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>9382 🏆</td>
-                                <td>495</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>38</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>domador de but</strong>
-                                        <span class="member-tag">#GRY890GY2</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>9340 🏆</td>
-                                <td>381</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>39</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Luciano</strong>
-                                        <span class="member-tag">#LVGCLQQ8L</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>9243 🏆</td>
-                                <td>364</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>40</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Rodolfos</strong>
-                                        <span class="member-tag">#200JYCVYGY</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>9122 🏆</td>
-                                <td>0</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>41</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>yNoobZy</strong>
-                                        <span class="member-tag">#C9PY8URJQ</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>9101 🏆</td>
-                                <td>44</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>42</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>Alvaro</strong>
-                                        <span class="member-tag">#8JULVVL0J</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>9000 🏆</td>
-                                <td>16</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>43</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>NEGUIM244</strong>
-                                        <span class="member-tag">#PYVJVURP0</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge member">member</span></td>
-                                <td>8755 🏆</td>
-                                <td>120</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>44</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>polaris</strong>
-                                        <span class="member-tag">#PCPCJU20Y</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>8746 🏆</td>
-                                <td>17</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>45</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>isp</strong>
-                                        <span class="member-tag">#C8C20C0JQ</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>8612 🏆</td>
-                                <td>54</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>46</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>luisinn7</strong>
-                                        <span class="member-tag">#9PCQY89PV</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>8560 🏆</td>
-                                <td>0</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>47</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>OneDePrata</strong>
-                                        <span class="member-tag">#LYL9CU0P0</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>8448 🏆</td>
-                                <td>128</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>48</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>⭐O SENTINELA ⭐</strong>
-                                        <span class="member-tag">#99PJ9QQPC</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge coLeader">coLeader</span></td>
-                                <td>8113 🏆</td>
-                                <td>26</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>49</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>H A R D's</strong>
-                                        <span class="member-tag">#PVJULCYQQ</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>8050 🏆</td>
-                                <td>96</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>50</td>
-                                <td>
-                                    <div class="member-name">
-                                        <strong>DGJ-DAVI</strong>
-                                        <span class="member-tag">#9RPCC2VCG</span>
-                                    </div>
-                                </td>
-                                <td><span class="role-badge elder">elder</span></td>
-                                <td>7374 🏆</td>
-                                <td>0</td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Botão de Exportação DESTACADO -->
-            <section class="export-section">
-                <button onclick="exportToPDF()" class="btn-export">
-                    📄 EXPORTAR PARA PDF
-                </button>
-            </section>
-        </main>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-    <script src="static/table-sort.js"></script>
-    <script src="static/export-pdf.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            if ($('.data-table').length) {
+                $('.data-table').DataTable({
+                    pageLength: 25,
+                    language: { url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json' },
+                    responsive: true
+                });
+            }
+        });
+    </script>
 </body>
-
 </html>
