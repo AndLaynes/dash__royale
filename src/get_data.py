@@ -132,5 +132,26 @@ def download_data():
         print(f"Erro Crítico de conexão ao buscar o histórico de guerras. Detalhes: {e}", file=sys.stderr)
         sys.exit(1)
 
+    time.sleep(1)
+
+    # 3. Baixar lista de membros (Ranking e Doações)
+    try:
+        members_url = f'https://api.clashroyale.com/v1/clans/{encoded_clan_tag}/members'
+        print("Buscando lista de membros 'clan/members'...")
+        response = requests.get(members_url, headers=headers, timeout=10)
+
+        if response.status_code != 200:
+            handle_api_error(response, 'clan_members')
+
+        members_data = response.json()
+        file_path = os.path.join(data_dir, 'clan_members.json')
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(members_data, f, indent=4, ensure_ascii=False)
+        print(f"Lista de membros salva com sucesso em '{os.path.basename(file_path)}'.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Erro Crítico de conexão ao buscar lista de membros. Detalhes: {e}", file=sys.stderr)
+        sys.exit(1)
+
 if __name__ == "__main__":
     download_data()

@@ -548,11 +548,215 @@ def generate_html_report():
     with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(get_page_template("Visão Geral", index_content))
 
-    with open(os.path.join(OUTPUT_DIR, 'members_stats.html'), 'w', encoding='utf-8') as f:
-        f.write(get_page_template("Membros", index_content))
+    # 6. Gerar Página de MEMBROS (GT-Z)
+    members_json_path = os.path.join(DATA_DIR, 'clan_members.json')
+    if os.path.exists(members_json_path):
+        with open(members_json_path, 'r', encoding='utf-8') as f:
+            members_api = json.load(f).get('items', [])
+            
+        print(f"Processando {len(members_api)} membros para a lista oficial.")
+        
+        # Ordenar por Cargo (Líder > Co-Líder > Ancião > Membro)
+        role_map = {"leader": 3, "coLeader": 2, "elder": 1, "member": 0}
+        role_label = {"leader": "Líder", "coLeader": "Co-Líder", "elder": "Ancião", "member": "Membro"}
+        
+        members_api.sort(key=lambda x: (role_map.get(x['role'], 0), x['trophies']), reverse=True)
+        
+        members_table_html = ""
+        for m in members_api:
+            # Formatação de datas se necessário, ou ícones
+            role_badge = f'<span class="badge" style="background:#4a5568">{role_label.get(m["role"], m["role"])}</span>'
+            if m["role"] == "leader": role_badge = f'<span class="badge" style="background:#e53e3e">Líder</span>'
+            if m["role"] == "coLeader": role_badge = f'<span class="badge" style="background:#d69e2e">Co-Líder</span>'
+            
+            members_table_html += f"""
+            <tr class="data-row">
+                <td>
+                    <div style="font-weight:bold;">{m['name']}</div>
+                    <div style="font-size:10px; color:#718096;">{m['tag']}</div>
+                </td>
+                <td>{role_badge}</td>
+                <td><span style="color:#fbbf24">🏆 {m['trophies']}</span></td>
+                <td><span style="color:#34d399"> cards {m['donations']}</span></td>
+                <td style="color:#a0aec0">{m.get('lastSeen', 'N/A')[:10]}</td>
+            </tr>
+            """
+            
+        members_content = f"""
+        <div class="page-title-section">
+            <div>
+                <h2>Membros Oficiais</h2>
+                <p class="page-subtitle">Lista atualizada via Supercell API</p>
+                <div class="meta-box">{len(members_api)} Membros no Clã</div>
+            </div>
+        </div>
+        
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                    <th>Troféus</th>
+                    <th>Doações</th>
+                    <th>Último Acesso</th>
+                </tr>
+            </thead>
+            <tbody>
+                {members_table_html}
+            </tbody>
+        </table>
+        """
+        
+        with open(os.path.join(OUTPUT_DIR, 'members_stats.html'), 'w', encoding='utf-8') as f:
+            f.write(get_page_template("Membros", members_content))
+            
+    else:
+        print("AVISO: clan_members.json não encontrado. Pulando página de membros.")
 
-    with open(os.path.join(OUTPUT_DIR, 'ranking.html'), 'w', encoding='utf-8') as f:
-        f.write(get_page_template("Ranking", index_content))
+    # 7. Gerar Página de RANKING (GT-Z Logic)
+    # Lógica: Cruzar Members API com RiverRaceLog para calcular Score
+    if os.path.exists(members_json_path):
+        # 1. Carregar Histórico de Guerra para calcular Médias
+        river_log_path = os.path.join(DATA_DIR, 'riverracelog.json')
+        war_stats = {} # tag -> {fame: 0, decks: 0}
+        
+        if os.path.exists(river_log_path):
+            with open(river_log_path, 'r', encoding='utf-8') as f:
+                r_log = json.load(f)
+            
+            # Analisar últimas 10 guerras apenas
+            for war in r_log.get('items', [])[:10]:
+                 # Achar o clã
+                my_clan = next((c for c in war.get('standings', []) 
+                                if c['clan']['tag'].replace('#','') == "9PJRJRPC"), None)
+                if my_clan:
+                    for p in my_clan['clan']['participants']:
+                        tag = p['tag']
+                        if tag not in war_stats: war_stats[tag] = {'fame': 0, 'decks': 0}
+                        war_stats[tag]['fame'] += p.get('fame', 0)
+                        war_stats[tag]['decks'] += p.get('decksUsed', 0)
+
+        # 2. Calcular Métricas para Membros Atuais
+        rank_data = [] # {name, score, metrics: {}}
+        
+        # Encontrar Maximos para Normalização
+        max_fame = 0
+        max_efficiency = 0
+        max_trophies = 0
+        max_donations = 0
+        
+        # Pré-processamento
+        temp_list = []
+        for m in members_api:
+            tag = m['tag']
+            w_stat = war_stats.get(tag, {'fame': 0, 'decks': 0})
+            
+            fame = w_stat['fame']
+            decks = w_stat['decks']
+            efficiency = (fame / decks) if decks > 0 else 0
+            trophies = m['trophies']
+            donations = m['donations']
+            
+            if fame > max_fame: max_fame = fame
+            if efficiency > max_efficiency: max_efficiency = efficiency
+            if trophies > max_trophies: max_trophies = trophies
+            if donations > max_donations: max_donations = donations
+            
+            temp_list.append({
+                "name": m['name'],
+                "tag": tag,
+                "fame": fame,
+                "efficiency": efficiency,
+                "trophies": trophies,
+                "donations": donations
+            })
+            
+        # 3. Calcular Score Final
+        # Pesos: Fame 50%, Efficiency 25%, Trophies 15%, Donations 10%
+        for p in temp_list:
+            norm_fame = (p['fame'] / max_fame * 100) if max_fame > 0 else 0
+            norm_eff = (p['efficiency'] / max_efficiency * 100) if max_efficiency > 0 else 0
+            norm_troph = (p['trophies'] / max_trophies * 100) if max_trophies > 0 else 0
+            norm_don = (p['donations'] / max_donations * 100) if max_donations > 0 else 0
+            
+            score = (norm_fame * 0.50) + (norm_eff * 0.25) + (norm_troph * 0.15) + (norm_don * 0.10)
+            
+            rank_data.append({
+                **p,
+                "score": round(score, 1),
+                "norm_breakdown": [norm_fame, norm_eff, norm_troph, norm_don]
+            })
+            
+        # Ordenar pelo Score
+        rank_data.sort(key=lambda x: x['score'], reverse=True)
+        
+        # 4. Gerar HTML
+        rank_table_html = ""
+        for i, r in enumerate(rank_data):
+            rank_pos = i + 1
+            medal = ""
+            if rank_pos == 1: medal = "🥇"
+            elif rank_pos == 2: medal = "🥈"
+            elif rank_pos == 3: medal = "🥉"
+            
+            rank_table_html += f"""
+            <tr class="data-row">
+                <td style="font-weight:bold; font-size:16px;">{medal} #{rank_pos}</td>
+                <td style="font-weight:600;">{r['name']}</td>
+                <td style="color:#fbbf24; font-weight:800; font-size:18px;">{r['score']}</td>
+                <td style="font-size:13px; color:#a0aec0;">
+                    Fame: <b style="color:white">{r['fame']}</b><br>
+                    Eff: <b style="color:white">{int(r['efficiency'])}</b>
+                </td>
+                <td style="font-size:13px; color:#a0aec0;">
+                    Troféus: <b style="color:white">{r['trophies']}</b><br>
+                    Donates: <b style="color:white">{r['donations']}</b>
+                </td>
+            </tr>
+            """
+            
+        ranking_content = """
+        <div class="page-title-section">
+            <div>
+                <h2>Ranking de Performance</h2>
+                <p class="page-subtitle">Algoritmo unificado de desempenho (Guerra + Atividade)</p>
+            </div>
+        </div>
+        
+        <div class="info-box">
+             <div class="info-header">
+                <div class="info-icon">📊</div>
+                <div class="info-title">Como funciona o Score do Ranking?</div>
+            </div>
+            <div class="info-content">
+                O Score é calculado normalizando as métricas relativas ao melhor do clã.<br><br>
+                <ul>
+                    <li><span class="highlight">50% - Ouro do Rio (Fame):</span> Acumulado nas últimas 10 guerras.</li>
+                    <li><span class="highlight">25% - Eficiência (Win Rate Estimado):</span> Média de Fame por Deck usado.</li>
+                    <li><span class="highlight">15% - Troféus:</span> Nível de habilidade atual (Ladder).</li>
+                    <li><span class="highlight">10% - Doações:</span> Contribuição diária de cartas.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <table class="custom-table" data-order="desc">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Jogador</th>
+                    <th>SCORE FINAL</th>
+                    <th>Guerra (Fame/Eff)</th>
+                    <th>Perfil (Troph/Don)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {rank_table_html}
+            </tbody>
+        </table>
+        """
+        
+        with open(os.path.join(OUTPUT_DIR, 'ranking.html'), 'w', encoding='utf-8') as f:
+            f.write(get_page_template("Ranking", ranking_content))
 
     print("Relatórios HTML gerados com sucesso!")
 

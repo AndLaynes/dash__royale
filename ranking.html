@@ -209,23 +209,51 @@ body {
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                12/01/2026 19:54
+                12/01/2026 20:00
             </div>
         </div>
     </header>
 
     <div class="container">
         
-    <div class="page-title-section">
-        <div>
-            <h2>Visão Geral</h2>
-            <p class="page-subtitle">Bem-vindo ao Dashboard dos Guardiões</p>
+        <div class="page-title-section">
+            <div>
+                <h2>Ranking de Performance</h2>
+                <p class="page-subtitle">Algoritmo unificado de desempenho (Guerra + Atividade)</p>
+            </div>
         </div>
-    </div>
-    <div style="text-align:center; padding: 50px; color: #718096;">
-        <p>Visão Geral Atualizada. Selecione a aba 'Auditoria' para detalhes da guerra.</p>
-    </div>
-    
+        
+        <div class="info-box">
+             <div class="info-header">
+                <div class="info-icon">📊</div>
+                <div class="info-title">Como funciona o Score do Ranking?</div>
+            </div>
+            <div class="info-content">
+                O Score é calculado normalizando as métricas relativas ao melhor do clã.<br><br>
+                <ul>
+                    <li><span class="highlight">50% - Ouro do Rio (Fame):</span> Acumulado nas últimas 10 guerras.</li>
+                    <li><span class="highlight">25% - Eficiência (Win Rate Estimado):</span> Média de Fame por Deck usado.</li>
+                    <li><span class="highlight">15% - Troféus:</span> Nível de habilidade atual (Ladder).</li>
+                    <li><span class="highlight">10% - Doações:</span> Contribuição diária de cartas.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <table class="custom-table" data-order="desc">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Jogador</th>
+                    <th>SCORE FINAL</th>
+                    <th>Guerra (Fame/Eff)</th>
+                    <th>Perfil (Troph/Don)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {rank_table_html}
+            </tbody>
+        </table>
+        
     </div>
 
     <!-- SCRIPTS PARA FILTRO E ORDENAÇÃO -->
