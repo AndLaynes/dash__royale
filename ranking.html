@@ -186,6 +186,26 @@ body {
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: bold;
 }
+/* RESPONSIVE SUB-768px */
+@media (max-width: 768px) {
+    .header-content { flex-direction: column; align-items: flex-start; }
+    .nav-pills { width: 100%; overflow-x: auto; padding-bottom: 5px; }
+    .nav-item { white-space: nowrap; }
+    
+    .page-title-section { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 15px; 
+    }
+    
+    .audit-stats { 
+        width: 100%; 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px; 
+    }
+    .stat-box { min-width: auto; }
+}
 </style>
 </head>
 <body>
@@ -209,7 +229,7 @@ body {
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                12/01/2026 20:11
+                12/01/2026 20:41
             </div>
         </div>
     </header>
@@ -470,7 +490,7 @@ body {
                         Eff: <b style="color:white">150</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">10338</b><br>
+                        Troféus: <b style="color:white">10368</b><br>
                         Donates: <b style="color:white">18</b>
                     </td>
                 </tr>
@@ -498,7 +518,7 @@ body {
                         Eff: <b style="color:white">167</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">10760</b><br>
+                        Troféus: <b style="color:white">10791</b><br>
                         Donates: <b style="color:white">62</b>
                     </td>
                 </tr>
@@ -856,13 +876,13 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;"> #44</td>
                     <td style="font-weight:600;">Yzzy the best ¿</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">16.4</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">16.5</td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Fame: <b style="color:white">0</b><br>
                         Eff: <b style="color:white">0</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">10790</b><br>
+                        Troféus: <b style="color:white">10880</b><br>
                         Donates: <b style="color:white">72</b>
                     </td>
                 </tr>

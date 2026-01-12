@@ -186,6 +186,26 @@ body {
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: bold;
 }
+/* RESPONSIVE SUB-768px */
+@media (max-width: 768px) {
+    .header-content { flex-direction: column; align-items: flex-start; }
+    .nav-pills { width: 100%; overflow-x: auto; padding-bottom: 5px; }
+    .nav-item { white-space: nowrap; }
+    
+    .page-title-section { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 15px; 
+    }
+    
+    .audit-stats { 
+        width: 100%; 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px; 
+    }
+    .stat-box { min-width: auto; }
+}
 </style>
 </head>
 <body>
@@ -209,7 +229,7 @@ body {
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                12/01/2026 20:11
+                12/01/2026 20:41
             </div>
         </div>
     </header>

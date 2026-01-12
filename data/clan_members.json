@@ -40,7 +40,7 @@
             "tag": "#CU829GUV0",
             "name": "Luiz Fernando™",
             "role": "member",
-            "lastSeen": "20260112T194303.000Z",
+            "lastSeen": "20260112T231723.000Z",
             "expLevel": 72,
             "trophies": 11502,
             "arena": {
@@ -181,6 +181,24 @@
             "clanChestPoints": 0
         },
         {
+            "tag": "#8LRQJLPCQ",
+            "name": "Yzzy the best ¿",
+            "role": "member",
+            "lastSeen": "20260112T231037.000Z",
+            "expLevel": 55,
+            "trophies": 10880,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 11,
+            "previousClanRank": 0,
+            "donations": 72,
+            "donationsReceived": 0,
+            "clanChestPoints": 0
+        },
+        {
             "tag": "#LVQRP2LGG",
             "name": "luck",
             "role": "member",
@@ -192,28 +210,28 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 11,
+            "clanRank": 12,
             "previousClanRank": 11,
             "donations": 18,
             "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
-            "tag": "#8LRQJLPCQ",
-            "name": "Yzzy the best ¿",
+            "tag": "#LLGUL2RUJ",
+            "name": "mathi❄️",
             "role": "member",
-            "lastSeen": "20260112T231037.000Z",
-            "expLevel": 55,
-            "trophies": 10790,
+            "lastSeen": "20260112T232133.000Z",
+            "expLevel": 63,
+            "trophies": 10791,
             "arena": {
                 "id": 54000130,
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 12,
-            "previousClanRank": 0,
-            "donations": 72,
-            "donationsReceived": 0,
+            "clanRank": 13,
+            "previousClanRank": 16,
+            "donations": 62,
+            "donationsReceived": 80,
             "clanChestPoints": 0
         },
         {
@@ -228,27 +246,9 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 13,
+            "clanRank": 14,
             "previousClanRank": 19,
             "donations": 82,
-            "donationsReceived": 80,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#LLGUL2RUJ",
-            "name": "mathi❄️",
-            "role": "member",
-            "lastSeen": "20260112T230449.000Z",
-            "expLevel": 63,
-            "trophies": 10760,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
-            },
-            "clanRank": 14,
-            "previousClanRank": 16,
-            "donations": 62,
             "donationsReceived": 80,
             "clanChestPoints": 0
         },
@@ -382,7 +382,7 @@
             "tag": "#8U008PQU8",
             "name": "RobaFrag",
             "role": "coLeader",
-            "lastSeen": "20260112T230635.000Z",
+            "lastSeen": "20260112T233708.000Z",
             "expLevel": 66,
             "trophies": 10558,
             "arena": {
@@ -418,7 +418,7 @@
             "tag": "#90LLGLPR0",
             "name": "Pedro PH",
             "role": "member",
-            "lastSeen": "20260112T193004.000Z",
+            "lastSeen": "20260112T231959.000Z",
             "expLevel": 60,
             "trophies": 10503,
             "arena": {
@@ -438,7 +438,7 @@
             "role": "coLeader",
             "lastSeen": "20260112T231017.000Z",
             "expLevel": 71,
-            "trophies": 10338,
+            "trophies": 10368,
             "arena": {
                 "id": 54000117,
                 "name": "Lumberlove Cabin",
@@ -616,7 +616,7 @@
             "tag": "#200JYCVYGY",
             "name": "Rodolfos",
             "role": "coLeader",
-            "lastSeen": "20260112T132441.000Z",
+            "lastSeen": "20260112T232047.000Z",
             "expLevel": 55,
             "trophies": 10000,
             "arena": {

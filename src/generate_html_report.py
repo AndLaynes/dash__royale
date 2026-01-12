@@ -192,6 +192,26 @@ body {
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: bold;
 }
+/* RESPONSIVE SUB-768px */
+@media (max-width: 768px) {
+    .header-content { flex-direction: column; align-items: flex-start; }
+    .nav-pills { width: 100%; overflow-x: auto; padding-bottom: 5px; }
+    .nav-item { white-space: nowrap; }
+    
+    .page-title-section { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 15px; 
+    }
+    
+    .audit-stats { 
+        width: 100%; 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px; 
+    }
+    .stat-box { min-width: auto; }
+}
 """
 
 def get_page_template(active_page, content):
@@ -338,7 +358,7 @@ def generate_html_report():
     weekday = datetime.now().weekday()
     
     audit_rows = []
-    
+
     # STATUS: TREINO (Seg-Qua) -> Pega do River Race Log (Histórico Fechado)
     if weekday < 3:
         print(f"Hoje é {datetime.now().strftime('%A')} (Treino). Exibindo Última Guerra Fechada.")
@@ -507,17 +527,24 @@ def generate_html_report():
         <div>
             <h2>Status de Guerra</h2>
             <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual</p>
-            <div class="meta-box">Meta do Dia: {meta_decks} Decks</div>
         </div>
         <div class="audit-stats">
+             <!-- META AGORA É UM STAT-BOX PARA ALINHAMENTO -->
+            <div class="stat-box" style="border: 1px solid #fbbf24; color: #fbbf24; background: rgba(251, 191, 36, 0.1);">
+                <div style="font-size:10px; opacity:0.8;">META DA GUERRA</div>
+                {meta_decks} DECKS
+            </div>
             <div class="stat-box stat-green">
-                {count_em_dia} EM DIA
+                <div style="font-size:10px; opacity:0.8;">EM DIA</div>
+                {count_em_dia}
             </div>
             <div class="stat-box stat-yellow">
-                {count_incompleto} INCOMPLETO
+                <div style="font-size:10px; opacity:0.8;">INCOMPLETO</div>
+                {count_incompleto}
             </div>
             <div class="stat-box stat-red">
-                {count_zerado} ZERADO
+                <div style="font-size:10px; opacity:0.8;">ZERADO</div>
+                {count_zerado}
             </div>
         </div>
     </div>

@@ -1019,6 +1019,15 @@
                     "decksUsedToday": 0
                 },
                 {
+                    "tag": "#QUGVYGJ2U",
+                    "name": "alec",
+                    "fame": 0,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 0,
+                    "decksUsedToday": 0
+                },
+                {
                     "tag": "#CYVCGJJGC",
                     "name": "X-9",
                     "fame": 0,
@@ -2966,7 +2975,7 @@
                     "repairPoints": 0,
                     "boatAttacks": 0,
                     "decksUsed": 0,
-                    "decksUsedToday": 2
+                    "decksUsedToday": 3
                 },
                 {
                     "tag": "#CGYV9QJCL",

@@ -186,6 +186,26 @@ body {
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: bold;
 }
+/* RESPONSIVE SUB-768px */
+@media (max-width: 768px) {
+    .header-content { flex-direction: column; align-items: flex-start; }
+    .nav-pills { width: 100%; overflow-x: auto; padding-bottom: 5px; }
+    .nav-item { white-space: nowrap; }
+    
+    .page-title-section { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 15px; 
+    }
+    
+    .audit-stats { 
+        width: 100%; 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px; 
+    }
+    .stat-box { min-width: auto; }
+}
 </style>
 </head>
 <body>
@@ -209,7 +229,7 @@ body {
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                12/01/2026 20:11
+                12/01/2026 20:41
             </div>
         </div>
     </header>
@@ -220,17 +240,24 @@ body {
         <div>
             <h2>Status de Guerra</h2>
             <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual</p>
-            <div class="meta-box">Meta do Dia: 16 Decks</div>
         </div>
         <div class="audit-stats">
+             <!-- META AGORA É UM STAT-BOX PARA ALINHAMENTO -->
+            <div class="stat-box" style="border: 1px solid #fbbf24; color: #fbbf24; background: rgba(251, 191, 36, 0.1);">
+                <div style="font-size:10px; opacity:0.8;">META DA GUERRA</div>
+                16 DECKS
+            </div>
             <div class="stat-box stat-green">
-                26 EM DIA
+                <div style="font-size:10px; opacity:0.8;">EM DIA</div>
+                26
             </div>
             <div class="stat-box stat-yellow">
-                20 INCOMPLETO
+                <div style="font-size:10px; opacity:0.8;">INCOMPLETO</div>
+                20
             </div>
             <div class="stat-box stat-red">
-                4 ZERADO
+                <div style="font-size:10px; opacity:0.8;">ZERADO</div>
+                4
             </div>
         </div>
     </div>
