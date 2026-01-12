@@ -3,6 +3,17 @@ import requests
 import json
 import sys
 import time
+import socket
+import requests.packages.urllib3.util.connection as urllib3_cn
+
+# --- FORCE IPV4 PATCH (GT-Z Networking) ---
+# O IP Publico IPv6 (2804...) não está na whitelist. O IPv4 (191...) está.
+# Forçamos o requests a usar apenas a família AF_INET (IPv4).
+def allowed_gai_family():
+    return socket.AF_INET
+
+urllib3_cn.allowed_gai_family = allowed_gai_family
+# ------------------------------------------
 
 # Define os caminhos de forma robusta
 project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
