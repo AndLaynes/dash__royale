@@ -1,17 +1,31 @@
-# Ignore the entire data directory
-data/
+# Ignorar arquivos de protocolo/documentação interna
+00_SYS_KERNEL.md
+01_SYS_CALIBRATION.md
+02_SYS_MAP.md
+99_SYS_AUDIT.md
+HANDOFF.md
+METODOLOGIA.md
+warlog.md
+INSTRUCOES_DEPLOY.md
 
-# Ignore specific data files if they are ever created outside the data directory
-warlog.json
-riverracelog.json
-
-# Ignore python cache files
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.so
+.Python
+venv/
+env/
 
-# Ignore environment files
-.env
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# Ignore generated reports and logs
-relatorio_guerra.html
-app.log
+# OS
+.DS_Store
+Thumbs.db
+
+# Dados temporários
+*.log
+temp/

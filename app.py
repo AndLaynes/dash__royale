@@ -26,13 +26,24 @@ def index():
     """Serve o relatório principal (index.html)."""
     return serve_report('index.html')
 
-@app.route('/acompanhamento_diario')
+@app.route('/daily_war.html')
 def daily_report():
-    """Serve o relatório de acompanhamento diário."""
-    return serve_report('acompanhamento_diario.html')
+    """Serve o relatório de auditoria diária."""
+    return serve_report('daily_war.html')
+
+@app.route('/members_stats.html')
+def members_stats():
+    """Serve o relatório de estatísticas dos membros."""
+    return serve_report('members_stats.html')
+
+@app.route('/ranking.html')
+def ranking():
+    """Serve o relatório de ranking."""
+    return serve_report('ranking.html')
 
 if __name__ == '__main__':
     print("Iniciando o servidor Flask...")
     print(f"Acesse o dashboard principal em http://127.0.0.1:5000")
-    print(f"Acesse o acompanhamento diário em http://127.0.0.1:5000/acompanhamento_diario")
+    print(f"Acesse o dashboard principal em http://127.0.0.1:5000")
+    print(f"Acesse as demais páginas via menu de navegação.")
     app.run(debug=True, port=5000)
