@@ -325,14 +325,18 @@ def generate_html_report():
     daily_json_path = os.path.join(DATA_DIR, 'daily_war_history.json')
     members_json_path = os.path.join(DATA_DIR, 'clan_members.json')
     
+    # Initialize members_api globally for the function
+    members_api = []
+    
     # Criar Mapa de Membros (Tag -> Dados)
     member_map = {}
     role_label = {"leader": "Líder", "coLeader": "Co-Líder", "elder": "Ancião", "member": "Membro"}
     
     if os.path.exists(members_json_path):
         with open(members_json_path, 'r', encoding='utf-8') as f:
-            m_items = json.load(f).get('items', [])
-            for m in m_items:
+            # LOAD MEMBERS API HERE
+            members_api = json.load(f).get('items', [])
+            for m in members_api:
                 member_map[m['tag']] = {
                     'role': role_label.get(m['role'], 'Membro'),
                     'name': m['name'],
@@ -586,17 +590,221 @@ def generate_html_report():
     with open(os.path.join(OUTPUT_DIR, 'daily_war.html'), 'w', encoding='utf-8') as f:
         f.write(get_page_template("Guerra", audit_content))
 
-    # 6. Gerar Outras Páginas (Placeholders com mesmo estilo por enquanto)
-    index_content = """
-    <div class="page-title-section">
-        <div>
-            <h2>Visão Geral</h2>
-            <p class="page-subtitle">Bem-vindo ao Dashboard dos Guardiões</p>
+    # 6. Gerar Página INDEX (Dashboard Geral)
+    print("Gerando Dashboard (Index)...")
+    
+    # Cálculos para o Dashboard
+    
+    # A. Dados do Clã (Trophies, League)
+    clan_score = 0
+    league_name = "Desconhecida"
+    if 'clan' in daily_data:
+        clan_score = daily_data['clan'].get('clanScore', 0)
+        # Inferir Liga
+        if clan_score >= 3000: league_name = "Liga Lendária"
+        elif clan_score >= 1500: league_name = "Liga Ouro"
+        elif clan_score >= 600: league_name = "Liga Prata"
+        else: league_name = "Liga Bronze"
+        
+    # B. Performance de Guerra (Última ou Atual)
+    war_rank = "N/A"
+    war_state = "Em Treino"
+    if weekday >= 3: war_state = "Em Guerra ⚔️"
+    
+    # Pegar ranking da última guerra processada
+    try:
+        if os.path.exists(os.path.join(DATA_DIR, 'riverracelog.json')):
+            with open(os.path.join(DATA_DIR, 'riverracelog.json'), 'r') as f:
+                last_log = json.load(f)['items'][0]
+                my_standing = next((c for c in last_log['standings'] if c['clan']['tag'].replace("#","") == "9PJRJRPC"), None)
+                if my_standing:
+                    war_rank = f"#{my_standing['rank']}"
+    except:
+        pass
+
+    # C. Doações e Atividade
+    total_donations = 0
+    top_donors = []
+    active_count = 0
+    
+    if os.path.exists(members_json_path):
+        for m in members_api: # Já carregado anteriormente
+            total_donations += m.get('donations', 0)
+            
+            # Top Donors selection
+            top_donors.append(m)
+            
+            # Atividade (< 7 dias)
+            ls = m.get('lastSeen', '')
+            if ls and ls != 'N/A':
+                try:
+                    ls_dt = datetime.strptime(ls, '%Y%m%dT%H%M%S.%fZ')
+                    days_diff = (datetime.now() - ls_dt).days
+                    if days_diff <= 7: active_count += 1
+                except:
+                    pass
+        
+        # Sort Donors
+        top_donors.sort(key=lambda x: x['donations'], reverse=True)
+        top_donors = top_donors[:3] # Top 3
+
+    # D. MVPs de Guerra (Fame recente)
+    # Reutiliza top_50_rows calculadas acima se possível, ou recalcula basics
+    # Vamos pegar do Ranking calculado (se disponível na memória.. não está fácil, vamos reprocessar rapidinho os top fame)
+    mvp_list = []
+    # (Reusing rank_data if implemented implies parsing riverlog again, let's keep it simple: Top Fame from Last Log)
+    # Using 'top_3' calculated in Debug/Ranking steps previously? 
+    # Let's derive from current audit_rows if in War, or Member List if training.
+    # PROPER WAY: Let's use the 'rank_data' logic if available. Since it's local in that block...
+    # SIMPLIFICATION: Use 'audit_rows' (sorted by decks).
+    # BETTER: Use 'top_donors' logic but for Fame if available in audit_rows, else Trophies.
+    # Let's show "Top Troféus" as MVP for stability if War is empty.
+    
+    top_trophies = sorted(members_api, key=lambda x: x['trophies'], reverse=True)[:3]
+
+
+    # HTML Construction
+    
+    donors_html = ""
+    for d in top_donors:
+        donors_html += f"""
+        <div class="list-item">
+            <span class="badgex">{d['donations']} 🃏</span>
+            <span>{d['name']}</span>
+        </div>
+        """
+        
+    mvp_html = ""
+    for p in top_trophies:
+        mvp_html += f"""
+        <div class="list-item">
+            <span class="badgex" style="background:#fbbf24; color:#000;">🏆 {p['trophies']}</span>
+            <span>{p['name']}</span>
+        </div>
+        """
+
+    index_content = f"""
+    <div class="dashboard-grid">
+        <!-- 1. IDENTIDADE DO CLÃ -->
+        <div class="dash-card main-card">
+            <div class="card-header">
+                <h3>CLÃ OS GUARDIÕES</h3>
+                <span class="status-badge status-complete">{league_name}</span>
+            </div>
+            <div class="card-body big-stat">
+                <div>
+                   <div class="stat-value">🏆 {clan_score}</div>
+                   <div class="stat-label">Troféus Totais</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="stat-value">#{9}</div> <!-- Hardcoded Local Rank or Placeholder -->
+                    <div class="stat-label">Rank Local (BR)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. STATUS DE GUERRA -->
+        <div class="dash-card war-card">
+            <div class="card-header">
+                <h3>⚔️ GUERRA DE CLÃS</h3>
+            </div>
+            <div class="card-body">
+                <div class="stat-row">
+                    <span class="label">Status Atual:</span>
+                    <span class="value">{war_state}</span>
+                </div>
+                 <div class="stat-row">
+                    <span class="label">Última Posição:</span>
+                    <span class="value accent">{war_rank}</span>
+                </div>
+                 <div class="stat-row">
+                    <span class="label">Participação:</span>
+                    <span class="value">{active_count}/{len(members_api)}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. DOAÇÕES -->
+        <div class="dash-card donation-card">
+            <div class="card-header">
+                <h3>🤝 DOAÇÕES SEMANAIS</h3>
+            </div>
+            <div class="card-body">
+                 <div class="big-number">{total_donations}</div>
+                 <div class="sub-text">Cartas doadas nesta semana</div>
+                 <hr style="border-color: #ffffff20; margin: 10px 0;">
+                 <div class="top-list">
+                    <small>MAIORES DOADORES:</small>
+                    {donors_html}
+                 </div>
+            </div>
+        </div>
+        
+        <!-- 4. DESTAQUES (MVPs) -->
+        <div class="dash-card mvp-card">
+            <div class="card-header">
+                <h3>🔥 TOP JOGADORES</h3>
+            </div>
+            <div class="card-body">
+                <div class="top-list">
+                    <small>MAIS TROFÉUS:</small>
+                    {mvp_html}
+                 </div>
+            </div>
         </div>
     </div>
-    <div style="text-align:center; padding: 50px; color: #718096;">
-        <p>Visão Geral Atualizada. Selecione a aba 'Auditoria' para detalhes da guerra.</p>
-    </div>
+    
+    <style>
+        .dashboard-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }}
+        .dash-card {{
+            background: var(--bg-panel);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }}
+        .dash-card h3 {{
+             margin: 0; font-size: 16px; color: var(--text-muted); text-transform: uppercase;
+             letter-spacing: 1px;
+        }}
+        .card-header {{
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px;
+        }}
+        .big-stat {{
+            display: flex; justify-content: space-between; align-items: center;
+        }}
+        .stat-value {{ font-size: 24px; font-weight: bold; color: var(--text-main); }}
+        .stat-label {{ font-size: 12px; color: var(--text-muted); }}
+        
+        .stat-row {{
+            display: flex; justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ffffff05;
+        }}
+        .stat-row:last-child {{ border: none; }}
+        .value.accent {{ color: var(--primary-yellow); font-weight: bold; }}
+        
+        .big-number {{ font-size: 36px; font-weight: 800; color: var(--primary-green); }}
+        .sub-text {{ font-size: 12px; color: var(--text-muted); }}
+        
+        .list-item {{
+            display: flex; align-items: center; gap: 10px;
+            margin-top: 8px; font-size: 14px;
+        }}
+        .badgex {{
+            background: #2d3748; padding: 2px 8px; border-radius: 4px; 
+            font-size: 11px; font-weight: bold;
+        }}
+        
+        /* WAR CARD SPECIAL */
+        .war-card {{ border-left: 4px solid var(--primary-yellow); }}
+        .donation-card {{ border-left: 4px solid var(--primary-green); }}
+    </style>
     """
     
     with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:

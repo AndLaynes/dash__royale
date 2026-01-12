@@ -229,22 +229,164 @@ body {
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                12/01/2026 20:41
+                12/01/2026 20:48
             </div>
         </div>
     </header>
 
     <div class="container">
         
-    <div class="page-title-section">
-        <div>
-            <h2>Visão Geral</h2>
-            <p class="page-subtitle">Bem-vindo ao Dashboard dos Guardiões</p>
+    <div class="dashboard-grid">
+        <!-- 1. IDENTIDADE DO CLÃ -->
+        <div class="dash-card main-card">
+            <div class="card-header">
+                <h3>CLÃ OS GUARDIÕES</h3>
+                <span class="status-badge status-complete">Desconhecida</span>
+            </div>
+            <div class="card-body big-stat">
+                <div>
+                   <div class="stat-value">🏆 0</div>
+                   <div class="stat-label">Troféus Totais</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="stat-value">#9</div> <!-- Hardcoded Local Rank or Placeholder -->
+                    <div class="stat-label">Rank Local (BR)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. STATUS DE GUERRA -->
+        <div class="dash-card war-card">
+            <div class="card-header">
+                <h3>⚔️ GUERRA DE CLÃS</h3>
+            </div>
+            <div class="card-body">
+                <div class="stat-row">
+                    <span class="label">Status Atual:</span>
+                    <span class="value">Em Treino</span>
+                </div>
+                 <div class="stat-row">
+                    <span class="label">Última Posição:</span>
+                    <span class="value accent">N/A</span>
+                </div>
+                 <div class="stat-row">
+                    <span class="label">Participação:</span>
+                    <span class="value">46/46</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. DOAÇÕES -->
+        <div class="dash-card donation-card">
+            <div class="card-header">
+                <h3>🤝 DOAÇÕES SEMANAIS</h3>
+            </div>
+            <div class="card-body">
+                 <div class="big-number">2304</div>
+                 <div class="sub-text">Cartas doadas nesta semana</div>
+                 <hr style="border-color: #ffffff20; margin: 10px 0;">
+                 <div class="top-list">
+                    <small>MAIORES DOADORES:</small>
+                    
+        <div class="list-item">
+            <span class="badgex">245 🃏</span>
+            <span>RobaFrag</span>
+        </div>
+        
+        <div class="list-item">
+            <span class="badgex">216 🃏</span>
+            <span>Nico</span>
+        </div>
+        
+        <div class="list-item">
+            <span class="badgex">196 🃏</span>
+            <span>OneDePrata</span>
+        </div>
+        
+                 </div>
+            </div>
+        </div>
+        
+        <!-- 4. DESTAQUES (MVPs) -->
+        <div class="dash-card mvp-card">
+            <div class="card-header">
+                <h3>🔥 TOP JOGADORES</h3>
+            </div>
+            <div class="card-body">
+                <div class="top-list">
+                    <small>MAIS TROFÉUS:</small>
+                    
+        <div class="list-item">
+            <span class="badgex" style="background:#fbbf24; color:#000;">🏆 12000</span>
+            <span>Nico</span>
+        </div>
+        
+        <div class="list-item">
+            <span class="badgex" style="background:#fbbf24; color:#000;">🏆 11681</span>
+            <span>Asten Acady</span>
+        </div>
+        
+        <div class="list-item">
+            <span class="badgex" style="background:#fbbf24; color:#000;">🏆 11502</span>
+            <span>Luiz Fernando™</span>
+        </div>
+        
+                 </div>
+            </div>
         </div>
     </div>
-    <div style="text-align:center; padding: 50px; color: #718096;">
-        <p>Visão Geral Atualizada. Selecione a aba 'Auditoria' para detalhes da guerra.</p>
-    </div>
+    
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .dash-card {
+            background: var(--bg-panel);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .dash-card h3 {
+             margin: 0; font-size: 16px; color: var(--text-muted); text-transform: uppercase;
+             letter-spacing: 1px;
+        }
+        .card-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px;
+        }
+        .big-stat {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .stat-value { font-size: 24px; font-weight: bold; color: var(--text-main); }
+        .stat-label { font-size: 12px; color: var(--text-muted); }
+        
+        .stat-row {
+            display: flex; justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ffffff05;
+        }
+        .stat-row:last-child { border: none; }
+        .value.accent { color: var(--primary-yellow); font-weight: bold; }
+        
+        .big-number { font-size: 36px; font-weight: 800; color: var(--primary-green); }
+        .sub-text { font-size: 12px; color: var(--text-muted); }
+        
+        .list-item {
+            display: flex; align-items: center; gap: 10px;
+            margin-top: 8px; font-size: 14px;
+        }
+        .badgex {
+            background: #2d3748; padding: 2px 8px; border-radius: 4px; 
+            font-size: 11px; font-weight: bold;
+        }
+        
+        /* WAR CARD SPECIAL */
+        .war-card { border-left: 4px solid var(--primary-yellow); }
+        .donation-card { border-left: 4px solid var(--primary-green); }
+    </style>
     
     </div>
 
