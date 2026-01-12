@@ -193,7 +193,7 @@ body {
         <div class="container header-content">
             <div class="clan-identity">
                 <div class="clan-logo">
-                    <img src="https://royaleapi.com/static/img/badge/Start.png" class="clan-logo-img" alt="Logo">
+                    <!-- LOGO REMOVIDA POR SOLICITAÇÃO -->
                 </div>
                 <div class="clan-info">
                     <h1>OS GUARDIÕES</h1>
@@ -205,11 +205,11 @@ body {
             </div>
             
             <nav class="nav-pills">
-                <a href="index.html" class="nav-item "><span>🏠</span>Visão Geral</a><a href="daily_war.html" class="nav-item "><span>📋</span>Auditoria</a><a href="members_stats.html" class="nav-item "><span>👥</span>Membros</a><a href="ranking.html" class="nav-item active"><span>🏅</span>Ranking</a>
+                <a href="index.html" class="nav-item "><span>🏠</span>Visão Geral</a><a href="daily_war.html" class="nav-item "><span>⚔️</span>Guerra</a><a href="members_stats.html" class="nav-item "><span>👥</span>Membros</a><a href="ranking.html" class="nav-item active"><span>🏅</span>Ranking</a>
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                12/01/2026 19:26
+                12/01/2026 19:39
             </div>
         </div>
     </header>
@@ -227,5 +227,44 @@ body {
     </div>
     
     </div>
+
+    <!-- SCRIPTS PARA FILTRO E ORDENAÇÃO -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tables = document.querySelectorAll('.custom-table');
+        tables.forEach(table => {
+            const headers = table.querySelectorAll('th');
+            headers.forEach((header, index) => {
+                header.style.cursor = 'pointer';
+                header.innerHTML += ' <span style="font-size:10px">⇅</span>';
+                header.addEventListener('click', () => sortTable(table, index));
+            });
+        });
+    });
+
+    function sortTable(table, colIndex) {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const isAsc = table.getAttribute('data-order') === 'asc';
+        
+        rows.sort((a, b) => {
+            // Tenta pegar o valor de texto ou um atributo data-value se existir
+            let valA = a.children[colIndex].innerText.trim();
+            let valB = b.children[colIndex].innerText.trim();
+            
+            // Tratamento para números
+            if (!isNaN(parseFloat(valA)) && isFinite(valA)) {
+                return isAsc ? valA - valB : valB - valA;
+            }
+            return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        });
+
+        // Inverte a ordem para o próximo clique
+        table.setAttribute('data-order', isAsc ? 'desc' : 'asc');
+        
+        // Reanexa as linhas
+        rows.forEach(row => tbody.appendChild(row));
+    }
+    </script>
 </body>
 </html>

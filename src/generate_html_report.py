@@ -197,7 +197,7 @@ body {
 def get_page_template(active_page, content):
     nav_items = [
         ("index.html", "Visão Geral", "🏠", "Visão Geral"),
-        ("daily_war.html", "Auditoria", "📋", "Auditoria"),
+        ("daily_war.html", "Guerra", "⚔️", "Guerra"),
         ("members_stats.html", "Membros", "👥", "Membros"),
         ("ranking.html", "Ranking", "🏅", "Ranking")
     ]
@@ -220,7 +220,7 @@ def get_page_template(active_page, content):
         <div class="container header-content">
             <div class="clan-identity">
                 <div class="clan-logo">
-                    <img src="https://royaleapi.com/static/img/badge/Start.png" class="clan-logo-img" alt="Logo">
+                    <!-- LOGO REMOVIDA POR SOLICITAÇÃO -->
                 </div>
                 <div class="clan-info">
                     <h1>OS GUARDIÕES</h1>
@@ -244,6 +244,45 @@ def get_page_template(active_page, content):
     <div class="container">
         {content}
     </div>
+
+    <!-- SCRIPTS PARA FILTRO E ORDENAÇÃO -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {{
+        const tables = document.querySelectorAll('.custom-table');
+        tables.forEach(table => {{
+            const headers = table.querySelectorAll('th');
+            headers.forEach((header, index) => {{
+                header.style.cursor = 'pointer';
+                header.innerHTML += ' <span style="font-size:10px">⇅</span>';
+                header.addEventListener('click', () => sortTable(table, index));
+            }});
+        }});
+    }});
+
+    function sortTable(table, colIndex) {{
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const isAsc = table.getAttribute('data-order') === 'asc';
+        
+        rows.sort((a, b) => {{
+            // Tenta pegar o valor de texto ou um atributo data-value se existir
+            let valA = a.children[colIndex].innerText.trim();
+            let valB = b.children[colIndex].innerText.trim();
+            
+            // Tratamento para números
+            if (!isNaN(parseFloat(valA)) && isFinite(valA)) {{
+                return isAsc ? valA - valB : valB - valA;
+            }}
+            return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }});
+
+        // Inverte a ordem para o próximo clique
+        table.setAttribute('data-order', isAsc ? 'desc' : 'asc');
+        
+        // Reanexa as linhas
+        rows.forEach(row => tbody.appendChild(row));
+    }}
+    </script>
 </body>
 </html>"""
 
@@ -366,8 +405,8 @@ def generate_html_report():
     audit_content = f"""
     <div class="page-title-section">
         <div>
-            <h2>Auditoria Diária</h2>
-            <p class="page-subtitle">Analisando performance da Guerra Atual</p>
+            <h2>Status de Guerra</h2>
+            <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual</p>
             <div class="meta-box">Meta do Dia: {meta_decks} Decks</div>
         </div>
         <div class="audit-stats">
@@ -385,16 +424,18 @@ def generate_html_report():
 
     <div class="info-box">
         <div class="info-header">
-            <div class="info-icon">ℹ️</div>
-            <div class="info-title">Como funciona a Auditoria?</div>
+            <div class="info-icon">⚔️</div>
+            <div class="info-title">Como funciona a Métrica de Guerra?</div>
         </div>
         <div class="info-content">
-            O sistema verifica os decks usados de forma <span class="highlight">retrospectiva</span> para garantir que todos jogaram.
+            O sistema monitora o uso de decks durante os dias oficiais de guerra (Quinta a Domingo).
             <br><br>
-            <span class="highlight">Sexta-feira:</span> Audita Quinta (Meta: 4 Decks)<br>
-            <span class="highlight">Sábado:</span> Audita Sexta (Meta: 8 Decks)<br>
-            <span class="highlight">Domingo:</span> Audita Sábado (Meta: 12 Decks)<br>
-            <span class="highlight">Segunda-feira:</span> Audita Domingo (Meta: 16 Decks)
+            <span class="highlight">Quinta-feira:</span> Meta 4 Decks (Início)<br>
+            <span class="highlight">Sexta-feira:</span> Meta 8 Decks<br>
+            <span class="highlight">Sábado:</span> Meta 12 Decks<br>
+            <span class="highlight">Domingo:</span> Meta 16 Decks (Fechamento)
+            <br><br>
+            <i>*O dashboard atualiza automaticamente usando o último dia disponível.</i>
         </div>
     </div>
 
@@ -416,7 +457,7 @@ def generate_html_report():
 
     # Escrever Daily War
     with open(os.path.join(OUTPUT_DIR, 'daily_war.html'), 'w', encoding='utf-8') as f:
-        f.write(get_page_template("Auditoria", audit_content))
+        f.write(get_page_template("Guerra", audit_content))
 
     # 6. Gerar Outras Páginas (Placeholders com mesmo estilo por enquanto)
     index_content = """

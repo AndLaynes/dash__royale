@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OS GUARDIÕES - Auditoria</title>
+    <title>OS GUARDIÕES - Guerra</title>
     <style>
 :root {
     --bg-dark: #0f1420;
@@ -193,7 +193,7 @@ body {
         <div class="container header-content">
             <div class="clan-identity">
                 <div class="clan-logo">
-                    <img src="https://royaleapi.com/static/img/badge/Start.png" class="clan-logo-img" alt="Logo">
+                    <!-- LOGO REMOVIDA POR SOLICITAÇÃO -->
                 </div>
                 <div class="clan-info">
                     <h1>OS GUARDIÕES</h1>
@@ -205,11 +205,11 @@ body {
             </div>
             
             <nav class="nav-pills">
-                <a href="index.html" class="nav-item "><span>🏠</span>Visão Geral</a><a href="daily_war.html" class="nav-item active"><span>📋</span>Auditoria</a><a href="members_stats.html" class="nav-item "><span>👥</span>Membros</a><a href="ranking.html" class="nav-item "><span>🏅</span>Ranking</a>
+                <a href="index.html" class="nav-item "><span>🏠</span>Visão Geral</a><a href="daily_war.html" class="nav-item active"><span>⚔️</span>Guerra</a><a href="members_stats.html" class="nav-item "><span>👥</span>Membros</a><a href="ranking.html" class="nav-item "><span>🏅</span>Ranking</a>
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                12/01/2026 19:26
+                12/01/2026 19:39
             </div>
         </div>
     </header>
@@ -218,16 +218,16 @@ body {
         
     <div class="page-title-section">
         <div>
-            <h2>Auditoria Diária</h2>
-            <p class="page-subtitle">Analisando performance da Guerra Atual</p>
+            <h2>Status de Guerra</h2>
+            <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual</p>
             <div class="meta-box">Meta do Dia: 8 Decks</div>
         </div>
         <div class="audit-stats">
             <div class="stat-box stat-green">
-                3 EM DIA
+                4 EM DIA
             </div>
             <div class="stat-box stat-yellow">
-                13 INCOMPLETO
+                12 INCOMPLETO
             </div>
             <div class="stat-box stat-red">
                 34 ZERADO
@@ -237,16 +237,18 @@ body {
 
     <div class="info-box">
         <div class="info-header">
-            <div class="info-icon">ℹ️</div>
-            <div class="info-title">Como funciona a Auditoria?</div>
+            <div class="info-icon">⚔️</div>
+            <div class="info-title">Como funciona a Métrica de Guerra?</div>
         </div>
         <div class="info-content">
-            O sistema verifica os decks usados de forma <span class="highlight">retrospectiva</span> para garantir que todos jogaram.
+            O sistema monitora o uso de decks durante os dias oficiais de guerra (Quinta a Domingo).
             <br><br>
-            <span class="highlight">Sexta-feira:</span> Audita Quinta (Meta: 4 Decks)<br>
-            <span class="highlight">Sábado:</span> Audita Sexta (Meta: 8 Decks)<br>
-            <span class="highlight">Domingo:</span> Audita Sábado (Meta: 12 Decks)<br>
-            <span class="highlight">Segunda-feira:</span> Audita Domingo (Meta: 16 Decks)
+            <span class="highlight">Quinta-feira:</span> Meta 4 Decks (Início)<br>
+            <span class="highlight">Sexta-feira:</span> Meta 8 Decks<br>
+            <span class="highlight">Sábado:</span> Meta 12 Decks<br>
+            <span class="highlight">Domingo:</span> Meta 16 Decks (Fechamento)
+            <br><br>
+            <i>*O dashboard atualiza automaticamente usando o último dia disponível.</i>
         </div>
     </div>
 
@@ -415,19 +417,6 @@ body {
             <td style="color:#a0aec0;">member</td>
             <td style="font-weight:bold; font-size:16px;">4/8</td>
             <td><div class="missing-badge">-4</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>O GUARDIÃO</span>
-                    <span style="color:#718096; font-size:10px;">#UJRQ2L09</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">member</td>
-            <td style="font-weight:bold; font-size:16px;">6/8</td>
-            <td><div class="missing-badge">-2</div></td>
             <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
         </tr>
         
@@ -889,6 +878,19 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
+                    <span>O GUARDIÃO</span>
+                    <span style="color:#718096; font-size:10px;">#UJRQ2L09</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">member</td>
+            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td><span style="color:#34d399">✓</span></td>
+            <td><span class="status-badge status-complete">EM DIA</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
                     <span>Rodolfos</span>
                     <span style="color:#718096; font-size:10px;">#200JYCVYGY</span>
                 </div>
@@ -916,5 +918,44 @@ body {
     </table>
     
     </div>
+
+    <!-- SCRIPTS PARA FILTRO E ORDENAÇÃO -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tables = document.querySelectorAll('.custom-table');
+        tables.forEach(table => {
+            const headers = table.querySelectorAll('th');
+            headers.forEach((header, index) => {
+                header.style.cursor = 'pointer';
+                header.innerHTML += ' <span style="font-size:10px">⇅</span>';
+                header.addEventListener('click', () => sortTable(table, index));
+            });
+        });
+    });
+
+    function sortTable(table, colIndex) {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const isAsc = table.getAttribute('data-order') === 'asc';
+        
+        rows.sort((a, b) => {
+            // Tenta pegar o valor de texto ou um atributo data-value se existir
+            let valA = a.children[colIndex].innerText.trim();
+            let valB = b.children[colIndex].innerText.trim();
+            
+            // Tratamento para números
+            if (!isNaN(parseFloat(valA)) && isFinite(valA)) {
+                return isAsc ? valA - valB : valB - valA;
+            }
+            return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        });
+
+        // Inverte a ordem para o próximo clique
+        table.setAttribute('data-order', isAsc ? 'desc' : 'asc');
+        
+        // Reanexa as linhas
+        rows.forEach(row => tbody.appendChild(row));
+    }
+    </script>
 </body>
 </html>
