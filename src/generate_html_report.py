@@ -300,39 +300,112 @@ def generate_html_report():
     df = df.fillna(0)
 
     # 2. Processar Lógica de Auditoria
-    # Meta
-    num_war_days = len(daily_data.get('warDays', []))
-    meta_decks = num_war_days * 4
-    if meta_decks > 16: meta_decks = 16
-    if meta_decks == 0: meta_decks = 4
-
-    players_audit = daily_data.get('players', {})
+    # 2. Processar Lógica de Auditoria (GT-Z War Rules)
+    # 0=Seg, 1=Ter, 2=Qua (Exibir Última Guerra Fechada)
+    # 3=Qui, 4=Sex, 5=Sab, 6=Dom (Exibir Guerra Atual)
+    weekday = datetime.now().weekday()
+    
     audit_rows = []
+    
+    # STATUS: TREINO (Seg-Qua) -> Pega do River Race Log (Histórico Fechado)
+    if weekday < 3:
+        print(f"Hoje é {datetime.now().strftime('%A')} (Treino). Exibindo Última Guerra Fechada.")
+        
+        # Carregar riverracelog
+        history_log_path = os.path.join(DATA_DIR, 'riverracelog.json')
+        if os.path.exists(history_log_path):
+            with open(history_log_path, 'r', encoding='utf-8') as f:
+                r_log = json.load(f)
+            
+            # Pega a última guerra (Item 0) - que é a última fechada
+            if r_log.get('items'):
+                last_war = r_log['items'][0]
+                
+                # Meta Fechada = 16 Decks
+                meta_decks = 16
+                
+                # Achar o clã
+                my_clan_tag = "9PJRJRPC" # Hardcoded para segurança
+                clan_standing = next((c for c in last_war.get('standings', []) 
+                                    if c['clan']['tag'].replace('#','') == my_clan_tag), None)
+                
+                if clan_standing:
+                    participants = clan_standing['clan']['participants']
+                    for p in participants:
+                        total_used = p.get('decksUsed', 0)
+                        
+                        status = "ZERADO"
+                        faltam = meta_decks - total_used
+                        if total_used >= meta_decks:
+                            status = "EM DIA"
+                            faltam = 0
+                        elif total_used > 0:
+                            status = "INCOMPLETO"
+                            
+                        # Tentar pegar cargo do Excel se existir
+                        cargo = "member"
+                        if not df.empty:
+                            match = df[df['Nome'] == p['name']]
+                            if not match.empty:
+                                # cargo = match.iloc[0]['Cargo'] # Futuro
+                                pass
 
-    for tag, p_data in players_audit.items():
-        history = p_data.get('history', {})
-        total_used = sum(int(v) for v in history.values())
+                        audit_rows.append({
+                            "name": p['name'],
+                            "tag": p['tag'],
+                            "cargo": cargo,
+                            "decks": total_used,
+                            "faltam": faltam,
+                            "status": status
+                        })
+                else:
+                    print("Clã não encontrado no histórico recente.")
+        else:
+            print("Histórico riverracelog.json não encontrado.")
+
+    # STATUS: GUERRA (Qui-Dom) -> Pega do Daily History (Tempo Real)
+    else:
+        print(f"Hoje é {datetime.now().strftime('%A')} (Guerra). Exibindo Auditoria em Tempo Real.")
         
-        status = "ZERADO"
-        faltam = meta_decks - total_used
-        if total_used >= meta_decks:
-            status = "EM DIA"
-            faltam = 0
-        elif total_used > 0:
-            status = "INCOMPLETO"
-        
-        # Tentar pegar cargo do Excel
-        player_row_excel = df[df['Nome'] == p_data['name']]
-        cargo = "member"
-        
-        audit_rows.append({
-            "name": p_data['name'],
-            "tag": tag,
-            "cargo": cargo,
-            "decks": total_used,
-            "faltam": faltam,
-            "status": status
-        })
+        # Meta Dinâmica: (Dia da Semana - 2) * 4. Ex: Qui(3)-2 = 1*4 = 4. Sex(4)-2 = 2*4 = 8.
+        # Max 16.
+        days_in_war = weekday - 2 
+        meta_decks = days_in_war * 4
+        if meta_decks > 16: meta_decks = 16
+        if meta_decks < 4: meta_decks = 4 # Fallback
+
+        players_audit = daily_data.get('players', {})
+        for tag, p_data in players_audit.items():
+            history = p_data.get('history', {})
+            total_used = sum(int(v) for v in history.values())
+            
+            status = "ZERADO"
+            faltam = meta_decks - total_used
+            if total_used >= meta_decks:
+                status = "EM DIA"
+                faltam = 0
+            elif total_used > 0:
+                status = "INCOMPLETO"
+            
+            # Tentar pegar cargo do Excel
+            cargo = "member"
+            if not df.empty:
+                match = df[df['Nome'] == p_data['name']] 
+                # pode falhar se nome mudou, tag é melhor mas excel tem nome
+                pass
+            
+            audit_rows.append({
+                "name": p_data['name'],
+                "tag": tag,
+                "cargo": cargo,
+                "decks": total_used,
+                "faltam": faltam,
+                "status": status
+            })
+
+    # Se falhar tudo, evitar crash
+    if not audit_rows:
+        meta_decks = 0
 
     # 3. FILTRAGEM DE MEMBROS (Limitar a 50)
     # Regra: Priorizar quem tem decks usados. Se empatar em 0, alfabético.

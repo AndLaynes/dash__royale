@@ -229,6 +229,19 @@ def process_daily_data():
     # Caminho para o arquivo de histórico
     history_file_path = os.path.join(data_dir, 'daily_war_history.json')
 
+    # --- REGRA DE OURO (GT-Z):DIAS DE GUERRA ---
+    # 0=Seg, 1=Ter, 2=Qua (TREINO - Ignorar)
+    # 3=Qui, 4=Sex, 5=Sab, 6=Dom (GUERRA - Processar)
+    weekday = datetime.now().weekday()
+    if weekday < 3:
+        log_and_print(f"-> Dia de Treino (Semana: {weekday}). O histórico da guerra NÃO será atualizado.")
+        # Se o arquivo não existir, criar um dummy para não quebrar o relatório
+        if not os.path.exists(history_file_path):
+             with open(history_file_path, 'w', encoding='utf-8') as f:
+                json.dump({"inWar": False, "status": "Training Days"}, f, ensure_ascii=False, indent=4)
+        return
+    # -------------------------------------------
+
     # Carrega os dados da guerra atual
     current_war_data = load_json_file(os.path.join(data_dir, 'current_war.json'))
 
