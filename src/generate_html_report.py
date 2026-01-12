@@ -286,18 +286,50 @@ def get_page_template(active_page, content):
 </body>
 </html>"""
 
+def format_clash_date(date_str):
+    """Converte '20231124T123000.000Z' para '24/11/2023 12:30'"""
+    if not date_str or date_str == 'N/A': return 'N/A'
+    try:
+        # Tenta formatar string da API
+        if 'T' in date_str:
+            dt = datetime.strptime(date_str, '%Y%m%dT%H%M%S.%fZ')
+            return dt.strftime('%d/%m/%Y %H:%M')
+        return date_str
+    except Exception:
+        return date_str
+
 def generate_html_report():
     print("Iniciando geração de relatórios...")
     
-    # 1. Carregar dados
+    # 1. Carregar dados (Membros primeiro para mapeamento de Cargo)
     daily_json_path = os.path.join(DATA_DIR, 'daily_war_history.json')
-    excel_path = os.path.join(DATA_DIR, 'relatorio_participacao_guerra.xlsx')
+    members_json_path = os.path.join(DATA_DIR, 'clan_members.json')
+    
+    # Criar Mapa de Membros (Tag -> Dados)
+    member_map = {}
+    role_label = {"leader": "Líder", "coLeader": "Co-Líder", "elder": "Ancião", "member": "Membro"}
+    
+    if os.path.exists(members_json_path):
+        with open(members_json_path, 'r', encoding='utf-8') as f:
+            m_items = json.load(f).get('items', [])
+            for m in m_items:
+                member_map[m['tag']] = {
+                    'role': role_label.get(m['role'], 'Membro'),
+                    'name': m['name'],
+                    'trophies': m['trophies'],
+                    'donations': m['donations'],
+                    'lastSeen': m.get('lastSeen')
+                }
     
     with open(daily_json_path, 'r', encoding='utf-8') as f:
         daily_data = json.load(f)
         
-    df = pd.read_excel(excel_path)
-    df = df.fillna(0)
+    excel_path = os.path.join(DATA_DIR, 'relatorio_participacao_guerra.xlsx')
+    if os.path.exists(excel_path):
+        df = pd.read_excel(excel_path)
+        df = df.fillna(0)
+    else:
+        df = pd.DataFrame()
 
     # 2. Processar Lógica de Auditoria
     # 2. Processar Lógica de Auditoria (GT-Z War Rules)
@@ -342,13 +374,10 @@ def generate_html_report():
                         elif total_used > 0:
                             status = "INCOMPLETO"
                             
-                        # Tentar pegar cargo do Excel se existir
-                        cargo = "member"
-                        if not df.empty:
-                            match = df[df['Nome'] == p['name']]
-                            if not match.empty:
-                                # cargo = match.iloc[0]['Cargo'] # Futuro
-                                pass
+                        # Tentar pegar cargo do Mapa de Membros
+                        cargo = "Membro"
+                        if p['tag'] in member_map:
+                            cargo = member_map[p['tag']]['role']
 
                         audit_rows.append({
                             "name": p['name'],
@@ -387,12 +416,10 @@ def generate_html_report():
             elif total_used > 0:
                 status = "INCOMPLETO"
             
-            # Tentar pegar cargo do Excel
-            cargo = "member"
-            if not df.empty:
-                match = df[df['Nome'] == p_data['name']] 
-                # pode falhar se nome mudou, tag é melhor mas excel tem nome
-                pass
+            # Tentar pegar cargo do Mapa de Membros
+            cargo = "Membro"
+            if tag in member_map:
+                cargo = member_map[tag]['role']
             
             audit_rows.append({
                 "name": p_data['name'],
@@ -564,11 +591,14 @@ def generate_html_report():
         
         members_table_html = ""
         for m in members_api:
-            # Formatação de datas se necessário, ou ícones
-            role_badge = f'<span class="badge" style="background:#4a5568">{role_label.get(m["role"], m["role"])}</span>'
+            # Formatação de datas
+            role_pt = role_label.get(m["role"], m["role"])
+            role_badge = f'<span class="badge" style="background:#4a5568">{role_pt}</span>'
             if m["role"] == "leader": role_badge = f'<span class="badge" style="background:#e53e3e">Líder</span>'
             if m["role"] == "coLeader": role_badge = f'<span class="badge" style="background:#d69e2e">Co-Líder</span>'
             
+            last_seen_fmt = format_clash_date(m.get('lastSeen', 'N/A'))
+
             members_table_html += f"""
             <tr class="data-row">
                 <td>
@@ -578,7 +608,7 @@ def generate_html_report():
                 <td>{role_badge}</td>
                 <td><span style="color:#fbbf24">🏆 {m['trophies']}</span></td>
                 <td><span style="color:#34d399"> cards {m['donations']}</span></td>
-                <td style="color:#a0aec0">{m.get('lastSeen', 'N/A')[:10]}</td>
+                <td style="color:#a0aec0">{last_seen_fmt}</td>
             </tr>
             """
             
@@ -692,30 +722,34 @@ def generate_html_report():
         
         # 4. Gerar HTML
         rank_table_html = ""
-        for i, r in enumerate(rank_data):
-            rank_pos = i + 1
-            medal = ""
-            if rank_pos == 1: medal = "🥇"
-            elif rank_pos == 2: medal = "🥈"
-            elif rank_pos == 3: medal = "🥉"
-            
-            rank_table_html += f"""
-            <tr class="data-row">
-                <td style="font-weight:bold; font-size:16px;">{medal} #{rank_pos}</td>
-                <td style="font-weight:600;">{r['name']}</td>
-                <td style="color:#fbbf24; font-weight:800; font-size:18px;">{r['score']}</td>
-                <td style="font-size:13px; color:#a0aec0;">
-                    Fame: <b style="color:white">{r['fame']}</b><br>
-                    Eff: <b style="color:white">{int(r['efficiency'])}</b>
-                </td>
-                <td style="font-size:13px; color:#a0aec0;">
-                    Troféus: <b style="color:white">{r['trophies']}</b><br>
-                    Donates: <b style="color:white">{r['donations']}</b>
-                </td>
-            </tr>
-            """
-            
-        ranking_content = """
+        # Verificar se rank_data tem itens
+        if not rank_data:
+             rank_table_html = "<tr><td colspan='5' style='text-align:center'>Não há dados suficientes para o ranking ainda.</td></tr>"
+        else:
+            for i, r in enumerate(rank_data):
+                rank_pos = i + 1
+                medal = ""
+                if rank_pos == 1: medal = "🥇"
+                elif rank_pos == 2: medal = "🥈"
+                elif rank_pos == 3: medal = "🥉"
+                
+                rank_table_html += f"""
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;">{medal} #{rank_pos}</td>
+                    <td style="font-weight:600;">{r['name']}</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">{r['score']}</td>
+                    <td style="font-size:13px; color:#a0aec0;">
+                        Fame: <b style="color:white">{r['fame']}</b><br>
+                        Eff: <b style="color:white">{int(r['efficiency'])}</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;">
+                        Troféus: <b style="color:white">{r['trophies']}</b><br>
+                        Donates: <b style="color:white">{r['donations']}</b>
+                    </td>
+                </tr>
+                """
+        
+        ranking_content = f"""
         <div class="page-title-section">
             <div>
                 <h2>Ranking de Performance</h2>
