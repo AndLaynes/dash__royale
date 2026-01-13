@@ -593,95 +593,96 @@ def generate_html_report():
     # 6. Gerar Página INDEX (Dashboard Geral)
     print("Gerando Dashboard (Index)...")
     
-    # Cálculos para o Dashboard
-    
-    # A. Dados do Clã (Trophies, League)
-    clan_score = 0
+    # 1. Carregar Clan Info (GT-Z para Liga e Location)
+    clan_info_path = os.path.join(DATA_DIR, 'clan_info.json')
     league_name = "Desconhecida"
-    if 'clan' in daily_data:
-        clan_score = daily_data['clan'].get('clanScore', 0)
-        # Inferir Liga
-        if clan_score >= 3000: league_name = "Liga Lendária"
-        elif clan_score >= 1500: league_name = "Liga Ouro"
-        elif clan_score >= 600: league_name = "Liga Prata"
-        else: league_name = "Liga Bronze"
+    clan_war_trophies = 0
+    clan_location = "Desconhecido"
+    
+    if os.path.exists(clan_info_path):
+        with open(clan_info_path, 'r', encoding='utf-8') as f:
+            c_info = json.load(f)
+            clan_war_trophies = c_info.get('clanWarTrophies', 0)
+            clan_location = c_info.get('location', {}).get('name', 'N/A')
+            
+            # Inferir Liga (Ground Truth)
+            if clan_war_trophies >= 3000: league_name = "Liga Lendária"
+            elif clan_war_trophies >= 1500: league_name = "Liga Ouro"
+            elif clan_war_trophies >= 600: league_name = "Liga Prata"
+            else: league_name = "Liga Bronze"
+    else:
+        # Fallback para current_war
+        if 'clan' in daily_data:
+             clan_war_trophies = daily_data['clan'].get('clanScore', 0) # Fallback incerto
         
-    # B. Performance de Guerra (Última ou Atual)
+    # 2. Performance de Guerra e Participação
     war_rank = "N/A"
     war_state = "Em Treino"
     if weekday >= 3: war_state = "Em Guerra ⚔️"
     
-    # Pegar ranking da última guerra processada
-    try:
-        if os.path.exists(os.path.join(DATA_DIR, 'riverracelog.json')):
+    part_full = 0
+    part_idling = 0 # Incompleto
+    part_none = 0
+    
+    # Analisar Último Log para Participação Real
+    if os.path.exists(os.path.join(DATA_DIR, 'riverracelog.json')):
+        try:
             with open(os.path.join(DATA_DIR, 'riverracelog.json'), 'r') as f:
                 last_log = json.load(f)['items'][0]
+                
+                # Rank
                 my_standing = next((c for c in last_log['standings'] if c['clan']['tag'].replace("#","") == "9PJRJRPC"), None)
                 if my_standing:
                     war_rank = f"#{my_standing['rank']}"
-    except:
-        pass
+                    
+                    # Participação (Baseado no Log Anterior para ter Ground Truth fechado)
+                    for p in my_standing['clan']['participants']:
+                        decks = p['decksUsed']
+                        if decks >= 4: part_full += 1 # Assumindo 4 decks/dia como 'ativo no dia', mas log é semanal.
+                        elif decks > 0: part_idling += 1
+                        else: part_none += 1
+                    
+                    # Ajuste para 'None' (Total Members - Participants in Log)
+                    # O log só mostra quem participou ou teve fama? Não, mostra participants.
+                    # Mas se member count > participants list, o resto é None.
+                    # Vamos usar os contadores diretos da lista de participantes da guerra.
+        except:
+            pass
 
-    # C. Doações e Atividade
+    # 3. Doações e Top Jogadores (Expandido para Top 10)
     total_donations = 0
     top_donors = []
-    active_count = 0
     
-    if os.path.exists(members_json_path):
-        for m in members_api: # Já carregado anteriormente
-            total_donations += m.get('donations', 0)
-            
-            # Top Donors selection
-            top_donors.append(m)
-            
-            # Atividade (< 7 dias)
-            ls = m.get('lastSeen', '')
-            if ls and ls != 'N/A':
-                try:
-                    ls_dt = datetime.strptime(ls, '%Y%m%dT%H%M%S.%fZ')
-                    days_diff = (datetime.now() - ls_dt).days
-                    if days_diff <= 7: active_count += 1
-                except:
-                    pass
-        
-        # Sort Donors
-        top_donors.sort(key=lambda x: x['donations'], reverse=True)
-        top_donors = top_donors[:3] # Top 3
-
-    # D. MVPs de Guerra (Fame recente)
-    # Reutiliza top_50_rows calculadas acima se possível, ou recalcula basics
-    # Vamos pegar do Ranking calculado (se disponível na memória.. não está fácil, vamos reprocessar rapidinho os top fame)
-    mvp_list = []
-    # (Reusing rank_data if implemented implies parsing riverlog again, let's keep it simple: Top Fame from Last Log)
-    # Using 'top_3' calculated in Debug/Ranking steps previously? 
-    # Let's derive from current audit_rows if in War, or Member List if training.
-    # PROPER WAY: Let's use the 'rank_data' logic if available. Since it's local in that block...
-    # SIMPLIFICATION: Use 'audit_rows' (sorted by decks).
-    # BETTER: Use 'top_donors' logic but for Fame if available in audit_rows, else Trophies.
-    # Let's show "Top Troféus" as MVP for stability if War is empty.
+    # Se ja temos members_api carregado e ordenado
+    # Recalcular estatísticas frescas
     
-    top_trophies = sorted(members_api, key=lambda x: x['trophies'], reverse=True)[:3]
+    # Ordenar por Doações
+    sorted_donations = sorted(members_api, key=lambda x: x['donations'], reverse=True)
+    total_donations = sum(m['donations'] for m in members_api)
+    top_donors = sorted_donations[:10] # Top 10
+    
+    # Ordenar por Troféus (MVPs)
+    sorted_trophies = sorted(members_api, key=lambda x: x['trophies'], reverse=True)
+    top_trophies = sorted_trophies[:10] # Top 10
 
 
     # HTML Construction
     
-    donors_html = ""
-    for d in top_donors:
-        donors_html += f"""
-        <div class="list-item">
-            <span class="badgex">{d['donations']} 🃏</span>
-            <span>{d['name']}</span>
-        </div>
-        """
+    def render_list(items, value_key, icon, color_style=""):
+        html = ""
+        for i, p in enumerate(items):
+            rank_display = f"{i+1}."
+            html += f"""
+            <div class="list-item">
+                <span class="rank-num">{rank_display}</span>
+                <span class="badgex" style="{color_style}">{icon} {p[value_key]}</span>
+                <span class="p-name">{p['name']}</span>
+            </div>
+            """
+        return html
         
-    mvp_html = ""
-    for p in top_trophies:
-        mvp_html += f"""
-        <div class="list-item">
-            <span class="badgex" style="background:#fbbf24; color:#000;">🏆 {p['trophies']}</span>
-            <span>{p['name']}</span>
-        </div>
-        """
+    donors_html = render_list(top_donors, 'donations', '🃏')
+    mvp_html = render_list(top_trophies, 'trophies', '🏆', "background:#fbbf24; color:#000;")
 
     index_content = f"""
     <div class="dashboard-grid">
@@ -693,12 +694,12 @@ def generate_html_report():
             </div>
             <div class="card-body big-stat">
                 <div>
-                   <div class="stat-value">🏆 {clan_score}</div>
-                   <div class="stat-label">Troféus Totais</div>
+                   <div class="stat-value">🏆 {clan_war_trophies}</div>
+                   <div class="stat-label">Troféus de Guerra</div>
                 </div>
                 <div style="text-align:right;">
-                    <div class="stat-value">#{9}</div> <!-- Hardcoded Local Rank or Placeholder -->
-                    <div class="stat-label">Rank Local (BR)</div>
+                    <div class="stat-value">{clan_location}</div>
+                    <div class="stat-label">Localização</div>
                 </div>
             </div>
         </div>
@@ -706,50 +707,41 @@ def generate_html_report():
         <!-- 2. STATUS DE GUERRA -->
         <div class="dash-card war-card">
             <div class="card-header">
-                <h3>⚔️ GUERRA DE CLÃS</h3>
+                <h3>⚔️ ÚLTIMA GUERRA</h3>
             </div>
             <div class="card-body">
                 <div class="stat-row">
-                    <span class="label">Status Atual:</span>
-                    <span class="value">{war_state}</span>
-                </div>
-                 <div class="stat-row">
-                    <span class="label">Última Posição:</span>
+                    <span class="label">Posição Final:</span>
                     <span class="value accent">{war_rank}</span>
                 </div>
                  <div class="stat-row">
-                    <span class="label">Participação:</span>
-                    <span class="value">{active_count}/{len(members_api)}</span>
+                    <span class="label">Part. Total (Full):</span>
+                    <span class="value" style="color:var(--primary-green)">{part_full} Jogadores</span>
+                </div>
+                <div class="stat-row">
+                    <span class="label">Part. Parcial:</span>
+                    <span class="value" style="color:var(--primary-yellow)">{part_idling} Jogadores</span>
                 </div>
             </div>
         </div>
 
-        <!-- 3. DOAÇÕES -->
+        <!-- 3. DOAÇÕES (TOP 10) -->
         <div class="dash-card donation-card">
             <div class="card-header">
-                <h3>🤝 DOAÇÕES SEMANAIS</h3>
+                <h3>🤝 DOAÇÕES ({total_donations})</h3>
             </div>
-            <div class="card-body">
-                 <div class="big-number">{total_donations}</div>
-                 <div class="sub-text">Cartas doadas nesta semana</div>
-                 <hr style="border-color: #ffffff20; margin: 10px 0;">
-                 <div class="top-list">
-                    <small>MAIORES DOADORES:</small>
-                    {donors_html}
-                 </div>
+            <div class="card-body scrollable-list">
+                 {donors_html}
             </div>
         </div>
         
-        <!-- 4. DESTAQUES (MVPs) -->
+        <!-- 4. TOP JOGADORES (TOP 10) -->
         <div class="dash-card mvp-card">
             <div class="card-header">
-                <h3>🔥 TOP JOGADORES</h3>
+                <h3>🔥 TOP 10 TROFÉUS</h3>
             </div>
-            <div class="card-body">
-                <div class="top-list">
-                    <small>MAIS TROFÉUS:</small>
-                    {mvp_html}
-                 </div>
+            <div class="card-body scrollable-list">
+                {mvp_html}
             </div>
         </div>
     </div>
@@ -766,44 +758,61 @@ def generate_html_report():
             border-radius: 12px;
             padding: 20px;
             border: 1px solid var(--border-color);
+            display: flex; flex-direction: column;
         }}
         .dash-card h3 {{
-             margin: 0; font-size: 16px; color: var(--text-muted); text-transform: uppercase;
+             margin: 0; font-size: 14px; color: var(--text-muted); text-transform: uppercase;
              letter-spacing: 1px;
         }}
         .card-header {{
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 15px; padding-bottom: 10px;
+            border-bottom: 1px solid #ffffff10;
         }}
         .big-stat {{
             display: flex; justify-content: space-between; align-items: center;
         }}
-        .stat-value {{ font-size: 24px; font-weight: bold; color: var(--text-main); }}
-        .stat-label {{ font-size: 12px; color: var(--text-muted); }}
+        .stat-value {{ font-size: 22px; font-weight: bold; color: var(--text-main); }}
+        .stat-label {{ font-size: 11px; color: var(--text-muted); }}
         
         .stat-row {{
             display: flex; justify-content: space-between;
-            padding: 8px 0;
+            padding: 6px 0;
             border-bottom: 1px solid #ffffff05;
+            font-size: 14px;
         }}
-        .stat-row:last-child {{ border: none; }}
         .value.accent {{ color: var(--primary-yellow); font-weight: bold; }}
         
-        .big-number {{ font-size: 36px; font-weight: 800; color: var(--primary-green); }}
-        .sub-text {{ font-size: 12px; color: var(--text-muted); }}
+        .scrollable-list {{
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }}
         
+        /* Custom Scrollbar for lists */
+        .scrollable-list::-webkit-scrollbar {{ width: 4px; }}
+        .scrollable-list::-webkit-scrollbar-track {{ background: #1a202c; }}
+        .scrollable-list::-webkit-scrollbar-thumb {{ background: #2d3748; border-radius: 2px; }}
+
         .list-item {{
             display: flex; align-items: center; gap: 10px;
-            margin-top: 8px; font-size: 14px;
+            margin-bottom: 8px; font-size: 13px;
+        }}
+        .rank-num {{
+            width: 20px; color: var(--text-muted); font-weight: bold;
         }}
         .badgex {{
-            background: #2d3748; padding: 2px 8px; border-radius: 4px; 
-            font-size: 11px; font-weight: bold;
+            background: #2d3748; padding: 2px 6px; border-radius: 4px; 
+            font-size: 11px; font-weight: bold; min-width: 60px; text-align: center;
+        }}
+        .p-name {{
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;
         }}
         
-        /* WAR CARD SPECIAL */
-        .war-card {{ border-left: 4px solid var(--primary-yellow); }}
-        .donation-card {{ border-left: 4px solid var(--primary-green); }}
+        .war-card {{ border-top: 3px solid var(--primary-red); }}
+        .donation-card {{ border-top: 3px solid var(--primary-green); }}
+        .mvp-card {{ border-top: 3px solid var(--primary-yellow); }}
+        .main-card {{ border-top: 3px solid #3b82f6; }}
     </style>
     """
     

@@ -153,5 +153,27 @@ def download_data():
         print(f"Erro Crítico de conexão ao buscar lista de membros. Detalhes: {e}", file=sys.stderr)
         sys.exit(1)
 
+    time.sleep(1)
+
+    # 4. Baixar informações do Clã (Ranking, Liga, Localização - GT-Z)
+    try:
+        clan_url = f'https://api.clashroyale.com/v1/clans/{encoded_clan_tag}'
+        print("Buscando informações do clã 'clans/tag' (GT-Z)...")
+        response = requests.get(clan_url, headers=headers, timeout=10)
+
+        if response.status_code != 200:
+            handle_api_error(response, 'clan_info')
+
+        clan_info = response.json()
+        file_path = os.path.join(data_dir, 'clan_info.json')
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(clan_info, f, indent=4, ensure_ascii=False)
+        print(f"Informações básicas do clã salvas em '{os.path.basename(file_path)}'.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Erro Crítico de conexão ao buscar info do clã. Detalhes: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
 if __name__ == "__main__":
     download_data()
