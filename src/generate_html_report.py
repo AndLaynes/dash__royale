@@ -389,6 +389,7 @@ def generate_html_report():
                     participants = clan_standing['clan']['participants']
                     for p in participants:
                         total_used = p.get('decksUsed', 0)
+                        total_fame = p.get('fame', 0)
                         
                         status = "ZERADO"
                         faltam = meta_decks - total_used
@@ -407,7 +408,9 @@ def generate_html_report():
                             "name": p['name'],
                             "tag": p['tag'],
                             "cargo": cargo,
+                            "cargo": cargo,
                             "decks": total_used,
+                            "fame": total_fame,
                             "faltam": faltam,
                             "status": status
                         })
@@ -427,10 +430,19 @@ def generate_html_report():
         if meta_decks > 16: meta_decks = 16
         if meta_decks < 4: meta_decks = 4 # Fallback
 
+        if meta_decks < 4: meta_decks = 4 # Fallback
+        
+        # [NOVO] Extrair Identificação da Guerra
+        season_id = daily_data.get('seasonId', '?')
+        section_idx = daily_data.get('sectionIndex', '?')
+        war_label = f"Temporada {season_id} | Semana {section_idx}"
+
         players_audit = daily_data.get('players', {})
         for tag, p_data in players_audit.items():
             history = p_data.get('history', {})
+            fame_history = p_data.get('fame_history', {})
             total_used = sum(int(v) for v in history.values())
+            total_fame = sum(int(v) for v in fame_history.values())
             
             status = "ZERADO"
             faltam = meta_decks - total_used
@@ -449,7 +461,9 @@ def generate_html_report():
                 "name": p_data['name'],
                 "tag": tag,
                 "cargo": cargo,
+                "cargo": cargo,
                 "decks": total_used,
+                "fame": total_fame,
                 "faltam": faltam,
                 "status": status
             })
@@ -521,6 +535,7 @@ def generate_html_report():
             <td style="color:#a0aec0;">{row['cargo']}</td>
             <td style="font-weight:bold; font-size:16px;">{row['decks']}/{meta_decks}</td>
             <td>{missing_html}</td>
+            <td style="color:#fbbf24; font-weight:bold;">{row['fame']}</td>
             <td><span class="status-badge {status_class}">{row['status']}</span></td>
         </tr>
         """
@@ -530,7 +545,7 @@ def generate_html_report():
     <div class="page-title-section">
         <div>
             <h2>Status de Guerra</h2>
-            <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual</p>
+            <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual <span style="color:#fbbf24; font-weight:bold; margin-left:10px;">[{war_label}]</span></p>
         </div>
         <div class="audit-stats">
              <!-- META AGORA É UM STAT-BOX PARA ALINHAMENTO -->
@@ -559,14 +574,19 @@ def generate_html_report():
             <div class="info-title">Como funciona a Métrica de Guerra?</div>
         </div>
         <div class="info-content">
-            O sistema monitora o uso de decks durante os dias oficiais de guerra (Quinta a Domingo).
-            <br><br>
-            <span class="highlight">Quinta-feira:</span> Meta 4 Decks (Início)<br>
-            <span class="highlight">Sexta-feira:</span> Meta 8 Decks<br>
-            <span class="highlight">Sábado:</span> Meta 12 Decks<br>
-            <span class="highlight">Domingo:</span> Meta 16 Decks (Fechamento)
-            <br><br>
-            <i>*O dashboard atualiza automaticamente usando o último dia disponível.</i>
+            <strong>1. Métrica Primária (Obrigatória): PARTICIPAÇÃO</strong><br>
+            O objetivo é usar <strong>4 Decks todos os dias</strong> de guerra (Quinta a Domingo).<br>
+            <span class="highlight">Quinta:</span> Meta 4 <span style="color:#718096">|</span> 
+            <span class="highlight">Sexta:</span> Meta 8 <span style="color:#718096">|</span> 
+            <span class="highlight">Sábado:</span> Meta 12 <span style="color:#718096">|</span> 
+            <span class="highlight">Domingo:</span> Meta 16
+            <div style="margin-top:8px; border-top:1px solid #ffffff10; padding-top:8px;">
+                <strong>2. Métrica Secundária (Qualidade): FAMA</strong><br>
+                Define a qualidade das batalhas. Usada para desempate.<br>
+                <span style="color:#fbbf24">★ Vitória (Duel):</span> 250pts &nbsp;|&nbsp; 
+                <span style="color:#fbbf24">★ Vitória (1v1):</span> 200pts &nbsp;|&nbsp; 
+                <span style="color:#ef4444">💀 Derrota:</span> 100pts
+            </div>
         </div>
     </div>
 
@@ -577,6 +597,7 @@ def generate_html_report():
                 <th>CARGO</th>
                 <th>DECKS USADOS</th>
                 <th>FALTAM</th>
+                <th>FAMA</th>
                 <th>STATUS</th>
             </tr>
         </thead>

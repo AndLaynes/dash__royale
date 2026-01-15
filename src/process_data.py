@@ -266,9 +266,15 @@ def process_daily_data():
     # Carrega o histórico existente, se houver
     history_data = load_json_file(history_file_path)
     if not history_data or history_data.get('warId') != war_id:
+        # Fallback IDs
+        season_id_val = current_war_data.get('seasonId', 'unknown')
+        section_index_val = current_war_data.get('sectionIndex', 'unknown')
+
         log_and_print(f"-> Detectada uma nova guerra (ID: {war_id}) ou histórico inexistente. Iniciando novo registro.")
         history_data = {
             "warId": war_id,
+            "seasonId": season_id_val,
+            "sectionIndex": section_index_val,
             "inWar": True,
             "warDays": [],
             "players": {}
@@ -305,6 +311,13 @@ def process_daily_data():
 
         # Atualiza o número de decks usados para o dia de hoje
         history_data['players'][tag]['history'][today_str] = decks_used_today
+        
+        # [NOVO] Captura a Fama (Métrica Secundária)
+        fame_today = p.get('fame', 0)
+        # Inicializa o histórico de fama se não existir
+        if 'fame_history' not in history_data['players'][tag]:
+             history_data['players'][tag]['fame_history'] = {}
+        history_data['players'][tag]['fame_history'][today_str] = fame_today
 
     # Salva o histórico atualizado de volta no arquivo
     with open(history_file_path, 'w', encoding='utf-8') as f:

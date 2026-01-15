@@ -229,7 +229,7 @@ body {
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                12/01/2026 21:00
+                15/01/2026 15:42
             </div>
         </div>
     </header>
@@ -239,25 +239,25 @@ body {
     <div class="page-title-section">
         <div>
             <h2>Status de Guerra</h2>
-            <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual</p>
+            <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual <span style="color:#fbbf24; font-weight:bold; margin-left:10px;">[Temporada ? | Semana ?]</span></p>
         </div>
         <div class="audit-stats">
              <!-- META AGORA É UM STAT-BOX PARA ALINHAMENTO -->
             <div class="stat-box" style="border: 1px solid #fbbf24; color: #fbbf24; background: rgba(251, 191, 36, 0.1);">
                 <div style="font-size:10px; opacity:0.8;">META DA GUERRA</div>
-                16 DECKS
+                4 DECKS
             </div>
             <div class="stat-box stat-green">
                 <div style="font-size:10px; opacity:0.8;">EM DIA</div>
-                26
+                13
             </div>
             <div class="stat-box stat-yellow">
                 <div style="font-size:10px; opacity:0.8;">INCOMPLETO</div>
-                20
+                4
             </div>
             <div class="stat-box stat-red">
                 <div style="font-size:10px; opacity:0.8;">ZERADO</div>
-                4
+                33
             </div>
         </div>
     </div>
@@ -268,14 +268,19 @@ body {
             <div class="info-title">Como funciona a Métrica de Guerra?</div>
         </div>
         <div class="info-content">
-            O sistema monitora o uso de decks durante os dias oficiais de guerra (Quinta a Domingo).
-            <br><br>
-            <span class="highlight">Quinta-feira:</span> Meta 4 Decks (Início)<br>
-            <span class="highlight">Sexta-feira:</span> Meta 8 Decks<br>
-            <span class="highlight">Sábado:</span> Meta 12 Decks<br>
-            <span class="highlight">Domingo:</span> Meta 16 Decks (Fechamento)
-            <br><br>
-            <i>*O dashboard atualiza automaticamente usando o último dia disponível.</i>
+            <strong>1. Métrica Primária (Obrigatória): PARTICIPAÇÃO</strong><br>
+            O objetivo é usar <strong>4 Decks todos os dias</strong> de guerra (Quinta a Domingo).<br>
+            <span class="highlight">Quinta:</span> Meta 4 <span style="color:#718096">|</span> 
+            <span class="highlight">Sexta:</span> Meta 8 <span style="color:#718096">|</span> 
+            <span class="highlight">Sábado:</span> Meta 12 <span style="color:#718096">|</span> 
+            <span class="highlight">Domingo:</span> Meta 16
+            <div style="margin-top:8px; border-top:1px solid #ffffff10; padding-top:8px;">
+                <strong>2. Métrica Secundária (Qualidade): FAMA</strong><br>
+                Define a qualidade das batalhas. Usada para desempate.<br>
+                <span style="color:#fbbf24">★ Vitória (Duel):</span> 250pts &nbsp;|&nbsp; 
+                <span style="color:#fbbf24">★ Vitória (1v1):</span> 200pts &nbsp;|&nbsp; 
+                <span style="color:#ef4444">💀 Derrota:</span> 100pts
+            </div>
         </div>
     </div>
 
@@ -286,6 +291,7 @@ body {
                 <th>CARGO</th>
                 <th>DECKS USADOS</th>
                 <th>FALTAM</th>
+                <th>FAMA</th>
                 <th>STATUS</th>
             </tr>
         </thead>
@@ -294,260 +300,14 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Zenitsu愛</span>
-                    <span style="color:#718096; font-size:10px;">#8C8RY8GL9</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Ancião</td>
-            <td style="font-weight:bold; font-size:16px;">3/16</td>
-            <td><div class="missing-badge">-13</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>mini.peka</span>
-                    <span style="color:#718096; font-size:10px;">#CV20VPL8R</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">4/16</td>
-            <td><div class="missing-badge">-12</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Luiz Fernando™</span>
-                    <span style="color:#718096; font-size:10px;">#CU829GUV0</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">8/16</td>
-            <td><div class="missing-badge">-8</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Mila</span>
-                    <span style="color:#718096; font-size:10px;">#90U8CVP90</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">8/16</td>
-            <td><div class="missing-badge">-8</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>WvCly</span>
-                    <span style="color:#718096; font-size:10px;">#CJRCPL88P</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">8/16</td>
-            <td><div class="missing-badge">-8</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>BRS⚔️ASHURA</span>
-                    <span style="color:#718096; font-size:10px;">#9QCL9JJC9</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">9/16</td>
-            <td><div class="missing-badge">-7</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
                     <span>Teixeirazzqw</span>
                     <span style="color:#718096; font-size:10px;">#V9QU2YVUQ</span>
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">10/16</td>
-            <td><div class="missing-badge">-6</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Chetto</span>
-                    <span style="color:#718096; font-size:10px;">#2LR0RR89Q</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">12/16</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>JOSA</span>
-                    <span style="color:#718096; font-size:10px;">#2LY2GLJQL</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">12/16</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Sotto ツ</span>
-                    <span style="color:#718096; font-size:10px;">#2P299V0CU</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">12/16</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Theus Carvalho</span>
-                    <span style="color:#718096; font-size:10px;">#82QC0YL2C</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">12/16</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>^_^^_^</span>
-                    <span style="color:#718096; font-size:10px;">#PG2LUY0PP</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">12/16</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>nivelador</span>
-                    <span style="color:#718096; font-size:10px;">#VL292PYGJ</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">12/16</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>tavin</span>
-                    <span style="color:#718096; font-size:10px;">#U8VP8L8L0</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">12/16</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Alvaro</span>
-                    <span style="color:#718096; font-size:10px;">#8JULVVL0J</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">13/16</td>
+            <td style="font-weight:bold; font-size:16px;">1/4</td>
             <td><div class="missing-badge">-3</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Nico</span>
-                    <span style="color:#718096; font-size:10px;">#9RUUG2R8</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">14/16</td>
-            <td><div class="missing-badge">-2</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>PedrinhoR14</span>
-                    <span style="color:#718096; font-size:10px;">#PJL0Q2J2</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">14/16</td>
-            <td><div class="missing-badge">-2</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>mathi❄️</span>
-                    <span style="color:#718096; font-size:10px;">#LLGUL2RUJ</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">14/16</td>
-            <td><div class="missing-badge">-2</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>OneDePrata</span>
-                    <span style="color:#718096; font-size:10px;">#LYL9CU0P0</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">15/16</td>
-            <td><div class="missing-badge">-1</div></td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>andrebts</span>
-                    <span style="color:#718096; font-size:10px;">#VUQ0PV8PV</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">15/16</td>
-            <td><div class="missing-badge">-1</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
         </tr>
         
@@ -559,8 +319,429 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">0/16</td>
-            <td><div class="missing-badge">-16</div></td>
+            <td style="font-weight:bold; font-size:16px;">1/4</td>
+            <td><div class="missing-badge">-3</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>mathi❄️</span>
+                    <span style="color:#718096; font-size:10px;">#LLGUL2RUJ</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">1/4</td>
+            <td><div class="missing-badge">-3</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>tavin</span>
+                    <span style="color:#718096; font-size:10px;">#U8VP8L8L0</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">1/4</td>
+            <td><div class="missing-badge">-3</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Alvaro</span>
+                    <span style="color:#718096; font-size:10px;">#8JULVVL0J</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Co-Líder</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Bruno</span>
+                    <span style="color:#718096; font-size:10px;">#UPR022QUR</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Ancião</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Carlos Daniel™</span>
+                    <span style="color:#718096; font-size:10px;">#JY9LGUVGC</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Chetto</span>
+                    <span style="color:#718096; font-size:10px;">#2LR0RR89Q</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>DGJ-DAVI</span>
+                    <span style="color:#718096; font-size:10px;">#9RPCC2VCG</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Daniele❤</span>
+                    <span style="color:#718096; font-size:10px;">#8R2LRC80Q</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Ancião</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Dockz</span>
+                    <span style="color:#718096; font-size:10px;">#YJUG9Y88</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>JOSA</span>
+                    <span style="color:#718096; font-size:10px;">#2LY2GLJQL</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Luciano</span>
+                    <span style="color:#718096; font-size:10px;">#LVGCLQQ8L</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Ancião</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>MJK⚡️SPARKY</span>
+                    <span style="color:#718096; font-size:10px;">#22CGYQ2UP</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Mila</span>
+                    <span style="color:#718096; font-size:10px;">#90U8CVP90</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Co-Líder</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>NEGUIM244</span>
+                    <span style="color:#718096; font-size:10px;">#PYVJVURP0</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Nico</span>
+                    <span style="color:#718096; font-size:10px;">#9RUUG2R8</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>PedrinhoR14</span>
+                    <span style="color:#718096; font-size:10px;">#PJL0Q2J2</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Pedro PH</span>
+                    <span style="color:#718096; font-size:10px;">#90LLGLPR0</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>RobaFrag</span>
+                    <span style="color:#718096; font-size:10px;">#8U008PQU8</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Co-Líder</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>SLOWBURN671</span>
+                    <span style="color:#718096; font-size:10px;">#PU0UGR9Y9</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Sotto ツ</span>
+                    <span style="color:#718096; font-size:10px;">#2P299V0CU</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Vinícius</span>
+                    <span style="color:#718096; font-size:10px;">#YPJUU2ULU</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>WEZY</span>
+                    <span style="color:#718096; font-size:10px;">#9090JY2LU</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>WvCly</span>
+                    <span style="color:#718096; font-size:10px;">#CJRCPL88P</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Zenitsu愛</span>
+                    <span style="color:#718096; font-size:10px;">#8C8RY8GL9</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Ancião</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>^_^^_^</span>
+                    <span style="color:#718096; font-size:10px;">#PG2LUY0PP</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>antedeguemon</span>
+                    <span style="color:#718096; font-size:10px;">#208JPG9R</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>danilo</span>
+                    <span style="color:#718096; font-size:10px;">#UG2Q28P8C</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>domador de but</span>
+                    <span style="color:#718096; font-size:10px;">#GRY890GY2</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Co-Líder</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>isp</span>
+                    <span style="color:#718096; font-size:10px;">#C8C20C0JQ</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>joão3:16</span>
+                    <span style="color:#718096; font-size:10px;">#U220VCULP</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Co-Líder</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-zero">ZERADO</span></td>
         </tr>
         
@@ -572,21 +753,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">0/16</td>
-            <td><div class="missing-badge">-16</div></td>
-            <td><span class="status-badge status-zero">ZERADO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>nova</span>
-                    <span style="color:#718096; font-size:10px;">#UUJC900UG</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">0/16</td>
-            <td><div class="missing-badge">-16</div></td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-zero">ZERADO</span></td>
         </tr>
         
@@ -598,8 +767,51 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">0/16</td>
-            <td><div class="missing-badge">-16</div></td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>super</span>
+                    <span style="color:#718096; font-size:10px;">#UU0RCRLQU</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>zkkjoao</span>
+                    <span style="color:#718096; font-size:10px;">#UC0YYLPRJ</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
+            <td><span class="status-badge status-zero">ZERADO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span>•Tåvåres•</span>
+                    <span style="color:#718096; font-size:10px;">#G9UJUQ9P</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">0/4</td>
+            <td><div class="missing-badge">-4</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-zero">ZERADO</span></td>
         </tr>
         
@@ -611,8 +823,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">8/4</td>
             <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -624,60 +837,23 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Ancião</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">4/4</td>
             <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Bruno</span>
-                    <span style="color:#718096; font-size:10px;">#UPR022QUR</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Ancião</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>DGJ-DAVI</span>
-                    <span style="color:#718096; font-size:10px;">#9RPCC2VCG</span>
+                    <span>BRS⚔️ASHURA</span>
+                    <span style="color:#718096; font-size:10px;">#9QCL9JJC9</span>
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">4/4</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Daniele❤</span>
-                    <span style="color:#718096; font-size:10px;">#8R2LRC80Q</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Ancião</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Dockz</span>
-                    <span style="color:#718096; font-size:10px;">#YJUG9Y88</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -689,47 +865,23 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">12/4</td>
             <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Grimmer 狼</span>
-                    <span style="color:#718096; font-size:10px;">#QUVLYY0VY</span>
+                    <span>Luiz Fernando™</span>
+                    <span style="color:#718096; font-size:10px;">#CU829GUV0</span>
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">8/4</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Gustavo Clash</span>
-                    <span style="color:#718096; font-size:10px;">#28PQJJU2G</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Luciano</span>
-                    <span style="color:#718096; font-size:10px;">#LVGCLQQ8L</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Ancião</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -741,34 +893,23 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">12/4</td>
             <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Pedro PH</span>
-                    <span style="color:#718096; font-size:10px;">#90LLGLPR0</span>
+                    <span>RaiNascimento</span>
+                    <span style="color:#718096; font-size:10px;">#U89CJJGUV</span>
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">8/4</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>RobaFrag</span>
-                    <span style="color:#718096; font-size:10px;">#8U008PQU8</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -780,47 +921,23 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">12/4</td>
             <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
-                    <span>ZackThunder</span>
-                    <span style="color:#718096; font-size:10px;">#R9UP0QLR9</span>
+                    <span>Theus Carvalho</span>
+                    <span style="color:#718096; font-size:10px;">#82QC0YL2C</span>
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">12/4</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>danilo</span>
-                    <span style="color:#718096; font-size:10px;">#UG2Q28P8C</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>domador de but</span>
-                    <span style="color:#718096; font-size:10px;">#GRY890GY2</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -832,8 +949,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">4/4</td>
             <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -845,8 +963,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">4/4</td>
             <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -858,73 +977,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">4/4</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>isp</span>
-                    <span style="color:#718096; font-size:10px;">#C8C20C0JQ</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>joão3:16</span>
-                    <span style="color:#718096; font-size:10px;">#U220VCULP</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>luck</span>
-                    <span style="color:#718096; font-size:10px;">#LVQRP2LGG</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>polaris</span>
-                    <span style="color:#718096; font-size:10px;">#PCPCJU20Y</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
-            <td><span class="status-badge status-complete">EM DIA</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>super</span>
-                    <span style="color:#718096; font-size:10px;">#UU0RCRLQU</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
-            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -936,8 +991,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">16/16</td>
+            <td style="font-weight:bold; font-size:16px;">7/4</td>
             <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">0</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
