@@ -234,6 +234,7 @@ def get_page_template(active_page, content):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OS GUARDIÕES - {active_page}</title>
     <style>{STYLE_CSS}</style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -705,25 +706,48 @@ def generate_html_report():
     donors_html = render_list(top_donors, 'donations', '🃏')
     mvp_html = render_list(top_trophies, 'trophies', '🏆', "background:#fbbf24; color:#000;")
 
+    # EXTRAÇÃO DE DADOS HISTÓRICOS PARA O GRÁFICO
+    chart_dates = []
+    chart_scores = []
+    
+    if os.path.exists(os.path.join(DATA_DIR, 'riverracelog.json')):
+        try:
+            with open(os.path.join(DATA_DIR, 'riverracelog.json'), 'r') as f:
+                r_log = json.load(f)
+                # Iterar REVERSO para ter ordem cronológica (Antigo -> Novo)
+                for item in reversed(r_log.get('items', [])):
+                    # Achar meu clã
+                    my_clan = next((c['clan'] for c in item['standings'] if c['clan']['tag'].replace("#","") == "9PJRJRPC"), None)
+                    if my_clan:
+                        # Data formatada (Dia/Mês)
+                        dt = datetime.strptime(item['createdDate'], '%Y%m%dT%H%M%S.%fZ')
+                        d_str = dt.strftime('%d/%m')
+                        
+                        chart_dates.append(d_str)
+                        chart_scores.append(my_clan['clanScore'])
+        except Exception as e:
+            print(f"Erro ao gerar dados do gráfico: {e}")
+
+    # Converter para JSON string para o JS
+    js_dates = json.dumps(chart_dates)
+    js_scores = json.dumps(chart_scores)
+
     index_content = f"""
-    <div class="dashboard-grid">
-        <!-- 1. IDENTIDADE DO CLÃ -->
-        <div class="dash-card main-card">
+    <div class="dashboard-grid" style="display:block;">
+        <!-- 1. GRÁFICO DE HISTÓRICO DE TROFÉUS (Ocupa largura total) -->
+        <div class="dash-card" style="margin-bottom:20px;">
             <div class="card-header">
-                <h3>CLÃ OS GUARDIÕES</h3>
+                <h3>📈 EVOLUÇÃO DE TROFÉUS (HISTÓRICO)</h3>
                 <span class="status-badge status-complete">{league_name}</span>
             </div>
-            <div class="card-body big-stat">
-                <div>
-                   <div class="stat-value">🏆 {clan_war_trophies}</div>
-                   <div class="stat-label">Troféus de Guerra</div>
-                </div>
-                <div style="text-align:right;">
-                    <div class="stat-value">{clan_location}</div>
-                    <div class="stat-label">Localização</div>
-                </div>
+            <div style="position: relative; height:300px; width:100%">
+                <canvas id="trophyChart"></canvas>
             </div>
         </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- CARDS INFERIORES -->
 
         <!-- 2. STATUS DE GUERRA -->
         <div class="dash-card war-card">
@@ -774,68 +798,63 @@ def generate_html_report():
             gap: 20px;
             margin-top: 20px;
         }}
-        .dash-card {{
-            background: var(--bg-panel);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid var(--border-color);
-            display: flex; flex-direction: column;
-        }}
-        .dash-card h3 {{
-             margin: 0; font-size: 14px; color: var(--text-muted); text-transform: uppercase;
-             letter-spacing: 1px;
-        }}
-        .card-header {{
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 15px; padding-bottom: 10px;
-            border-bottom: 1px solid #ffffff10;
-        }}
-        .big-stat {{
-            display: flex; justify-content: space-between; align-items: center;
-        }}
-        .stat-value {{ font-size: 22px; font-weight: bold; color: var(--text-main); }}
-        .stat-label {{ font-size: 11px; color: var(--text-muted); }}
-        
-        .stat-row {{
-            display: flex; justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px solid #ffffff05;
-            font-size: 14px;
-        }}
-        .value.accent {{ color: var(--primary-yellow); font-weight: bold; }}
-        
-        .scrollable-list {{
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }}
-        
-        /* Custom Scrollbar for lists */
-        .scrollable-list::-webkit-scrollbar {{ width: 4px; }}
-        .scrollable-list::-webkit-scrollbar-track {{ background: #1a202c; }}
-        .scrollable-list::-webkit-scrollbar-thumb {{ background: #2d3748; border-radius: 2px; }}
-
-        .list-item {{
-            display: flex; align-items: center; gap: 10px;
-            margin-bottom: 8px; font-size: 13px;
-        }}
-        .rank-num {{
-            width: 20px; color: var(--text-muted); font-weight: bold;
-        }}
-        .badgex {{
-            background: #2d3748; padding: 2px 6px; border-radius: 4px; 
-            font-size: 11px; font-weight: bold; min-width: 60px; text-align: center;
-        }}
-        .p-name {{
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;
-        }}
-        
-        .war-card {{ border-top: 3px solid var(--primary-red); }}
-        .donation-card {{ border-top: 3px solid var(--primary-green); }}
-        .mvp-card {{ border-top: 3px solid var(--primary-yellow); }}
-        .main-card {{ border-top: 3px solid #3b82f6; }}
     </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {{
+        const ctx = document.getElementById('trophyChart');
+        if (ctx) {{
+            new Chart(ctx, {{
+                type: 'line',
+                data: {{
+                    labels: {js_dates},
+                    datasets: [{{
+                        label: 'Troféus do Clã',
+                        data: {js_scores},
+                        borderColor: '#fbbf24',
+                        backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#fbbf24',
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.4
+                    }}]
+                }},
+                options: {{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {{
+                        legend: {{ display: false }},
+                        tooltip: {{
+                            backgroundColor: '#1a202c',
+                            titleColor: '#fbbf24',
+                            bodyColor: '#fff',
+                            borderColor: '#2d3748',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false
+                        }}
+                    }},
+                    scales: {{
+                        y: {{
+                            grid: {{ color: '#2d3748' }},
+                            ticks: {{ color: '#9ca3af' }}
+                        }},
+                        x: {{
+                            grid: {{ display: false }},
+                            ticks: {{ color: '#9ca3af' }}
+                        }}
+                    }}
+                }}
+            }});
+        }}
+    }});
+    </script>
     """
+
+
+
     
     with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(get_page_template("Visão Geral", index_content))
