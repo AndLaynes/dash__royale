@@ -230,7 +230,7 @@ body {
             </nav>
             
             <div style="color: #718096; font-size: 12px;">
-                15/01/2026 22:09
+                15/01/2026 22:17
             </div>
         </div>
     </header>
@@ -239,48 +239,58 @@ body {
         
     <div class="dashboard-grid" style="display:block;">
         <!-- 1. GRÁFICO DE HISTÓRICO DE TROFÉUS (Ocupa largura total) -->
-        <div class="dash-card" style="margin-bottom:20px;">
+        <div class="dash-card" style="margin-bottom:20px; border-top: 3px solid #fbbf24;">
             <div class="card-header">
                 <h3>📈 EVOLUÇÃO DE TROFÉUS (HISTÓRICO)</h3>
                 <span class="status-badge status-complete">Liga Lendária</span>
             </div>
-            <div style="position: relative; height:300px; width:100%">
+            <div style="position: relative; height:320px; width:100%">
                 <canvas id="trophyChart"></canvas>
             </div>
         </div>
     </div>
 
-    <div class="dashboard-grid">
-        <!-- CARDS INFERIORES -->
-
-        <!-- 2. STATUS DE GUERRA -->
+    <!-- CARDS INFERIORES (GRID 3 COLUNAS) -->
+    <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        
+        <!-- 2. STATUS DE GUERRA / PERFIL -->
         <div class="dash-card war-card">
             <div class="card-header">
-                <h3>⚔️ ÚLTIMA GUERRA</h3>
+                <h3>⚔️ Status de Guerra</h3>
+                <span class="badgex" style="background:#e53e3e">Season 128</span>
             </div>
             <div class="card-body">
                 <div class="stat-row">
-                    <span class="label">Posição Final:</span>
-                    <span class="value accent">N/A</span>
-                </div>
-                 <div class="stat-row">
-                    <span class="label">Part. Total (Full):</span>
-                    <span class="value" style="color:var(--primary-green)">0 Jogadores</span>
+                    <span>Rank Última Guerra</span>
+                    <span class="value accent">#4</span>
                 </div>
                 <div class="stat-row">
-                    <span class="label">Part. Parcial:</span>
-                    <span class="value" style="color:var(--primary-yellow)">0 Jogadores</span>
+                    <span>Participação (4+ Decks)</span>
+                    <span class="value">45 Jogadores</span>
+                </div>
+                <div class="stat-row">
+                    <span>Parcialmente Ativos</span>
+                    <span class="value">1 Jogadores</span>
+                </div>
+                <div class="stat-row">
+                    <span>Ausentes (0 Decks)</span>
+                    <span class="value" style="color:#e53e3e">8 Jogadores</span>
+                </div>
+                <div style="margin-top:20px; padding-top:10px; border-top:1px solid #ffffff10;">
+                    <div class="stat-label" style="text-align:center; margin-bottom:5px;">TROFÉUS ATUAIS</div>
+                    <div class="stat-value" style="text-align:center; font-size:32px;">🏆 3262</div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. DOAÇÕES (TOP 10) -->
+        <!-- 3. TOP DOAÇÕES -->
         <div class="dash-card donation-card">
             <div class="card-header">
-                <h3>🤝 DOAÇÕES (2304)</h3>
+                <h3>🃏 Top Doadores</h3>
+                <div class="stat-label">Total: 2304</div>
             </div>
-            <div class="card-body scrollable-list">
-                 
+            <div class="scrollable-list">
+                
             <div class="list-item">
                 <span class="rank-num">1.</span>
                 <span class="badgex" style="">🃏 245</span>
@@ -343,13 +353,14 @@ body {
             
             </div>
         </div>
-        
-        <!-- 4. TOP JOGADORES (TOP 10) -->
+
+        <!-- 4. MVP TROFÉUS -->
         <div class="dash-card mvp-card">
             <div class="card-header">
-                <h3>🔥 TOP 10 TROFÉUS</h3>
+                <h3>🏆 MVPs (Ladder)</h3>
+                <div class="stat-label">Top Ladder</div>
             </div>
-            <div class="card-body scrollable-list">
+            <div class="scrollable-list">
                 
             <div class="list-item">
                 <span class="rank-num">1.</span>
@@ -414,11 +425,10 @@ body {
             </div>
         </div>
     </div>
-    
+
     <style>
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }

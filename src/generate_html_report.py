@@ -639,6 +639,7 @@ def generate_html_report():
         
     # 2. Performance de Guerra e Participação
     war_rank = "N/A"
+    season_id = "?" 
     war_state = "Em Treino"
     if weekday >= 3: war_state = "Em Guerra ⚔️"
     
@@ -646,30 +647,38 @@ def generate_html_report():
     part_idling = 0 # Incompleto
     part_none = 0
     
+    # Tag Alvo (Normalizada)
+    TARGET_TAG_CLEAN = "9PJRJRPC"
+
     # Analisar Último Log para Participação Real
     if os.path.exists(os.path.join(DATA_DIR, 'riverracelog.json')):
         try:
-            with open(os.path.join(DATA_DIR, 'riverracelog.json'), 'r') as f:
-                last_log = json.load(f)['items'][0]
-                
-                # Rank
-                my_standing = next((c for c in last_log['standings'] if c['clan']['tag'].replace("#","") == "9PJRJRPC"), None)
-                if my_standing:
-                    war_rank = f"#{my_standing['rank']}"
+            with open(os.path.join(DATA_DIR, 'riverracelog.json'), 'r', encoding='utf-8') as f:
+                r_log = json.load(f)
+                items = r_log.get('items', [])
+                if items:
+                    last_log = items[0]
+                    season_id = last_log.get('seasonId', '?')
                     
-                    # Participação (Baseado no Log Anterior para ter Ground Truth fechado)
-                    for p in my_standing['clan']['participants']:
-                        decks = p['decksUsed']
-                        if decks >= 4: part_full += 1 # Assumindo 4 decks/dia como 'ativo no dia', mas log é semanal.
-                        elif decks > 0: part_idling += 1
-                        else: part_none += 1
+                    # Rank
+                    my_standing = None
+                    for c in last_log['standings']:
+                         raw_tag = c['clan']['tag']
+                         if raw_tag.replace('#','').strip().upper() == TARGET_TAG_CLEAN:
+                             my_standing = c
+                             break
                     
-                    # Ajuste para 'None' (Total Members - Participants in Log)
-                    # O log só mostra quem participou ou teve fama? Não, mostra participants.
-                    # Mas se member count > participants list, o resto é None.
-                    # Vamos usar os contadores diretos da lista de participantes da guerra.
-        except:
-            pass
+                    if my_standing:
+                        war_rank = f"#{my_standing['rank']}"
+                        
+                        # Participação (Baseado no Log Anterior para ter Ground Truth fechado)
+                        for p in my_standing['clan']['participants']:
+                            decks = p['decksUsed']
+                            if decks >= 4: part_full += 1 
+                            elif decks > 0: part_idling += 1
+                            else: part_none += 1
+        except Exception as e:
+            print(f"Erro ao processar status de guerra: {e}")
 
     # 3. Doações e Top Jogadores (Expandido para Top 10)
     total_donations = 0
@@ -762,66 +771,76 @@ def generate_html_report():
     index_content = f"""
     <div class="dashboard-grid" style="display:block;">
         <!-- 1. GRÁFICO DE HISTÓRICO DE TROFÉUS (Ocupa largura total) -->
-        <div class="dash-card" style="margin-bottom:20px;">
+        <div class="dash-card" style="margin-bottom:20px; border-top: 3px solid #fbbf24;">
             <div class="card-header">
                 <h3>📈 EVOLUÇÃO DE TROFÉUS (HISTÓRICO)</h3>
                 <span class="status-badge status-complete">{league_name}</span>
             </div>
-            <div style="position: relative; height:300px; width:100%">
+            <div style="position: relative; height:320px; width:100%">
                 <canvas id="trophyChart"></canvas>
             </div>
         </div>
     </div>
 
-    <div class="dashboard-grid">
-        <!-- CARDS INFERIORES -->
-
-        <!-- 2. STATUS DE GUERRA -->
+    <!-- CARDS INFERIORES (GRID 3 COLUNAS) -->
+    <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        
+        <!-- 2. STATUS DE GUERRA / PERFIL -->
         <div class="dash-card war-card">
             <div class="card-header">
-                <h3>⚔️ ÚLTIMA GUERRA</h3>
+                <h3>⚔️ Status de Guerra</h3>
+                <span class="badgex" style="background:#e53e3e">Season {season_id}</span>
             </div>
             <div class="card-body">
                 <div class="stat-row">
-                    <span class="label">Posição Final:</span>
+                    <span>Rank Última Guerra</span>
                     <span class="value accent">{war_rank}</span>
                 </div>
-                 <div class="stat-row">
-                    <span class="label">Part. Total (Full):</span>
-                    <span class="value" style="color:var(--primary-green)">{part_full} Jogadores</span>
+                <div class="stat-row">
+                    <span>Participação (4+ Decks)</span>
+                    <span class="value">{part_full} Jogadores</span>
                 </div>
                 <div class="stat-row">
-                    <span class="label">Part. Parcial:</span>
-                    <span class="value" style="color:var(--primary-yellow)">{part_idling} Jogadores</span>
+                    <span>Parcialmente Ativos</span>
+                    <span class="value">{part_idling} Jogadores</span>
+                </div>
+                <div class="stat-row">
+                    <span>Ausentes (0 Decks)</span>
+                    <span class="value" style="color:#e53e3e">{part_none} Jogadores</span>
+                </div>
+                <div style="margin-top:20px; padding-top:10px; border-top:1px solid #ffffff10;">
+                    <div class="stat-label" style="text-align:center; margin-bottom:5px;">TROFÉUS ATUAIS</div>
+                    <div class="stat-value" style="text-align:center; font-size:32px;">🏆 {clan_war_trophies}</div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. DOAÇÕES (TOP 10) -->
+        <!-- 3. TOP DOAÇÕES -->
         <div class="dash-card donation-card">
             <div class="card-header">
-                <h3>🤝 DOAÇÕES ({total_donations})</h3>
+                <h3>🃏 Top Doadores</h3>
+                <div class="stat-label">Total: {total_donations}</div>
             </div>
-            <div class="card-body scrollable-list">
-                 {donors_html}
+            <div class="scrollable-list">
+                {donors_html}
             </div>
         </div>
-        
-        <!-- 4. TOP JOGADORES (TOP 10) -->
+
+        <!-- 4. MVP TROFÉUS -->
         <div class="dash-card mvp-card">
             <div class="card-header">
-                <h3>🔥 TOP 10 TROFÉUS</h3>
+                <h3>🏆 MVPs (Ladder)</h3>
+                <div class="stat-label">Top Ladder</div>
             </div>
-            <div class="card-body scrollable-list">
+            <div class="scrollable-list">
                 {mvp_html}
             </div>
         </div>
     </div>
-    
+
     <style>
         .dashboard-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }}
