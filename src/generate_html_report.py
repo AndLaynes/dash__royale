@@ -710,21 +710,48 @@ def generate_html_report():
     chart_dates = []
     chart_scores = []
     
+    # Tag Alvo (Normalizada)
+    TARGET_TAG_CLEAN = "9PJRJRPC"
+
     if os.path.exists(os.path.join(DATA_DIR, 'riverracelog.json')):
         try:
-            with open(os.path.join(DATA_DIR, 'riverracelog.json'), 'r') as f:
+            with open(os.path.join(DATA_DIR, 'riverracelog.json'), 'r', encoding='utf-8') as f:
                 r_log = json.load(f)
+                items_list = r_log.get('items', [])
+                
                 # Iterar REVERSO para ter ordem cronológica (Antigo -> Novo)
-                for item in reversed(r_log.get('items', [])):
-                    # Achar meu clã
-                    my_clan = next((c['clan'] for c in item['standings'] if c['clan']['tag'].replace("#","") == "9PJRJRPC"), None)
+                for item in reversed(items_list):
+                    # Achar meu clã (Robust Scan)
+                    my_clan = None
+                    for standing in item.get('standings', []):
+                        clan_info = standing.get('clan', {})
+                        raw_tag = clan_info.get('tag', '')
+                        processed_tag = raw_tag.replace('#', '').strip().upper()
+
+                        # Comparação "Forensic": Remove #, strip whitespace, uppercase
+                        if processed_tag == TARGET_TAG_CLEAN:
+                            my_clan = clan_info
+                            break
+                    
                     if my_clan:
                         # Data formatada (Dia/Mês)
-                        dt = datetime.strptime(item['createdDate'], '%Y%m%dT%H%M%S.%fZ')
-                        d_str = dt.strftime('%d/%m')
-                        
-                        chart_dates.append(d_str)
-                        chart_scores.append(my_clan['clanScore'])
+                        # Exemplo: 20260112T095005.000Z
+                        c_date = item.get('createdDate', '')
+                        if c_date:
+                            try:
+                                dt = datetime.strptime(c_date, '%Y%m%dT%H%M%S.%fZ')
+                                d_str = dt.strftime('%d/%m')
+                                chart_dates.append(d_str)
+                                chart_scores.append(my_clan.get('clanScore', 0))
+                            except ValueError:
+                                # Tenta formato sem milissegundos se falhar
+                                try:
+                                    dt = datetime.strptime(c_date, '%Y%m%dT%H%M%SZ')
+                                    d_str = dt.strftime('%d/%m')
+                                    chart_dates.append(d_str)
+                                    chart_scores.append(my_clan.get('clanScore', 0))
+                                except:
+                                    pass
         except Exception as e:
             print(f"Erro ao gerar dados do gráfico: {e}")
 
