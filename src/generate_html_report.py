@@ -192,11 +192,25 @@ body {
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: bold;
 }
+.audit-timestamp {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 11px;
+    color: #718096;
+    border: 1px solid #2d3748;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #1a202c;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
-    .header-content { flex-direction: column; align-items: flex-start; }
+    .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
     .nav-pills { width: 100%; overflow-x: auto; padding-bottom: 5px; }
     .nav-item { white-space: nowrap; }
+    .audit-timestamp { width: 100%; justify-content: center; margin-top: 10px; }
     
     .page-title-section { 
         flex-direction: column; 
@@ -227,6 +241,8 @@ def get_page_template(active_page, content):
         active_class = "active" if key == active_page else ""
         nav_html += f'<a href="{link}" class="nav-item {active_class}"><span>{icon}</span>{text}</a>'
 
+    generated_at = datetime.now().strftime("%d/%m/%Y %H:%M")
+
     return f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -240,24 +256,22 @@ def get_page_template(active_page, content):
     <header class="main-header">
         <div class="container header-content">
             <div class="clan-identity">
-                <div class="clan-logo">
-                    <!-- LOGO REMOVIDA POR SOLICITAÇÃO -->
-                </div>
                 <div class="clan-info">
-                    <h1>OS GUARDIÕES</h1>
-                    <div class="clan-badges">
-                        <span class="badge">#9PJRJRPC</span>
-                        <span class="badge"><span class="trophy-icon">🏆</span> 3097</span>
-                    </div>
+                    <h1 style="display:flex; align-items:center; gap:10px;">
+                        OS GUARDIÕES 
+                        <span style="font-size:12px; color:#fbbf24; border:1px solid #fbbf24; padding:2px 6px; border-radius:4px; opacity:0.8;">#9PJRJRPC</span>
+                    </h1>
                 </div>
             </div>
             
-            <nav class="nav-pills">
-                {nav_html}
-            </nav>
-            
-            <div style="color: #718096; font-size: 12px;">
-                {datetime.now().strftime("%d/%m/%Y %H:%M")}
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px;">
+                <nav class="nav-pills">
+                    {nav_html}
+                </nav>
+                <div class="audit-timestamp">
+                    <span>🕒 Atualizado:</span>
+                    <strong style="color:#cbd5e0">{generated_at}</strong>
+                </div>
             </div>
         </div>
     </header>

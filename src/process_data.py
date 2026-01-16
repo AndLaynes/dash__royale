@@ -256,25 +256,61 @@ def process_daily_data():
     # Tenta obter um ID único para a guerra atual a partir do periodLogs
     try:
         # A API retorna o log do período mais recente primeiro
-        war_id = current_war_data['periodLogs'][0]['createdDate']
+        war_id_from_period_logs = current_war_data['periodLogs'][0]['createdDate']
     except (IndexError, KeyError):
-        log_and_print("-> Alerta: Não foi possível encontrar 'createdDate' em 'periodLogs' para identificar a guerra.")
-        # Como fallback, podemos usar o 'seasonId', mas é menos preciso para o reset semanal
-        war_id = current_war_data.get('seasonId', 'unknown_war_id')
-        log_and_print(f"-> Usando fallback de war_id: {war_id}")
+        war_id_from_period_logs = None # Não foi possível obter de periodLogs
+
+    # Identificação da Guerra (Forensic ID)
+    # Tenta extrair da API 'currentriverrace'
+    season_id = current_war_data.get('seasonId')
+    section_index = current_war_data.get('sectionIndex')
+
+    # FALLBACK: Se a API falhar (comum na quinta-feira de manhã), tentar inferir do histórico
+    if season_id is None or section_index is None:
+        log_and_print("⚠️ API 'currentriverrace' incompleta. Tentando inferir Season ID do histórico...")
+        river_log_path = os.path.join(data_dir, 'riverracelog.json')
+        if os.path.exists(river_log_path):
+            try:
+                with open(river_log_path, 'r', encoding='utf-8') as f:
+                    r_log = json.load(f)
+                    items = r_log.get('items', [])
+                    if items:
+                        last_war = items[0]
+                        last_season = last_war.get('seasonId', 0)
+                        last_section = last_war.get('sectionIndex', 0)
+                        
+                        # Lógica de Inferência:
+                        # Se a última guerra foi semana 4 (Colosseum), a nova é Season+1, Semana 0 (ou 1?)
+                        # Se foi semana < 4, a nova é SeasonAtual, Semana+1
+                        
+                        # Assumindo comportamento padrão:
+                        if last_section >= 3: # Geralmente vai até 3 ou 4 dependendo da era
+                            season_id = last_season + 1 # Chute educado, mas melhor marcar como 'Estimado'
+                            section_index = 0
+                        else:
+                            season_id = last_season
+                            section_index = last_section + 1
+                        
+                        log_and_print(f"-> ID Inferido do Histórico: S{season_id}-W{section_index}")
+            except Exception as e:
+                log_and_print(f"Erro ao ler histórico para fallback: {e}")
+
+    # Fallback final
+    if season_id is None: season_id = "UNKNOWN"
+    if section_index is None: section_index = 0
+
+    war_id = f"{season_id}_{section_index}"
+    log_and_print(f"Forensic ID Check: Season {season_id} | Week {section_index} (WarID: {war_id})")
 
     # Carrega o histórico existente, se houver
     history_data = load_json_file(history_file_path)
+    # Se não houver histórico ou se o warId for diferente, iniciar um novo registro
     if not history_data or history_data.get('warId') != war_id:
-        # Fallback IDs
-        season_id_val = current_war_data.get('seasonId', 'unknown')
-        section_index_val = current_war_data.get('sectionIndex', 'unknown')
-
         log_and_print(f"-> Detectada uma nova guerra (ID: {war_id}) ou histórico inexistente. Iniciando novo registro.")
         history_data = {
             "warId": war_id,
-            "seasonId": season_id_val,
-            "sectionIndex": section_index_val,
+            "seasonId": season_id,
+            "sectionIndex": section_index,
             "inWar": True,
             "warDays": [],
             "players": {}
