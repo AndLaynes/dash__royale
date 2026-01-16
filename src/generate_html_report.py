@@ -1,11 +1,17 @@
 import json
 import os
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 # Define paths
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
 OUTPUT_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# ==========================================
+# CONSTANTES GLOBAIS
+# ==========================================
+# Fuso Horário Brasil (GMT-3)
+BRAZIL_TZ = timezone(timedelta(hours=-3))
 
 # ==========================================
 # TEMPLATES CSS & HTML (O DESIGN FIEL)
@@ -208,8 +214,13 @@ body {
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
     .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
-    .nav-pills { width: 100%; overflow-x: auto; padding-bottom: 5px; }
-    .nav-item { white-space: nowrap; }
+    .nav-pills { 
+        width: 100%; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        padding-bottom: 5px; 
+    }
+    .nav-item { white-space: nowrap; font-size: 13px; padding: 8px 15px; }
     .audit-timestamp { width: 100%; justify-content: center; margin-top: 10px; }
     
     .page-title-section { 
@@ -225,6 +236,10 @@ body {
         gap: 10px; 
     }
     .stat-box { min-width: auto; }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
 }
 """
 
@@ -241,7 +256,7 @@ def get_page_template(active_page, content):
         active_class = "active" if key == active_page else ""
         nav_html += f'<a href="{link}" class="nav-item {active_class}"><span>{icon}</span>{text}</a>'
 
-    generated_at = datetime.now().strftime("%d/%m/%Y %H:%M")
+    generated_at = datetime.now(BRAZIL_TZ).strftime("%d/%m/%Y %H:%M")
 
     return f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -374,13 +389,14 @@ def generate_html_report():
     # 2. Processar Lógica de Auditoria (GT-Z War Rules)
     # 0=Seg, 1=Ter, 2=Qua (Exibir Última Guerra Fechada)
     # 3=Qui, 4=Sex, 5=Sab, 6=Dom (Exibir Guerra Atual)
-    weekday = datetime.now().weekday()
+    # 3=Qui, 4=Sex, 5=Sab, 6=Dom (Exibir Guerra Atual)
+    weekday = datetime.now(BRAZIL_TZ).weekday()
     
     audit_rows = []
 
     # STATUS: TREINO (Seg-Qua) -> Pega do River Race Log (Histórico Fechado)
     if weekday < 3:
-        print(f"Hoje é {datetime.now().strftime('%A')} (Treino). Exibindo Última Guerra Fechada.")
+        print(f"Hoje é {datetime.now(BRAZIL_TZ).strftime('%A')} (Treino). Exibindo Última Guerra Fechada.")
         
         # Carregar riverracelog
         history_log_path = os.path.join(DATA_DIR, 'riverracelog.json')
@@ -436,7 +452,7 @@ def generate_html_report():
 
     # STATUS: GUERRA (Qui-Dom) -> Pega do Daily History (Tempo Real)
     else:
-        print(f"Hoje é {datetime.now().strftime('%A')} (Guerra). Exibindo Auditoria em Tempo Real.")
+        print(f"Hoje é {datetime.now(BRAZIL_TZ).strftime('%A')} (Guerra). Exibindo Auditoria em Tempo Real.")
         
         # Meta Dinâmica: (Dia da Semana - 2) * 4. Ex: Qui(3)-2 = 1*4 = 4. Sex(4)-2 = 2*4 = 8.
         # Max 16.
@@ -560,7 +576,17 @@ def generate_html_report():
     <div class="page-title-section">
         <div>
             <h2>Status de Guerra</h2>
-            <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual <span style="color:#fbbf24; font-weight:bold; margin-left:10px;">[{war_label}]</span></p>
+            <div style="display:flex; flex-direction:column;">
+                <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual</p>
+                <div style="margin-top:5px;">
+                    <span class="badge" style="background:#2d3748; color:#a0aec0; border:1px solid #4a5568;">
+                        Dados de: {datetime.now(BRAZIL_TZ).strftime('%d/%m')}
+                    </span>
+                    <span class="badge" style="background:#2d3748; color:#fbbf24; border:1px solid #d97706; margin-left:5px;">
+                        Fonte: {war_label}
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="audit-stats">
              <!-- META AGORA É UM STAT-BOX PARA ALINHAMENTO -->

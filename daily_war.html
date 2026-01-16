@@ -202,8 +202,13 @@ body {
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
     .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
-    .nav-pills { width: 100%; overflow-x: auto; padding-bottom: 5px; }
-    .nav-item { white-space: nowrap; }
+    .nav-pills { 
+        width: 100%; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        padding-bottom: 5px; 
+    }
+    .nav-item { white-space: nowrap; font-size: 13px; padding: 8px 15px; }
     .audit-timestamp { width: 100%; justify-content: center; margin-top: 10px; }
     
     .page-title-section { 
@@ -219,6 +224,10 @@ body {
         gap: 10px; 
     }
     .stat-box { min-width: auto; }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
 }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -241,7 +250,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">15/01/2026 22:45</strong>
+                    <strong style="color:#cbd5e0">15/01/2026 23:18</strong>
                 </div>
             </div>
         </div>
@@ -252,7 +261,17 @@ body {
     <div class="page-title-section">
         <div>
             <h2>Status de Guerra</h2>
-            <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual <span style="color:#fbbf24; font-weight:bold; margin-left:10px;">[Temporada 128 | Semana 1]</span></p>
+            <div style="display:flex; flex-direction:column;">
+                <p class="page-subtitle">Acompanhamento de Decks na Guerra Atual</p>
+                <div style="margin-top:5px;">
+                    <span class="badge" style="background:#2d3748; color:#a0aec0; border:1px solid #4a5568;">
+                        Dados de: 15/01
+                    </span>
+                    <span class="badge" style="background:#2d3748; color:#fbbf24; border:1px solid #d97706; margin-left:5px;">
+                        Fonte: Temporada 128 | Semana 1
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="audit-stats">
              <!-- META AGORA É UM STAT-BOX PARA ALINHAMENTO -->

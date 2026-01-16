@@ -202,8 +202,13 @@ body {
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
     .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
-    .nav-pills { width: 100%; overflow-x: auto; padding-bottom: 5px; }
-    .nav-item { white-space: nowrap; }
+    .nav-pills { 
+        width: 100%; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        padding-bottom: 5px; 
+    }
+    .nav-item { white-space: nowrap; font-size: 13px; padding: 8px 15px; }
     .audit-timestamp { width: 100%; justify-content: center; margin-top: 10px; }
     
     .page-title-section { 
@@ -219,6 +224,10 @@ body {
         gap: 10px; 
     }
     .stat-box { min-width: auto; }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
 }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -241,7 +250,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">15/01/2026 22:45</strong>
+                    <strong style="color:#cbd5e0">15/01/2026 23:18</strong>
                 </div>
             </div>
         </div>
