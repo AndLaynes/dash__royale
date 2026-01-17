@@ -211,6 +211,24 @@ body {
     gap: 5px;
 }
 
+.btn-pdf {
+    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
+}
+.btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3); }
+.btn-pdf:disabled { opacity: 0.7; cursor: wait; }
+
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
     .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
@@ -266,6 +284,7 @@ def get_page_template(active_page, content):
     <title>OS GUARDIÕES - {active_page}</title>
     <style>{STYLE_CSS}</style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -295,8 +314,38 @@ def get_page_template(active_page, content):
         {content}
     </div>
 
-    <!-- SCRIPTS PARA FILTRO E ORDENAÇÃO -->
+    <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
+    function downloadPDF() {{
+        const element = document.getElementById('printable-area');
+        const btn = document.getElementById('btn-export-pdf');
+        
+        // Visual Feedback
+        const originalText = btn.innerText;
+        btn.innerText = "Gerando PDF...";
+        btn.disabled = true;
+
+        // Configuração do PDF (High Fidelity / Dark Mode preservation)
+        const opt = {{
+            margin:       [0.5, 0.5],
+            filename:     'War_Log_Guardian_' + new Date().toISOString().slice(0,10) + '.pdf',
+            image:        {{ type: 'jpeg', quality: 0.98 }},
+            html2canvas:  {{ 
+                scale: 2, 
+                useCORS: true, 
+                backgroundColor: '#0f1420', // Mantém fundo dark
+                logging: false
+            }},
+            jsPDF:        {{ unit: 'in', format: 'a4', orientation: 'portrait' }}
+        }};
+
+        // Executar
+        html2pdf().set(opt).from(element).save().then(function(){{
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }});
+    }}
+
     document.addEventListener('DOMContentLoaded', function() {{
         const tables = document.querySelectorAll('.custom-table');
         tables.forEach(table => {{
@@ -598,7 +647,15 @@ def generate_html_report():
 
     # 5. Montar Conteúdo Daily War
     audit_content = f"""
-    <div class="page-title-section">
+    <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+        <button id="btn-export-pdf" class="btn-pdf" onclick="downloadPDF()">
+            <span>📄</span> Exportar Relatório (PDF)
+        </button>
+    </div>
+
+    <div id="printable-area">
+        <!-- HEADER DO PDF (Carimbo) -->
+        <div class="page-title-section">
         <div>
             <h2>Status de Guerra</h2>
             <div style="display:flex; flex-direction:column;">
@@ -671,6 +728,7 @@ def generate_html_report():
             {audit_table_html}
         </tbody>
     </table>
+    </div>
     """
 
     # Escrever Daily War

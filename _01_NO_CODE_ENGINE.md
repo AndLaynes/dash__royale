@@ -108,3 +108,12 @@ THEN response: `> ENGINE ONLINE. GROUND TRUTH CALIBRATED.`
 *   **[CORRIGIDO]** Mensagem final: Removido prompt confuso sobre "iniciar servidor". Adicionado confirmação de sincronização e status de prontidão.
 
 **VERDICT:** PIPELINE FULLY AUTOMATED. ONE-CLICK UPDATE & SYNC ENABLED.
+
+#### [TIMESTAMP: 2026-01-17 15:52 - FEATURE LOCK]
+**TRIGGER:** `User Request: PDF Validation Commit`
+**ACTION:** Commit isolado de validação da funcionalidade PDF.
+
+**1. src/generate_html_report.py**
+*   **[LOCKED]** Funcionalidade `downloadPDF()` (html2pdf.js) persistida e validada no repositório.
+
+**VERDICT:** FEATURE DEPLOYED & VERSIONED.
