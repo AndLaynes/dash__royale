@@ -454,14 +454,40 @@ def generate_html_report():
     else:
         print(f"Hoje é {datetime.now(BRAZIL_TZ).strftime('%A')} (Guerra). Exibindo Auditoria em Tempo Real.")
         
-        # Meta Dinâmica: (Dia da Semana - 2) * 4. Ex: Qui(3)-2 = 1*4 = 4. Sex(4)-2 = 2*4 = 8.
-        # Max 16.
-        days_in_war = weekday - 2 
-        meta_decks = days_in_war * 4
-        if meta_decks > 16: meta_decks = 16
-        if meta_decks < 4: meta_decks = 4 # Fallback
+        # ---------------------------------------------------------
+        # LÓGICA DE AUDITORIA D-1 (STRICT RETROSPECTIVE) - GT-Z
+        # ---------------------------------------------------------
+        # O sistema não deve cobrar o dia corrente (Real-Time), mas sim fechar
+        # o dia anterior.
+        #
+        # HOJE      | AUDITA    | META (ACUMULADA)
+        # ----------------------------------------
+        # Quinta    | N/A       | (Mostra parcial ou zero)
+        # Sexta     | Quinta    | 4 Decks
+        # Sábado    | Sexta     | 8 Decks (4 Qui + 4 Sex)
+        # Domingo   | Sábado    | 12 Decks
+        # Segunda   | Domingo   | 16 Decks (Feita no bloco 'else' acima)
+        
+        # Ajuste do Index para D-1
+        # weekday: 3=Qui, 4=Sex, 5=Sab, 6=Dom
+        
+        audit_target_day_index = weekday - 1 # Se hoje é Sab(5), miramos data Sex(4)
+        
+        # Meta: (DiaAuditado_Index - 2) * 4
+        # Ex Sábado: Auditamos Sexta(4). (4 - 2) * 4 = 8 Decks.
+        
+        days_in_war_audit = audit_target_day_index - 2
+        meta_decks = days_in_war_audit * 4
+        
+        if meta_decks < 4: 
+            # Caso especial: Quinta-feira (3). Auditamos Quarta(2)? Não.
+            # Quinta-feira é o dia de abertua. Não há "Ontem de Guerra".
+            # Mostramos dados parciais de Quinta ou Zero.
+            meta_decks = 4 
+            # Nota: Na quinta, idealmente mostra-se o que já foi feito, mas o status
+            # "INCOMPLETO" é esperado. Manteremos meta 4 para incentivo visual.
 
-        if meta_decks < 4: meta_decks = 4 # Fallback
+        if meta_decks > 16: meta_decks = 16
         
         # [NOVO] Extrair Identificação da Guerra
         season_id = daily_data.get('seasonId', '?')
