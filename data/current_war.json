@@ -2787,15 +2787,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#L2Q0GCGY0",
-                    "name": "ЗАВУПАЧ",
-                    "fame": 1100,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 8,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#QQ0G8U290",
                     "name": "SAYgg",
                     "fame": 1100,
@@ -2830,6 +2821,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 9,
                     "decksUsedToday": 2
+                },
+                {
+                    "tag": "#L2Q0GCGY0",
+                    "name": "ЗАВУПАЧ",
+                    "fame": 1200,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 9,
+                    "decksUsedToday": 1
                 },
                 {
                     "tag": "#VUCV90CG9",
@@ -2985,7 +2985,7 @@
                     "decksUsedToday": 2
                 }
             ],
-            "periodPoints": 9200,
+            "periodPoints": 9300,
             "clanScore": 3245
         },
         {

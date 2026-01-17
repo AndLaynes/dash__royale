@@ -265,9 +265,8 @@ def process_daily_data():
     season_id = current_war_data.get('seasonId')
     section_index = current_war_data.get('sectionIndex')
 
-    # FALLBACK: Se a API falhar (comum na quinta-feira de manhã), tentar inferir do histórico
     if season_id is None or section_index is None:
-        log_and_print("⚠️ API 'currentriverrace' incompleta. Tentando inferir Season ID do histórico...")
+        log_and_print("[!] API 'currentriverrace' incompleta. Tentando inferir Season ID do histórico...")
         river_log_path = os.path.join(data_dir, 'riverracelog.json')
         if os.path.exists(river_log_path):
             try:
@@ -285,7 +284,7 @@ def process_daily_data():
                         
                         # Assumindo comportamento padrão:
                         if last_section >= 3: # Geralmente vai até 3 ou 4 dependendo da era
-                            season_id = last_season + 1 # Chute educado, mas melhor marcar como 'Estimado'
+                            season_id = last_season + 1 # Estimativa Heurística
                             section_index = 0
                         else:
                             season_id = last_season
