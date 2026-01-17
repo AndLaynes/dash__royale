@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 107435,
+    "clanScore": 104491,
     "clanWarTrophies": 3262,
     "location": {
         "id": 57000038,
@@ -13,109 +13,97 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 8412,
+    "donationsPerWeek": 9968,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
-    "members": 48,
+    "members": 41,
     "memberList": [
         {
             "tag": "#9RUUG2R8",
             "name": "Nico",
             "role": "member",
-            "lastSeen": "20260116T021423.000Z",
+            "lastSeen": "20260116T223213.000Z",
             "expLevel": 68,
             "trophies": 12000,
             "arena": {
                 "id": 54000132,
-                "name": "Summit of Heroes"
+                "name": "Summit of Heroes",
+                "rawName": "Arena_L14"
             },
             "clanRank": 1,
             "previousClanRank": 1,
-            "donations": 648,
-            "donationsReceived": 384,
+            "donations": 696,
+            "donationsReceived": 424,
             "clanChestPoints": 0
         },
         {
             "tag": "#UGUULGQ8Y",
             "name": "Asten Acady",
             "role": "elder",
-            "lastSeen": "20260116T014726.000Z",
+            "lastSeen": "20260116T172756.000Z",
             "expLevel": 72,
             "trophies": 11681,
             "arena": {
                 "id": 54000132,
-                "name": "Summit of Heroes"
+                "name": "Summit of Heroes",
+                "rawName": "Arena_L14"
             },
             "clanRank": 2,
             "previousClanRank": 2,
-            "donations": 498,
-            "donationsReceived": 280,
+            "donations": 626,
+            "donationsReceived": 320,
             "clanChestPoints": 0
         },
         {
             "tag": "#CJRCPL88P",
             "name": "WvCly",
             "role": "member",
-            "lastSeen": "20260116T014021.000Z",
+            "lastSeen": "20260116T223035.000Z",
             "expLevel": 67,
             "trophies": 11551,
             "arena": {
                 "id": 54000132,
-                "name": "Summit of Heroes"
+                "name": "Summit of Heroes",
+                "rawName": "Arena_L14"
             },
             "clanRank": 3,
             "previousClanRank": 3,
-            "donations": 123,
-            "donationsReceived": 120,
+            "donations": 139,
+            "donationsReceived": 160,
             "clanChestPoints": 0
         },
         {
             "tag": "#V92JP0YGY",
             "name": "GabiMalvadeza",
             "role": "member",
-            "lastSeen": "20260116T000644.000Z",
+            "lastSeen": "20260117T001259.000Z",
             "expLevel": 61,
-            "trophies": 11461,
+            "trophies": 11500,
             "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street"
+                "id": 54000132,
+                "name": "Summit of Heroes",
+                "rawName": "Arena_L14"
             },
             "clanRank": 4,
             "previousClanRank": 4,
-            "donations": 86,
-            "donationsReceived": 120,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#2LY2GLJQL",
-            "name": "JOSA",
-            "role": "member",
-            "lastSeen": "20260116T000650.000Z",
-            "expLevel": 62,
-            "trophies": 11101,
-            "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street"
-            },
-            "clanRank": 5,
-            "previousClanRank": 5,
-            "donations": 178,
-            "donationsReceived": 360,
+            "donations": 104,
+            "donationsReceived": 176,
             "clanChestPoints": 0
         },
         {
             "tag": "#R9UP0QLR9",
             "name": "ZackThunder",
             "role": "member",
-            "lastSeen": "20260115T221625.000Z",
+            "lastSeen": "20260116T180448.000Z",
             "expLevel": 61,
-            "trophies": 11047,
+            "trophies": 11049,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street"
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
             },
-            "clanRank": 6,
+            "clanRank": 5,
             "previousClanRank": 6,
             "donations": 0,
             "donationsReceived": 40,
@@ -125,66 +113,70 @@
             "tag": "#LVQRP2LGG",
             "name": "luck",
             "role": "member",
-            "lastSeen": "20260116T005206.000Z",
+            "lastSeen": "20260116T181454.000Z",
             "expLevel": 58,
             "trophies": 11000,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street"
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
             },
-            "clanRank": 7,
-            "previousClanRank": 9,
+            "clanRank": 6,
+            "previousClanRank": 7,
             "donations": 36,
             "donationsReceived": 120,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#YJUG9Y88",
-            "name": "Dockz",
-            "role": "member",
-            "lastSeen": "20260116T005006.000Z",
-            "expLevel": 65,
-            "trophies": 11000,
-            "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street"
-            },
-            "clanRank": 8,
-            "previousClanRank": 8,
-            "donations": 136,
-            "donationsReceived": 160,
             "clanChestPoints": 0
         },
         {
             "tag": "#PG2LUY0PP",
             "name": "^_^^_^",
             "role": "member",
-            "lastSeen": "20260115T132931.000Z",
-            "expLevel": 58,
+            "lastSeen": "20260116T180755.000Z",
+            "expLevel": 59,
             "trophies": 11000,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street"
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
             },
-            "clanRank": 9,
-            "previousClanRank": 7,
-            "donations": 46,
-            "donationsReceived": 120,
+            "clanRank": 7,
+            "previousClanRank": 8,
+            "donations": 62,
+            "donationsReceived": 200,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#YJUG9Y88",
+            "name": "Dockz",
+            "role": "member",
+            "lastSeen": "20260116T173906.000Z",
+            "expLevel": 65,
+            "trophies": 11000,
+            "arena": {
+                "id": 54000131,
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
+            },
+            "clanRank": 8,
+            "previousClanRank": 9,
+            "donations": 156,
+            "donationsReceived": 200,
             "clanChestPoints": 0
         },
         {
             "tag": "#V9PCU0LCV",
             "name": "gabiggoughost",
             "role": "elder",
-            "lastSeen": "20260115T225715.000Z",
+            "lastSeen": "20260116T225040.000Z",
             "expLevel": 63,
             "trophies": 10885,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 10,
-            "previousClanRank": 11,
+            "clanRank": 9,
+            "previousClanRank": 10,
             "donations": 56,
             "donationsReceived": 80,
             "clanChestPoints": 0
@@ -193,119 +185,108 @@
             "tag": "#8U008PQU8",
             "name": "RobaFrag",
             "role": "elder",
-            "lastSeen": "20260116T023620.000Z",
+            "lastSeen": "20260116T192047.000Z",
             "expLevel": 66,
             "trophies": 10851,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 11,
-            "previousClanRank": 10,
-            "donations": 703,
-            "donationsReceived": 400,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#2LR0RR89Q",
-            "name": "Chetto",
-            "role": "member",
-            "lastSeen": "20260116T012019.000Z",
-            "expLevel": 60,
-            "trophies": 10818,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road"
-            },
-            "clanRank": 12,
-            "previousClanRank": 13,
-            "donations": 144,
-            "donationsReceived": 180,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#8LRQJLPCQ",
-            "name": "Yzzy the best ¿",
-            "role": "member",
-            "lastSeen": "20260115T163920.000Z",
-            "expLevel": 55,
-            "trophies": 10814,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road"
-            },
-            "clanRank": 13,
-            "previousClanRank": 12,
-            "donations": 90,
-            "donationsReceived": 0,
+            "clanRank": 10,
+            "previousClanRank": 11,
+            "donations": 801,
+            "donationsReceived": 520,
             "clanChestPoints": 0
         },
         {
             "tag": "#2P299V0CU",
             "name": "Sotto ツ",
             "role": "member",
-            "lastSeen": "20260115T225752.000Z",
+            "lastSeen": "20260116T184837.000Z",
             "expLevel": 67,
             "trophies": 10807,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 14,
+            "clanRank": 11,
             "previousClanRank": 14,
-            "donations": 334,
-            "donationsReceived": 160,
+            "donations": 447,
+            "donationsReceived": 200,
             "clanChestPoints": 0
         },
         {
             "tag": "#LLGUL2RUJ",
             "name": "mathi❄️",
             "role": "member",
-            "lastSeen": "20260115T154059.000Z",
+            "lastSeen": "20260116T223300.000Z",
             "expLevel": 63,
             "trophies": 10791,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 15,
+            "clanRank": 12,
             "previousClanRank": 15,
-            "donations": 126,
-            "donationsReceived": 240,
+            "donations": 154,
+            "donationsReceived": 280,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#2LR0RR89Q",
+            "name": "Chetto",
+            "role": "member",
+            "lastSeen": "20260116T215957.000Z",
+            "expLevel": 60,
+            "trophies": 10788,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 13,
+            "previousClanRank": 12,
+            "donations": 190,
+            "donationsReceived": 260,
             "clanChestPoints": 0
         },
         {
             "tag": "#8R2LRC80Q",
             "name": "Daniele❤",
             "role": "member",
-            "lastSeen": "20260115T181142.000Z",
+            "lastSeen": "20260116T235158.000Z",
             "expLevel": 58,
             "trophies": 10776,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 16,
+            "clanRank": 14,
             "previousClanRank": 16,
-            "donations": 118,
-            "donationsReceived": 160,
+            "donations": 178,
+            "donationsReceived": 190,
             "clanChestPoints": 0
         },
         {
             "tag": "#U8VP8L8L0",
             "name": "tavin",
             "role": "member",
-            "lastSeen": "20260115T223706.000Z",
+            "lastSeen": "20260117T000528.000Z",
             "expLevel": 53,
             "trophies": 10724,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 17,
+            "clanRank": 15,
             "previousClanRank": 17,
-            "donations": 254,
-            "donationsReceived": 280,
+            "donations": 282,
+            "donationsReceived": 360,
             "clanChestPoints": 0
         },
         {
@@ -317,181 +298,174 @@
             "trophies": 10647,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 18,
-            "previousClanRank": 23,
+            "clanRank": 16,
+            "previousClanRank": 24,
             "donations": 253,
             "donationsReceived": 240,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#2VLR9U90",
-            "name": "EDDIE",
-            "role": "coLeader",
-            "lastSeen": "20260116T022127.000Z",
-            "expLevel": 71,
-            "trophies": 10597,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road"
-            },
-            "clanRank": 19,
-            "previousClanRank": 22,
-            "donations": 440,
-            "donationsReceived": 160,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#QUVLYY0VY",
-            "name": "Grimmer 狼",
-            "role": "member",
-            "lastSeen": "20260116T010148.000Z",
-            "expLevel": 56,
-            "trophies": 10591,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road"
-            },
-            "clanRank": 20,
-            "previousClanRank": 20,
-            "donations": 362,
-            "donationsReceived": 400,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#90U8CVP90",
-            "name": "Mila",
-            "role": "coLeader",
-            "lastSeen": "20260115T224024.000Z",
-            "expLevel": 61,
-            "trophies": 10591,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road"
-            },
-            "clanRank": 21,
-            "previousClanRank": 19,
-            "donations": 20,
-            "donationsReceived": 120,
             "clanChestPoints": 0
         },
         {
             "tag": "#Y98QP9Q9R",
             "name": "dogmal",
             "role": "member",
-            "lastSeen": "20260116T021025.000Z",
+            "lastSeen": "20260116T233115.000Z",
             "expLevel": 58,
-            "trophies": 10581,
+            "trophies": 10639,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 22,
-            "previousClanRank": 0,
+            "clanRank": 17,
+            "previousClanRank": 20,
             "donations": 0,
             "donationsReceived": 0,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#QUVLYY0VY",
+            "name": "Grimmer 狼",
+            "role": "member",
+            "lastSeen": "20260116T213720.000Z",
+            "expLevel": 56,
+            "trophies": 10620,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 18,
+            "previousClanRank": 23,
+            "donations": 380,
+            "donationsReceived": 440,
             "clanChestPoints": 0
         },
         {
             "tag": "#UPR022QUR",
             "name": "Bruno",
             "role": "member",
-            "lastSeen": "20260115T213419.000Z",
+            "lastSeen": "20260116T194828.000Z",
             "expLevel": 61,
-            "trophies": 10572,
+            "trophies": 10604,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road"
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
             },
-            "clanRank": 23,
-            "previousClanRank": 18,
-            "donations": 0,
-            "donationsReceived": 0,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#9JL9J98JC",
-            "name": "- ROJÎ",
-            "role": "member",
-            "lastSeen": "20260114T212813.000Z",
-            "expLevel": 51,
-            "trophies": 10531,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road"
-            },
-            "clanRank": 24,
+            "clanRank": 19,
             "previousClanRank": 21,
             "donations": 0,
             "donationsReceived": 0,
             "clanChestPoints": 0
         },
         {
+            "tag": "#90U8CVP90",
+            "name": "Mila",
+            "role": "coLeader",
+            "lastSeen": "20260116T185744.000Z",
+            "expLevel": 61,
+            "trophies": 10530,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 20,
+            "previousClanRank": 19,
+            "donations": 67,
+            "donationsReceived": 160,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#2VLR9U90",
+            "name": "EDDIE",
+            "role": "coLeader",
+            "lastSeen": "20260117T000849.000Z",
+            "expLevel": 71,
+            "trophies": 10500,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 21,
+            "previousClanRank": 18,
+            "donations": 638,
+            "donationsReceived": 200,
+            "clanChestPoints": 0
+        },
+        {
             "tag": "#UU0RCRLQU",
             "name": "super",
             "role": "member",
-            "lastSeen": "20260115T212324.000Z",
+            "lastSeen": "20260116T235118.000Z",
             "expLevel": 54,
             "trophies": 10301,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 25,
-            "previousClanRank": 24,
-            "donations": 122,
-            "donationsReceived": 120,
+            "clanRank": 22,
+            "previousClanRank": 25,
+            "donations": 192,
+            "donationsReceived": 150,
             "clanChestPoints": 0
         },
         {
             "tag": "#UJRQ2L09",
             "name": "O GUARDIÃO",
             "role": "leader",
-            "lastSeen": "20260115T230855.000Z",
+            "lastSeen": "20260116T194410.000Z",
             "expLevel": 63,
             "trophies": 10265,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 26,
+            "clanRank": 23,
             "previousClanRank": 26,
-            "donations": 147,
-            "donationsReceived": 400,
+            "donations": 185,
+            "donationsReceived": 480,
             "clanChestPoints": 0
         },
         {
             "tag": "#UJRLJY0L2",
             "name": "51 é pinga",
             "role": "elder",
-            "lastSeen": "20260115T214430.000Z",
+            "lastSeen": "20260116T232101.000Z",
             "expLevel": 53,
-            "trophies": 10265,
+            "trophies": 10201,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 27,
-            "previousClanRank": 25,
-            "donations": 272,
-            "donationsReceived": 130,
+            "clanRank": 24,
+            "previousClanRank": 27,
+            "donations": 296,
+            "donationsReceived": 170,
             "clanChestPoints": 0
         },
         {
             "tag": "#U220VCULP",
             "name": "joão3:16",
             "role": "coLeader",
-            "lastSeen": "20260116T021841.000Z",
+            "lastSeen": "20260116T221939.000Z",
             "expLevel": 66,
             "trophies": 10198,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 28,
-            "previousClanRank": 27,
-            "donations": 0,
+            "clanRank": 25,
+            "previousClanRank": 28,
+            "donations": 20,
             "donationsReceived": 0,
             "clanChestPoints": 0
         },
@@ -504,94 +478,64 @@
             "trophies": 10180,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 29,
+            "clanRank": 26,
             "previousClanRank": 29,
             "donations": 142,
             "donationsReceived": 160,
             "clanChestPoints": 0
         },
         {
-            "tag": "#8C8RY8GL9",
-            "name": "Zenitsu愛",
-            "role": "member",
-            "lastSeen": "20260110T200225.000Z",
-            "expLevel": 59,
-            "trophies": 10151,
-            "arena": {
-                "id": 54000117,
-                "name": "Lumberlove Cabin"
-            },
-            "clanRank": 30,
-            "previousClanRank": 30,
-            "donations": 0,
-            "donationsReceived": 0,
-            "clanChestPoints": 0
-        },
-        {
             "tag": "#VL292PYGJ",
             "name": "nivelador",
             "role": "member",
-            "lastSeen": "20260116T003051.000Z",
+            "lastSeen": "20260116T153117.000Z",
             "expLevel": 64,
             "trophies": 10129,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 31,
-            "previousClanRank": 28,
-            "donations": 352,
-            "donationsReceived": 320,
+            "clanRank": 27,
+            "previousClanRank": 31,
+            "donations": 394,
+            "donationsReceived": 360,
             "clanChestPoints": 0
         },
         {
             "tag": "#LVGCLQQ8L",
             "name": "Luciano",
             "role": "member",
-            "lastSeen": "20260115T202352.000Z",
+            "lastSeen": "20260117T001452.000Z",
             "expLevel": 58,
-            "trophies": 10087,
+            "trophies": 10114,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 32,
-            "previousClanRank": 34,
+            "clanRank": 28,
+            "previousClanRank": 32,
             "donations": 30,
-            "donationsReceived": 360,
+            "donationsReceived": 460,
             "clanChestPoints": 0
         },
         {
             "tag": "#200JYCVYGY",
             "name": "Rodolfos",
             "role": "elder",
-            "lastSeen": "20260115T202734.000Z",
+            "lastSeen": "20260116T181209.000Z",
             "expLevel": 55,
             "trophies": 10060,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 33,
-            "previousClanRank": 31,
-            "donations": 0,
-            "donationsReceived": 0,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#CLYJQ2V00",
-            "name": "5C4RF4C3",
-            "role": "member",
-            "lastSeen": "20260113T182848.000Z",
-            "expLevel": 48,
-            "trophies": 10034,
-            "arena": {
-                "id": 54000117,
-                "name": "Lumberlove Cabin"
-            },
-            "clanRank": 34,
+            "clanRank": 29,
             "previousClanRank": 33,
             "donations": 0,
             "donationsReceived": 0,
@@ -601,68 +545,54 @@
             "tag": "#VUQ0PV8PV",
             "name": "andrebts",
             "role": "coLeader",
-            "lastSeen": "20260116T010728.000Z",
+            "lastSeen": "20260116T191124.000Z",
             "expLevel": 52,
-            "trophies": 10030,
+            "trophies": 10043,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin"
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
             },
-            "clanRank": 35,
-            "previousClanRank": 32,
-            "donations": 187,
-            "donationsReceived": 360,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#UUL8VUQ0P",
-            "name": "❤️ THE NIGHT ❤️",
-            "role": "member",
-            "lastSeen": "20260116T004614.000Z",
-            "expLevel": 53,
-            "trophies": 10030,
-            "arena": {
-                "id": 54000117,
-                "name": "Lumberlove Cabin"
-            },
-            "clanRank": 36,
-            "previousClanRank": 0,
-            "donations": 100,
-            "donationsReceived": 0,
+            "clanRank": 30,
+            "previousClanRank": 36,
+            "donations": 213,
+            "donationsReceived": 440,
             "clanChestPoints": 0
         },
         {
             "tag": "#PCPCJU20Y",
             "name": "polaris",
             "role": "member",
-            "lastSeen": "20260115T215540.000Z",
+            "lastSeen": "20260116T223720.000Z",
             "expLevel": 57,
-            "trophies": 9836,
+            "trophies": 9954,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena"
+                "name": "Legendary Arena",
+                "rawName": "Arena_L10"
             },
-            "clanRank": 37,
-            "previousClanRank": 35,
-            "donations": 8,
-            "donationsReceived": 200,
+            "clanRank": 31,
+            "previousClanRank": 37,
+            "donations": 28,
+            "donationsReceived": 240,
             "clanChestPoints": 0
         },
         {
             "tag": "#99PJ9QQPC",
             "name": "⭐O SENTINELA ⭐",
             "role": "coLeader",
-            "lastSeen": "20260115T231153.000Z",
+            "lastSeen": "20260116T194029.000Z",
             "expLevel": 59,
             "trophies": 9710,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena"
+                "name": "Legendary Arena",
+                "rawName": "Arena_L10"
             },
-            "clanRank": 38,
-            "previousClanRank": 36,
-            "donations": 131,
-            "donationsReceived": 360,
+            "clanRank": 32,
+            "previousClanRank": 38,
+            "donations": 159,
+            "donationsReceived": 400,
             "clanChestPoints": 0
         },
         {
@@ -674,10 +604,11 @@
             "trophies": 9651,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena"
+                "name": "Legendary Arena",
+                "rawName": "Arena_L10"
             },
-            "clanRank": 39,
-            "previousClanRank": 37,
+            "clanRank": 33,
+            "previousClanRank": 39,
             "donations": 182,
             "donationsReceived": 200,
             "clanChestPoints": 0
@@ -691,10 +622,11 @@
             "trophies": 9621,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena"
+                "name": "Legendary Arena",
+                "rawName": "Arena_L10"
             },
-            "clanRank": 40,
-            "previousClanRank": 38,
+            "clanRank": 34,
+            "previousClanRank": 40,
             "donations": 206,
             "donationsReceived": 200,
             "clanChestPoints": 0
@@ -703,50 +635,53 @@
             "tag": "#28RPQGG09",
             "name": "gabriel 3$",
             "role": "coLeader",
-            "lastSeen": "20260115T231306.000Z",
+            "lastSeen": "20260116T192032.000Z",
             "expLevel": 56,
             "trophies": 9267,
             "arena": {
                 "id": 54000020,
-                "name": "Valkalla"
+                "name": "Valkalla",
+                "rawName": "Arena_L9"
             },
-            "clanRank": 41,
-            "previousClanRank": 39,
-            "donations": 127,
-            "donationsReceived": 320,
+            "clanRank": 35,
+            "previousClanRank": 41,
+            "donations": 149,
+            "donationsReceived": 360,
             "clanChestPoints": 0
         },
         {
             "tag": "#LYL9CU0P0",
             "name": "OneDePrata",
             "role": "coLeader",
-            "lastSeen": "20260115T211954.000Z",
+            "lastSeen": "20260116T210408.000Z",
             "expLevel": 53,
-            "trophies": 9100,
+            "trophies": 9157,
             "arena": {
                 "id": 54000020,
-                "name": "Valkalla"
+                "name": "Valkalla",
+                "rawName": "Arena_L9"
             },
-            "clanRank": 42,
-            "previousClanRank": 41,
-            "donations": 822,
-            "donationsReceived": 360,
+            "clanRank": 36,
+            "previousClanRank": 42,
+            "donations": 1012,
+            "donationsReceived": 440,
             "clanChestPoints": 0
         },
         {
             "tag": "#8JULVVL0J",
             "name": "Alvaro",
             "role": "elder",
-            "lastSeen": "20260112T215408.000Z",
+            "lastSeen": "20260116T114632.000Z",
             "expLevel": 52,
             "trophies": 9094,
             "arena": {
                 "id": 54000020,
-                "name": "Valkalla"
+                "name": "Valkalla",
+                "rawName": "Arena_L9"
             },
-            "clanRank": 43,
-            "previousClanRank": 40,
-            "donations": 0,
+            "clanRank": 37,
+            "previousClanRank": 43,
+            "donations": 28,
             "donationsReceived": 0,
             "clanChestPoints": 0
         },
@@ -754,85 +689,72 @@
             "tag": "#C8C20C0JQ",
             "name": "isp",
             "role": "member",
-            "lastSeen": "20260115T220050.000Z",
+            "lastSeen": "20260116T230350.000Z",
             "expLevel": 47,
             "trophies": 8878,
             "arena": {
                 "id": 54000019,
-                "name": "PANCAKES!"
+                "name": "PANCAKES!",
+                "rawName": "Arena_L8"
             },
-            "clanRank": 44,
-            "previousClanRank": 42,
+            "clanRank": 38,
+            "previousClanRank": 44,
             "donations": 0,
-            "donationsReceived": 160,
+            "donationsReceived": 200,
             "clanChestPoints": 0
         },
         {
             "tag": "#9RPCC2VCG",
             "name": "DGJ-DAVI",
             "role": "member",
-            "lastSeen": "20260115T114357.000Z",
+            "lastSeen": "20260116T234606.000Z",
             "expLevel": 43,
             "trophies": 8144,
             "arena": {
                 "id": 54000018,
-                "name": "Clash Fest"
+                "name": "Clash Fest",
+                "rawName": "Arena_L7"
             },
-            "clanRank": 45,
-            "previousClanRank": 43,
-            "donations": 0,
-            "donationsReceived": 30,
+            "clanRank": 39,
+            "previousClanRank": 45,
+            "donations": 52,
+            "donationsReceived": 50,
             "clanChestPoints": 0
         },
         {
             "tag": "#VRGLYCRPG",
             "name": "filho de duque",
             "role": "member",
-            "lastSeen": "20260115T232301.000Z",
+            "lastSeen": "20260116T222200.000Z",
             "expLevel": 35,
-            "trophies": 7501,
+            "trophies": 7530,
             "arena": {
                 "id": 54000017,
-                "name": "Boot Camp"
+                "name": "Boot Camp",
+                "rawName": "Arena_L6"
             },
-            "clanRank": 46,
-            "previousClanRank": 44,
-            "donations": 234,
-            "donationsReceived": 120,
+            "clanRank": 40,
+            "previousClanRank": 46,
+            "donations": 270,
+            "donationsReceived": 160,
             "clanChestPoints": 0
         },
         {
             "tag": "#V9QU2YVUQ",
             "name": "Teixeirazzqw",
             "role": "member",
-            "lastSeen": "20260115T144900.000Z",
-            "expLevel": 33,
-            "trophies": 5742,
+            "lastSeen": "20260116T223644.000Z",
+            "expLevel": 34,
+            "trophies": 5860,
             "arena": {
                 "id": 54000013,
-                "name": "Executioner's Kitchen"
+                "name": "Executioner's Kitchen",
+                "rawName": "Arena_L2"
             },
-            "clanRank": 47,
-            "previousClanRank": 45,
-            "donations": 365,
-            "donationsReceived": 160,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#P0J88GLL9",
-            "name": "Felipe",
-            "role": "member",
-            "lastSeen": "20260113T233626.000Z",
-            "expLevel": 29,
-            "trophies": 5000,
-            "arena": {
-                "id": 54000012,
-                "name": "Miner's Mine"
-            },
-            "clanRank": 48,
-            "previousClanRank": 46,
-            "donations": 8,
-            "donationsReceived": 40,
+            "clanRank": 41,
+            "previousClanRank": 47,
+            "donations": 419,
+            "donationsReceived": 240,
             "clanChestPoints": 0
         }
     ]
