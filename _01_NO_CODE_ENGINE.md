@@ -117,3 +117,15 @@ THEN response: `> ENGINE ONLINE. GROUND TRUTH CALIBRATED.`
 *   **[LOCKED]** Funcionalidade `downloadPDF()` (html2pdf.js) persistida e validada no repositório.
 
 **VERDICT:** FEATURE DEPLOYED & VERSIONED.
+
+#### [TIMESTAMP: 2026-01-17 16:10 - PDF LAYOUT UPGRADE]
+**TRIGGER:** `User Request: Human Readable / 2026 Standard`
+**ACTION:** Otimização Visual para Impressão (PDF).
+
+**1. src/generate_html_report.py**
+*   **[NOVO]** `pdf-header`: Identidade Visual (Logo + Título) injetada apenas na versão impressa.
+*   **[CSS]** `page-break-inside: avoid`: Garante que tabelas não quebrem no meio das linhas.
+*   **[CONFIG]** `margin: [0.4, 0.4]`: Otimizado para A4.
+*   **[AUTO]** Pipeline automatizado regenerou e sincronizou todos os 4 relatórios.
+
+**VERDICT:** PDF EXPORT OPTIMIZED. VISUAL CLARITY CONFIRMED.
