@@ -247,6 +247,28 @@ body {
         grid-template-columns: 1fr !important;
     }
 }
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* PDF EXPORT STYLES (2026 Standard) */
+.pdf-header {
+    display: none; /* Hidden on screen */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #fbbf24;
+    padding-bottom: 10px;
+}
+.pdf-header h1 { color: #fbbf24; font-size: 24px; text-transform: uppercase; }
+.pdf-watermark {
+    color: #4a5568; margin-top: 5px; font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+}
+
+/* Print Optimization */
+@media print {
+    tr.data-row { break-inside: avoid; page-break-inside: avoid; }
+    .btn-pdf { display: none !important; }
+}
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -269,7 +291,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">17/01/2026 15:45</strong>
+                    <strong style="color:#cbd5e0">17/01/2026 15:54</strong>
                 </div>
             </div>
         </div>
@@ -316,7 +338,7 @@ body {
                 <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
                 <td><span style="color:#fbbf24">🏆 10563</span></td>
                 <td><span style="color:#34d399"> cards 740</span></td>
-                <td style="color:#a0aec0">17/01/2026 17:45</td>
+                <td style="color:#a0aec0">17/01/2026 18:53</td>
             </tr>
             
             <tr class="data-row">
@@ -337,7 +359,7 @@ body {
                 </td>
                 <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
                 <td><span style="color:#fbbf24">🏆 10342</span></td>
-                <td><span style="color:#34d399"> cards 20</span></td>
+                <td><span style="color:#34d399"> cards 30</span></td>
                 <td style="color:#a0aec0">17/01/2026 18:15</td>
             </tr>
             
@@ -525,7 +547,7 @@ body {
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td><span style="color:#fbbf24">🏆 11000</span></td>
                 <td><span style="color:#34d399"> cards 166</span></td>
-                <td style="color:#a0aec0">17/01/2026 18:42</td>
+                <td style="color:#a0aec0">17/01/2026 18:53</td>
             </tr>
             
             <tr class="data-row">
@@ -754,7 +776,7 @@ body {
                     <div style="font-size:10px; color:#718096;">#JQCPPGLUV</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td><span style="color:#fbbf24">🏆 4181</span></td>
+                <td><span style="color:#fbbf24">🏆 4212</span></td>
                 <td><span style="color:#34d399"> cards 0</span></td>
                 <td style="color:#a0aec0">17/01/2026 18:14</td>
             </tr>
@@ -772,27 +794,34 @@ body {
         
         // Visual Feedback
         const originalText = btn.innerText;
-        btn.innerText = "Gerando PDF...";
+        btn.innerText = "Processando Layout...";
         btn.disabled = true;
 
-        // Configuração do PDF (High Fidelity / Dark Mode preservation)
+        // 1. Prepare DOM for PDF (Show Header)
+        const pdfHeader = document.getElementById('pdf-header-id');
+        pdfHeader.style.display = 'block';
+
+        // Configuração do PDF (High Fidelity / Dark Mode preservation / A4 Optimized)
         const opt = {
-            margin:       [0.5, 0.5],
+            margin:       [0.4, 0.4], // Margens otimizadas para leitura (10mm)
             filename:     'War_Log_Guardian_' + new Date().toISOString().slice(0,10) + '.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
+            image:        { type: 'jpeg', quality: 1.0 }, // Max Quality
             html2canvas:  { 
-                scale: 2, 
+                scale: 2, // High DPI (Retina-like) for clear text
                 useCORS: true, 
-                backgroundColor: '#0f1420', // Mantém fundo dark
-                logging: false
+                backgroundColor: '#0f1420', 
+                logging: false,
+                scrollY: 0
             },
             jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
         };
 
         // Executar
         html2pdf().set(opt).from(element).save().then(function(){
+            // Restore UI
             btn.innerText = originalText;
             btn.disabled = false;
+            pdfHeader.style.display = 'none'; // Hide header again
         });
     }
 

@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 104691,
+    "clanScore": 104692,
     "clanWarTrophies": 3262,
     "location": {
         "id": 57000038,
@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 8000,
-    "donationsPerWeek": 11526,
+    "donationsPerWeek": 11536,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -113,7 +113,7 @@
             "tag": "#YJUG9Y88",
             "name": "Dockz",
             "role": "member",
-            "lastSeen": "20260117T184253.000Z",
+            "lastSeen": "20260117T185311.000Z",
             "expLevel": 65,
             "trophies": 11000,
             "arena": {
@@ -365,7 +365,7 @@
             "tag": "#2VLR9U90",
             "name": "EDDIE",
             "role": "coLeader",
-            "lastSeen": "20260117T174539.000Z",
+            "lastSeen": "20260117T185355.000Z",
             "expLevel": 71,
             "trophies": 10563,
             "arena": {
@@ -411,7 +411,7 @@
             },
             "clanRank": 22,
             "previousClanRank": 25,
-            "donations": 20,
+            "donations": 30,
             "donationsReceived": 0,
             "clanChestPoints": 0
         },
@@ -763,16 +763,16 @@
             "role": "member",
             "lastSeen": "20260117T181457.000Z",
             "expLevel": 26,
-            "trophies": 4181,
+            "trophies": 4212,
             "arena": {
-                "id": 54000011,
-                "name": "Spooky Town",
-                "rawName": "Arena_T"
+                "id": 54000055,
+                "name": "Rascal's Hideout",
+                "rawName": "Arena13"
             },
             "clanRank": 42,
             "previousClanRank": 0,
             "donations": 0,
-            "donationsReceived": 0,
+            "donationsReceived": 10,
             "clanChestPoints": 0
         }
     ]

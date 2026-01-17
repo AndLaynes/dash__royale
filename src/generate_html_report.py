@@ -259,6 +259,28 @@ body {
         grid-template-columns: 1fr !important;
     }
 }
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* PDF EXPORT STYLES (2026 Standard) */
+.pdf-header {
+    display: none; /* Hidden on screen */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #fbbf24;
+    padding-bottom: 10px;
+}
+.pdf-header h1 { color: #fbbf24; font-size: 24px; text-transform: uppercase; }
+.pdf-watermark {
+    color: #4a5568; margin-top: 5px; font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+}
+
+/* Print Optimization */
+@media print {
+    tr.data-row { break-inside: avoid; page-break-inside: avoid; }
+    .btn-pdf { display: none !important; }
+}
 """
 
 def get_page_template(active_page, content):
@@ -322,27 +344,34 @@ def get_page_template(active_page, content):
         
         // Visual Feedback
         const originalText = btn.innerText;
-        btn.innerText = "Gerando PDF...";
+        btn.innerText = "Processando Layout...";
         btn.disabled = true;
 
-        // Configuração do PDF (High Fidelity / Dark Mode preservation)
+        // 1. Prepare DOM for PDF (Show Header)
+        const pdfHeader = document.getElementById('pdf-header-id');
+        pdfHeader.style.display = 'block';
+
+        // Configuração do PDF (High Fidelity / Dark Mode preservation / A4 Optimized)
         const opt = {{
-            margin:       [0.5, 0.5],
+            margin:       [0.4, 0.4], // Margens otimizadas para leitura (10mm)
             filename:     'War_Log_Guardian_' + new Date().toISOString().slice(0,10) + '.pdf',
-            image:        {{ type: 'jpeg', quality: 0.98 }},
+            image:        {{ type: 'jpeg', quality: 1.0 }}, // Max Quality
             html2canvas:  {{ 
-                scale: 2, 
+                scale: 2, // High DPI (Retina-like) for clear text
                 useCORS: true, 
-                backgroundColor: '#0f1420', // Mantém fundo dark
-                logging: false
+                backgroundColor: '#0f1420', 
+                logging: false,
+                scrollY: 0
             }},
             jsPDF:        {{ unit: 'in', format: 'a4', orientation: 'portrait' }}
         }};
 
         // Executar
         html2pdf().set(opt).from(element).save().then(function(){{
+            // Restore UI
             btn.innerText = originalText;
             btn.disabled = false;
+            pdfHeader.style.display = 'none'; // Hide header again
         }});
     }}
 
@@ -654,7 +683,25 @@ def generate_html_report():
     </div>
 
     <div id="printable-area">
-        <!-- HEADER DO PDF (Carimbo) -->
+        <!-- HEADER EXCLUSIVO PARA O PDF (Recriando Identidade) -->
+        <div class="pdf-header" id="pdf-header-id">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <!-- Logo Placeholder (Circle) -->
+                    <div style="width:50px; height:50px; background:#fbbf24; border-radius:50%; display:flex; align-items:center; justify-content:center; color: #0f1420; font-weight:bold; font-size:24px;">G</div>
+                    <div>
+                        <h1>Os Guardiões</h1>
+                        <div class="pdf-watermark">Relatório de Inteligência de Guerra • #9PJRJRPC</div>
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <div style="font-size:12px; color:#cbd5e0;">GERADO EM</div>
+                    <div style="font-size:16px; font-weight:bold; color:#fff;">{datetime.now(BRAZIL_TZ).strftime('%d/%m/%Y %H:%M')}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HEADER DO PAGINA (Carimbo) -->
         <div class="page-title-section">
         <div>
             <h2>Status de Guerra</h2>
