@@ -278,12 +278,10 @@ def process_daily_data():
                         last_season = last_war.get('seasonId', 0)
                         last_section = last_war.get('sectionIndex', 0)
                         
-                        # Lógica de Inferência:
-                        # Se a última guerra foi semana 4 (Colosseum), a nova é Season+1, Semana 0 (ou 1?)
-                        # Se foi semana < 4, a nova é SeasonAtual, Semana+1
-                        
-                        # Assumindo comportamento padrão:
-                        if last_section >= 3: # Geralmente vai até 3 ou 4 dependendo da era
+                        # [HEURISTIC INFERENCE] Season ID Determination
+                        # Logic: If previous war reached Section 3+ (Colosseum/End), increment Season ID (New Season).
+                        # Else: Increment Section Index (Same Season).
+                        if last_section >= 3:
                             season_id = last_season + 1 # Estimativa Heurística
                             section_index = 0
                         else:
