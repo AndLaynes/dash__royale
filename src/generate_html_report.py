@@ -452,7 +452,7 @@ def generate_html_report():
 
     # STATUS: GUERRA (Qui-Dom) -> Pega do Daily History (Tempo Real)
     else:
-        print(f"Hoje é {datetime.now(BRAZIL_TZ).strftime('%A')} (Guerra). Exibindo Auditoria em Tempo Real.")
+        print(f"Hoje é {datetime.now(BRAZIL_TZ).strftime('%A')} (Guerra). Exibindo Auditoria Retrospectiva (Protocolo D-1).")
         
         # ---------------------------------------------------------
         # LÓGICA DE AUDITORIA D-1 (STRICT RETROSPECTIVE) - GT-Z

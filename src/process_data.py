@@ -235,7 +235,7 @@ def process_daily_data():
     weekday = datetime.now().weekday()
     if weekday < 3:
         log_and_print(f"-> Dia de Treino (Semana: {weekday}). O histórico da guerra NÃO será atualizado.")
-        # Se o arquivo não existir, criar um dummy para não quebrar o relatório
+        # Se o arquivo não existir, criar um Placeholder para manter a integridade do pipeline (FLOAT_ARCHITECTURE)
         if not os.path.exists(history_file_path):
              with open(history_file_path, 'w', encoding='utf-8') as f:
                 json.dump({"inWar": False, "status": "Training Days"}, f, ensure_ascii=False, indent=4)
