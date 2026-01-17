@@ -199,6 +199,24 @@ body {
     gap: 5px;
 }
 
+.btn-pdf {
+    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
+}
+.btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3); }
+.btn-pdf:disabled { opacity: 0.7; cursor: wait; }
+
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
     .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
@@ -231,6 +249,7 @@ body {
 }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -250,7 +269,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">17/01/2026 12:24</strong>
+                    <strong style="color:#cbd5e0">17/01/2026 15:45</strong>
                 </div>
             </div>
         </div>
@@ -258,7 +277,15 @@ body {
 
     <div class="container">
         
-    <div class="page-title-section">
+    <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+        <button id="btn-export-pdf" class="btn-pdf" onclick="downloadPDF()">
+            <span>📄</span> Exportar Relatório (PDF)
+        </button>
+    </div>
+
+    <div id="printable-area">
+        <!-- HEADER DO PDF (Carimbo) -->
+        <div class="page-title-section">
         <div>
             <h2>Status de Guerra</h2>
             <div style="display:flex; flex-direction:column;">
@@ -281,15 +308,15 @@ body {
             </div>
             <div class="stat-box stat-green">
                 <div style="font-size:10px; opacity:0.8;">EM DIA</div>
-                27
+                29
             </div>
             <div class="stat-box stat-yellow">
                 <div style="font-size:10px; opacity:0.8;">INCOMPLETO</div>
-                15
+                14
             </div>
             <div class="stat-box stat-red">
                 <div style="font-size:10px; opacity:0.8;">ZERADO</div>
-                8
+                7
             </div>
         </div>
     </div>
@@ -332,6 +359,20 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
+                    <span>StelaAby</span>
+                    <span style="color:#718096; font-size:10px;">#JQCPPGLUV</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">1/8</td>
+            <td><div class="missing-badge">-7</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">200</td>
+            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
                     <span>dogmal</span>
                     <span style="color:#718096; font-size:10px;">#Y98QP9Q9R</span>
                 </div>
@@ -360,20 +401,6 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Dockz</span>
-                    <span style="color:#718096; font-size:10px;">#YJUG9Y88</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">3/8</td>
-            <td><div class="missing-badge">-5</div></td>
-            <td style="color:#fbbf24; font-weight:bold;">2700</td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
                     <span>Rodolfos</span>
                     <span style="color:#718096; font-size:10px;">#200JYCVYGY</span>
                 </div>
@@ -382,20 +409,6 @@ body {
             <td style="font-weight:bold; font-size:16px;">3/8</td>
             <td><div class="missing-badge">-5</div></td>
             <td style="color:#fbbf24; font-weight:bold;">2200</td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Bruno</span>
-                    <span style="color:#718096; font-size:10px;">#UPR022QUR</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">4/8</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td style="color:#fbbf24; font-weight:bold;">2150</td>
             <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
         </tr>
         
@@ -424,20 +437,6 @@ body {
             <td style="font-weight:bold; font-size:16px;">4/8</td>
             <td><div class="missing-badge">-4</div></td>
             <td style="color:#fbbf24; font-weight:bold;">2150</td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Pedro PH</span>
-                    <span style="color:#718096; font-size:10px;">#90LLGLPR0</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">4/8</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td style="color:#fbbf24; font-weight:bold;">1950</td>
             <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
         </tr>
         
@@ -486,6 +485,20 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Dockz</span>
+                    <span style="color:#718096; font-size:10px;">#YJUG9Y88</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">5/8</td>
+            <td><div class="missing-badge">-3</div></td>
+            <td style="color:#fbbf24; font-weight:bold;">2900</td>
+            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
                     <span>WILLIAN</span>
                     <span style="color:#718096; font-size:10px;">#UUL8VUQ0P</span>
                 </div>
@@ -528,14 +541,14 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
-                    <span>RobaFrag</span>
-                    <span style="color:#718096; font-size:10px;">#8U008PQU8</span>
+                    <span>Pedro PH</span>
+                    <span style="color:#718096; font-size:10px;">#90LLGLPR0</span>
                 </div>
             </td>
-            <td style="color:#a0aec0;">Ancião</td>
+            <td style="color:#a0aec0;">Membro</td>
             <td style="font-weight:bold; font-size:16px;">6/8</td>
             <td><div class="missing-badge">-2</div></td>
-            <td style="color:#fbbf24; font-weight:bold;">3700</td>
+            <td style="color:#fbbf24; font-weight:bold;">2150</td>
             <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
         </tr>
         
@@ -544,20 +557,6 @@ body {
                 <div style="display:flex; align-items:center; gap:8px;">
                     <span>JOSA</span>
                     <span style="color:#718096; font-size:10px;">#2LY2GLJQL</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">0/8</td>
-            <td><div class="missing-badge">-8</div></td>
-            <td style="color:#fbbf24; font-weight:bold;">0</td>
-            <td><span class="status-badge status-zero">ZERADO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>PedrinhoR14</span>
-                    <span style="color:#718096; font-size:10px;">#PJL0Q2J2</span>
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
@@ -682,6 +681,20 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Bruno</span>
+                    <span style="color:#718096; font-size:10px;">#UPR022QUR</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">2750</td>
+            <td><span class="status-badge status-complete">EM DIA</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
                     <span>DGJ-DAVI</span>
                     <span style="color:#718096; font-size:10px;">#9RPCC2VCG</span>
                 </div>
@@ -757,9 +770,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td style="font-weight:bold; font-size:16px;">12/8</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td style="color:#fbbf24; font-weight:bold;">3100</td>
+            <td style="color:#fbbf24; font-weight:bold;">3800</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -808,6 +821,20 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
+                    <span>RobaFrag</span>
+                    <span style="color:#718096; font-size:10px;">#8U008PQU8</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Ancião</td>
+            <td style="font-weight:bold; font-size:16px;">10/8</td>
+            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">4500</td>
+            <td><span class="status-badge status-complete">EM DIA</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
                     <span>Sotto ツ</span>
                     <span style="color:#718096; font-size:10px;">#2P299V0CU</span>
                 </div>
@@ -841,9 +868,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td style="font-weight:bold; font-size:16px;">12/8</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td style="color:#fbbf24; font-weight:bold;">3200</td>
+            <td style="color:#fbbf24; font-weight:bold;">3800</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -855,9 +882,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td style="font-weight:bold; font-size:16px;">12/8</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td style="color:#fbbf24; font-weight:bold;">3950</td>
+            <td style="color:#fbbf24; font-weight:bold;">4700</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -911,9 +938,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td style="font-weight:bold; font-size:16px;">12/8</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td style="color:#fbbf24; font-weight:bold;">3800</td>
+            <td style="color:#fbbf24; font-weight:bold;">4400</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -939,9 +966,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Co-Líder</td>
-            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td style="font-weight:bold; font-size:16px;">12/8</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td style="color:#fbbf24; font-weight:bold;">4000</td>
+            <td style="color:#fbbf24; font-weight:bold;">4600</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -953,9 +980,9 @@ body {
                 </div>
             </td>
             <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td style="font-weight:bold; font-size:16px;">12/8</td>
             <td><span style="color:#34d399">✓</span></td>
-            <td style="color:#fbbf24; font-weight:bold;">2600</td>
+            <td style="color:#fbbf24; font-weight:bold;">3250</td>
             <td><span class="status-badge status-complete">EM DIA</span></td>
         </tr>
         
@@ -1031,11 +1058,42 @@ body {
         
         </tbody>
     </table>
+    </div>
     
     </div>
 
-    <!-- SCRIPTS PARA FILTRO E ORDENAÇÃO -->
+    <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
+    function downloadPDF() {
+        const element = document.getElementById('printable-area');
+        const btn = document.getElementById('btn-export-pdf');
+        
+        // Visual Feedback
+        const originalText = btn.innerText;
+        btn.innerText = "Gerando PDF...";
+        btn.disabled = true;
+
+        // Configuração do PDF (High Fidelity / Dark Mode preservation)
+        const opt = {
+            margin:       [0.5, 0.5],
+            filename:     'War_Log_Guardian_' + new Date().toISOString().slice(0,10) + '.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true, 
+                backgroundColor: '#0f1420', // Mantém fundo dark
+                logging: false
+            },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Executar
+        html2pdf().set(opt).from(element).save().then(function(){
+            btn.innerText = originalText;
+            btn.disabled = false;
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const tables = document.querySelectorAll('.custom-table');
         tables.forEach(table => {

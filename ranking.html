@@ -199,6 +199,24 @@ body {
     gap: 5px;
 }
 
+.btn-pdf {
+    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
+}
+.btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3); }
+.btn-pdf:disabled { opacity: 0.7; cursor: wait; }
+
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
     .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
@@ -231,6 +249,7 @@ body {
 }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -250,7 +269,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">17/01/2026 12:24</strong>
+                    <strong style="color:#cbd5e0">17/01/2026 15:45</strong>
                 </div>
             </div>
         </div>
@@ -330,8 +349,8 @@ body {
                         Eff: <b style="color:white">150</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">10590</b><br>
-                        Donates: <b style="color:white">732</b>
+                        Troféus: <b style="color:white">10563</b><br>
+                        Donates: <b style="color:white">740</b>
                     </td>
                 </tr>
                 
@@ -373,7 +392,7 @@ body {
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Troféus: <b style="color:white">10530</b><br>
-                        Donates: <b style="color:white">67</b>
+                        Donates: <b style="color:white">72</b>
                     </td>
                 </tr>
                 
@@ -407,6 +426,20 @@ body {
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;"> #9</td>
+                    <td style="font-weight:600;">RobaFrag</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">82.4</td>
+                    <td style="font-size:13px; color:#a0aec0;">
+                        Fame: <b style="color:white">22250</b><br>
+                        Eff: <b style="color:white">139</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;">
+                        Troféus: <b style="color:white">10880</b><br>
+                        Donates: <b style="color:white">931</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;"> #10</td>
                     <td style="font-weight:600;">⭐O SENTINELA ⭐</td>
                     <td style="color:#fbbf24; font-weight:800; font-size:18px;">82.3</td>
                     <td style="font-size:13px; color:#a0aec0;">
@@ -416,20 +449,6 @@ body {
                     <td style="font-size:13px; color:#a0aec0;">
                         Troféus: <b style="color:white">9710</b><br>
                         Donates: <b style="color:white">221</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;"> #10</td>
-                    <td style="font-weight:600;">RobaFrag</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">82.2</td>
-                    <td style="font-size:13px; color:#a0aec0;">
-                        Fame: <b style="color:white">22250</b><br>
-                        Eff: <b style="color:white">139</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">10880</b><br>
-                        Donates: <b style="color:white">911</b>
                     </td>
                 </tr>
                 
@@ -520,14 +539,14 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;"> #17</td>
                     <td style="font-weight:600;">51 é pinga</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">78.9</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">79.3</td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Fame: <b style="color:white">23300</b><br>
                         Eff: <b style="color:white">145</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">10201</b><br>
-                        Donates: <b style="color:white">298</b>
+                        Troféus: <b style="color:white">10322</b><br>
+                        Donates: <b style="color:white">328</b>
                     </td>
                 </tr>
                 
@@ -562,14 +581,14 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;"> #20</td>
                     <td style="font-weight:600;">mathi❄️</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">76.3</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">76.4</td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Fame: <b style="color:white">20325</b><br>
                         Eff: <b style="color:white">167</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Troféus: <b style="color:white">10791</b><br>
-                        Donates: <b style="color:white">182</b>
+                        Donates: <b style="color:white">192</b>
                     </td>
                 </tr>
                 
@@ -660,14 +679,14 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;"> #27</td>
                     <td style="font-weight:600;">tavin</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">73.7</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">73.8</td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Fame: <b style="color:white">19800</b><br>
                         Eff: <b style="color:white">150</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Troféus: <b style="color:white">10724</b><br>
-                        Donates: <b style="color:white">290</b>
+                        Donates: <b style="color:white">310</b>
                     </td>
                 </tr>
                 
@@ -730,14 +749,14 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;"> #32</td>
                     <td style="font-weight:600;">WvCly</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">53.7</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">54.0</td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Fame: <b style="color:white">8400</b><br>
                         Eff: <b style="color:white">158</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">11530</b><br>
-                        Donates: <b style="color:white">157</b>
+                        Troféus: <b style="color:white">11525</b><br>
+                        Donates: <b style="color:white">198</b>
                     </td>
                 </tr>
                 
@@ -765,7 +784,7 @@ body {
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Troféus: <b style="color:white">9267</b><br>
-                        Donates: <b style="color:white">203</b>
+                        Donates: <b style="color:white">211</b>
                     </td>
                 </tr>
                 
@@ -814,13 +833,13 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;"> #38</td>
                     <td style="font-weight:600;">GabiMalvadeza</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">15.9</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">15.8</td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Fame: <b style="color:white">0</b><br>
                         Eff: <b style="color:white">0</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">11536</b><br>
+                        Troféus: <b style="color:white">11500</b><br>
                         Donates: <b style="color:white">170</b>
                     </td>
                 </tr>
@@ -856,14 +875,28 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;"> #41</td>
                     <td style="font-weight:600;">filho de duque</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">12.3</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">12.6</td>
                     <td style="font-size:13px; color:#a0aec0;">
                         Fame: <b style="color:white">0</b><br>
                         Eff: <b style="color:white">0</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;">
-                        Troféus: <b style="color:white">7530</b><br>
-                        Donates: <b style="color:white">340</b>
+                        Troféus: <b style="color:white">7503</b><br>
+                        Donates: <b style="color:white">370</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;"> #42</td>
+                    <td style="font-weight:600;">StelaAby</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">5.2</td>
+                    <td style="font-size:13px; color:#a0aec0;">
+                        Fame: <b style="color:white">0</b><br>
+                        Eff: <b style="color:white">0</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;">
+                        Troféus: <b style="color:white">4181</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
@@ -872,8 +905,38 @@ body {
         
     </div>
 
-    <!-- SCRIPTS PARA FILTRO E ORDENAÇÃO -->
+    <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
+    function downloadPDF() {
+        const element = document.getElementById('printable-area');
+        const btn = document.getElementById('btn-export-pdf');
+        
+        // Visual Feedback
+        const originalText = btn.innerText;
+        btn.innerText = "Gerando PDF...";
+        btn.disabled = true;
+
+        // Configuração do PDF (High Fidelity / Dark Mode preservation)
+        const opt = {
+            margin:       [0.5, 0.5],
+            filename:     'War_Log_Guardian_' + new Date().toISOString().slice(0,10) + '.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true, 
+                backgroundColor: '#0f1420', // Mantém fundo dark
+                logging: false
+            },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Executar
+        html2pdf().set(opt).from(element).save().then(function(){
+            btn.innerText = originalText;
+            btn.disabled = false;
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const tables = document.querySelectorAll('.custom-table');
         tables.forEach(table => {

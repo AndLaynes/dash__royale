@@ -199,6 +199,24 @@ body {
     gap: 5px;
 }
 
+.btn-pdf {
+    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
+}
+.btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3); }
+.btn-pdf:disabled { opacity: 0.7; cursor: wait; }
+
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
     .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
@@ -231,6 +249,7 @@ body {
 }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -250,7 +269,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">17/01/2026 12:24</strong>
+                    <strong style="color:#cbd5e0">17/01/2026 15:45</strong>
                 </div>
             </div>
         </div>
@@ -308,7 +327,7 @@ body {
         <div class="dash-card donation-card">
             <div class="card-header">
                 <h3>🃏 Top Doadores</h3>
-                <div class="stat-label">Total: 10628</div>
+                <div class="stat-label">Total: 10800</div>
             </div>
             <div class="scrollable-list">
                 
@@ -320,7 +339,7 @@ body {
             
             <div class="list-item">
                 <span class="rank-num">2.</span>
-                <span class="badgex" style="">🃏 911</span>
+                <span class="badgex" style="">🃏 931</span>
                 <span class="p-name">RobaFrag</span>
             </div>
             
@@ -338,7 +357,7 @@ body {
             
             <div class="list-item">
                 <span class="rank-num">5.</span>
-                <span class="badgex" style="">🃏 732</span>
+                <span class="badgex" style="">🃏 740</span>
                 <span class="p-name">EDDIE</span>
             </div>
             
@@ -368,7 +387,7 @@ body {
             
             <div class="list-item">
                 <span class="rank-num">10.</span>
-                <span class="badgex" style="">🃏 340</span>
+                <span class="badgex" style="">🃏 370</span>
                 <span class="p-name">filho de duque</span>
             </div>
             
@@ -397,14 +416,14 @@ body {
             
             <div class="list-item">
                 <span class="rank-num">3.</span>
-                <span class="badgex" style="background:#fbbf24; color:#000;">🏆 11536</span>
-                <span class="p-name">GabiMalvadeza</span>
+                <span class="badgex" style="background:#fbbf24; color:#000;">🏆 11525</span>
+                <span class="p-name">WvCly</span>
             </div>
             
             <div class="list-item">
                 <span class="rank-num">4.</span>
-                <span class="badgex" style="background:#fbbf24; color:#000;">🏆 11530</span>
-                <span class="p-name">WvCly</span>
+                <span class="badgex" style="background:#fbbf24; color:#000;">🏆 11500</span>
+                <span class="p-name">GabiMalvadeza</span>
             </div>
             
             <div class="list-item">
@@ -509,8 +528,38 @@ body {
     
     </div>
 
-    <!-- SCRIPTS PARA FILTRO E ORDENAÇÃO -->
+    <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
+    function downloadPDF() {
+        const element = document.getElementById('printable-area');
+        const btn = document.getElementById('btn-export-pdf');
+        
+        // Visual Feedback
+        const originalText = btn.innerText;
+        btn.innerText = "Gerando PDF...";
+        btn.disabled = true;
+
+        // Configuração do PDF (High Fidelity / Dark Mode preservation)
+        const opt = {
+            margin:       [0.5, 0.5],
+            filename:     'War_Log_Guardian_' + new Date().toISOString().slice(0,10) + '.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true, 
+                backgroundColor: '#0f1420', // Mantém fundo dark
+                logging: false
+            },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Executar
+        html2pdf().set(opt).from(element).save().then(function(){
+            btn.innerText = originalText;
+            btn.disabled = false;
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const tables = document.querySelectorAll('.custom-table');
         tables.forEach(table => {
