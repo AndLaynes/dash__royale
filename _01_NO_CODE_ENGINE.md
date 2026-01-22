@@ -56,92 +56,24 @@ THEN response: `> ENGINE ONLINE. GROUND TRUTH CALIBRATED.`
 
 ### 4. EXECUTION LOG (DECONTAMINATION)
 
-#### [TIMESTAMP: 2026-01-17]
-**TRIGGER:** `System Override: Descontamine todo o núcleo`
-**ACTION:** Protocolo [B] DECONTAMINATION_CORE executado.
+#### [TIMESTAMP: 2026-01-22 17:55 - CLOUD MIGRATION]
+**TRIGGER:** `Director Mandate: Secure Cloud Automation (Discord/Proxy)`
+**ACTION:** Protocolo [C] CLOUD_HARDENING executado.
 
-**1. src/process_data.py**
-*   **[CORRIGIDO]** Removido emoji `⚠️` (Unicode Error Hazard) -> substituído por `[!]`.
-*   **[REFINADO]** Comentário informal "Chute educado" -> formalizado para "Estimativa Heurística".
-*   **[VALIDADO]** Lógica de fallback para `season_id` verificada (FLOAT_ARCHITECTURE).
+**1. Infraestrutura (GitHub Actions)**
+*   **[NOVO]** Workflow `.github/workflows/war_autoupdate.yml` criado.
+*   **[CRITICAL FIX]** Injeção de dependência `env:` restaurada no YAML para evitar falha de syntax na linha 39.
 
-**2. src/get_data.py**
-*   **[AUDITADO]** Patch IPv4 verificado como "Essential GT-Z Constraint". Nenhuma alteração necessária.
+**2. Segurança (Zero Trust)**
+*   **[DELETED]** `src/email_notifier.py` -> Removido por risco de exposição de credencial SMTP.
+*   **[NEW]** `src/webhook_notifier.py` -> Implementado. Usa URL tokenizada (Discord) em vez de user/pass.
 
-**3. src/generate_html_report.py**
-*   **[AUDITADO]** Lógica D-1 (Audit Friday) confirmada. Sem comentários ou artefatos tóxicos encontrados.
+**3. Conectividade (Proxy Tunneling)**
+*   **[MODIFIED]** `src/get_data.py` -> Adicionado suporte a `STATIC_PROXY_URL`.
+*   **[JUSTIFICATIVA]** A Supercell bloqueia IPs dinâmicos do GitHub. O Proxy é a única via de "Ground Truth" para conexão estável.
 
-**VERDICT:** CORE DECONTAMINATED. ENGINE OPTIMIZED.
+**4. Documentação (Manual do Proprietário)**
+*   **[NOVO]** `_03_CLOUD_AUTOMATION_GUIDE.md` -> Manual passo-a-passo para configuração de Secrets.
+*   **[UPDATED]** `HANDOFF.md` -> Reflete a nova arquitetura V2.1.
 
-#### [TIMESTAMP: 2026-01-17 12:45]
-**TRIGGER:** `Audit Request: Zombie Code / Vaporware / Unprofessional Semantics`
-**ACTION:** Protocolo [C] FLOAT_ARCHITECTURE & Semantics Audit.
-
-**1. src/process_data.py**
-*   **[REFINADO]** Termo "dummy" substituído por "Placeholder for Pipeline Integrity" (FLOAT_ARCHITECTURE).
-*   **[AUDITADO]** Arquivo placeholder confirmado como essencial para evitar crash em dias de treino (Não é Vaporware).
-*   **[REVISADO]** Status 'Verificar' mantido como Label de UI (Aceitável).
-
-**2. src/generate_html_report.py**
-*   **[CORRIGIDO]** "Semantic Hallucination" na linha 455. O log dizia "Auditoria em Tempo Real" mas o código executava "D-1". Corrigido para "Auditoria Retrospectiva (Protocolo D-1)".
-
-**3. run_update.py**
-*   **[VALIDADO]** Fluxo sequencial verificado. Nenhum passo morto (Zombie Code) detectado.
-
-#### [TIMESTAMP: 2026-01-17 15:15 - FINAL PASS]
-**TRIGGER:** `Logic Review: Professionalism & Ground Truth`
-**ACTION:** Protocolo [C] SEMANTICS_FINAL_POLISH.
-
-**1. src/process_data.py**
-*   **[REFINADO]** Comentários sobre "Lógica de Inferência" simplificados para "Heuristic Inference". Termos conversacionais removidos.
-
-**2. src/generate_html_report.py**
-*   **[REFINADO]** Comentários informais "O usuário reclamou" substituídos por "UX Optimization / Hard Limit".
-*   **[REFINADO]** Assunções de membros explicitadas como "Assumption: Active players are confirmed members".
-
-#### [TIMESTAMP: 2026-01-17 15:45 - PROCESS UPGRADE]
-**TRIGGER:** `Workflow Optimization: Misleading Output -> Auto-Sync`
-**ACTION:** Implementação de `git_auto_sync()` no `run_update.py`.
-
-**1. run_update.py**
-*   **[NOVO]** Função `git_auto_sync`: Executa add, commit e push automaticamente.
-*   **[CORRIGIDO]** Mensagem final: Removido prompt confuso sobre "iniciar servidor". Adicionado confirmação de sincronização e status de prontidão.
-
-**VERDICT:** PIPELINE FULLY AUTOMATED. ONE-CLICK UPDATE & SYNC ENABLED.
-
-#### [TIMESTAMP: 2026-01-17 15:52 - FEATURE LOCK]
-**TRIGGER:** `User Request: PDF Validation Commit`
-**ACTION:** Commit isolado de validação da funcionalidade PDF.
-
-**1. src/generate_html_report.py**
-*   **[LOCKED]** Funcionalidade `downloadPDF()` (html2pdf.js) persistida e validada no repositório.
-
-**VERDICT:** FEATURE DEPLOYED & VERSIONED.
-
-#### [TIMESTAMP: 2026-01-17 16:10 - PDF LAYOUT UPGRADE]
-**TRIGGER:** `User Request: Human Readable / 2026 Standard`
-**ACTION:** Otimização Visual para Impressão (PDF).
-
-**1. src/generate_html_report.py**
-*   **[NOVO]** `pdf-header`: Identidade Visual (Logo + Título) injetada apenas na versão impressa.
-*   **[CSS]** `page-break-inside: avoid`: Garante que tabelas não quebrem no meio das linhas.
-*   **[CONFIG]** `margin: [0.4, 0.4]`: Otimizado para A4.
-*   **[AUTO]** Pipeline automatizado regenerou e sincronizou todos os 4 relatórios.
-
-**VERDICT:** PDF EXPORT OPTIMIZED. VISUAL CLARITY CONFIRMED.
-
-#### [TIMESTAMP: 2026-01-17 16:20 - SYSTEM SEALED (HARD CONSTRAINT)]
-**TRIGGER:** `Director Mandate: Final Entropy Minimization`
-**ACTION:** Criação de `HANDOFF.md` e Congelamento de Estado.
-
-**1. HANDOFF.md**
-*   **[NOVO]** Definida a "Bíblia da Métrica D-1" (Verdade Absoluta).
-*   **[REGRA]** Auto-Sync é o único meio de deploy aceito.
-*   **[ALERTA]** Proibido reescrever lógica de guerra sem consultar Seção 1 deste documento.
-
-**2. Estado Final**
-*   **Código:** Limpo, Sem Emojis, Sem Gírias.
-*   **Deploy:** Sincronizado.
-*   **PDF:** High-Fidelity.
-
-**VERDICT:** MISSION COMPLETE. SYSTEM SHUTTING DOWN FOR HANDOFF.
+**VERDICT:** SYSTEM MIGRATED TO CLOUD. SECURITY HARDENED (NO SMTP). PROXY ENABLED.

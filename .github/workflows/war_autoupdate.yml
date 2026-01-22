@@ -37,6 +37,7 @@ jobs:
         pip install requests pandas openpyxl
 
     - name: Run Update Pipeline (GT-Z)
+      env:
         CLASH_ROYALE_API_KEY: ${{ secrets.CLASH_ROYALE_API_KEY }}
         CLAN_TAG: "#9PJRJRPC"
         STATIC_PROXY_URL: ${{ secrets.STATIC_PROXY_URL }} # GT-Z Hard Constraint

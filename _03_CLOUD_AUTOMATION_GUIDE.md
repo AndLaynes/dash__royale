@@ -54,13 +54,18 @@ Removemos a necessidade de usar senhas de e-mail (risco de segurança).
 
 Você precisa configurar as "Chaves do Castelo" no GitHub para que o robô funcione. Isso é feito **uma única vez**.
 
-### PASSO 1: Obter um Proxy Grátis (5 min)
-Precisamos de um IP Fixo para enganar a Supercell.
-1.  Acesse **[Webshare.io](https://www.webshare.io/)** (ou ProxyScrape).
-2.  Crie uma conta gratuita.
-3.  No painel, procure por "Proxy List".
-4.  Copie um endereço no formato: `http://usuario:senha@ip:porta` (Ex: `http://user123:pass456@45.10.20.30:8080`).
-5.  **Anote o IP** (ex: `45.10.20.30`) separadamente.
+### PASSO 1: Obter um Proxy Grátis (Webshare.io)
+**Atenção:** Sem isso, a Supercell bloqueia o GitHub.
+1.  Acesse **[Webshare.io](https://www.webshare.io/)**.
+2.  Crie uma conta gratuita (Free Plan).
+3.  No painel, clique em **Proxy List** no menu lateral.
+4.  Você verá uma lista de 10 proxies. Escolha o primeiro.
+5.  **COPIAR ENDEREÇO DO PROXY:**
+    *   Formato necessário: `http://username:password@ip:port`
+    *   Exemplo real (seus dados serão diferentes): `http://fghjkl:ab12cd34@45.67.89.01:8080`
+    *   *Dica:* No Webshare, você pode baixar a lista formatada ou montar manualmente pegando os campos "Username", "Password", "IP" e "Port".
+6.  **COPIAR APENAS O IP:**
+    *   Anote o número do IP (ex: `45.67.89.01`) separadamente. Você precisará dele no Passo 2.
 
 ### PASSO 2: Autorizar na Supercell (2 min)
 1.  Acesse **[developer.clashroyale.com](https://developer.clashroyale.com/)**.
