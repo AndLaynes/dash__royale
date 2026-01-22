@@ -1,14 +1,14 @@
 [
     "Iniciando processamento de dados...",
     "Verificando dados da guerra atual (`current_war.json`)...",
-    "-> Sucesso: 64 participantes encontrados na guerra atual.",
-    "Gerando relatório para 64 jogadores com base em: 'Guerra Atual'.",
+    "-> Sucesso: 76 participantes encontrados na guerra atual.",
+    "Gerando relatório para 76 jogadores com base em: 'Guerra Atual'.",
     "Analisando dados do histórico de guerras (`riverracelog.json`)...",
     "-> Encontrados 10 registros de guerra no histórico.",
     "-> Buscando pelo CLAN_TAG (normalizado): '9PJRJRPC' no histórico...",
-    "-> Processados dados históricos de 108 jogadores únicos de 10 guerras.",
+    "-> Processados dados históricos de 121 jogadores únicos de 10 guerras.",
     "-> Encontradas 10 datas de guerras únicas no histórico.",
-    "-> Usando as 5 datas mais recentes para o relatório: ['2026-01-12', '2026-01-05', '2025-12-29', '2025-12-22', '2025-12-15']",
+    "-> Usando as 5 datas mais recentes para o relatório: ['2026-01-19', '2026-01-12', '2026-01-05', '2025-12-29', '2025-12-22']",
     "Relatório salvo com sucesso em 'relatorio_participacao_guerra.xlsx'.",
     "IDs das temporadas de guerra salvos em 'war_season_ids.json'."
 ]
