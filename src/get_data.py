@@ -29,8 +29,8 @@ def handle_api_error(response, endpoint_name):
 
     error_messages = {
         400: "Erro de requisição (Bad Request). Verifique os parâmetros enviados.",
-        403: "Erro de autenticação (Forbidden). A sua chave da API (CLASH_ROYALE_API_KEY) é inválida ou não foi definida corretamente.",
-        404: f"Recurso não encontrado (Not Found). O Clan Tag pode estar incorreto. Verifique a variável de ambiente CLAN_TAG.",
+        403: "Erro de autenticação (Forbidden). A chave da API é inválida ou o IP não está na whitelist (Proxy falhou?).",
+        404: f"Recurso não encontrado (Not Found). O Clan Tag pode estar incorreto. Verifique a variável CLAN_TAG.",
         500: "Erro interno no servidor da Supercell (Internal Server Error). Tente novamente mais tarde.",
         503: "Serviço indisponível (Service Unavailable). A API da Supercell pode estar em manutenção."
     }
@@ -39,6 +39,17 @@ def handle_api_error(response, endpoint_name):
     print(error_messages.get(status_code, "Um erro inesperado ocorreu."), file=sys.stderr)
     print("Detalhes do erro:", json.dumps(error_data, indent=2), file=sys.stderr)
     sys.exit(1)
+
+def get_proxies():
+    """
+    Retorna o dicionário de proxies se a variável STATIC_PROXY_URL estiver definida.
+    GT-Z: Necessário para rodar no GitHub Actions com IP fixo.
+    """
+    proxy_url = os.getenv('STATIC_PROXY_URL')
+    if proxy_url:
+        # print(f"-> Usando Proxy Configurado: {proxy_url.split('@')[-1]}") # Log seguro (sem senha)
+        return {'http': proxy_url, 'https': proxy_url}
+    return None
 
 def get_full_river_race_log(clan_tag, headers):
     """
@@ -56,7 +67,7 @@ def get_full_river_race_log(clan_tag, headers):
         page_count += 1
         print(f"Buscando página {page_count} do histórico de guerras...")
 
-        response = requests.get(url, headers=headers, params=params, timeout=20)
+        response = requests.get(url, headers=headers, params=params, timeout=20, proxies=get_proxies())
 
         if response.status_code != 200:
             handle_api_error(response, f"riverracelog (página {page_count})")
@@ -103,7 +114,7 @@ def download_data():
     try:
         current_war_url = f'https://api.clashroyale.com/v1/clans/{encoded_clan_tag}/currentriverrace'
         print("Buscando dados de 'currentriverrace'...")
-        response = requests.get(current_war_url, headers=headers, timeout=10)
+        response = requests.get(current_war_url, headers=headers, timeout=10, proxies=get_proxies())
 
         if response.status_code != 200:
             handle_api_error(response, 'currentriverrace')
@@ -138,7 +149,7 @@ def download_data():
     try:
         members_url = f'https://api.clashroyale.com/v1/clans/{encoded_clan_tag}/members'
         print("Buscando lista de membros 'clan/members'...")
-        response = requests.get(members_url, headers=headers, timeout=10)
+        response = requests.get(members_url, headers=headers, timeout=10, proxies=get_proxies())
 
         if response.status_code != 200:
             handle_api_error(response, 'clan_members')
@@ -159,7 +170,7 @@ def download_data():
     try:
         clan_url = f'https://api.clashroyale.com/v1/clans/{encoded_clan_tag}'
         print("Buscando informações do clã 'clans/tag' (GT-Z)...")
-        response = requests.get(clan_url, headers=headers, timeout=10)
+        response = requests.get(clan_url, headers=headers, timeout=10, proxies=get_proxies())
 
         if response.status_code != 200:
             handle_api_error(response, 'clan_info')

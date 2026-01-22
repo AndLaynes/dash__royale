@@ -1,0 +1,59 @@
+name: War Data Auto-Update
+
+on:
+  schedule:
+    # --- CRONOGRAMA UTC (GT-Z Adjusted) ---
+    # Brasília é UTC-3.
+    # Quinta a Domingo: 08, 12, 16, 18, 20, 22h BRT -> 11, 15, 19, 21, 23, 01h UTC
+    # Segunda: 08h BRT -> 11h UTC
+    
+    # Quinta (4), Sexta (5), Sábado (6), Domingo (0)
+    - cron: '0 11,15,19,21,23,01 * * 4,5,6,0'
+    
+    # Segunda (1) - Apenas 08h
+    - cron: '0 11 * * 1'
+
+  workflow_dispatch: # Permite execução manual para testes
+
+permissions:
+  contents: write
+
+jobs:
+  update-war-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests pandas openpyxl
+
+    - name: Run Update Pipeline (GT-Z)
+        CLASH_ROYALE_API_KEY: ${{ secrets.CLASH_ROYALE_API_KEY }}
+        CLAN_TAG: "#9PJRJRPC"
+        STATIC_PROXY_URL: ${{ secrets.STATIC_PROXY_URL }} # GT-Z Hard Constraint
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        # Configurar Git antes de rodar, pois run_update.py tenta commitar
+        git config --global user.name 'DashRoyale-Bot'
+        git config --global user.email 'bot@dashroyale'
+        
+        # Rodar o Script Mestre
+        python run_update.py
+
+    - name: Notify Status (Discord)
+      if: always() # Roda mesmo se o passo anterior falhar
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        # Script dedicado para envio de notificação via Discord Webhook
+        # Passa o status do job job como argumento
+        python src/webhook_notifier.py ${{ job.status }}
