@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 108139,
+    "clanScore": 108136,
     "clanWarTrophies": 3257,
     "location": {
         "id": 57000038,
@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 8800,
+    "donationsPerWeek": 8820,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -304,7 +304,7 @@
             "clanRank": 16,
             "previousClanRank": 16,
             "donations": 269,
-            "donationsReceived": 260,
+            "donationsReceived": 280,
             "clanChestPoints": 0
         },
         {
@@ -365,7 +365,7 @@
             "tag": "#2VLR9U90",
             "name": "EDDIE",
             "role": "coLeader",
-            "lastSeen": "20260122T230620.000Z",
+            "lastSeen": "20260122T233036.000Z",
             "expLevel": 72,
             "trophies": 10563,
             "arena": {
@@ -375,7 +375,7 @@
             },
             "clanRank": 20,
             "previousClanRank": 21,
-            "donations": 318,
+            "donations": 328,
             "donationsReceived": 160,
             "clanChestPoints": 0
         },
@@ -547,7 +547,7 @@
             "role": "member",
             "lastSeen": "20260122T231451.000Z",
             "expLevel": 60,
-            "trophies": 10089,
+            "trophies": 10060,
             "arena": {
                 "id": 54000117,
                 "name": "Lumberlove Cabin",
@@ -779,7 +779,7 @@
             "tag": "#J8RVUU02L",
             "name": "Fafazin10",
             "role": "member",
-            "lastSeen": "20260122T220933.000Z",
+            "lastSeen": "20260122T231945.000Z",
             "expLevel": 42,
             "trophies": 9030,
             "arena": {
@@ -915,7 +915,7 @@
             },
             "clanRank": 50,
             "previousClanRank": 50,
-            "donations": 43,
+            "donations": 53,
             "donationsReceived": 160,
             "clanChestPoints": 0
         }

@@ -1797,11 +1797,11 @@
                 {
                     "tag": "#V9P9VVCGY",
                     "name": "剑一",
-                    "fame": 200,
+                    "fame": 300,
                     "repairPoints": 0,
                     "boatAttacks": 0,
-                    "decksUsed": 2,
-                    "decksUsedToday": 2
+                    "decksUsed": 3,
+                    "decksUsedToday": 3
                 },
                 {
                     "tag": "#92GJGCRR",
@@ -1993,7 +1993,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 13875,
+            "periodPoints": 13975,
             "clanScore": 3250
         },
         {
