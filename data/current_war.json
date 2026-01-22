@@ -1705,15 +1705,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#UQC22V9L8",
-                    "name": "LeeBDE",
-                    "fame": 0,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 0,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#202CVJ9GCG",
                     "name": "拿督",
                     "fame": 0,
@@ -1743,15 +1734,6 @@
                 {
                     "tag": "#VG9JRR88P",
                     "name": "Nova 爱鲲",
-                    "fame": 0,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 0,
-                    "decksUsedToday": 0
-                },
-                {
-                    "tag": "#URVP8P8QR",
-                    "name": "卡布达",
                     "fame": 0,
                     "repairPoints": 0,
                     "boatAttacks": 0,
@@ -1822,6 +1804,15 @@
                     "decksUsedToday": 2
                 },
                 {
+                    "tag": "#UQC22V9L8",
+                    "name": "LeeBDE",
+                    "fame": 200,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 1,
+                    "decksUsedToday": 1
+                },
+                {
                     "tag": "#92GJGCRR",
                     "name": "UFO",
                     "fame": 400,
@@ -1847,6 +1838,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 4
+                },
+                {
+                    "tag": "#URVP8P8QR",
+                    "name": "卡布达",
+                    "fame": 500,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 2,
+                    "decksUsedToday": 2
                 },
                 {
                     "tag": "#VLYR0QJLG",
@@ -1993,7 +1993,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 12675,
+            "periodPoints": 13375,
             "clanScore": 3250
         },
         {
@@ -3473,15 +3473,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#89YGJ80PJ",
-                    "name": "yuto",
-                    "fame": 0,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 0,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#Q8C0JJYUL",
                     "name": "Deidad",
                     "fame": 0,
@@ -3833,6 +3824,15 @@
                     "decksUsedToday": 0
                 },
                 {
+                    "tag": "#89YGJ80PJ",
+                    "name": "yuto",
+                    "fame": 200,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 2,
+                    "decksUsedToday": 2
+                },
+                {
                     "tag": "#GQJ9PJY9Q",
                     "name": "J0K€R",
                     "fame": 300,
@@ -4094,7 +4094,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 17025,
+            "periodPoints": 17225,
             "clanScore": 3290
         },
         {

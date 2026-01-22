@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 108128,
+    "clanScore": 108135,
     "clanWarTrophies": 3257,
     "location": {
         "id": 57000038,
@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 8698,
+    "donationsPerWeek": 8756,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -232,7 +232,7 @@
             "clanRank": 12,
             "previousClanRank": 12,
             "donations": 178,
-            "donationsReceived": 128,
+            "donationsReceived": 144,
             "clanChestPoints": 0
         },
         {
@@ -293,7 +293,7 @@
             "tag": "#2LR0RR89Q",
             "name": "Chetto",
             "role": "member",
-            "lastSeen": "20260122T163336.000Z",
+            "lastSeen": "20260122T230226.000Z",
             "expLevel": 61,
             "trophies": 10788,
             "arena": {
@@ -303,7 +303,7 @@
             },
             "clanRank": 16,
             "previousClanRank": 16,
-            "donations": 253,
+            "donations": 269,
             "donationsReceived": 240,
             "clanChestPoints": 0
         },
@@ -383,9 +383,9 @@
             "tag": "#2VLR9U90",
             "name": "EDDIE",
             "role": "coLeader",
-            "lastSeen": "20260122T225105.000Z",
+            "lastSeen": "20260122T230122.000Z",
             "expLevel": 72,
-            "trophies": 10502,
+            "trophies": 10531,
             "arena": {
                 "id": 54000130,
                 "name": "Royal Road",
@@ -394,7 +394,7 @@
             "clanRank": 21,
             "previousClanRank": 21,
             "donations": 318,
-            "donationsReceived": 136,
+            "donationsReceived": 152,
             "clanChestPoints": 0
         },
         {
@@ -416,6 +416,24 @@
             "clanChestPoints": 0
         },
         {
+            "tag": "#UJRLJY0L2",
+            "name": "51 é pinga",
+            "role": "elder",
+            "lastSeen": "20260122T225840.000Z",
+            "expLevel": 53,
+            "trophies": 10317,
+            "arena": {
+                "id": 54000117,
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
+            },
+            "clanRank": 23,
+            "previousClanRank": 24,
+            "donations": 106,
+            "donationsReceived": 190,
+            "clanChestPoints": 0
+        },
+        {
             "tag": "#UU0RCRLQU",
             "name": "super",
             "role": "member",
@@ -427,28 +445,10 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 23,
+            "clanRank": 24,
             "previousClanRank": 23,
             "donations": 18,
             "donationsReceived": 80,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#UJRLJY0L2",
-            "name": "51 é pinga",
-            "role": "elder",
-            "lastSeen": "20260122T204957.000Z",
-            "expLevel": 53,
-            "trophies": 10288,
-            "arena": {
-                "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
-            },
-            "clanRank": 24,
-            "previousClanRank": 24,
-            "donations": 64,
-            "donationsReceived": 190,
             "clanChestPoints": 0
         },
         {
@@ -502,7 +502,7 @@
             "clanRank": 27,
             "previousClanRank": 27,
             "donations": 325,
-            "donationsReceived": 270,
+            "donationsReceived": 280,
             "clanChestPoints": 0
         },
         {
@@ -556,7 +556,7 @@
             "clanRank": 30,
             "previousClanRank": 30,
             "donations": 256,
-            "donationsReceived": 192,
+            "donationsReceived": 200,
             "clanChestPoints": 0
         },
         {
@@ -574,7 +574,7 @@
             "clanRank": 31,
             "previousClanRank": 31,
             "donations": 0,
-            "donationsReceived": 312,
+            "donationsReceived": 320,
             "clanChestPoints": 0
         },
         {
@@ -833,7 +833,7 @@
             "tag": "#CC9QGJY8Q",
             "name": "juniorllou",
             "role": "member",
-            "lastSeen": "20260122T212711.000Z",
+            "lastSeen": "20260122T225940.000Z",
             "expLevel": 40,
             "trophies": 8667,
             "arena": {
