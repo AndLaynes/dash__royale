@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 108112,
+    "clanScore": 108113,
     "clanWarTrophies": 3257,
     "location": {
         "id": 57000038,
@@ -41,7 +41,7 @@
             "tag": "#UGUULGQ8Y",
             "name": "Asten Acady",
             "role": "elder",
-            "lastSeen": "20260122T195941.000Z",
+            "lastSeen": "20260122T200458.000Z",
             "expLevel": 73,
             "trophies": 11776,
             "arena": {
@@ -146,28 +146,10 @@
             "clanChestPoints": 0
         },
         {
-            "tag": "#PG2LUY0PP",
-            "name": "^_^^_^",
-            "role": "member",
-            "lastSeen": "20260122T192518.000Z",
-            "expLevel": 60,
-            "trophies": 11000,
-            "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
-            },
-            "clanRank": 8,
-            "previousClanRank": 9,
-            "donations": 81,
-            "donationsReceived": 200,
-            "clanChestPoints": 0
-        },
-        {
             "tag": "#8U008PQU8",
             "name": "RobaFrag",
             "role": "elder",
-            "lastSeen": "20260122T184807.000Z",
+            "lastSeen": "20260122T201113.000Z",
             "expLevel": 67,
             "trophies": 11000,
             "arena": {
@@ -175,10 +157,28 @@
                 "name": "Musketeer Street",
                 "rawName": "Arena_L13"
             },
-            "clanRank": 9,
+            "clanRank": 8,
             "previousClanRank": 7,
             "donations": 1052,
             "donationsReceived": 480,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#PG2LUY0PP",
+            "name": "^_^^_^",
+            "role": "member",
+            "lastSeen": "20260122T201106.000Z",
+            "expLevel": 60,
+            "trophies": 11000,
+            "arena": {
+                "id": 54000131,
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
+            },
+            "clanRank": 9,
+            "previousClanRank": 9,
+            "donations": 81,
+            "donationsReceived": 200,
             "clanChestPoints": 0
         },
         {
@@ -383,7 +383,7 @@
             "tag": "#2VLR9U90",
             "name": "EDDIE",
             "role": "coLeader",
-            "lastSeen": "20260122T195421.000Z",
+            "lastSeen": "20260122T200632.000Z",
             "expLevel": 72,
             "trophies": 10559,
             "arena": {
@@ -473,7 +473,7 @@
             "tag": "#LVGCLQQ8L",
             "name": "Luciano",
             "role": "elder",
-            "lastSeen": "20260122T190909.000Z",
+            "lastSeen": "20260122T201201.000Z",
             "expLevel": 58,
             "trophies": 10175,
             "arena": {
@@ -833,9 +833,9 @@
             "tag": "#CC9QGJY8Q",
             "name": "juniorllou",
             "role": "member",
-            "lastSeen": "20260122T152723.000Z",
+            "lastSeen": "20260122T200847.000Z",
             "expLevel": 40,
-            "trophies": 8576,
+            "trophies": 8607,
             "arena": {
                 "id": 54000019,
                 "name": "PANCAKES!",

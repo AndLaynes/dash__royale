@@ -503,15 +503,6 @@
                 "decksUsedToday": 4
             },
             {
-                "tag": "#2VLR9U90",
-                "name": "EDDIE",
-                "fame": 500,
-                "repairPoints": 0,
-                "boatAttacks": 0,
-                "decksUsed": 3,
-                "decksUsedToday": 3
-            },
-            {
                 "tag": "#UGUULGQ8Y",
                 "name": "Asten Acady",
                 "fame": 500,
@@ -550,6 +541,15 @@
             {
                 "tag": "#CC9QGJY8Q",
                 "name": "juniorllou",
+                "fame": 600,
+                "repairPoints": 0,
+                "boatAttacks": 0,
+                "decksUsed": 4,
+                "decksUsedToday": 4
+            },
+            {
+                "tag": "#2VLR9U90",
+                "name": "EDDIE",
                 "fame": 600,
                 "repairPoints": 0,
                 "boatAttacks": 0,
@@ -692,7 +692,7 @@
                 "decksUsedToday": 4
             }
         ],
-        "periodPoints": 16400,
+        "periodPoints": 16500,
         "clanScore": 3257
     },
     "clans": [
@@ -4600,15 +4600,6 @@
                     "decksUsedToday": 4
                 },
                 {
-                    "tag": "#2VLR9U90",
-                    "name": "EDDIE",
-                    "fame": 500,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 3,
-                    "decksUsedToday": 3
-                },
-                {
                     "tag": "#UGUULGQ8Y",
                     "name": "Asten Acady",
                     "fame": 500,
@@ -4647,6 +4638,15 @@
                 {
                     "tag": "#CC9QGJY8Q",
                     "name": "juniorllou",
+                    "fame": 600,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 4,
+                    "decksUsedToday": 4
+                },
+                {
+                    "tag": "#2VLR9U90",
+                    "name": "EDDIE",
                     "fame": 600,
                     "repairPoints": 0,
                     "boatAttacks": 0,
@@ -4789,7 +4789,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 16400,
+            "periodPoints": 16500,
             "clanScore": 3257
         }
     ],
