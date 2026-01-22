@@ -53,15 +53,6 @@
                 "decksUsedToday": 0
             },
             {
-                "tag": "#LVGCLQQ8L",
-                "name": "Luciano",
-                "fame": 0,
-                "repairPoints": 0,
-                "boatAttacks": 0,
-                "decksUsed": 0,
-                "decksUsedToday": 0
-            },
-            {
                 "tag": "#U0CGGG8R0",
                 "name": "alm ícaro⁷⁷⁷",
                 "fame": 0,
@@ -690,9 +681,18 @@
                 "boatAttacks": 0,
                 "decksUsed": 4,
                 "decksUsedToday": 4
+            },
+            {
+                "tag": "#LVGCLQQ8L",
+                "name": "Luciano",
+                "fame": 900,
+                "repairPoints": 0,
+                "boatAttacks": 0,
+                "decksUsed": 4,
+                "decksUsedToday": 4
             }
         ],
-        "periodPoints": 19750,
+        "periodPoints": 20650,
         "clanScore": 3257
     },
     "clans": [
@@ -1804,15 +1804,6 @@
                     "decksUsedToday": 2
                 },
                 {
-                    "tag": "#UQC22V9L8",
-                    "name": "LeeBDE",
-                    "fame": 200,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 1,
-                    "decksUsedToday": 1
-                },
-                {
                     "tag": "#92GJGCRR",
                     "name": "UFO",
                     "fame": 400,
@@ -1820,6 +1811,15 @@
                     "boatAttacks": 4,
                     "decksUsed": 4,
                     "decksUsedToday": 4
+                },
+                {
+                    "tag": "#UQC22V9L8",
+                    "name": "LeeBDE",
+                    "fame": 400,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 2,
+                    "decksUsedToday": 2
                 },
                 {
                     "tag": "#CUY9UL8JL",
@@ -1838,15 +1838,6 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 4
-                },
-                {
-                    "tag": "#URVP8P8QR",
-                    "name": "卡布达",
-                    "fame": 500,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 2,
-                    "decksUsedToday": 2
                 },
                 {
                     "tag": "#VLYR0QJLG",
@@ -1991,9 +1982,18 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 4
+                },
+                {
+                    "tag": "#URVP8P8QR",
+                    "name": "卡布达",
+                    "fame": 800,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 4,
+                    "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 13375,
+            "periodPoints": 13875,
             "clanScore": 3250
         },
         {
@@ -3111,15 +3111,6 @@
                     "decksUsedToday": 2
                 },
                 {
-                    "tag": "#L2Q0GCGY0",
-                    "name": "ЗАВУПАЧ",
-                    "fame": 300,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 2,
-                    "decksUsedToday": 2
-                },
-                {
                     "tag": "#PG9JVYLJJ",
                     "name": "Gamerforsage",
                     "fame": 300,
@@ -3219,6 +3210,15 @@
                     "decksUsedToday": 4
                 },
                 {
+                    "tag": "#L2Q0GCGY0",
+                    "name": "ЗАВУПАЧ",
+                    "fame": 600,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 4,
+                    "decksUsedToday": 4
+                },
+                {
                     "tag": "#UVU9J8Y89",
                     "name": "мыкола",
                     "fame": 600,
@@ -3309,7 +3309,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 12050,
+            "periodPoints": 12350,
             "clanScore": 3225
         },
         {
@@ -3734,15 +3734,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#PUU2CJ0QC",
-                    "name": "Spid3yy_",
-                    "fame": 0,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 0,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#YL2R9Q22P",
                     "name": "SebasConPowerr",
                     "fame": 0,
@@ -3831,6 +3822,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 2,
                     "decksUsedToday": 2
+                },
+                {
+                    "tag": "#PUU2CJ0QC",
+                    "name": "Spid3yy_",
+                    "fame": 200,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 1,
+                    "decksUsedToday": 1
                 },
                 {
                     "tag": "#GQJ9PJY9Q",
@@ -4094,7 +4094,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 17225,
+            "periodPoints": 17425,
             "clanScore": 3290
         },
         {
@@ -4143,15 +4143,6 @@
                 {
                     "tag": "#YYUQV9UQ",
                     "name": "sj pro",
-                    "fame": 0,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 0,
-                    "decksUsedToday": 0
-                },
-                {
-                    "tag": "#LVGCLQQ8L",
-                    "name": "Luciano",
                     "fame": 0,
                     "repairPoints": 0,
                     "boatAttacks": 0,
@@ -4787,9 +4778,18 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 4
+                },
+                {
+                    "tag": "#LVGCLQQ8L",
+                    "name": "Luciano",
+                    "fame": 900,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 4,
+                    "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 19750,
+            "periodPoints": 20650,
             "clanScore": 3257
         }
     ],

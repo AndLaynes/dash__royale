@@ -213,7 +213,7 @@
             "clanRank": 12,
             "previousClanRank": 12,
             "donations": 178,
-            "donationsReceived": 144,
+            "donationsReceived": 160,
             "clanChestPoints": 0
         },
         {
@@ -285,7 +285,7 @@
             "clanRank": 16,
             "previousClanRank": 16,
             "donations": 269,
-            "donationsReceived": 240,
+            "donationsReceived": 260,
             "clanChestPoints": 0
         },
         {
@@ -343,6 +343,24 @@
             "clanChestPoints": 0
         },
         {
+            "tag": "#2VLR9U90",
+            "name": "EDDIE",
+            "role": "coLeader",
+            "lastSeen": "20260122T230620.000Z",
+            "expLevel": 72,
+            "trophies": 10563,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 20,
+            "previousClanRank": 21,
+            "donations": 318,
+            "donationsReceived": 160,
+            "clanChestPoints": 0
+        },
+        {
             "tag": "#90U8CVP90",
             "name": "Mila",
             "role": "coLeader",
@@ -354,28 +372,10 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 20,
+            "clanRank": 21,
             "previousClanRank": 20,
             "donations": 40,
             "donationsReceived": 120,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#2VLR9U90",
-            "name": "EDDIE",
-            "role": "coLeader",
-            "lastSeen": "20260122T230122.000Z",
-            "expLevel": 72,
-            "trophies": 10531,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
-            },
-            "clanRank": 21,
-            "previousClanRank": 21,
-            "donations": 318,
-            "donationsReceived": 152,
             "clanChestPoints": 0
         },
         {
@@ -526,7 +526,7 @@
             "tag": "#U89CJJGUV",
             "name": "RaiNascimento",
             "role": "member",
-            "lastSeen": "20260122T214758.000Z",
+            "lastSeen": "20260122T231451.000Z",
             "expLevel": 60,
             "trophies": 10089,
             "arena": {
@@ -536,7 +536,7 @@
             },
             "clanRank": 30,
             "previousClanRank": 30,
-            "donations": 256,
+            "donations": 274,
             "donationsReceived": 200,
             "clanChestPoints": 0
         },
@@ -816,7 +816,7 @@
             "role": "member",
             "lastSeen": "20260122T225940.000Z",
             "expLevel": 40,
-            "trophies": 8667,
+            "trophies": 8694,
             "arena": {
                 "id": 54000019,
                 "name": "PANCAKES!",
@@ -824,7 +824,7 @@
             },
             "clanRank": 46,
             "previousClanRank": 46,
-            "donations": 218,
+            "donations": 244,
             "donationsReceived": 240,
             "clanChestPoints": 0
         },
