@@ -487,7 +487,7 @@ body {
 }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- [GT-Z] html2pdf REMOVED (Server-Side Migration) -->
 </head>
 <body>
     <header class="main-header">
@@ -507,7 +507,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 15:18</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 16:15</strong>
                 </div>
             </div>
         </div>
@@ -516,9 +516,10 @@ body {
     <div class="container">
         
     <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
-        <button id="btn-export-pdf" class="btn-pdf" onclick="downloadPDF()">
-            <span>📄</span> Exportar Relatório (PDF)
-        </button>
+        <!-- [GT-Z] STATIC PDF LINK -->
+        <a href="daily_war.pdf" target="_blank" class="btn-pdf" style="text-decoration:none;">
+            <span>📄</span> Baixar Relatório Oficial (PDF)
+        </a>
     </div>
 
     <div id="printable-area">
@@ -535,7 +536,7 @@ body {
                 </div>
                 <div style="text-align:right;">
                     <div style="font-size:12px; color:#cbd5e0;">GERADO EM</div>
-                    <div style="font-size:16px; font-weight:bold; color:#fff;">23/01/2026 15:18</div>
+                    <div style="font-size:16px; font-weight:bold; color:#fff;">23/01/2026 16:15</div>
                 </div>
             </div>
         </div>
@@ -564,11 +565,11 @@ body {
             </div>
             <div class="stat-box stat-green">
                 <div style="font-size:10px; opacity:0.8;">EM DIA</div>
-                19
+                20
             </div>
             <div class="stat-box stat-yellow">
                 <div style="font-size:10px; opacity:0.8;">INCOMPLETO</div>
-                19
+                18
             </div>
             <div class="stat-box stat-red">
                 <div style="font-size:10px; opacity:0.8;">ZERADO</div>
@@ -665,20 +666,6 @@ body {
             <td style="font-weight:bold; font-size:16px;">4/8</td>
             <td><div class="missing-badge">-4</div></td>
             <td style="color:#fbbf24; font-weight:bold;">1200</td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>Diih</span>
-                    <span style="color:#718096; font-size:10px;">#P8U20PG98</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">4/8</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td style="color:#fbbf24; font-weight:bold;">1300</td>
             <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
         </tr>
         
@@ -1091,6 +1078,20 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
+                    <span>Diih</span>
+                    <span style="color:#718096; font-size:10px;">#P8U20PG98</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">2100</td>
+            <td><span class="status-badge status-complete">EM DIA</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
                     <span>EDDIE</span>
                     <span style="color:#718096; font-size:10px;">#2VLR9U90</span>
                 </div>
@@ -1316,586 +1317,7 @@ body {
     </table>
     </div>
     
-    
-    <div id="pdf-hidden-source" style="display:none;">
-        <div class="pdf-header-doc">
-            <h1>RELATÓRIO DE GUERRA: OS GUARDIÕES</h1>
-            <p>Data: 23/01/2026 15:18 | Ref: Temporada 128 | Semana 2</p>
-        </div>
-        <div class="pdf-summary">
-            <strong>RESUMO OPERACIONAL:</strong><br>
-            Meta do Dia: 8 Decks<br>
-            Situação: 19 Em Dia | 19 Incompletos | 12 Zerados
-        </div>
-        <table class="pdf-table">
-            <thead>
-                <tr>
-                    <th>JOGADOR</th>
-                    <th>DECKS</th>
-                    <th>FALTAM</th>
-                    <th>FAMA</th>
-                    <th>STATUS</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-        <tr>
-            <td>
-                <strong>tavin</strong><br>
-                <small>#U8VP8L8L0</small>
-            </td>
-            <td>2 / 8</td>
-            <td>6</td>
-            <td>500</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>ZackThunder</strong><br>
-                <small>#R9UP0QLR9</small>
-            </td>
-            <td>3 / 8</td>
-            <td>5</td>
-            <td>700</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Chetto</strong><br>
-                <small>#2LR0RR89Q</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1400</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Daniele❤</strong><br>
-                <small>#8R2LRC80Q</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1200</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Diih</strong><br>
-                <small>#P8U20PG98</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1300</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Dockz</strong><br>
-                <small>#YJUG9Y88</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1600</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Grimmer 狼</strong><br>
-                <small>#QUVLYY0VY</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1400</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Luciano</strong><br>
-                <small>#LVGCLQQ8L</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1800</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Pedro PH</strong><br>
-                <small>#90LLGLPR0</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1200</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>RobaFrag</strong><br>
-                <small>#8U008PQU8</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1100</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>StelaAby</strong><br>
-                <small>#JQCPPGLUV</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1200</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>filho de duque</strong><br>
-                <small>#VRGLYCRPG</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1200</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>polaris</strong><br>
-                <small>#PCPCJU20Y</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>800</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>super</strong><br>
-                <small>#UU0RCRLQU</small>
-            </td>
-            <td>4 / 8</td>
-            <td>4</td>
-            <td>1000</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Rodolfos</strong><br>
-                <small>#200JYCVYGY</small>
-            </td>
-            <td>5 / 8</td>
-            <td>3</td>
-            <td>650</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>juniorllou</strong><br>
-                <small>#CC9QGJY8Q</small>
-            </td>
-            <td>5 / 8</td>
-            <td>3</td>
-            <td>1400</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>^_^^_^</strong><br>
-                <small>#PG2LUY0PP</small>
-            </td>
-            <td>6 / 8</td>
-            <td>2</td>
-            <td>1000</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>isp</strong><br>
-                <small>#C8C20C0JQ</small>
-            </td>
-            <td>6 / 8</td>
-            <td>2</td>
-            <td>1500</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Kauan</strong><br>
-                <small>#UC2CJ0JR2</small>
-            </td>
-            <td>7 / 8</td>
-            <td>1</td>
-            <td>1100</td>
-            <td><strong>INCOMPLETO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>- ROJÎ</strong><br>
-                <small>#9JL9J98JC</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Alvaro</strong><br>
-                <small>#8JULVVL0J</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>700</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Felipe</strong><br>
-                <small>#P0J88GLL9</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>GUARDIÃO FIRE</strong><br>
-                <small>#VG92Y9QC8</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>GabiMalvadeza</strong><br>
-                <small>#V92JP0YGY</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>600</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Gustavo</strong><br>
-                <small>#PRYQQQ88L</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>JOSA</strong><br>
-                <small>#2LY2GLJQL</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>WILLIAN</strong><br>
-                <small>#UUL8VUQ0P</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Yzzy the best ¿</strong><br>
-                <small>#8LRQJLPCQ</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>alm ícaro⁷⁷⁷</strong><br>
-                <small>#U0CGGG8R0</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>nova</strong><br>
-                <small>#UUJC900UG</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>sj pro</strong><br>
-                <small>#YYUQV9UQ</small>
-            </td>
-            <td>0 / 8</td>
-            <td>8</td>
-            <td>0</td>
-            <td><strong>ZERADO</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>51 é pinga</strong><br>
-                <small>#UJRLJY0L2</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>2100</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Asten Acady</strong><br>
-                <small>#UGUULGQ8Y</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1800</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>DGJ-DAVI</strong><br>
-                <small>#9RPCC2VCG</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1850</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>EDDIE</strong><br>
-                <small>#2VLR9U90</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1700</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Fafazin10</strong><br>
-                <small>#J8RVUU02L</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1150</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Mila</strong><br>
-                <small>#90U8CVP90</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>2300</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Nico</strong><br>
-                <small>#9RUUG2R8</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>2500</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>O GUARDIÃO</strong><br>
-                <small>#UJRQ2L09</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>2100</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>OneDePrata</strong><br>
-                <small>#LYL9CU0P0</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1900</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>RaiNascimento</strong><br>
-                <small>#U89CJJGUV</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1700</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Sotto ツ</strong><br>
-                <small>#2P299V0CU</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>2400</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>Teixeirazzqw</strong><br>
-                <small>#V9QU2YVUQ</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1300</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>andrebts</strong><br>
-                <small>#VUQ0PV8PV</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1850</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>gabiggoughost</strong><br>
-                <small>#V9PCU0LCV</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>2000</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>gnvx v</strong><br>
-                <small>#20R020VQ2C</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1050</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>joão3:16</strong><br>
-                <small>#U220VCULP</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>2400</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>luck</strong><br>
-                <small>#LVQRP2LGG</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1700</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>nivelador</strong><br>
-                <small>#VL292PYGJ</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>2300</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-        <tr>
-            <td>
-                <strong>⭐O SENTINELA ⭐</strong><br>
-                <small>#99PJ9QQPC</small>
-            </td>
-            <td>8 / 8</td>
-            <td>0</td>
-            <td>1600</td>
-            <td><strong>EM DIA</strong></td>
-        </tr>
-        
-            </tbody>
-        </table>
-        <div style="margin-top:20px; font-size:10px; color:#555;">
-            * Este documento é gerado automaticamente pelo Sistema de Auditoria Ground Truth.
-        </div>
     </div>
-    
     
     </div>
 

@@ -13,6 +13,17 @@ OUTPUT_DIR = os.path.dirname(os.path.dirname(__file__))
 # Fuso Horário Brasil (GMT-3)
 BRAZIL_TZ = timezone(timedelta(hours=-3))
 
+# [GT-Z] PDF GENERATION DEPENDENCY
+try:
+    from weasyprint import HTML, CSS
+    WEASYPRINT_AVAILABLE = True
+except OSError:
+    print("WARNING: WeasyPrint (GTK) not found. PDF generation disabled locally.")
+    WEASYPRINT_AVAILABLE = False
+except ImportError:
+    print("WARNING: WeasyPrint module not installed. PDF generation disabled.")
+    WEASYPRINT_AVAILABLE = False
+
 # ==========================================
 # TEMPLATES CSS & HTML (O DESIGN FIEL)
 # ==========================================
@@ -522,7 +533,7 @@ def get_page_template(active_page, content):
     <title>OS GUARDIÕES - {active_page}</title>
     <style>{STYLE_CSS}</style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- [GT-Z] html2pdf REMOVED (Server-Side Migration) -->
 </head>
 <body>
     <header class="main-header">
@@ -655,6 +666,106 @@ def format_clash_date(date_str):
         return date_str
     except Exception as e:
         return date_str
+
+def generate_static_pdf(rows, meta_decks, counts, war_label, output_dir):
+    """
+    [GT-Z] SERVER-SIDE PDF GENERATOR
+    Gera um arquivo PDF estático (A4) usando WeasyPrint.
+    Substitui a solução Client-Side instável.
+    """
+    if not WEASYPRINT_AVAILABLE:
+        return
+
+    print("Gerando PDF Estático (Server-Side)...")
+    
+    # 1. CSS Específico para Impressão (Clean & High Contrast)
+    pdf_css = CSS(string="""
+    @page { size: A4; margin: 15mm; }
+    body { font-family: Helvetica, Arial, sans-serif; font-size: 11px; color: #000; }
+    h1 { font-size: 18px; margin-bottom: 5px; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 10px; }
+    .meta-header { font-size: 12px; margin-bottom: 20px; color: #444; }
+    .summary-box { border: 1px solid #000; padding: 10px; margin-bottom: 20px; background: #f0f0f0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th { background: #000; color: #fff; padding: 8px; text-align: left; font-size: 10px; text-transform: uppercase; }
+    td { border-bottom: 1px solid #ccc; padding: 6px 8px; }
+    .status-ok { color: green; font-weight: bold; }
+    .status-warn { color: orange; font-weight: bold; }
+    .status-bad { color: red; font-weight: bold; }
+    .footer { position: fixed; bottom: 0; left: 0; right: 0; font-size: 9px; text-align: center; color: #666; }
+    """)
+
+    # 2. Construir HTML Limpo
+    rows_html = ""
+    for r in rows:
+        status_style = "status-bad"
+        if r['status'] == "EM DIA": status_style = "status-ok"
+        elif r['status'] == "INCOMPLETO": status_style = "status-warn"
+        
+        rows_html += f'''
+        <tr>
+            <td>
+                <strong>{r['name']}</strong><br>
+                <span style="font-size:9px; color:#555">{r['tag']}</span>
+            </td>
+            <td>{r['cargo']}</td>
+            <td>{r['decks']} / {meta_decks}</td>
+            <td>{r['faltam']}</td>
+            <td>{r['fame']}</td>
+            <td class="{status_style}">{r['status']}</td>
+        </tr>
+        '''
+
+    html_content = f'''
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="UTF-8"></head>
+    <body>
+        <h1>Relatório de Operações de Guerra</h1>
+        <div class="meta-header">
+            <strong>CLÃ:</strong> OS GUARDIÕES (#9PJRJRPC)<br>
+            <strong>DATA DE EXTRAÇÃO:</strong> {datetime.now(BRAZIL_TZ).strftime('%d/%m/%Y %H:%M')}<br>
+            <strong>REFERÊNCIA:</strong> {war_label}
+        </div>
+
+        <div class="summary-box">
+            <strong>RESUMO TÁTICO:</strong><br>
+            Meta do Dia: {meta_decks} Decks<br>
+            <span style="color:green">✔ Em Dia: {counts['ok']}</span> | 
+            <span style="color:orange">⚠ Incompletos: {counts['warn']}</span> | 
+            <span style="color:red">✖ Zerados: {counts['bad']}</span>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Agente</th>
+                    <th>Patente</th>
+                    <th>Decks</th>
+                    <th>Pendência</th>
+                    <th>Fama</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {rows_html}
+            </tbody>
+        </table>
+
+        <div class="footer">
+            Gerado automaticamente pelo Sistema de Auditoria Ground Truth (GT-Z).
+            Clash Royale War Analytics.
+        </div>
+    </body>
+    </html>
+    '''
+
+    # 3. Renderizar PDF
+    try:
+        pdf_file = os.path.join(output_dir, 'daily_war.pdf')
+        HTML(string=html_content).write_pdf(pdf_file, stylesheets=[pdf_css])
+        print(f"PDF gerado com sucesso: {pdf_file}")
+    except Exception as e:
+        print(f"ERRO CRÍTICO AO GERAR PDF: {e}")
 
 def generate_html_report():
     print("Iniciando geração de relatórios...")
@@ -955,9 +1066,10 @@ def generate_html_report():
     # 5. Montar Conteúdo Daily War
     audit_content = f"""
     <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
-        <button id="btn-export-pdf" class="btn-pdf" onclick="downloadPDF()">
-            <span>📄</span> Exportar Relatório (PDF)
-        </button>
+        <!-- [GT-Z] STATIC PDF LINK -->
+        <a href="daily_war.pdf" target="_blank" class="btn-pdf" style="text-decoration:none;">
+            <span>📄</span> Baixar Relatório Oficial (PDF)
+        </a>
     </div>
 
     <div id="printable-area">
@@ -1055,12 +1167,16 @@ def generate_html_report():
     </table>
     </div>
     
-    {pdf_shadow_content}
+    </div>
     """
 
     # Escrever Daily War
     with open(os.path.join(OUTPUT_DIR, 'daily_war.html'), 'w', encoding='utf-8') as f:
         f.write(get_page_template("Guerra", audit_content))
+
+    # [GT-Z] GERAR PDF STATIC ASSET (chamada da nova função)
+    counts = {'ok': count_em_dia, 'warn': count_incompleto, 'bad': count_zerado}
+    generate_static_pdf(top_50_rows, meta_decks, counts, war_label, OUTPUT_DIR)
 
     # 6. Gerar Página INDEX (Dashboard Geral)
     print("Gerando Dashboard (Index)...")

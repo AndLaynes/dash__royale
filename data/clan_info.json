@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 108242,
+    "clanScore": 108239,
     "clanWarTrophies": 3257,
     "location": {
         "id": 57000038,
@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 10420,
+    "donationsPerWeek": 10452,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -23,7 +23,7 @@
             "tag": "#9RUUG2R8",
             "name": "Nico",
             "role": "member",
-            "lastSeen": "20260123T163526.000Z",
+            "lastSeen": "20260123T185939.000Z",
             "expLevel": 68,
             "trophies": 12000,
             "arena": {
@@ -33,7 +33,7 @@
             },
             "clanRank": 1,
             "previousClanRank": 1,
-            "donations": 893,
+            "donations": 909,
             "donationsReceived": 400,
             "clanChestPoints": 0
         },
@@ -51,7 +51,7 @@
             },
             "clanRank": 2,
             "previousClanRank": 2,
-            "donations": 426,
+            "donations": 442,
             "donationsReceived": 240,
             "clanChestPoints": 0
         },
@@ -394,7 +394,7 @@
             "clanRank": 21,
             "previousClanRank": 21,
             "donations": 402,
-            "donationsReceived": 208,
+            "donationsReceived": 224,
             "clanChestPoints": 0
         },
         {
@@ -473,7 +473,7 @@
             "tag": "#LVGCLQQ8L",
             "name": "Luciano",
             "role": "elder",
-            "lastSeen": "20260123T181600.000Z",
+            "lastSeen": "20260123T183826.000Z",
             "expLevel": 60,
             "trophies": 10177,
             "arena": {
@@ -542,24 +542,6 @@
             "clanChestPoints": 0
         },
         {
-            "tag": "#U89CJJGUV",
-            "name": "RaiNascimento",
-            "role": "member",
-            "lastSeen": "20260123T181532.000Z",
-            "expLevel": 60,
-            "trophies": 10060,
-            "arena": {
-                "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
-            },
-            "clanRank": 30,
-            "previousClanRank": 30,
-            "donations": 326,
-            "donationsReceived": 237,
-            "clanChestPoints": 0
-        },
-        {
             "tag": "#VUQ0PV8PV",
             "name": "andrebts",
             "role": "coLeader",
@@ -571,7 +553,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 31,
+            "clanRank": 30,
             "previousClanRank": 34,
             "donations": 51,
             "donationsReceived": 280,
@@ -589,7 +571,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 32,
+            "clanRank": 31,
             "previousClanRank": 31,
             "donations": 0,
             "donationsReceived": 320,
@@ -607,10 +589,28 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 33,
+            "clanRank": 32,
             "previousClanRank": 32,
             "donations": 0,
             "donationsReceived": 0,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#U89CJJGUV",
+            "name": "RaiNascimento",
+            "role": "member",
+            "lastSeen": "20260123T181532.000Z",
+            "expLevel": 60,
+            "trophies": 10032,
+            "arena": {
+                "id": 54000117,
+                "name": "Lumberlove Cabin",
+                "rawName": "Arena_L11"
+            },
+            "clanRank": 33,
+            "previousClanRank": 30,
+            "donations": 326,
+            "donationsReceived": 237,
             "clanChestPoints": 0
         },
         {
@@ -761,7 +761,7 @@
             "tag": "#P8U20PG98",
             "name": "Diih",
             "role": "member",
-            "lastSeen": "20260122T183757.000Z",
+            "lastSeen": "20260123T184008.000Z",
             "expLevel": 59,
             "trophies": 9206,
             "arena": {
@@ -772,7 +772,7 @@
             "clanRank": 42,
             "previousClanRank": 42,
             "donations": 0,
-            "donationsReceived": 120,
+            "donationsReceived": 136,
             "clanChestPoints": 0
         },
         {
