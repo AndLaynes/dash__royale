@@ -17,8 +17,8 @@ A integridade lógica geral é **ALTA**, mas foram detectados traços de **"Code
 | `src/webhook_notifier.py` | 73 | ✅ LIMPO | Simples e direto. Sem inchaço. |
 | `run_update.py` | 125 | ✅ LIMPO | Orquestração limpa, logs claros. |
 | `make_backup.py` | 49 | ✅ LIMPO | Utilitário funcional. |
-| **`app.py`** | 50 | ⚠️ SUJO | **Detectada Verbosidade Redundante.** |
-| **`src/generate_html_report.py`** | 1413 | ⚠️ SUJO | **Detectado Code Slop (Duplicação de Chaves/Linhas).** |
+| **`app.py`** | 49 | ✅ LIMPO (SANEADO) | **Redundância removida.** |
+| **`src/generate_html_report.py`** | 1410 | ✅ LIMPO (SANEADO) | **Duplicações corrigidas.** |
 
 ---
 
