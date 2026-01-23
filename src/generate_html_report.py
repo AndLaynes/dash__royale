@@ -878,11 +878,11 @@ def generate_html_report():
     # Ordenar por Doações
     sorted_donations = sorted(members_api, key=lambda x: x['donations'], reverse=True)
     total_donations = sum(m['donations'] for m in members_api)
-    top_donors = sorted_donations[:10] # Top 10
+    top_donors = sorted_donations[:5] # Top 5 (Compact View)
     
     # Ordenar por Troféus (MVPs)
     sorted_trophies = sorted(members_api, key=lambda x: x['trophies'], reverse=True)
-    top_trophies = sorted_trophies[:10] # Top 10
+    top_trophies = sorted_trophies[:5] # Top 5 (Compact View)
 
 
     # HTML Construction
@@ -913,18 +913,19 @@ def generate_html_report():
                 rank_badge = f'<div class="rank-number">#{rank}</div>'
                 
             html += f"""
-            <div class="player-card" style="background: {bg_style}; border: 1px solid {border_style};">
-                <div class="card-left">
-                    {rank_badge}
-                    <div class="player-info">
-                        <div class="p-name">{p['name']}</div>
-                        <div class="p-tag">{p['tag']}</div>
+            <div class="player-card compact" style="background: {bg_style}; border: 1px solid {border_style};">
+                <div class="card-content-wrapper">
+                    <div class="card-left">
+                        {rank_badge}
+                        <div class="player-info">
+                            <div class="p-name">{p['name']}</div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-right">
-                    <div class="p-value">
-                        <span class="p-icon">{icon}</span>
-                        {p[value_key]}
+                    <div class="card-right">
+                        <div class="p-value">
+                            <span class="p-icon">{icon}</span>
+                            {p[value_key]}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -980,27 +981,43 @@ def generate_html_report():
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     
     <style>
-        .player-card {{
+        /* Compact Layout Fixes */
+        .player-card.compact {{
+            padding: 8px 12px;
+            margin-bottom: 6px;
+        }}
+        .card-content-wrapper {{
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            transition: transform 0.2s;
+            width: 100%;
+            gap: 15px; /* Keeps name and value close but separated */
         }}
-        .player-card:hover {{ transform: translateX(5px); }}
-        .card-left {{ display: flex; align-items: center; gap: 12px; }}
-        .rank-medal {{ font-size: 20px; }}
+        
+        .card-left {{ display: flex; align-items: center; gap: 10px; flex-shrink: 0; }}
+        .rank-medal {{ font-size: 18px; }}
         .rank-number {{ 
             font-size: 12px; font-weight: bold; color: #a0aec0; 
-            width: 24px; text-align: center;
+            width: 20px; text-align: center;
         }}
-        .player-info {{ display: flex; flex-direction: column; }}
-        .p-name {{ font-weight: 700; font-size: 14px; color: white; }}
-        .p-tag {{ font-size: 10px; color: #718096; }}
-        .p-value {{ font-weight: 800; font-size: 14px; color: white; display: flex; align-items: center; gap: 5px; }}
+        /* Name truncating if needed, but flex should handle it */
+        .p-name {{ font-weight: 700; font-size: 13px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }}
         
+        .card-right {{ flex-shrink: 0; }}
+        /* Value styling */
+        .p-value {{ font-weight: 800; font-size: 13px; color: white; display: flex; align-items: center; gap: 4px; }}
+        .p-icon {{ font-size: 14px; }}
+
+        /* Split Columns Grid */
+        .split-columns {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }}
+        @media (max-width: 768px) {{
+            .split-columns {{ grid-template-columns: 1fr; }}
+        }}
+
         /* War Status Visuals */
         .war-status-container {{ display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }}
         .war-metric-box {{
@@ -1013,20 +1030,6 @@ def generate_html_report():
         .war-metric-box.accent {{ border-left-color: #fbbf24; }}
         .war-metric-label {{ font-size: 11px; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }}
         .war-metric-value {{ font-size: 20px; font-weight: 800; color: white; }}
-        
-        .war-progress-steps {{ 
-            margin-top: 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            position: relative; 
-        }}
-        .war-progress-steps::before {{
-            content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: #2d3748; z-index: 0;
-        }}
-        .step-dot {{
-            width: 12px; height: 12px; border-radius: 50%; background: #2d3748; z-index: 1; border: 2px solid #1a202c;
-        }}
-        .step-dot.active {{ background: #10b981; border-color: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }}
     </style>
 
     <!-- 1. GRÁFICO PREMIUM -->
@@ -1046,64 +1049,64 @@ def generate_html_report():
         </div>
     </div>
 
-    <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+    <!-- 2. WAR STATUS CARD (Full Width) -->
+    <div class="dash-card" style="margin-bottom: 20px; background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); border: 1px solid #4a5568;">
+        <div class="card-header">
+            <div>
+                <h3 style="color:#fbbf24;">⚔️ Status de Guerra</h3>
+                <div style="font-size:11px; color:#a0aec0;">SEASON {season_id}</div>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:10px; color:#a0aec0;">TROFÉUS ATUAIS</div>
+                <div style="font-size:24px; font-weight:800; color:#fbbf24;">{clan_war_trophies} 🏆</div>
+            </div>
+        </div>
         
-        <!-- 2. WAR STATUS CARD -->
-        <div class="dash-card" style="background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); border: 1px solid #4a5568;">
-            <div class="card-header">
-                <div>
-                    <h3 style="color:#fbbf24;">⚔️ Status de Guerra</h3>
-                    <div style="font-size:11px; color:#a0aec0;">SEASON {season_id}</div>
+        <div class="card-body">
+            <div class="war-status-container">
+                <div class="war-metric-box accent">
+                    <div class="war-metric-label">Rank Anterior</div>
+                    <div class="war-metric-value">{war_rank}</div>
                 </div>
-                <div style="text-align:right;">
-                    <div style="font-size:10px; color:#a0aec0;">TROFÉUS ATUAIS</div>
-                    <div style="font-size:24px; font-weight:800; color:#fbbf24;">{clan_war_trophies} 🏆</div>
+                <div class="war-metric-box" style="border-left-color: #10b981;">
+                    <div class="war-metric-label">Participação Total</div>
+                    <div class="war-metric-value">{part_full} <span style="font-size:12px; opacity:0.7;">/ 50</span></div>
                 </div>
             </div>
             
-            <div class="card-body">
-                <div class="war-status-container">
-                    <div class="war-metric-box accent">
-                        <div class="war-metric-label">Rank Anterior</div>
-                        <div class="war-metric-value">{war_rank}</div>
+            <div style="margin-top:20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                    <span style="font-size:12px; color:#a0aec0;">Parciais (Incompletos)</span>
+                    <span style="font-size:12px; font-weight:bold; color:#fbbf24;">{part_idling}</span>
                     </div>
-                    <div class="war-metric-box" style="border-left-color: #10b981;">
-                        <div class="war-metric-label">Participação Total</div>
-                        <div class="war-metric-value">{part_full} <span style="font-size:12px; opacity:0.7;">/ 50</span></div>
+                    <div style="display:flex; justify-content:space-between;">
+                    <span style="font-size:12px; color:#a0aec0;">Ausentes (0 Decks)</span>
+                    <span style="font-size:12px; font-weight:bold; color:#ef4444;">{part_none}</span>
                     </div>
-                </div>
-                
-                <div style="margin-top:20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
-                     <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                        <span style="font-size:12px; color:#a0aec0;">Parciais (Incompletos)</span>
-                        <span style="font-size:12px; font-weight:bold; color:#fbbf24;">{part_idling}</span>
-                     </div>
-                     <div style="display:flex; justify-content:space-between;">
-                        <span style="font-size:12px; color:#a0aec0;">Ausentes (0 Decks)</span>
-                        <span style="font-size:12px; font-weight:bold; color:#ef4444;">{part_none}</span>
-                     </div>
-                </div>
             </div>
         </div>
+    </div>
 
-        <!-- 3. TOP DOAÇÕES -->
+    <!-- 3 & 4. SIDE BY SIDE LISTS -->
+    <div class="split-columns">
+        <!-- TOP DOAÇÕES -->
         <div class="dash-card">
             <div class="card-header">
-                <h3>🃏 Top Doadores</h3>
+                <h3>🃏 Doadores (Top 5)</h3>
                 <span class="badge" style="background:#3182ce;">{total_donations} Cards</span>
             </div>
-            <div class="scrollable-list" style="max-height: 400px; overflow-y: auto;">
+            <div class="scrollable-list">
                 {donors_html}
             </div>
         </div>
 
-        <!-- 4. MVP TROFÉUS -->
+        <!-- MVP TROFÉUS -->
         <div class="dash-card">
             <div class="card-header">
-                <h3>🏆 Top Ladder (MVPs)</h3>
+                <h3>🏆 Top Ladder (Top 5)</h3>
                 <span class="badge" style="background:#d69e2e;">Habilidade</span>
             </div>
-            <div class="scrollable-list" style="max-height: 400px; overflow-y: auto;">
+            <div class="scrollable-list">
                 {mvp_html}
             </div>
         </div>
