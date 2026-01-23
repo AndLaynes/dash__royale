@@ -415,15 +415,31 @@ def get_page_template(active_page, content):
 </html>"""
 
 def format_clash_date(date_str):
-    """Converte '20231124T123000.000Z' para '24/11/2023 12:30'"""
+    """Converte '20231124T123000.000Z' para '24/11/2023 12:30' (GMT-3)"""
     if not date_str or date_str == 'N/A': return 'N/A'
     try:
-        # Tenta formatar string da API
+        # Tenta formatar string da API (UTC)
         if 'T' in date_str:
-            dt = datetime.strptime(date_str, '%Y%m%dT%H%M%S.%fZ')
-            return dt.strftime('%d/%m/%Y %H:%M')
+            # Remover 'Z' e frações para facilitar parse, ou usar strptime com %f
+            # API Clash geralmente manda %Y%m%dT%H%M%S.%fZ
+            
+            # Limpeza basica para suportar formatos variados
+            clean_date = date_str.replace('Z', '')
+            
+            if '.' in clean_date:
+                dt = datetime.strptime(clean_date, '%Y%m%dT%H%M%S.%f')
+            else:
+                dt = datetime.strptime(clean_date, '%Y%m%dT%H%M%S')
+            
+            # Definir como UTC
+            dt = dt.replace(tzinfo=timezone.utc)
+            
+            # Converter para BRT
+            dt_br = dt.astimezone(BRAZIL_TZ)
+            
+            return dt_br.strftime('%d/%m/%Y %H:%M')
         return date_str
-    except Exception:
+    except Exception as e:
         return date_str
 
 def generate_html_report():
@@ -1103,14 +1119,14 @@ def generate_html_report():
 
             members_table_html += f"""
             <tr class="data-row">
-                <td>
+                <td data-value="{m['name']}">
                     <div style="font-weight:bold;">{m['name']}</div>
                     <div style="font-size:10px; color:#718096;">{m['tag']}</div>
                 </td>
                 <td>{role_badge}</td>
-                <td><span style="color:#fbbf24">🏆 {m['trophies']}</span></td>
-                <td><span style="color:#34d399"> cards {m['donations']}</span></td>
-                <td style="color:#a0aec0">{last_seen_fmt}</td>
+                <td data-value="{m['trophies']}"><span style="color:#fbbf24">🏆 {m['trophies']}</span></td>
+                <td data-value="{m['donations']}"><span style="color:#34d399"> cards {m['donations']}</span></td>
+                <td style="color:#a0aec0" data-value="{m.get('lastSeen', '')}">{last_seen_fmt}</td>
             </tr>
             """
             

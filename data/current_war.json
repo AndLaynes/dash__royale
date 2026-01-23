@@ -1127,15 +1127,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#20YL8J8PYL",
-                    "name": "Grayguy06090",
-                    "fame": 800,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#89Y2LYV0",
                     "name": "PwrStrkDsl",
                     "fame": 900,
@@ -1192,6 +1183,15 @@
                 {
                     "tag": "#2PV9Q8RP",
                     "name": "Heres.Brucey",
+                    "fame": 1250,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 7,
+                    "decksUsedToday": 3
+                },
+                {
+                    "tag": "#20YL8J8PYL",
+                    "name": "Grayguy06090",
                     "fame": 1250,
                     "repairPoints": 0,
                     "boatAttacks": 0,
@@ -1262,7 +1262,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 11025,
+            "periodPoints": 11475,
             "clanScore": 3302
         },
         {
@@ -3156,15 +3156,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#LLJJ8UQCU",
-                    "name": "pakistan",
-                    "fame": 500,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#890GLJR90",
                     "name": "paranoik",
                     "fame": 500,
@@ -3226,6 +3217,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 0
+                },
+                {
+                    "tag": "#LLJJ8UQCU",
+                    "name": "pakistan",
+                    "fame": 600,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 5,
+                    "decksUsedToday": 1
                 },
                 {
                     "tag": "#L2Q0GCGY0",
@@ -3471,7 +3471,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 10875,
+            "periodPoints": 10975,
             "clanScore": 3225
         },
         {

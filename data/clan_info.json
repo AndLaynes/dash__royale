@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 9996,
+    "donationsPerWeek": 10012,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -23,7 +23,7 @@
             "tag": "#9RUUG2R8",
             "name": "Nico",
             "role": "member",
-            "lastSeen": "20260123T054506.000Z",
+            "lastSeen": "20260123T150422.000Z",
             "expLevel": 68,
             "trophies": 12000,
             "arena": {
@@ -41,7 +41,7 @@
             "tag": "#UGUULGQ8Y",
             "name": "Asten Acady",
             "role": "elder",
-            "lastSeen": "20260122T204844.000Z",
+            "lastSeen": "20260123T150527.000Z",
             "expLevel": 73,
             "trophies": 11776,
             "arena": {
@@ -51,7 +51,7 @@
             },
             "clanRank": 2,
             "previousClanRank": 2,
-            "donations": 364,
+            "donations": 380,
             "donationsReceived": 200,
             "clanChestPoints": 0
         },
@@ -232,7 +232,7 @@
             "clanRank": 12,
             "previousClanRank": 12,
             "donations": 202,
-            "donationsReceived": 184,
+            "donationsReceived": 192,
             "clanChestPoints": 0
         },
         {
@@ -815,7 +815,7 @@
             "tag": "#C8C20C0JQ",
             "name": "isp",
             "role": "member",
-            "lastSeen": "20260123T140013.000Z",
+            "lastSeen": "20260123T150451.000Z",
             "expLevel": 47,
             "trophies": 8851,
             "arena": {
@@ -880,7 +880,7 @@
             "clanRank": 48,
             "previousClanRank": 48,
             "donations": 185,
-            "donationsReceived": 232,
+            "donationsReceived": 240,
             "clanChestPoints": 0
         },
         {
