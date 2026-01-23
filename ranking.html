@@ -252,98 +252,164 @@ body {
     }
 }
 
-/* PDF EXPORT STYLES (Professional Corporate - GT-Z) */
+/* PDF EXPORT STYLES (Ultra-Clean Document Mode - GT-Z) */
 .pdf-header {
     display: none;
     padding-bottom: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-bottom: 2px solid #000;
 }
+.pdf-header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.pdf-header p {
+    font-size: 14px;
+    color: #444;
+}
+
 .pdf-mode .pdf-header { display: block; }
 .pdf-mode .main-header, .pdf-mode .btn-pdf, .pdf-mode .nav-pills, .pdf-mode .audit-timestamp { display: none !important; }
 
-/* CORPORATE WHITE MODE OVERRIDES */
+/* DOCUMENT ROOT STYLES */
 .pdf-mode {
     background: #ffffff !important;
     color: #000000 !important;
     background-image: none !important;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-size: 12px !important;
+    line-height: 1.5;
 }
+
 .pdf-mode .container {
     max-width: 100% !important;
-    padding: 0 !important;
+    padding: 0 40px !important; /* Document Margins */
     margin: 0 !important;
+    box-shadow: none !important;
 }
-.pdf-mode .page-title-section {
-    border-bottom: none !important;
-    margin-bottom: 20px;
-}
+
+/* TYPOGRAPHY */
 .pdf-mode h1, .pdf-mode h2, .pdf-mode h3 {
     color: #000000 !important;
+    text-shadow: none !important;
+    font-weight: 700;
+    letter-spacing: normal;
+    margin-top: 20px;
+    margin-bottom: 15px;
     text-transform: uppercase;
 }
-.pdf-mode .page-subtitle { color: #333 !important; }
+.pdf-mode .page-title-section {
+    background: none !important;
+    border-bottom: none !important;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    text-align: left;
+}
+.pdf-mode .page-subtitle { 
+    color: #333 !important;
+    font-size: 14px;
+    font-style: italic;
+}
 
-/* Stats Row for PDF */
+/* METRICS (Simplified to Text Key-Value) */
 .pdf-mode .audit-stats {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
+    display: table; /* Force table layout for strict alignment */
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background: none !important;
     border: 1px solid #000;
-    padding: 15px;
-    border-radius: 0;
-    background: #f8f8f8 !important;
 }
 .pdf-mode .stat-box {
+    display: table-cell;
     background: none !important;
     border: none !important;
-    color: #000 !important;
-    text-align: left;
-    padding: 0;
-    min-width: auto;
-    border-right: 1px solid #ccc !important;
-    padding-right: 20px;
+    border-right: 1px solid #000 !important;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: none !important;
 }
-.pdf-mode .stat-box:last-child { border: none !important; }
+.pdf-mode .stat-box:last-child { border-right: none !important; }
+.pdf-mode .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #444 !important;
+    display: block;
+    margin-bottom: 5px;
+}
+.pdf-mode .stat-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000 !important;
+}
 .pdf-mode .stat-green, .pdf-mode .stat-yellow, .pdf-mode .stat-red { color: #000 !important; }
 
-/* Table Professionalization */
+/* TABLES (Standard Document Border) */
 .pdf-mode .custom-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 12px;
+    font-size: 11px;
+    border: 1px solid #000;
+    box-shadow: none !important;
+}
+.pdf-mode .custom-table thead {
+    display: table-header-group; /* Repeats heavily on print, helpful */
 }
 .pdf-mode .custom-table th {
-    background: #e0e0e0 !important;
+    background: #f0f0f0 !important;
     color: #000 !important;
     font-weight: bold;
     border: 1px solid #000;
-    padding: 8px;
+    padding: 6px;
+    text-align: left;
+    text-transform: uppercase;
 }
 .pdf-mode .custom-table td {
     background: #fff !important;
     color: #000 !important;
-    border: 1px solid #ccc;
-    padding: 6px 8px;
+    border: 1px solid #000; /* Distinct grid lines */
+    padding: 5px 6px;
+    vertical-align: middle;
 }
 .pdf-mode .custom-table tr.data-row:hover { transform: none; background: none; }
+
+/* STATUS INDICATORS (Textual or Simple Box) */
 .pdf-mode .status-badge {
     background: none !important;
     border: 1px solid #000 !important;
     color: #000 !important;
-    padding: 2px 8px;
-    border-radius: 4px;
+    padding: 2px 6px;
+    border-radius: 0; /* Squared edges */
+    font-weight: bold;
+    display: inline-block;
 }
 .pdf-mode .missing-badge {
     color: #000 !important;
     background: none !important;
     font-weight: bold;
+    text-decoration: underline;
 }
+
+/* INFO BOXES (Simple Paragraphs) */
 .pdf-mode .info-box {
     border: 1px solid #000;
-    background: #fff !important;
+    background: none !important;
     color: #000 !important;
+    box-shadow: none;
+    margin-top: 20px;
+    padding: 15px;
 }
-.pdf-mode .info-content { color: #333 !important; }
+.pdf-mode .info-title { color: #000 !important; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+.pdf-mode .info-content { color: #000 !important; }
+
+/* HIDE NON-ESSENTIALS */
+.pdf-mode canvas { 
+    /* Ideally charts are optional or simplified. 
+       We'll add a white bg to them just in case. */
+    background-color: #fff !important; 
+    border: 1px solid #ccc;
+}
 
 /* Print Optimization */
 @media print {
@@ -371,7 +437,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 14:23</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 14:31</strong>
                 </div>
             </div>
         </div>
@@ -478,8 +544,8 @@ body {
                         Fame: <b style="color:white">26100</b><br>
                         Eff: <b style="color:white">165</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10176">
-                        Troféus: <b style="color:white">10176</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10177">
+                        Troféus: <b style="color:white">10177</b><br>
                         Donates: <b style="color:white">50</b>
                     </td>
                 </tr>
@@ -907,14 +973,14 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="36"> #36</td>
                     <td style="font-weight:600;" data-value="Grimmer 狼">Grimmer 狼</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="49.9">49.9</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="50.1">50.1</td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="5500">
                         Fame: <b style="color:white">5500</b><br>
                         Eff: <b style="color:white">152</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="11000">
                         Troféus: <b style="color:white">11000</b><br>
-                        Donates: <b style="color:white">552</b>
+                        Donates: <b style="color:white">568</b>
                     </td>
                 </tr>
                 
@@ -1125,33 +1191,35 @@ body {
         const element = document.getElementById('printable-area');
         const btn = document.getElementById('btn-export-pdf');
         
-        // 1. Activate Professional Print Mode
+        // 1. Activate Document Mode (Simple, Clean, Black & White)
         document.body.classList.add('pdf-mode');
         
         // Visual Feedback
         const originalText = btn.innerText;
-        btn.innerText = "Gerando PDF Corporativo...";
+        btn.innerText = "Gerando Relatório...";
         btn.disabled = true;
 
-        // Configuração do PDF (Corporate A4)
+        // Configuração do PDF (A4 Document Standard)
         const opt = {
-            margin:       [10, 10], // 10mm margins
+            margin:       [15, 15, 15, 15], // 15mm margins (Standard Document)
             filename:     'Relatorio_Guerra_Guardioes_' + new Date().toISOString().slice(0,10) + '.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 
                 useCORS: true, 
-                backgroundColor: '#ffffff', // White Background Enforced
+                backgroundColor: '#ffffff', // Force White Background
                 logging: false,
                 scrollY: 0,
-                windowWidth: 1200 // Force Desktop Width
+                scrollX: 0,
+                windowWidth: 800 // A4-ish width
             },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
-        // Executar
+        // Generate and Save
         html2pdf().set(opt).from(document.body).save().then(function(){
-            // 3. Restore UI
+            // Reset
             document.body.classList.remove('pdf-mode');
             btn.innerText = originalText;
             btn.disabled = false;

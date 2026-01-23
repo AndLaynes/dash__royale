@@ -19,6 +19,7 @@
     *   **UI Engine:** Injeção de CSS (Glassmorphism) e Scripts (Chart.js + DataLabels + html2pdf) verificada. Sem dependências externas quebradas (CDNs ativos).
     *   **War Audit:** Algoritmo Híbrido (`(Dia-2)*4`) implementado nas linhas 550+. Consistente com `HANDOFF.md`.
     *   **Timezone:** Função `format_clash_date` força conversão para `America/Sao_Paulo`.
+    *   **PDF Logic:** Refatorado para "Document Mode" (Simples/Legível) conforme solicitação GT-Z. Fundo branco, margens padrão e tipografia de alto contraste.
     *   **Sorting:** Fix `data-value` aplicado na tabela HTML e no Sorter JS.
 
 ### B. Consistência Documental

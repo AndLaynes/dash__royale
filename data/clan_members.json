@@ -15,7 +15,7 @@
             "clanRank": 1,
             "previousClanRank": 1,
             "donations": 893,
-            "donationsReceived": 384,
+            "donationsReceived": 392,
             "clanChestPoints": 0
         },
         {
@@ -127,6 +127,42 @@
             "clanChestPoints": 0
         },
         {
+            "tag": "#PG2LUY0PP",
+            "name": "^_^^_^",
+            "role": "member",
+            "lastSeen": "20260123T172953.000Z",
+            "expLevel": 60,
+            "trophies": 11000,
+            "arena": {
+                "id": 54000131,
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
+            },
+            "clanRank": 8,
+            "previousClanRank": 10,
+            "donations": 81,
+            "donationsReceived": 200,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#QUVLYY0VY",
+            "name": "Grimmer 狼",
+            "role": "member",
+            "lastSeen": "20260123T172920.000Z",
+            "expLevel": 56,
+            "trophies": 11000,
+            "arena": {
+                "id": 54000131,
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
+            },
+            "clanRank": 9,
+            "previousClanRank": 9,
+            "donations": 568,
+            "donationsReceived": 360,
+            "clanChestPoints": 0
+        },
+        {
             "tag": "#8U008PQU8",
             "name": "RobaFrag",
             "role": "elder",
@@ -138,7 +174,7 @@
                 "name": "Musketeer Street",
                 "rawName": "Arena_L13"
             },
-            "clanRank": 8,
+            "clanRank": 10,
             "previousClanRank": 8,
             "donations": 1210,
             "donationsReceived": 560,
@@ -156,46 +192,10 @@
                 "name": "Musketeer Street",
                 "rawName": "Arena_L13"
             },
-            "clanRank": 9,
+            "clanRank": 11,
             "previousClanRank": 11,
             "donations": 60,
             "donationsReceived": 80,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#QUVLYY0VY",
-            "name": "Grimmer 狼",
-            "role": "member",
-            "lastSeen": "20260123T030526.000Z",
-            "expLevel": 56,
-            "trophies": 11000,
-            "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
-            },
-            "clanRank": 10,
-            "previousClanRank": 9,
-            "donations": 552,
-            "donationsReceived": 360,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#PG2LUY0PP",
-            "name": "^_^^_^",
-            "role": "member",
-            "lastSeen": "20260122T201106.000Z",
-            "expLevel": 60,
-            "trophies": 11000,
-            "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
-            },
-            "clanRank": 11,
-            "previousClanRank": 10,
-            "donations": 81,
-            "donationsReceived": 200,
             "clanChestPoints": 0
         },
         {
@@ -454,9 +454,9 @@
             "tag": "#LVGCLQQ8L",
             "name": "Luciano",
             "role": "elder",
-            "lastSeen": "20260123T170008.000Z",
+            "lastSeen": "20260123T172322.000Z",
             "expLevel": 60,
-            "trophies": 10176,
+            "trophies": 10177,
             "arena": {
                 "id": 54000117,
                 "name": "Lumberlove Cabin",
@@ -537,7 +537,7 @@
             "clanRank": 30,
             "previousClanRank": 30,
             "donations": 308,
-            "donationsReceived": 221,
+            "donationsReceived": 229,
             "clanChestPoints": 0
         },
         {
