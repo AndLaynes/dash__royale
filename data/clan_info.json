@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 108193,
+    "clanScore": 108198,
     "clanWarTrophies": 3257,
     "location": {
         "id": 57000038,
@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 9972,
+    "donationsPerWeek": 9996,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -149,7 +149,7 @@
             "tag": "#8U008PQU8",
             "name": "RobaFrag",
             "role": "elder",
-            "lastSeen": "20260123T110654.000Z",
+            "lastSeen": "20260123T150141.000Z",
             "expLevel": 67,
             "trophies": 11000,
             "arena": {
@@ -159,7 +159,7 @@
             },
             "clanRank": 8,
             "previousClanRank": 8,
-            "donations": 1158,
+            "donations": 1182,
             "donationsReceived": 560,
             "clanChestPoints": 0
         },
@@ -232,7 +232,7 @@
             "clanRank": 12,
             "previousClanRank": 12,
             "donations": 202,
-            "donationsReceived": 176,
+            "donationsReceived": 184,
             "clanChestPoints": 0
         },
         {
@@ -655,7 +655,7 @@
             "role": "member",
             "lastSeen": "20260123T145040.000Z",
             "expLevel": 46,
-            "trophies": 9802,
+            "trophies": 9832,
             "arena": {
                 "id": 54000031,
                 "name": "Legendary Arena",
@@ -826,7 +826,7 @@
             "clanRank": 45,
             "previousClanRank": 45,
             "donations": 24,
-            "donationsReceived": 192,
+            "donationsReceived": 200,
             "clanChestPoints": 0
         },
         {
@@ -880,7 +880,7 @@
             "clanRank": 48,
             "previousClanRank": 48,
             "donations": 185,
-            "donationsReceived": 224,
+            "donationsReceived": 232,
             "clanChestPoints": 0
         },
         {
@@ -889,7 +889,7 @@
             "role": "member",
             "lastSeen": "20260123T144915.000Z",
             "expLevel": 34,
-            "trophies": 6247,
+            "trophies": 6307,
             "arena": {
                 "id": 54000014,
                 "name": "Royal Crypt",

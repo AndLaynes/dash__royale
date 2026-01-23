@@ -291,7 +291,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 11:52</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 12:03</strong>
                 </div>
             </div>
         </div>
@@ -349,13 +349,13 @@ body {
         <div class="dash-card donation-card">
             <div class="card-header">
                 <h3>🃏 Top Doadores</h3>
-                <div class="stat-label">Total: 9621</div>
+                <div class="stat-label">Total: 9645</div>
             </div>
             <div class="scrollable-list">
                 
             <div class="list-item">
                 <span class="rank-num">1.</span>
-                <span class="badgex" style="">🃏 1158</span>
+                <span class="badgex" style="">🃏 1182</span>
                 <span class="p-name">RobaFrag</span>
             </div>
             
@@ -608,8 +608,8 @@ body {
         
         rows.sort((a, b) => {
             // Tenta pegar o valor de texto ou um atributo data-value se existir
-            let valA = a.children[colIndex].innerText.trim();
-            let valB = b.children[colIndex].innerText.trim();
+            let valA = a.children[colIndex].getAttribute('data-value') || a.children[colIndex].innerText.trim();
+            let valB = b.children[colIndex].getAttribute('data-value') || b.children[colIndex].innerText.trim();
             
             // Tratamento para números
             if (!isNaN(parseFloat(valA)) && isFinite(valA)) {

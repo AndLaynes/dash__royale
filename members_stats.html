@@ -291,7 +291,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 11:52</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 12:03</strong>
                 </div>
             </div>
         </div>
@@ -447,8 +447,8 @@ body {
                 </td>
                 <td><span class="badge" style="background:#4a5568">Ancião</span></td>
                 <td><span style="color:#fbbf24">🏆 11000</span></td>
-                <td><span style="color:#34d399"> cards 1158</span></td>
-                <td style="color:#a0aec0">23/01/2026 11:06</td>
+                <td><span style="color:#34d399"> cards 1182</span></td>
+                <td style="color:#a0aec0">23/01/2026 15:01</td>
             </tr>
             
             <tr class="data-row">
@@ -754,7 +754,7 @@ body {
                     <div style="font-size:10px; color:#718096;">#20R020VQ2C</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td><span style="color:#fbbf24">🏆 9802</span></td>
+                <td><span style="color:#fbbf24">🏆 9832</span></td>
                 <td><span style="color:#34d399"> cards 94</span></td>
                 <td style="color:#a0aec0">23/01/2026 14:50</td>
             </tr>
@@ -853,7 +853,7 @@ body {
                     <div style="font-size:10px; color:#718096;">#V9QU2YVUQ</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td><span style="color:#fbbf24">🏆 6247</span></td>
+                <td><span style="color:#fbbf24">🏆 6307</span></td>
                 <td><span style="color:#34d399"> cards 367</span></td>
                 <td style="color:#a0aec0">23/01/2026 14:49</td>
             </tr>
@@ -932,8 +932,8 @@ body {
         
         rows.sort((a, b) => {
             // Tenta pegar o valor de texto ou um atributo data-value se existir
-            let valA = a.children[colIndex].innerText.trim();
-            let valB = b.children[colIndex].innerText.trim();
+            let valA = a.children[colIndex].getAttribute('data-value') || a.children[colIndex].innerText.trim();
+            let valB = b.children[colIndex].getAttribute('data-value') || b.children[colIndex].innerText.trim();
             
             // Tratamento para números
             if (!isNaN(parseFloat(valA)) && isFinite(valA)) {

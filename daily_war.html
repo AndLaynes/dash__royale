@@ -291,7 +291,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 11:52</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 12:03</strong>
                 </div>
             </div>
         </div>
@@ -319,7 +319,7 @@ body {
                 </div>
                 <div style="text-align:right;">
                     <div style="font-size:12px; color:#cbd5e0;">GERADO EM</div>
-                    <div style="font-size:16px; font-weight:bold; color:#fff;">23/01/2026 11:52</div>
+                    <div style="font-size:16px; font-weight:bold; color:#fff;">23/01/2026 12:03</div>
                 </div>
             </div>
         </div>
@@ -348,11 +348,11 @@ body {
             </div>
             <div class="stat-box stat-green">
                 <div style="font-size:10px; opacity:0.8;">EM DIA</div>
-                9
+                10
             </div>
             <div class="stat-box stat-yellow">
                 <div style="font-size:10px; opacity:0.8;">INCOMPLETO</div>
-                28
+                27
             </div>
             <div class="stat-box stat-red">
                 <div style="font-size:10px; opacity:0.8;">ZERADO</div>
@@ -659,20 +659,6 @@ body {
             <td style="font-weight:bold; font-size:16px;">4/8</td>
             <td><div class="missing-badge">-4</div></td>
             <td style="color:#fbbf24; font-weight:bold;">1200</td>
-            <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
-        </tr>
-        
-        <tr class="data-row">
-            <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span>gnvx v</span>
-                    <span style="color:#718096; font-size:10px;">#20R020VQ2C</span>
-                </div>
-            </td>
-            <td style="color:#a0aec0;">Membro</td>
-            <td style="font-weight:bold; font-size:16px;">4/8</td>
-            <td><div class="missing-badge">-4</div></td>
-            <td style="color:#fbbf24; font-weight:bold;">700</td>
             <td><span class="status-badge status-incomplete">INCOMPLETO</span></td>
         </tr>
         
@@ -1057,6 +1043,20 @@ body {
         <tr class="data-row">
             <td>
                 <div style="display:flex; align-items:center; gap:8px;">
+                    <span>gnvx v</span>
+                    <span style="color:#718096; font-size:10px;">#20R020VQ2C</span>
+                </div>
+            </td>
+            <td style="color:#a0aec0;">Membro</td>
+            <td style="font-weight:bold; font-size:16px;">8/8</td>
+            <td><span style="color:#34d399">✓</span></td>
+            <td style="color:#fbbf24; font-weight:bold;">1050</td>
+            <td><span class="status-badge status-complete">EM DIA</span></td>
+        </tr>
+        
+        <tr class="data-row">
+            <td>
+                <div style="display:flex; align-items:center; gap:8px;">
                     <span>joão3:16</span>
                     <span style="color:#718096; font-size:10px;">#U220VCULP</span>
                 </div>
@@ -1160,8 +1160,8 @@ body {
         
         rows.sort((a, b) => {
             // Tenta pegar o valor de texto ou um atributo data-value se existir
-            let valA = a.children[colIndex].innerText.trim();
-            let valB = b.children[colIndex].innerText.trim();
+            let valA = a.children[colIndex].getAttribute('data-value') || a.children[colIndex].innerText.trim();
+            let valB = b.children[colIndex].getAttribute('data-value') || b.children[colIndex].innerText.trim();
             
             // Tratamento para números
             if (!isNaN(parseFloat(valA)) && isFinite(valA)) {

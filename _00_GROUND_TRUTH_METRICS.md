@@ -10,15 +10,34 @@ A Guerra de Clãs (River Race) segue um ciclo estrito de 7 dias.
     *   **STATUS**: ✅ **CONTABILIZAR STRICTAMENTE**.
     *   Estes são os únicos dias que geram dados para o Dashboard.
 
-## 2. Regras de Decks (Meta)
-O limite de decks é diário e não cumulativo para execução, mas cumulativo para auditoria.
+## 2. Regras de Decks (Meta Híbrida: Online + D-1)
+A lógica de auditoria combina o histórico consolidado (D-1) com a atividade em tempo real (Online).
 
-*   **Limite Diário**: 4 Decks.
-*   **Meta Acumulada (Soma Esperada no Dashboard):**
-    *   **Quinta**: 4 Decks.
-    *   **Sexta**: 8 Decks (4 de Qui + 4 de Sex).
-    *   **Sábado**: 12 Decks.
-    *   **Domingo**: 16 Decks (Meta Final).
+*   **QUINTA-FEIRA (Início):**
+    *   **Lógica:** 4 Decks (Online).
+    *   **Meta:** 4.
+    *   *Nota:* Não há D-1. Apenas o que é feito no dia conta.
+
+*   **SEXTA-FEIRA:**
+    *   **Lógica:** 4 Decks (D-1 / Quinta) + 4 Decks (Online / Sexta).
+    *   **Meta:** 8.
+
+*   **SÁBADO:**
+    *   **Lógica:** 8 Decks (D-1 / Qui+Sex) + 4 Decks (Online / Sábado).
+    *   **Meta:** 12.
+
+*   **DOMINGO (Final):**
+    *   **Lógica:** 12 Decks (D-1 / Qui+Sex+Sáb) + 4 Decks (Online / Domingo).
+    *   **Meta:** 16.
+
+*   **SEGUNDA-FEIRA (Fechamento):**
+    *   **Lógica:** Auditoria Final da semana anterior.
+    *   **Meta:** 16.
+    *   *Nota:* Após a primeira atualização de segunda-feira, qualquer dado é inválido.
+
+*   **TERÇA & QUARTA (Congelamento):**
+    *   **Status:** INVÁLIDO.
+    *   O sistema não deve gerar novas métricas de guerra nestes dias. Aguardar a próxima quinta-feira.
 
 ## 3. Lógica do Dashboard (Hard Constraints)
 O código deve determinar o que exibir baseado no dia da semana atual:

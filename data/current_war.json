@@ -314,15 +314,6 @@
                 "decksUsedToday": 0
             },
             {
-                "tag": "#20R020VQ2C",
-                "name": "gnvx v",
-                "fame": 350,
-                "repairPoints": 0,
-                "boatAttacks": 4,
-                "decksUsed": 4,
-                "decksUsedToday": 0
-            },
-            {
                 "tag": "#PG2LUY0PP",
                 "name": "^_^^_^",
                 "fame": 400,
@@ -512,6 +503,15 @@
                 "decksUsedToday": 0
             },
             {
+                "tag": "#20R020VQ2C",
+                "name": "gnvx v",
+                "fame": 700,
+                "repairPoints": 0,
+                "boatAttacks": 8,
+                "decksUsed": 8,
+                "decksUsedToday": 4
+            },
+            {
                 "tag": "#9RUUG2R8",
                 "name": "Nico",
                 "fame": 800,
@@ -692,7 +692,7 @@
                 "decksUsedToday": 4
             }
         ],
-        "periodPoints": 9050,
+        "periodPoints": 9400,
         "clanScore": 3257
     },
     "clans": [
@@ -2546,6 +2546,15 @@
                 {
                     "tag": "#UPVRQ2LP0",
                     "name": "Elite Knights",
+                    "fame": 0,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 0,
+                    "decksUsedToday": 0
+                },
+                {
+                    "tag": "#YYQ0VV0UR",
+                    "name": "SlowYou",
                     "fame": 0,
                     "repairPoints": 0,
                     "boatAttacks": 0,
@@ -4636,15 +4645,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#20R020VQ2C",
-                    "name": "gnvx v",
-                    "fame": 350,
-                    "repairPoints": 0,
-                    "boatAttacks": 4,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#PG2LUY0PP",
                     "name": "^_^^_^",
                     "fame": 400,
@@ -4834,6 +4834,15 @@
                     "decksUsedToday": 0
                 },
                 {
+                    "tag": "#20R020VQ2C",
+                    "name": "gnvx v",
+                    "fame": 700,
+                    "repairPoints": 0,
+                    "boatAttacks": 8,
+                    "decksUsed": 8,
+                    "decksUsedToday": 4
+                },
+                {
                     "tag": "#9RUUG2R8",
                     "name": "Nico",
                     "fame": 800,
@@ -5014,7 +5023,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 9050,
+            "periodPoints": 9400,
             "clanScore": 3257
         }
     ],

@@ -394,8 +394,8 @@ def get_page_template(active_page, content):
         
         rows.sort((a, b) => {{
             // Tenta pegar o valor de texto ou um atributo data-value se existir
-            let valA = a.children[colIndex].innerText.trim();
-            let valB = b.children[colIndex].innerText.trim();
+            let valA = a.children[colIndex].getAttribute('data-value') || a.children[colIndex].innerText.trim();
+            let valB = b.children[colIndex].getAttribute('data-value') || b.children[colIndex].innerText.trim();
             
             // Tratamento para números
             if (!isNaN(parseFloat(valA)) && isFinite(valA)) {{
@@ -1237,14 +1237,14 @@ def generate_html_report():
                 
                 rank_table_html += f"""
                 <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;">{medal} #{rank_pos}</td>
-                    <td style="font-weight:600;">{r['name']}</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;">{r['score']}</td>
-                    <td style="font-size:13px; color:#a0aec0;">
+                    <td style="font-weight:bold; font-size:16px;" data-value="{rank_pos}">{medal} #{rank_pos}</td>
+                    <td style="font-weight:600;" data-value="{r['name']}">{r['name']}</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="{r['score']}">{r['score']}</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="{r['fame']}">
                         Fame: <b style="color:white">{r['fame']}</b><br>
                         Eff: <b style="color:white">{int(r['efficiency'])}</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;">
+                    <td style="font-size:13px; color:#a0aec0;" data-value="{r['trophies']}">
                         Troféus: <b style="color:white">{r['trophies']}</b><br>
                         Donates: <b style="color:white">{r['donations']}</b>
                     </td>
