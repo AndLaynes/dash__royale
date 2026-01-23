@@ -296,15 +296,6 @@
                 "decksUsedToday": 0
             },
             {
-                "tag": "#PG2LUY0PP",
-                "name": "^_^^_^",
-                "fame": 400,
-                "repairPoints": 0,
-                "boatAttacks": 0,
-                "decksUsed": 4,
-                "decksUsedToday": 0
-            },
-            {
                 "tag": "#R9UP0QLR9",
                 "name": "ZackThunder",
                 "fame": 400,
@@ -393,6 +384,15 @@
                 "boatAttacks": 0,
                 "decksUsed": 4,
                 "decksUsedToday": 0
+            },
+            {
+                "tag": "#PG2LUY0PP",
+                "name": "^_^^_^",
+                "fame": 600,
+                "repairPoints": 0,
+                "boatAttacks": 0,
+                "decksUsed": 6,
+                "decksUsedToday": 2
             },
             {
                 "tag": "#CJRCPL88P",
@@ -692,7 +692,7 @@
                 "decksUsedToday": 4
             }
         ],
-        "periodPoints": 15150,
+        "periodPoints": 15350,
         "clanScore": 3257
     },
     "clans": [
@@ -1840,15 +1840,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#UPY9L8YJ8",
-                    "name": "Atir",
-                    "fame": 800,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#U2V0UGJ9C",
                     "name": "OK_crazY正版",
                     "fame": 800,
@@ -1957,6 +1948,15 @@
                     "decksUsedToday": 4
                 },
                 {
+                    "tag": "#UPY9L8YJ8",
+                    "name": "Atir",
+                    "fame": 1400,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 7,
+                    "decksUsedToday": 3
+                },
+                {
                     "tag": "#V2YCYV9VV",
                     "name": "我的麦很炸吗",
                     "fame": 1400,
@@ -2011,7 +2011,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 10300,
+            "periodPoints": 10900,
             "clanScore": 3250
         },
         {
@@ -3905,15 +3905,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#L2VCVL9PQ",
-                    "name": "ᴊᴜᴀɴ",
-                    "fame": 200,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 1,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#89YGJ80PJ",
                     "name": "yuto",
                     "fame": 200,
@@ -4038,6 +4029,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 4
+                },
+                {
+                    "tag": "#L2VCVL9PQ",
+                    "name": "ᴊᴜᴀɴ",
+                    "fame": 650,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 4,
+                    "decksUsedToday": 3
                 },
                 {
                     "tag": "#L89YCJQV8",
@@ -4337,7 +4337,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 11725,
+            "periodPoints": 12175,
             "clanScore": 3290
         },
         {
@@ -4636,15 +4636,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#PG2LUY0PP",
-                    "name": "^_^^_^",
-                    "fame": 400,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#R9UP0QLR9",
                     "name": "ZackThunder",
                     "fame": 400,
@@ -4733,6 +4724,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 0
+                },
+                {
+                    "tag": "#PG2LUY0PP",
+                    "name": "^_^^_^",
+                    "fame": 600,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 6,
+                    "decksUsedToday": 2
                 },
                 {
                     "tag": "#CJRCPL88P",
@@ -5032,7 +5032,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 15150,
+            "periodPoints": 15350,
             "clanScore": 3257
         }
     ],

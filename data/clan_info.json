@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 10356,
+    "donationsPerWeek": 10382,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -28,13 +28,12 @@
             "trophies": 12000,
             "arena": {
                 "id": 54000132,
-                "name": "Summit of Heroes",
-                "rawName": "Arena_L14"
+                "name": "Summit of Heroes"
             },
             "clanRank": 1,
             "previousClanRank": 1,
             "donations": 893,
-            "donationsReceived": 392,
+            "donationsReceived": 400,
             "clanChestPoints": 0
         },
         {
@@ -46,12 +45,11 @@
             "trophies": 11776,
             "arena": {
                 "id": 54000132,
-                "name": "Summit of Heroes",
-                "rawName": "Arena_L14"
+                "name": "Summit of Heroes"
             },
             "clanRank": 2,
             "previousClanRank": 2,
-            "donations": 400,
+            "donations": 426,
             "donationsReceived": 240,
             "clanChestPoints": 0
         },
@@ -64,8 +62,7 @@
             "trophies": 11632,
             "arena": {
                 "id": 54000132,
-                "name": "Summit of Heroes",
-                "rawName": "Arena_L14"
+                "name": "Summit of Heroes"
             },
             "clanRank": 3,
             "previousClanRank": 3,
@@ -82,8 +79,7 @@
             "trophies": 11620,
             "arena": {
                 "id": 54000132,
-                "name": "Summit of Heroes",
-                "rawName": "Arena_L14"
+                "name": "Summit of Heroes"
             },
             "clanRank": 4,
             "previousClanRank": 4,
@@ -100,8 +96,7 @@
             "trophies": 11168,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
+                "name": "Musketeer Street"
             },
             "clanRank": 5,
             "previousClanRank": 5,
@@ -118,8 +113,7 @@
             "trophies": 11127,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
+                "name": "Musketeer Street"
             },
             "clanRank": 6,
             "previousClanRank": 6,
@@ -136,8 +130,7 @@
             "trophies": 11085,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
+                "name": "Musketeer Street"
             },
             "clanRank": 7,
             "previousClanRank": 7,
@@ -154,8 +147,7 @@
             "trophies": 11000,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
+                "name": "Musketeer Street"
             },
             "clanRank": 8,
             "previousClanRank": 10,
@@ -172,13 +164,12 @@
             "trophies": 11000,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
+                "name": "Musketeer Street"
             },
             "clanRank": 9,
             "previousClanRank": 9,
             "donations": 568,
-            "donationsReceived": 360,
+            "donationsReceived": 370,
             "clanChestPoints": 0
         },
         {
@@ -190,8 +181,7 @@
             "trophies": 11000,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
+                "name": "Musketeer Street"
             },
             "clanRank": 10,
             "previousClanRank": 8,
@@ -208,8 +198,7 @@
             "trophies": 11000,
             "arena": {
                 "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
+                "name": "Musketeer Street"
             },
             "clanRank": 11,
             "previousClanRank": 11,
@@ -226,8 +215,7 @@
             "trophies": 10885,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 12,
             "previousClanRank": 12,
@@ -244,8 +232,7 @@
             "trophies": 10866,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 13,
             "previousClanRank": 13,
@@ -262,8 +249,7 @@
             "trophies": 10825,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 14,
             "previousClanRank": 14,
@@ -280,8 +266,7 @@
             "trophies": 10791,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 15,
             "previousClanRank": 15,
@@ -298,8 +283,7 @@
             "trophies": 10788,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 16,
             "previousClanRank": 16,
@@ -316,8 +300,7 @@
             "trophies": 10762,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 17,
             "previousClanRank": 17,
@@ -334,8 +317,7 @@
             "trophies": 10730,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 18,
             "previousClanRank": 18,
@@ -352,8 +334,7 @@
             "trophies": 10695,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 19,
             "previousClanRank": 19,
@@ -370,8 +351,7 @@
             "trophies": 10573,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 20,
             "previousClanRank": 21,
@@ -388,8 +368,7 @@
             "trophies": 10561,
             "arena": {
                 "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
+                "name": "Royal Road"
             },
             "clanRank": 21,
             "previousClanRank": 20,
@@ -406,8 +385,7 @@
             "trophies": 10342,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 22,
             "previousClanRank": 22,
@@ -424,8 +402,7 @@
             "trophies": 10301,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 23,
             "previousClanRank": 23,
@@ -442,8 +419,7 @@
             "trophies": 10260,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 24,
             "previousClanRank": 24,
@@ -460,8 +436,7 @@
             "trophies": 10233,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 25,
             "previousClanRank": 25,
@@ -478,8 +453,7 @@
             "trophies": 10177,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 26,
             "previousClanRank": 26,
@@ -496,8 +470,7 @@
             "trophies": 10159,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 27,
             "previousClanRank": 27,
@@ -514,8 +487,7 @@
             "trophies": 10151,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 28,
             "previousClanRank": 28,
@@ -532,8 +504,7 @@
             "trophies": 10128,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 29,
             "previousClanRank": 29,
@@ -550,13 +521,12 @@
             "trophies": 10060,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 30,
             "previousClanRank": 30,
             "donations": 308,
-            "donationsReceived": 229,
+            "donationsReceived": 237,
             "clanChestPoints": 0
         },
         {
@@ -568,8 +538,7 @@
             "trophies": 10043,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 31,
             "previousClanRank": 34,
@@ -586,8 +555,7 @@
             "trophies": 10039,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 32,
             "previousClanRank": 31,
@@ -604,8 +572,7 @@
             "trophies": 10036,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 33,
             "previousClanRank": 32,
@@ -622,8 +589,7 @@
             "trophies": 10027,
             "arena": {
                 "id": 54000117,
-                "name": "Lumberlove Cabin",
-                "rawName": "Arena_L11"
+                "name": "Lumberlove Cabin"
             },
             "clanRank": 34,
             "previousClanRank": 33,
@@ -640,8 +606,7 @@
             "trophies": 9919,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena",
-                "rawName": "Arena_L10"
+                "name": "Legendary Arena"
             },
             "clanRank": 35,
             "previousClanRank": 38,
@@ -658,8 +623,7 @@
             "trophies": 9918,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena",
-                "rawName": "Arena_L10"
+                "name": "Legendary Arena"
             },
             "clanRank": 36,
             "previousClanRank": 35,
@@ -676,8 +640,7 @@
             "trophies": 9715,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena",
-                "rawName": "Arena_L10"
+                "name": "Legendary Arena"
             },
             "clanRank": 37,
             "previousClanRank": 36,
@@ -694,8 +657,7 @@
             "trophies": 9651,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena",
-                "rawName": "Arena_L10"
+                "name": "Legendary Arena"
             },
             "clanRank": 38,
             "previousClanRank": 37,
@@ -712,8 +674,7 @@
             "trophies": 9619,
             "arena": {
                 "id": 54000031,
-                "name": "Legendary Arena",
-                "rawName": "Arena_L10"
+                "name": "Legendary Arena"
             },
             "clanRank": 39,
             "previousClanRank": 39,
@@ -730,8 +691,7 @@
             "trophies": 9359,
             "arena": {
                 "id": 54000020,
-                "name": "Valkalla",
-                "rawName": "Arena_L9"
+                "name": "Valkalla"
             },
             "clanRank": 40,
             "previousClanRank": 40,
@@ -748,8 +708,7 @@
             "trophies": 9278,
             "arena": {
                 "id": 54000020,
-                "name": "Valkalla",
-                "rawName": "Arena_L9"
+                "name": "Valkalla"
             },
             "clanRank": 41,
             "previousClanRank": 41,
@@ -766,8 +725,7 @@
             "trophies": 9206,
             "arena": {
                 "id": 54000020,
-                "name": "Valkalla",
-                "rawName": "Arena_L9"
+                "name": "Valkalla"
             },
             "clanRank": 42,
             "previousClanRank": 42,
@@ -784,8 +742,7 @@
             "trophies": 9124,
             "arena": {
                 "id": 54000020,
-                "name": "Valkalla",
-                "rawName": "Arena_L9"
+                "name": "Valkalla"
             },
             "clanRank": 43,
             "previousClanRank": 44,
@@ -802,8 +759,7 @@
             "trophies": 9000,
             "arena": {
                 "id": 54000020,
-                "name": "Valkalla",
-                "rawName": "Arena_L9"
+                "name": "Valkalla"
             },
             "clanRank": 44,
             "previousClanRank": 43,
@@ -820,8 +776,7 @@
             "trophies": 8851,
             "arena": {
                 "id": 54000019,
-                "name": "PANCAKES!",
-                "rawName": "Arena_L8"
+                "name": "PANCAKES!"
             },
             "clanRank": 45,
             "previousClanRank": 45,
@@ -838,8 +793,7 @@
             "trophies": 8721,
             "arena": {
                 "id": 54000019,
-                "name": "PANCAKES!",
-                "rawName": "Arena_L8"
+                "name": "PANCAKES!"
             },
             "clanRank": 46,
             "previousClanRank": 46,
@@ -856,8 +810,7 @@
             "trophies": 8334,
             "arena": {
                 "id": 54000018,
-                "name": "Clash Fest",
-                "rawName": "Arena_L7"
+                "name": "Clash Fest"
             },
             "clanRank": 47,
             "previousClanRank": 47,
@@ -874,8 +827,7 @@
             "trophies": 7527,
             "arena": {
                 "id": 54000017,
-                "name": "Boot Camp",
-                "rawName": "Arena_L6"
+                "name": "Boot Camp"
             },
             "clanRank": 48,
             "previousClanRank": 48,
@@ -892,8 +844,7 @@
             "trophies": 6307,
             "arena": {
                 "id": 54000014,
-                "name": "Royal Crypt",
-                "rawName": "Arena_L3"
+                "name": "Royal Crypt"
             },
             "clanRank": 49,
             "previousClanRank": 49,
@@ -910,8 +861,7 @@
             "trophies": 5811,
             "arena": {
                 "id": 54000013,
-                "name": "Executioner's Kitchen",
-                "rawName": "Arena_L2"
+                "name": "Executioner's Kitchen"
             },
             "clanRank": 50,
             "previousClanRank": 50,

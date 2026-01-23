@@ -289,13 +289,18 @@ body {
     color: #000000 !important;
     background-image: none !important;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-    font-size: 12px !important;
-    line-height: 1.5;
+    font-size: 11px !important; /* Slightly smaller for density */
+    line-height: 1.4;
+    width: 794px !important; /* A4 Width @ 96 DPI - FORCE DESKTOP LAYOUT */
+    min-width: 794px !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
 }
 
 .pdf-mode .container {
-    max-width: 100% !important;
-    padding: 0 40px !important; /* Document Margins */
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 20px !important;
     margin: 0 !important;
     box-shadow: none !important;
 }
@@ -485,10 +490,10 @@ def get_page_template(active_page, content):
     <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
     function downloadPDF() {{
-        const element = document.getElementById('printable-area');
+        const element = document.body; // Capture FULL BODY
         const btn = document.getElementById('btn-export-pdf');
         
-        // 1. Activate Document Mode (Simple, Clean, Black & White)
+        // 1. Activate Document Mode (Fixed A4 Width)
         document.body.classList.add('pdf-mode');
         
         // Visual Feedback
@@ -497,25 +502,27 @@ def get_page_template(active_page, content):
         btn.disabled = true;
 
         // Configuração do PDF (A4 Document Standard)
+        // A4 is ~210mm. At 96dpi that's ~794px.
         const opt = {{
-            margin:       [15, 15, 15, 15], // 15mm margins (Standard Document)
+            margin:       [10, 10, 10, 10], // 10mm margins
             filename:     'Relatorio_Guerra_Guardioes_' + new Date().toISOString().slice(0,10) + '.pdf',
             image:        {{ type: 'jpeg', quality: 0.98 }},
             html2canvas:  {{ 
                 scale: 2, 
                 useCORS: true, 
-                backgroundColor: '#ffffff', // Force White Background
+                backgroundColor: '#ffffff',
                 logging: false,
                 scrollY: 0,
                 scrollX: 0,
-                windowWidth: 800 // A4-ish width
+                windowWidth: 800, // Matched to CSS width
+                width: 800
             }},
             jsPDF:        {{ unit: 'mm', format: 'a4', orientation: 'portrait' }},
             pagebreak:    {{ mode: ['avoid-all', 'css', 'legacy'] }}
         }};
 
         // Generate and Save
-        html2pdf().set(opt).from(document.body).save().then(function(){{
+        html2pdf().set(opt).from(element).save().then(function(){{
             // Reset
             document.body.classList.remove('pdf-mode');
             btn.innerText = originalText;
