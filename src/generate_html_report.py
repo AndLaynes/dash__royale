@@ -432,6 +432,23 @@ body {
 @media print {
     .btn-pdf { display: none !important; }
 }
+
+/* PDF SHADOW VIEW STYLES */
+.pdf-render-stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 794px; /* A4 width at 96DPI */
+    background: white;
+    color: black;
+    padding: 20px;
+    z-index: 9999;
+}
+.pdf-table { width: 100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px; }
+.pdf-table th { border: 1px solid #000; padding: 5px; background: #eee; text-align: left; }
+.pdf-table td { border: 1px solid #000; padding: 5px; }
+.pdf-header-doc { margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; font-family: sans-serif; }
+.pdf-summary { margin-bottom: 20px; font-family: sans-serif; font-size: 12px; border: 1px solid #ccc; padding: 10px; }
 """
 
 def get_page_template(active_page, content):
@@ -490,47 +507,36 @@ def get_page_template(active_page, content):
     <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
     function downloadPDF() {{
-        const element = document.body; // Capture FULL BODY
         const btn = document.getElementById('btn-export-pdf');
-        
-        // 1. Activate Document Mode (Fixed A4 Width)
-        document.body.classList.add('pdf-mode');
-        
-        // Visual Feedback
         const originalText = btn.innerText;
-        btn.innerText = "Gerando Relatório...";
+        btn.innerText = "Gerando...";
         btn.disabled = true;
 
-        // Configuração do PDF (A4 Document Standard)
-        // A4 is ~210mm. At 96dpi that's ~794px.
+        // Get the shadow content
+        const source = document.getElementById('pdf-hidden-source');
+        
+        // Create a temporary visible container
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = source.innerHTML;
+        tempContainer.classList.add('pdf-render-stage');
+        document.body.appendChild(tempContainer);
+
         const opt = {{
-            margin:       [10, 10, 10, 10], // 10mm margins
-            filename:     'Relatorio_Guerra_Guardioes_' + new Date().toISOString().slice(0,10) + '.pdf',
-            image:        {{ type: 'jpeg', quality: 0.98 }},
-            html2canvas:  {{ 
-                scale: 2, 
-                useCORS: true, 
-                backgroundColor: '#ffffff',
-                logging: false,
-                scrollY: 0,
-                scrollX: 0,
-                windowWidth: 800, // Matched to CSS width
-                width: 800
-            }},
-            jsPDF:        {{ unit: 'mm', format: 'a4', orientation: 'portrait' }},
-            pagebreak:    {{ mode: ['avoid-all', 'css', 'legacy'] }}
+            margin: [10, 10, 10, 10],
+            filename: 'Relatorio_Guerra_' + new Date().toISOString().slice(0,10) + '.pdf',
+            image: {{ type: 'jpeg', quality: 0.98 }},
+            html2canvas: {{ scale: 2, logging: false, windowWidth: 800 }},
+            jsPDF: {{ unit: 'mm', format: 'a4', orientation: 'portrait' }}
         }};
 
-        // Generate and Save
-        html2pdf().set(opt).from(element).save().then(function(){{
-            // Reset
-            document.body.classList.remove('pdf-mode');
+        html2pdf().set(opt).from(tempContainer).save().then(function(){{
+            document.body.removeChild(tempContainer);
             btn.innerText = originalText;
             btn.disabled = false;
         }}).catch(function(err) {{
             console.error(err);
-            document.body.classList.remove('pdf-mode');
-            btn.innerText = "Erro ao Gerar";
+            if(document.body.contains(tempContainer)) document.body.removeChild(tempContainer);
+            btn.innerText = "Erro";
             btn.disabled = false;
         }});
     }}
@@ -851,6 +857,53 @@ def generate_html_report():
         </tr>
         """
 
+    # 4.1 Gerar HTML do PDF Shadow View (Clean A4)
+    pdf_rows_html = ""
+    for row in top_50_rows:
+        pdf_rows_html += f"""
+        <tr>
+            <td>
+                <strong>{row['name']}</strong><br>
+                <small>{row['tag']}</small>
+            </td>
+            <td>{row['decks']} / {meta_decks}</td>
+            <td>{row['faltam']}</td>
+            <td>{row['fame']}</td>
+            <td><strong>{row['status']}</strong></td>
+        </tr>
+        """
+
+    pdf_shadow_content = f"""
+    <div id="pdf-hidden-source" style="display:none;">
+        <div class="pdf-header-doc">
+            <h1>RELATÓRIO DE GUERRA: OS GUARDIÕES</h1>
+            <p>Data: {datetime.now(BRAZIL_TZ).strftime('%d/%m/%Y %H:%M')} | Ref: {war_label}</p>
+        </div>
+        <div class="pdf-summary">
+            <strong>RESUMO OPERACIONAL:</strong><br>
+            Meta do Dia: {meta_decks} Decks<br>
+            Situação: {count_em_dia} Em Dia | {count_incompleto} Incompletos | {count_zerado} Zerados
+        </div>
+        <table class="pdf-table">
+            <thead>
+                <tr>
+                    <th>JOGADOR</th>
+                    <th>DECKS</th>
+                    <th>FALTAM</th>
+                    <th>FAMA</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {pdf_rows_html}
+            </tbody>
+        </table>
+        <div style="margin-top:20px; font-size:10px; color:#555;">
+            * Este documento é gerado automaticamente pelo Sistema de Auditoria Ground Truth.
+        </div>
+    </div>
+    """
+
     # 5. Montar Conteúdo Daily War
     audit_content = f"""
     <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
@@ -953,6 +1006,8 @@ def generate_html_report():
         </tbody>
     </table>
     </div>
+    
+    {pdf_shadow_content}
     """
 
     # Escrever Daily War

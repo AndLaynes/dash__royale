@@ -420,6 +420,23 @@ body {
 @media print {
     .btn-pdf { display: none !important; }
 }
+
+/* PDF SHADOW VIEW STYLES */
+.pdf-render-stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 794px; /* A4 width at 96DPI */
+    background: white;
+    color: black;
+    padding: 20px;
+    z-index: 9999;
+}
+.pdf-table { width: 100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px; }
+.pdf-table th { border: 1px solid #000; padding: 5px; background: #eee; text-align: left; }
+.pdf-table td { border: 1px solid #000; padding: 5px; }
+.pdf-header-doc { margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; font-family: sans-serif; }
+.pdf-summary { margin-bottom: 20px; font-family: sans-serif; font-size: 12px; border: 1px solid #ccc; padding: 10px; }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -442,7 +459,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 14:41</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 15:09</strong>
                 </div>
             </div>
         </div>
@@ -470,7 +487,7 @@ body {
                 </div>
                 <div style="text-align:right;">
                     <div style="font-size:12px; color:#cbd5e0;">GERADO EM</div>
-                    <div style="font-size:16px; font-weight:bold; color:#fff;">23/01/2026 14:41</div>
+                    <div style="font-size:16px; font-weight:bold; color:#fff;">23/01/2026 15:09</div>
                 </div>
             </div>
         </div>
@@ -1251,52 +1268,622 @@ body {
     </table>
     </div>
     
+    
+    <div id="pdf-hidden-source" style="display:none;">
+        <div class="pdf-header-doc">
+            <h1>RELATÓRIO DE GUERRA: OS GUARDIÕES</h1>
+            <p>Data: 23/01/2026 15:09 | Ref: Temporada 128 | Semana 2</p>
+        </div>
+        <div class="pdf-summary">
+            <strong>RESUMO OPERACIONAL:</strong><br>
+            Meta do Dia: 8 Decks<br>
+            Situação: 19 Em Dia | 19 Incompletos | 12 Zerados
+        </div>
+        <table class="pdf-table">
+            <thead>
+                <tr>
+                    <th>JOGADOR</th>
+                    <th>DECKS</th>
+                    <th>FALTAM</th>
+                    <th>FAMA</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td>
+                <strong>tavin</strong><br>
+                <small>#U8VP8L8L0</small>
+            </td>
+            <td>2 / 8</td>
+            <td>6</td>
+            <td>500</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>ZackThunder</strong><br>
+                <small>#R9UP0QLR9</small>
+            </td>
+            <td>3 / 8</td>
+            <td>5</td>
+            <td>700</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Chetto</strong><br>
+                <small>#2LR0RR89Q</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1400</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Daniele❤</strong><br>
+                <small>#8R2LRC80Q</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1200</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Diih</strong><br>
+                <small>#P8U20PG98</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1300</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Dockz</strong><br>
+                <small>#YJUG9Y88</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1600</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Grimmer 狼</strong><br>
+                <small>#QUVLYY0VY</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1400</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Luciano</strong><br>
+                <small>#LVGCLQQ8L</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1800</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Pedro PH</strong><br>
+                <small>#90LLGLPR0</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1200</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>RobaFrag</strong><br>
+                <small>#8U008PQU8</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1100</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>StelaAby</strong><br>
+                <small>#JQCPPGLUV</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1200</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>filho de duque</strong><br>
+                <small>#VRGLYCRPG</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1200</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>polaris</strong><br>
+                <small>#PCPCJU20Y</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>800</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>super</strong><br>
+                <small>#UU0RCRLQU</small>
+            </td>
+            <td>4 / 8</td>
+            <td>4</td>
+            <td>1000</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Rodolfos</strong><br>
+                <small>#200JYCVYGY</small>
+            </td>
+            <td>5 / 8</td>
+            <td>3</td>
+            <td>650</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>juniorllou</strong><br>
+                <small>#CC9QGJY8Q</small>
+            </td>
+            <td>5 / 8</td>
+            <td>3</td>
+            <td>1400</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>^_^^_^</strong><br>
+                <small>#PG2LUY0PP</small>
+            </td>
+            <td>6 / 8</td>
+            <td>2</td>
+            <td>1000</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>isp</strong><br>
+                <small>#C8C20C0JQ</small>
+            </td>
+            <td>6 / 8</td>
+            <td>2</td>
+            <td>1500</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Kauan</strong><br>
+                <small>#UC2CJ0JR2</small>
+            </td>
+            <td>7 / 8</td>
+            <td>1</td>
+            <td>1100</td>
+            <td><strong>INCOMPLETO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>- ROJÎ</strong><br>
+                <small>#9JL9J98JC</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Alvaro</strong><br>
+                <small>#8JULVVL0J</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>700</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Felipe</strong><br>
+                <small>#P0J88GLL9</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>GUARDIÃO FIRE</strong><br>
+                <small>#VG92Y9QC8</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>GabiMalvadeza</strong><br>
+                <small>#V92JP0YGY</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>600</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Gustavo</strong><br>
+                <small>#PRYQQQ88L</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>JOSA</strong><br>
+                <small>#2LY2GLJQL</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>WILLIAN</strong><br>
+                <small>#UUL8VUQ0P</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Yzzy the best ¿</strong><br>
+                <small>#8LRQJLPCQ</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>alm ícaro⁷⁷⁷</strong><br>
+                <small>#U0CGGG8R0</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>nova</strong><br>
+                <small>#UUJC900UG</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>sj pro</strong><br>
+                <small>#YYUQV9UQ</small>
+            </td>
+            <td>0 / 8</td>
+            <td>8</td>
+            <td>0</td>
+            <td><strong>ZERADO</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>51 é pinga</strong><br>
+                <small>#UJRLJY0L2</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>2100</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Asten Acady</strong><br>
+                <small>#UGUULGQ8Y</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1800</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>DGJ-DAVI</strong><br>
+                <small>#9RPCC2VCG</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1850</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>EDDIE</strong><br>
+                <small>#2VLR9U90</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1700</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Fafazin10</strong><br>
+                <small>#J8RVUU02L</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1150</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Mila</strong><br>
+                <small>#90U8CVP90</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>2300</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Nico</strong><br>
+                <small>#9RUUG2R8</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>2500</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>O GUARDIÃO</strong><br>
+                <small>#UJRQ2L09</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>2100</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>OneDePrata</strong><br>
+                <small>#LYL9CU0P0</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1900</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>RaiNascimento</strong><br>
+                <small>#U89CJJGUV</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1700</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Sotto ツ</strong><br>
+                <small>#2P299V0CU</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>2400</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>Teixeirazzqw</strong><br>
+                <small>#V9QU2YVUQ</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1300</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>andrebts</strong><br>
+                <small>#VUQ0PV8PV</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1850</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>gabiggoughost</strong><br>
+                <small>#V9PCU0LCV</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>2000</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>gnvx v</strong><br>
+                <small>#20R020VQ2C</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1050</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>joão3:16</strong><br>
+                <small>#U220VCULP</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>2400</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>luck</strong><br>
+                <small>#LVQRP2LGG</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1700</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>nivelador</strong><br>
+                <small>#VL292PYGJ</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>2300</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>⭐O SENTINELA ⭐</strong><br>
+                <small>#99PJ9QQPC</small>
+            </td>
+            <td>8 / 8</td>
+            <td>0</td>
+            <td>1600</td>
+            <td><strong>EM DIA</strong></td>
+        </tr>
+        
+            </tbody>
+        </table>
+        <div style="margin-top:20px; font-size:10px; color:#555;">
+            * Este documento é gerado automaticamente pelo Sistema de Auditoria Ground Truth.
+        </div>
+    </div>
+    
+    
     </div>
 
     <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
     function downloadPDF() {
-        const element = document.body; // Capture FULL BODY
         const btn = document.getElementById('btn-export-pdf');
-        
-        // 1. Activate Document Mode (Fixed A4 Width)
-        document.body.classList.add('pdf-mode');
-        
-        // Visual Feedback
         const originalText = btn.innerText;
-        btn.innerText = "Gerando Relatório...";
+        btn.innerText = "Gerando...";
         btn.disabled = true;
 
-        // Configuração do PDF (A4 Document Standard)
-        // A4 is ~210mm. At 96dpi that's ~794px.
+        // Get the shadow content
+        const source = document.getElementById('pdf-hidden-source');
+        
+        // Create a temporary visible container
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = source.innerHTML;
+        tempContainer.classList.add('pdf-render-stage');
+        document.body.appendChild(tempContainer);
+
         const opt = {
-            margin:       [10, 10, 10, 10], // 10mm margins
-            filename:     'Relatorio_Guerra_Guardioes_' + new Date().toISOString().slice(0,10) + '.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { 
-                scale: 2, 
-                useCORS: true, 
-                backgroundColor: '#ffffff',
-                logging: false,
-                scrollY: 0,
-                scrollX: 0,
-                windowWidth: 800, // Matched to CSS width
-                width: 800
-            },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            margin: [10, 10, 10, 10],
+            filename: 'Relatorio_Guerra_' + new Date().toISOString().slice(0,10) + '.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, logging: false, windowWidth: 800 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
 
-        // Generate and Save
-        html2pdf().set(opt).from(element).save().then(function(){
-            // Reset
-            document.body.classList.remove('pdf-mode');
+        html2pdf().set(opt).from(tempContainer).save().then(function(){
+            document.body.removeChild(tempContainer);
             btn.innerText = originalText;
             btn.disabled = false;
         }).catch(function(err) {
             console.error(err);
-            document.body.classList.remove('pdf-mode');
-            btn.innerText = "Erro ao Gerar";
+            if(document.body.contains(tempContainer)) document.body.removeChild(tempContainer);
+            btn.innerText = "Erro";
             btn.disabled = false;
         });
     }
