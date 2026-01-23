@@ -1705,15 +1705,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#VLYR0QJLG",
-                    "name": "TaiKuLa",
-                    "fame": 550,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#VRVUGG0CQ",
                     "name": "jeroge",
                     "fame": 600,
@@ -1867,15 +1858,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#UGCCJJJL0",
-                    "name": "酱紫",
-                    "fame": 800,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#URVP8P8QR",
                     "name": "卡布达",
                     "fame": 800,
@@ -1901,6 +1883,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 0
+                },
+                {
+                    "tag": "#VLYR0QJLG",
+                    "name": "TaiKuLa",
+                    "fame": 950,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 7,
+                    "decksUsedToday": 3
                 },
                 {
                     "tag": "#208RUUQUG2",
@@ -1975,6 +1966,15 @@
                     "decksUsedToday": 4
                 },
                 {
+                    "tag": "#UGCCJJJL0",
+                    "name": "酱紫",
+                    "fame": 1500,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 7,
+                    "decksUsedToday": 3
+                },
+                {
                     "tag": "#CVV9CYGY2",
                     "name": "问鼎巅峰之路",
                     "fame": 1600,
@@ -2011,7 +2011,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 11000,
+            "periodPoints": 12100,
             "clanScore": 3250
         },
         {

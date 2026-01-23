@@ -127,6 +127,24 @@
             "clanChestPoints": 0
         },
         {
+            "tag": "#QUVLYY0VY",
+            "name": "Grimmer 狼",
+            "role": "member",
+            "lastSeen": "20260123T191712.000Z",
+            "expLevel": 56,
+            "trophies": 11000,
+            "arena": {
+                "id": 54000131,
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
+            },
+            "clanRank": 8,
+            "previousClanRank": 9,
+            "donations": 576,
+            "donationsReceived": 400,
+            "clanChestPoints": 0
+        },
+        {
             "tag": "#YJUG9Y88",
             "name": "Dockz",
             "role": "member",
@@ -138,7 +156,7 @@
                 "name": "Musketeer Street",
                 "rawName": "Arena_L13"
             },
-            "clanRank": 8,
+            "clanRank": 9,
             "previousClanRank": 11,
             "donations": 70,
             "donationsReceived": 80,
@@ -156,28 +174,10 @@
                 "name": "Musketeer Street",
                 "rawName": "Arena_L13"
             },
-            "clanRank": 9,
+            "clanRank": 10,
             "previousClanRank": 10,
             "donations": 81,
             "donationsReceived": 200,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#QUVLYY0VY",
-            "name": "Grimmer 狼",
-            "role": "member",
-            "lastSeen": "20260123T172920.000Z",
-            "expLevel": 56,
-            "trophies": 11000,
-            "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
-            },
-            "clanRank": 10,
-            "previousClanRank": 9,
-            "donations": 568,
-            "donationsReceived": 400,
             "clanChestPoints": 0
         },
         {
@@ -526,7 +526,7 @@
             "tag": "#VUQ0PV8PV",
             "name": "andrebts",
             "role": "coLeader",
-            "lastSeen": "20260123T140745.000Z",
+            "lastSeen": "20260123T192120.000Z",
             "expLevel": 52,
             "trophies": 10043,
             "arena": {
@@ -753,7 +753,7 @@
             "clanRank": 42,
             "previousClanRank": 42,
             "donations": 0,
-            "donationsReceived": 136,
+            "donationsReceived": 144,
             "clanChestPoints": 0
         },
         {
