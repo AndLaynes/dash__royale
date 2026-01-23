@@ -54,7 +54,20 @@ O código deve determinar o que exibir baseado no dia da semana atual:
     *   **Exibir**: Soma de Quinta + Sexta.
     *   **Meta**: 8.
 
-## 4. Fonte de Verdade (Falha de API)
+## 4. Ranking Algorithm (Score Logic)
+O Score de Performance (0-100) é calculado pela média ponderada normalizada das métricas relativas ao Máximo do Clã.
+
+| Métrica | Peso | Justificativa |
+| :--- | :--- | :--- |
+| **Fama (Ouro)** | **50%** | Objetivo Primário da Guerra. |
+| **Eficiência** | **25%** | Qualidade do Deck (Vitórias). |
+| **Troféus** | **15%** | Habilidade Individual (Ladder). |
+| **Doações** | **10%** | Contribuição Social. |
+
+**Nota de Auditoria (23/01/2026):**
+Um jogador com **menos troféus** pode estar acima de um com mais troféus se sua Fama for significativamente maior (Peso 50% vs 15%). Isso é comportamento esperado e validado.
+
+## 5. Fonte de Verdade (Falha de API)
 Se a API não retornar dados de guerra (ex: bug ou manutenção) em um dia de batalha, deve-se manter os dados do último "checkpoint" válido no `daily_war_history.json`.
 
 ---

@@ -533,7 +533,6 @@ def generate_html_report():
                             "name": p['name'],
                             "tag": p['tag'],
                             "cargo": cargo,
-                            "cargo": cargo,
                             "decks": total_used,
                             "fame": total_fame,
                             "faltam": faltam,
@@ -885,7 +884,6 @@ def generate_html_report():
     top_trophies = sorted_trophies[:5] # Top 5 (Compact View)
 
 
-    # HTML Construction
     
     # HTML Construction - PREMIUM UI OVERHAUL (GT-Z 2.2)
     
