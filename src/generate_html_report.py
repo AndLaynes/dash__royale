@@ -264,21 +264,101 @@ body {
     }
 }
 
-/* PDF EXPORT STYLES (2026 Standard) */
+/* PDF EXPORT STYLES (Professional Corporate - GT-Z) */
 .pdf-header {
-    display: none; /* Hidden on screen */
+    display: none;
+    padding-bottom: 20px;
     margin-bottom: 20px;
-    border-bottom: 2px solid #fbbf24;
-    padding-bottom: 10px;
+    border-bottom: 2px solid #000;
 }
-.pdf-header h1 { color: #fbbf24; font-size: 24px; text-transform: uppercase; }
-.pdf-watermark {
-    color: #4a5568; margin-top: 5px; font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+.pdf-mode .pdf-header { display: block; }
+.pdf-mode .main-header, .pdf-mode .btn-pdf, .pdf-mode .nav-pills, .pdf-mode .audit-timestamp { display: none !important; }
+
+/* CORPORATE WHITE MODE OVERRIDES */
+.pdf-mode {
+    background: #ffffff !important;
+    color: #000000 !important;
+    background-image: none !important;
 }
+.pdf-mode .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.pdf-mode .page-title-section {
+    border-bottom: none !important;
+    margin-bottom: 20px;
+}
+.pdf-mode h1, .pdf-mode h2, .pdf-mode h3 {
+    color: #000000 !important;
+    text-transform: uppercase;
+}
+.pdf-mode .page-subtitle { color: #333 !important; }
+
+/* Stats Row for PDF */
+.pdf-mode .audit-stats {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    border: 1px solid #000;
+    padding: 15px;
+    border-radius: 0;
+    background: #f8f8f8 !important;
+}
+.pdf-mode .stat-box {
+    background: none !important;
+    border: none !important;
+    color: #000 !important;
+    text-align: left;
+    padding: 0;
+    min-width: auto;
+    border-right: 1px solid #ccc !important;
+    padding-right: 20px;
+}
+.pdf-mode .stat-box:last-child { border: none !important; }
+.pdf-mode .stat-green, .pdf-mode .stat-yellow, .pdf-mode .stat-red { color: #000 !important; }
+
+/* Table Professionalization */
+.pdf-mode .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+.pdf-mode .custom-table th {
+    background: #e0e0e0 !important;
+    color: #000 !important;
+    font-weight: bold;
+    border: 1px solid #000;
+    padding: 8px;
+}
+.pdf-mode .custom-table td {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+}
+.pdf-mode .custom-table tr.data-row:hover { transform: none; background: none; }
+.pdf-mode .status-badge {
+    background: none !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+.pdf-mode .missing-badge {
+    color: #000 !important;
+    background: none !important;
+    font-weight: bold;
+}
+.pdf-mode .info-box {
+    border: 1px solid #000;
+    background: #fff !important;
+    color: #000 !important;
+}
+.pdf-mode .info-content { color: #333 !important; }
 
 /* Print Optimization */
 @media print {
-    tr.data-row { break-inside: avoid; page-break-inside: avoid; }
     .btn-pdf { display: none !important; }
 }
 """
@@ -342,36 +422,41 @@ def get_page_template(active_page, content):
         const element = document.getElementById('printable-area');
         const btn = document.getElementById('btn-export-pdf');
         
+        // 1. Activate Professional Print Mode
+        document.body.classList.add('pdf-mode');
+        
         // Visual Feedback
         const originalText = btn.innerText;
-        btn.innerText = "Processando Layout...";
+        btn.innerText = "Gerando PDF Corporativo...";
         btn.disabled = true;
 
-        // 1. Prepare DOM for PDF (Show Header)
-        const pdfHeader = document.getElementById('pdf-header-id');
-        pdfHeader.style.display = 'block';
-
-        // Configuração do PDF (High Fidelity / Dark Mode preservation / A4 Optimized)
+        // Configuração do PDF (Corporate A4)
         const opt = {{
-            margin:       [0.4, 0.4], // Margens otimizadas para leitura (10mm)
-            filename:     'War_Log_Guardian_' + new Date().toISOString().slice(0,10) + '.pdf',
-            image:        {{ type: 'jpeg', quality: 1.0 }}, // Max Quality
+            margin:       [10, 10], // 10mm margins
+            filename:     'Relatorio_Guerra_Guardioes_' + new Date().toISOString().slice(0,10) + '.pdf',
+            image:        {{ type: 'jpeg', quality: 0.98 }},
             html2canvas:  {{ 
-                scale: 2, // High DPI (Retina-like) for clear text
+                scale: 2, 
                 useCORS: true, 
-                backgroundColor: '#0f1420', 
+                backgroundColor: '#ffffff', // White Background Enforced
                 logging: false,
-                scrollY: 0
+                scrollY: 0,
+                windowWidth: 1200 // Force Desktop Width
             }},
-            jsPDF:        {{ unit: 'in', format: 'a4', orientation: 'portrait' }}
+            jsPDF:        {{ unit: 'mm', format: 'a4', orientation: 'portrait' }}
         }};
 
         // Executar
-        html2pdf().set(opt).from(element).save().then(function(){{
-            // Restore UI
+        html2pdf().set(opt).from(document.body).save().then(function(){{
+            // 3. Restore UI
+            document.body.classList.remove('pdf-mode');
             btn.innerText = originalText;
             btn.disabled = false;
-            pdfHeader.style.display = 'none'; // Hide header again
+        }}).catch(function(err) {{
+            console.error(err);
+            document.body.classList.remove('pdf-mode');
+            btn.innerText = "Erro ao Gerar";
+            btn.disabled = false;
         }});
     }}
 

@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 108245,
+    "clanScore": 108247,
     "clanWarTrophies": 3257,
     "location": {
         "id": 57000038,
@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 10320,
+    "donationsPerWeek": 10340,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -293,7 +293,7 @@
             "tag": "#2LR0RR89Q",
             "name": "Chetto",
             "role": "member",
-            "lastSeen": "20260123T130726.000Z",
+            "lastSeen": "20260123T171639.000Z",
             "expLevel": 61,
             "trophies": 10788,
             "arena": {
@@ -303,7 +303,7 @@
             },
             "clanRank": 16,
             "previousClanRank": 16,
-            "donations": 340,
+            "donations": 360,
             "donationsReceived": 320,
             "clanChestPoints": 0
         },
@@ -358,7 +358,7 @@
             "clanRank": 19,
             "previousClanRank": 19,
             "donations": 245,
-            "donationsReceived": 270,
+            "donationsReceived": 280,
             "clanChestPoints": 0
         },
         {
@@ -632,6 +632,24 @@
             "clanChestPoints": 0
         },
         {
+            "tag": "#20R020VQ2C",
+            "name": "gnvx v",
+            "role": "member",
+            "lastSeen": "20260123T171441.000Z",
+            "expLevel": 46,
+            "trophies": 9919,
+            "arena": {
+                "id": 54000031,
+                "name": "Legendary Arena",
+                "rawName": "Arena_L10"
+            },
+            "clanRank": 35,
+            "previousClanRank": 38,
+            "donations": 94,
+            "donationsReceived": 320,
+            "clanChestPoints": 0
+        },
+        {
             "tag": "#99PJ9QQPC",
             "name": "⭐O SENTINELA ⭐",
             "role": "coLeader",
@@ -643,28 +661,10 @@
                 "name": "Legendary Arena",
                 "rawName": "Arena_L10"
             },
-            "clanRank": 35,
+            "clanRank": 36,
             "previousClanRank": 35,
             "donations": 114,
-            "donationsReceived": 270,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#20R020VQ2C",
-            "name": "gnvx v",
-            "role": "member",
-            "lastSeen": "20260123T171441.000Z",
-            "expLevel": 46,
-            "trophies": 9890,
-            "arena": {
-                "id": 54000031,
-                "name": "Legendary Arena",
-                "rawName": "Arena_L10"
-            },
-            "clanRank": 36,
-            "previousClanRank": 38,
-            "donations": 94,
-            "donationsReceived": 320,
+            "donationsReceived": 280,
             "clanChestPoints": 0
         },
         {

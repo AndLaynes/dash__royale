@@ -875,15 +875,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#J2VGLY98Y",
-                    "name": "poohbather",
-                    "fame": 400,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#29UQU8VPQ",
                     "name": "CheeseGrader873",
                     "fame": 500,
@@ -918,6 +909,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 0
+                },
+                {
+                    "tag": "#J2VGLY98Y",
+                    "name": "poohbather",
+                    "fame": 500,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 5,
+                    "decksUsedToday": 1
                 },
                 {
                     "tag": "#V2PVCCCU",
@@ -1262,7 +1262,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 15375,
+            "periodPoints": 15475,
             "clanScore": 3302
         },
         {
@@ -1696,15 +1696,6 @@
                     "decksUsedToday": 2
                 },
                 {
-                    "tag": "#208VYRLPC9",
-                    "name": "10086",
-                    "fame": 500,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#RV2QRLU90",
                     "name": "双子座Gemini",
                     "fame": 550,
@@ -1894,6 +1885,15 @@
                     "decksUsedToday": 0
                 },
                 {
+                    "tag": "#208VYRLPC9",
+                    "name": "10086",
+                    "fame": 800,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 6,
+                    "decksUsedToday": 2
+                },
+                {
                     "tag": "#URVP8P8QR",
                     "name": "卡布达",
                     "fame": 800,
@@ -2011,7 +2011,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 9600,
+            "periodPoints": 9900,
             "clanScore": 3250
         },
         {
@@ -4175,15 +4175,6 @@
                     "decksUsedToday": 4
                 },
                 {
-                    "tag": "#U2829VPJ8",
-                    "name": "daniDexter",
-                    "fame": 900,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 5,
-                    "decksUsedToday": 1
-                },
-                {
                     "tag": "#R2RLPYLCL",
                     "name": "Jhonatan np",
                     "fame": 900,
@@ -4231,6 +4222,15 @@
                 {
                     "tag": "#CU9UJP8VY",
                     "name": "Anficrpxz",
+                    "fame": 1000,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 6,
+                    "decksUsedToday": 2
+                },
+                {
+                    "tag": "#U2829VPJ8",
+                    "name": "daniDexter",
                     "fame": 1000,
                     "repairPoints": 0,
                     "boatAttacks": 0,
@@ -4337,7 +4337,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 10725,
+            "periodPoints": 10825,
             "clanScore": 3290
         },
         {
