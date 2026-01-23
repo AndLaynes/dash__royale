@@ -546,24 +546,26 @@ def generate_html_report():
         # Domingo   | Sábado    | 12 Decks
         # Segunda   | Domingo   | 16 Decks (Feita no bloco 'else' acima)
         
-        # Ajuste do Index para D-1
+        # Ajuste do Index para D-1 (Auditoria Acumulada)
         # weekday: 3=Qui, 4=Sex, 5=Sab, 6=Dom
         
-        audit_target_day_index = weekday - 1 # Se hoje é Sab(5), miramos data Sex(4)
+        # [CORREÇÃO GT-Z 23/01]
+        # A meta deve ser o ACUMULADO DO DIA CORRENTE.
+        # Ex: Sexta (4) -> Meta deve ser 8 (4 de Qui + 4 de Sex).
+        # Antigamente, fazia D-1 estrito (olhava meta de quinta), o que era errado para o incentivo diário.
+        
+        audit_target_day_index = weekday # Se hoje é Sex(4), meta é baseada em 4.
         
         # Meta: (DiaAuditado_Index - 2) * 4
-        # Ex Sábado: Auditamos Sexta(4). (4 - 2) * 4 = 8 Decks.
+        # Ex Sexta (4): (4 - 2) * 4 = 8 Decks.
         
         days_in_war_audit = audit_target_day_index - 2
         meta_decks = days_in_war_audit * 4
         
         if meta_decks < 4: 
-            # Caso especial: Quinta-feira (3). Auditamos Quarta(2)? Não.
-            # Quinta-feira é o dia de abertua. Não há "Ontem de Guerra".
-            # Mostramos dados parciais de Quinta ou Zero.
+            # Caso especial: Quinta-feira (3). (3-2)*4 = 4 Decks.
+            # Segurança para não gerar meta 0 ou negativa.
             meta_decks = 4 
-            # Nota: Na quinta, idealmente mostra-se o que já foi feito, mas o status
-            # "INCOMPLETO" é esperado. Manteremos meta 4 para incentivo visual.
 
         if meta_decks > 16: meta_decks = 16
         

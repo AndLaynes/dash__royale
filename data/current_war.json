@@ -476,15 +476,6 @@
                 "decksUsedToday": 0
             },
             {
-                "tag": "#9RPCC2VCG",
-                "name": "DGJ-DAVI",
-                "fame": 650,
-                "repairPoints": 0,
-                "boatAttacks": 0,
-                "decksUsed": 4,
-                "decksUsedToday": 0
-            },
-            {
                 "tag": "#2LR0RR89Q",
                 "name": "Chetto",
                 "fame": 700,
@@ -629,6 +620,15 @@
                 "decksUsedToday": 4
             },
             {
+                "tag": "#9RPCC2VCG",
+                "name": "DGJ-DAVI",
+                "fame": 1200,
+                "repairPoints": 0,
+                "boatAttacks": 0,
+                "decksUsed": 8,
+                "decksUsedToday": 4
+            },
+            {
                 "tag": "#LVQRP2LGG",
                 "name": "luck",
                 "fame": 1200,
@@ -692,7 +692,7 @@
                 "decksUsedToday": 4
             }
         ],
-        "periodPoints": 8500,
+        "periodPoints": 9050,
         "clanScore": 3257
     },
     "clans": [
@@ -4229,15 +4229,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#J2GGCV9PR",
-                    "name": "pakozao",
-                    "fame": 950,
-                    "repairPoints": 0,
-                    "boatAttacks": 2,
-                    "decksUsed": 6,
-                    "decksUsedToday": 2
-                },
-                {
                     "tag": "#GJJR02JP",
                     "name": "chaparro",
                     "fame": 950,
@@ -4301,6 +4292,15 @@
                     "decksUsedToday": 4
                 },
                 {
+                    "tag": "#J2GGCV9PR",
+                    "name": "pakozao",
+                    "fame": 1250,
+                    "repairPoints": 0,
+                    "boatAttacks": 2,
+                    "decksUsed": 8,
+                    "decksUsedToday": 4
+                },
+                {
                     "tag": "#8J0JLRRCV",
                     "name": "MR FRENCH",
                     "fame": 1450,
@@ -4319,7 +4319,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 7325,
+            "periodPoints": 7625,
             "clanScore": 3290
         },
         {
@@ -4798,15 +4798,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#9RPCC2VCG",
-                    "name": "DGJ-DAVI",
-                    "fame": 650,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#2LR0RR89Q",
                     "name": "Chetto",
                     "fame": 700,
@@ -4951,6 +4942,15 @@
                     "decksUsedToday": 4
                 },
                 {
+                    "tag": "#9RPCC2VCG",
+                    "name": "DGJ-DAVI",
+                    "fame": 1200,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 8,
+                    "decksUsedToday": 4
+                },
+                {
                     "tag": "#LVQRP2LGG",
                     "name": "luck",
                     "fame": 1200,
@@ -5014,7 +5014,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 8500,
+            "periodPoints": 9050,
             "clanScore": 3257
         }
     ],
