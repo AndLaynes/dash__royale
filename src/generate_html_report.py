@@ -433,22 +433,70 @@ body {
     .btn-pdf { display: none !important; }
 }
 
-/* PDF SHADOW VIEW STYLES */
+/* PDF SHADOW VIEW STYLES - NUCLEAR OPTION */
 .pdf-render-stage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 794px; /* A4 width at 96DPI */
-    background: white;
-    color: black;
-    padding: 20px;
-    z-index: 9999;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 794px !important;
+    min-height: 1123px !important; /* A4 Height */
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 20px !important;
+    z-index: 2147483647 !important; /* Max Z-Index */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
-.pdf-table { width: 100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px; }
-.pdf-table th { border: 1px solid #000; padding: 5px; background: #eee; text-align: left; }
-.pdf-table td { border: 1px solid #000; padding: 5px; }
-.pdf-header-doc { margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; font-family: sans-serif; }
-.pdf-summary { margin-bottom: 20px; font-family: sans-serif; font-size: 12px; border: 1px solid #ccc; padding: 10px; }
+
+/* Force ALL children to be visible and black */
+.pdf-render-stage * {
+    color: #000000 !important;
+    background: transparent !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.pdf-table { 
+    width: 100% !important; 
+    border-collapse: collapse !important; 
+    font-family: Arial, sans-serif !important; 
+    font-size: 11px !important; 
+    table-layout: fixed !important;
+}
+
+.pdf-table th { 
+    border: 1px solid #000 !important; 
+    padding: 6px !important; 
+    background: #e0e0e0 !important; /* Explicit Grey */
+    color: #000 !important;
+    font-weight: bold !important;
+    text-align: left !important; 
+}
+
+.pdf-table td { 
+    border: 1px solid #000 !important; 
+    padding: 6px !important; 
+    color: #000 !important;
+}
+
+.pdf-header-doc { 
+    margin-bottom: 15px !important; 
+    border-bottom: 2px solid #000 !important; 
+    padding-bottom: 10px !important; 
+    font-family: Arial, sans-serif !important; 
+}
+
+.pdf-summary { 
+    margin-bottom: 15px !important; 
+    font-family: Arial, sans-serif !important; 
+    font-size: 12px !important; 
+    border: 1px solid #000 !important; 
+    padding: 10px !important; 
+    background: #f9f9f9 !important;
+}
 """
 
 def get_page_template(active_page, content):

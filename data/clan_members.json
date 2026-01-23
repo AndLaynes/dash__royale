@@ -177,7 +177,7 @@
             "clanRank": 10,
             "previousClanRank": 9,
             "donations": 568,
-            "donationsReceived": 390,
+            "donationsReceived": 400,
             "clanChestPoints": 0
         },
         {
@@ -343,24 +343,6 @@
             "clanChestPoints": 0
         },
         {
-            "tag": "#2VLR9U90",
-            "name": "EDDIE",
-            "role": "coLeader",
-            "lastSeen": "20260123T180700.000Z",
-            "expLevel": 72,
-            "trophies": 10573,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
-            },
-            "clanRank": 20,
-            "previousClanRank": 21,
-            "donations": 402,
-            "donationsReceived": 200,
-            "clanChestPoints": 0
-        },
-        {
             "tag": "#90U8CVP90",
             "name": "Mila",
             "role": "coLeader",
@@ -372,10 +354,28 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 21,
+            "clanRank": 20,
             "previousClanRank": 20,
             "donations": 68,
             "donationsReceived": 160,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#2VLR9U90",
+            "name": "EDDIE",
+            "role": "coLeader",
+            "lastSeen": "20260123T180700.000Z",
+            "expLevel": 72,
+            "trophies": 10543,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 21,
+            "previousClanRank": 21,
+            "donations": 402,
+            "donationsReceived": 208,
             "clanChestPoints": 0
         },
         {
@@ -454,7 +454,7 @@
             "tag": "#LVGCLQQ8L",
             "name": "Luciano",
             "role": "elder",
-            "lastSeen": "20260123T172322.000Z",
+            "lastSeen": "20260123T181600.000Z",
             "expLevel": 60,
             "trophies": 10177,
             "arena": {
@@ -526,7 +526,7 @@
             "tag": "#U89CJJGUV",
             "name": "RaiNascimento",
             "role": "member",
-            "lastSeen": "20260123T160822.000Z",
+            "lastSeen": "20260123T181532.000Z",
             "expLevel": 60,
             "trophies": 10060,
             "arena": {
@@ -536,7 +536,7 @@
             },
             "clanRank": 30,
             "previousClanRank": 30,
-            "donations": 308,
+            "donations": 326,
             "donationsReceived": 237,
             "clanChestPoints": 0
         },

@@ -421,22 +421,70 @@ body {
     .btn-pdf { display: none !important; }
 }
 
-/* PDF SHADOW VIEW STYLES */
+/* PDF SHADOW VIEW STYLES - NUCLEAR OPTION */
 .pdf-render-stage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 794px; /* A4 width at 96DPI */
-    background: white;
-    color: black;
-    padding: 20px;
-    z-index: 9999;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 794px !important;
+    min-height: 1123px !important; /* A4 Height */
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 20px !important;
+    z-index: 2147483647 !important; /* Max Z-Index */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
-.pdf-table { width: 100%; border-collapse: collapse; font-family: sans-serif; font-size: 12px; }
-.pdf-table th { border: 1px solid #000; padding: 5px; background: #eee; text-align: left; }
-.pdf-table td { border: 1px solid #000; padding: 5px; }
-.pdf-header-doc { margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; font-family: sans-serif; }
-.pdf-summary { margin-bottom: 20px; font-family: sans-serif; font-size: 12px; border: 1px solid #ccc; padding: 10px; }
+
+/* Force ALL children to be visible and black */
+.pdf-render-stage * {
+    color: #000000 !important;
+    background: transparent !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.pdf-table { 
+    width: 100% !important; 
+    border-collapse: collapse !important; 
+    font-family: Arial, sans-serif !important; 
+    font-size: 11px !important; 
+    table-layout: fixed !important;
+}
+
+.pdf-table th { 
+    border: 1px solid #000 !important; 
+    padding: 6px !important; 
+    background: #e0e0e0 !important; /* Explicit Grey */
+    color: #000 !important;
+    font-weight: bold !important;
+    text-align: left !important; 
+}
+
+.pdf-table td { 
+    border: 1px solid #000 !important; 
+    padding: 6px !important; 
+    color: #000 !important;
+}
+
+.pdf-header-doc { 
+    margin-bottom: 15px !important; 
+    border-bottom: 2px solid #000 !important; 
+    padding-bottom: 10px !important; 
+    font-family: Arial, sans-serif !important; 
+}
+
+.pdf-summary { 
+    margin-bottom: 15px !important; 
+    font-family: Arial, sans-serif !important; 
+    font-size: 12px !important; 
+    border: 1px solid #000 !important; 
+    padding: 10px !important; 
+    background: #f9f9f9 !important;
+}
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -459,7 +507,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 15:09</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 15:18</strong>
                 </div>
             </div>
         </div>
@@ -487,7 +535,7 @@ body {
                 </div>
                 <div style="text-align:right;">
                     <div style="font-size:12px; color:#cbd5e0;">GERADO EM</div>
-                    <div style="font-size:16px; font-weight:bold; color:#fff;">23/01/2026 15:09</div>
+                    <div style="font-size:16px; font-weight:bold; color:#fff;">23/01/2026 15:18</div>
                 </div>
             </div>
         </div>
@@ -1272,7 +1320,7 @@ body {
     <div id="pdf-hidden-source" style="display:none;">
         <div class="pdf-header-doc">
             <h1>RELATÓRIO DE GUERRA: OS GUARDIÕES</h1>
-            <p>Data: 23/01/2026 15:09 | Ref: Temporada 128 | Semana 2</p>
+            <p>Data: 23/01/2026 15:18 | Ref: Temporada 128 | Semana 2</p>
         </div>
         <div class="pdf-summary">
             <strong>RESUMO OPERACIONAL:</strong><br>

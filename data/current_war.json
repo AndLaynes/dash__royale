@@ -4157,15 +4157,6 @@
                     "decksUsedToday": 4
                 },
                 {
-                    "tag": "#29UQRVVRG",
-                    "name": "Ｔｉｔｏ ティト",
-                    "fame": 900,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 5,
-                    "decksUsedToday": 1
-                },
-                {
                     "tag": "#R2RLPYLCL",
                     "name": "Jhonatan np",
                     "fame": 900,
@@ -4335,9 +4326,18 @@
                     "boatAttacks": 0,
                     "decksUsed": 8,
                     "decksUsedToday": 4
+                },
+                {
+                    "tag": "#29UQRVVRG",
+                    "name": "Ｔｉｔｏ ティト",
+                    "fame": 1500,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 8,
+                    "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 13075,
+            "periodPoints": 13675,
             "clanScore": 3290
         },
         {
