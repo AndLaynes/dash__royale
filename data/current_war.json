@@ -332,15 +332,6 @@
                 "decksUsedToday": 2
             },
             {
-                "tag": "#UU0RCRLQU",
-                "name": "super",
-                "fame": 500,
-                "repairPoints": 0,
-                "boatAttacks": 0,
-                "decksUsed": 4,
-                "decksUsedToday": 0
-            },
-            {
                 "tag": "#8U008PQU8",
                 "name": "RobaFrag",
                 "fame": 550,
@@ -429,6 +420,15 @@
                 "boatAttacks": 0,
                 "decksUsed": 4,
                 "decksUsedToday": 0
+            },
+            {
+                "tag": "#UU0RCRLQU",
+                "name": "super",
+                "fame": 700,
+                "repairPoints": 0,
+                "boatAttacks": 0,
+                "decksUsed": 5,
+                "decksUsedToday": 1
             },
             {
                 "tag": "#GRY890GY2",
@@ -692,7 +692,7 @@
                 "decksUsedToday": 4
             }
         ],
-        "periodPoints": 16150,
+        "periodPoints": 16350,
         "clanScore": 3257
     },
     "clans": [
@@ -751,15 +751,6 @@
                 {
                     "tag": "#JU2VGJL8C",
                     "name": "El_triste",
-                    "fame": 0,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 0,
-                    "decksUsedToday": 0
-                },
-                {
-                    "tag": "#8CPVJCPJU",
-                    "name": "jeb",
                     "fame": 0,
                     "repairPoints": 0,
                     "boatAttacks": 0,
@@ -866,13 +857,13 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#Y0PJRP28J",
-                    "name": "solo",
+                    "tag": "#8CPVJCPJU",
+                    "name": "jeb",
                     "fame": 400,
                     "repairPoints": 0,
-                    "boatAttacks": 0,
+                    "boatAttacks": 4,
                     "decksUsed": 4,
-                    "decksUsedToday": 0
+                    "decksUsedToday": 4
                 },
                 {
                     "tag": "#UUPU2UGVV",
@@ -1118,6 +1109,15 @@
                     "decksUsedToday": 4
                 },
                 {
+                    "tag": "#Y0PJRP28J",
+                    "name": "solo",
+                    "fame": 1200,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 8,
+                    "decksUsedToday": 4
+                },
+                {
                     "tag": "#JVQV2QU9J",
                     "name": "heretic",
                     "fame": 1200,
@@ -1262,7 +1262,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 18850,
+            "periodPoints": 20050,
             "clanScore": 3302
         },
         {
@@ -1867,15 +1867,6 @@
                     "decksUsedToday": 0
                 },
                 {
-                    "tag": "#VVJVQY8PC",
-                    "name": "Yuuka",
-                    "fame": 800,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#U28GUR20C",
                     "name": "哀木涕",
                     "fame": 900,
@@ -1887,11 +1878,11 @@
                 {
                     "tag": "#VLYR0QJLG",
                     "name": "TaiKuLa",
-                    "fame": 950,
+                    "fame": 1050,
                     "repairPoints": 0,
                     "boatAttacks": 0,
-                    "decksUsed": 7,
-                    "decksUsedToday": 3
+                    "decksUsed": 8,
+                    "decksUsedToday": 4
                 },
                 {
                     "tag": "#208RUUQUG2",
@@ -1910,6 +1901,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 8,
                     "decksUsedToday": 4
+                },
+                {
+                    "tag": "#VVJVQY8PC",
+                    "name": "Yuuka",
+                    "fame": 1200,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 7,
+                    "decksUsedToday": 3
                 },
                 {
                     "tag": "#VQG2JRURG",
@@ -1966,15 +1966,6 @@
                     "decksUsedToday": 4
                 },
                 {
-                    "tag": "#UGCCJJJL0",
-                    "name": "酱紫",
-                    "fame": 1500,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 7,
-                    "decksUsedToday": 3
-                },
-                {
                     "tag": "#CVV9CYGY2",
                     "name": "问鼎巅峰之路",
                     "fame": 1600,
@@ -2009,9 +2000,18 @@
                     "boatAttacks": 0,
                     "decksUsed": 8,
                     "decksUsedToday": 4
+                },
+                {
+                    "tag": "#UGCCJJJL0",
+                    "name": "酱紫",
+                    "fame": 1600,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 8,
+                    "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 12100,
+            "periodPoints": 12700,
             "clanScore": 3250
         },
         {
@@ -4672,15 +4672,6 @@
                     "decksUsedToday": 2
                 },
                 {
-                    "tag": "#UU0RCRLQU",
-                    "name": "super",
-                    "fame": 500,
-                    "repairPoints": 0,
-                    "boatAttacks": 0,
-                    "decksUsed": 4,
-                    "decksUsedToday": 0
-                },
-                {
                     "tag": "#8U008PQU8",
                     "name": "RobaFrag",
                     "fame": 550,
@@ -4769,6 +4760,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 4,
                     "decksUsedToday": 0
+                },
+                {
+                    "tag": "#UU0RCRLQU",
+                    "name": "super",
+                    "fame": 700,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 5,
+                    "decksUsedToday": 1
                 },
                 {
                     "tag": "#GRY890GY2",
@@ -5032,7 +5032,7 @@
                     "decksUsedToday": 4
                 }
             ],
-            "periodPoints": 16150,
+            "periodPoints": 16350,
             "clanScore": 3257
         }
     ],

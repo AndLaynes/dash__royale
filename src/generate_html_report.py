@@ -270,10 +270,7 @@ body {
         grid-template-columns: 1fr !important;
     }
 }
-    .dashboard-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
+
 
 /* PDF EXPORT STYLES (Ultra-Clean Document Mode - GT-Z) */
 .pdf-header {
@@ -565,40 +562,9 @@ def get_page_template(active_page, content):
 
     <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
-    function downloadPDF() {{
-        const btn = document.getElementById('btn-export-pdf');
-        const originalText = btn.innerText;
-        btn.innerText = "Gerando...";
-        btn.disabled = true;
-
-        // Get the shadow content
-        const source = document.getElementById('pdf-hidden-source');
-        
-        // Create a temporary visible container
-        const tempContainer = document.createElement('div');
-        tempContainer.innerHTML = source.innerHTML;
-        tempContainer.classList.add('pdf-render-stage');
-        document.body.appendChild(tempContainer);
-
-        const opt = {{
-            margin: [10, 10, 10, 10],
-            filename: 'Relatorio_Guerra_' + new Date().toISOString().slice(0,10) + '.pdf',
-            image: {{ type: 'jpeg', quality: 0.98 }},
-            html2canvas: {{ scale: 2, logging: false, windowWidth: 800 }},
-            jsPDF: {{ unit: 'mm', format: 'a4', orientation: 'portrait' }}
-        }};
-
-        html2pdf().set(opt).from(tempContainer).save().then(function(){{
-            document.body.removeChild(tempContainer);
-            btn.innerText = originalText;
-            btn.disabled = false;
-        }}).catch(function(err) {{
-            console.error(err);
-            if(document.body.contains(tempContainer)) document.body.removeChild(tempContainer);
-            btn.innerText = "Erro";
-            btn.disabled = false;
-        }});
-    }}
+    // [GT-Z] Server-Side PDF Generation Active
+    // WeasyPrint (Python) replaces Client-Side JS.
+    </script>
 
     document.addEventListener('DOMContentLoaded', function() {{
         const tables = document.querySelectorAll('.custom-table');

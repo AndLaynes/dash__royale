@@ -247,10 +247,7 @@ body {
         grid-template-columns: 1fr !important;
     }
 }
-    .dashboard-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
+
 
 /* PDF EXPORT STYLES (Ultra-Clean Document Mode - GT-Z) */
 .pdf-header {
@@ -507,7 +504,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 16:25</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 16:38</strong>
                 </div>
             </div>
         </div>
@@ -585,7 +582,7 @@ body {
                     <div style="font-size:10px; color:#718096;">#VUQ0PV8PV</div>
                 </td>
                 <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
-                <td data-value="10043"><span style="color:#fbbf24">🏆 10043</span></td>
+                <td data-value="10044"><span style="color:#fbbf24">🏆 10044</span></td>
                 <td data-value="51"><span style="color:#34d399"> cards 51</span></td>
                 <td style="color:#a0aec0" data-value="20260123T192120.000Z">23/01/2026 16:21</td>
             </tr>
@@ -873,7 +870,7 @@ body {
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td data-value="10788"><span style="color:#fbbf24">🏆 10788</span></td>
                 <td data-value="360"><span style="color:#34d399"> cards 360</span></td>
-                <td style="color:#a0aec0" data-value="20260123T171639.000Z">23/01/2026 14:16</td>
+                <td style="color:#a0aec0" data-value="20260123T192550.000Z">23/01/2026 16:25</td>
             </tr>
             
             <tr class="data-row">
@@ -906,7 +903,7 @@ body {
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td data-value="10301"><span style="color:#fbbf24">🏆 10301</span></td>
                 <td data-value="18"><span style="color:#34d399"> cards 18</span></td>
-                <td style="color:#a0aec0" data-value="20260122T204534.000Z">22/01/2026 17:45</td>
+                <td style="color:#a0aec0" data-value="20260123T193325.000Z">23/01/2026 16:33</td>
             </tr>
             
             <tr class="data-row">
@@ -970,9 +967,9 @@ body {
                     <div style="font-size:10px; color:#718096;">#20R020VQ2C</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td data-value="9919"><span style="color:#fbbf24">🏆 9919</span></td>
+                <td data-value="9921"><span style="color:#fbbf24">🏆 9921</span></td>
                 <td data-value="94"><span style="color:#34d399"> cards 94</span></td>
-                <td style="color:#a0aec0" data-value="20260123T171441.000Z">23/01/2026 14:14</td>
+                <td style="color:#a0aec0" data-value="20260123T192804.000Z">23/01/2026 16:28</td>
             </tr>
             
             <tr class="data-row">
@@ -1092,40 +1089,9 @@ body {
 
     <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
-    function downloadPDF() {
-        const btn = document.getElementById('btn-export-pdf');
-        const originalText = btn.innerText;
-        btn.innerText = "Gerando...";
-        btn.disabled = true;
-
-        // Get the shadow content
-        const source = document.getElementById('pdf-hidden-source');
-        
-        // Create a temporary visible container
-        const tempContainer = document.createElement('div');
-        tempContainer.innerHTML = source.innerHTML;
-        tempContainer.classList.add('pdf-render-stage');
-        document.body.appendChild(tempContainer);
-
-        const opt = {
-            margin: [10, 10, 10, 10],
-            filename: 'Relatorio_Guerra_' + new Date().toISOString().slice(0,10) + '.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, logging: false, windowWidth: 800 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-
-        html2pdf().set(opt).from(tempContainer).save().then(function(){
-            document.body.removeChild(tempContainer);
-            btn.innerText = originalText;
-            btn.disabled = false;
-        }).catch(function(err) {
-            console.error(err);
-            if(document.body.contains(tempContainer)) document.body.removeChild(tempContainer);
-            btn.innerText = "Erro";
-            btn.disabled = false;
-        });
-    }
+    // [GT-Z] Server-Side PDF Generation Active
+    // WeasyPrint (Python) replaces Client-Side JS.
+    </script>
 
     document.addEventListener('DOMContentLoaded', function() {
         const tables = document.querySelectorAll('.custom-table');

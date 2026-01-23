@@ -247,10 +247,7 @@ body {
         grid-template-columns: 1fr !important;
     }
 }
-    .dashboard-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
+
 
 /* PDF EXPORT STYLES (Ultra-Clean Document Mode - GT-Z) */
 .pdf-header {
@@ -507,7 +504,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 16:25</strong>
+                    <strong style="color:#cbd5e0">23/01/2026 16:38</strong>
                 </div>
             </div>
         </div>
@@ -740,8 +737,8 @@ body {
                         Fame: <b style="color:white">24500</b><br>
                         Eff: <b style="color:white">154</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10043">
-                        Troféus: <b style="color:white">10043</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10044">
+                        Troféus: <b style="color:white">10044</b><br>
                         Donates: <b style="color:white">51</b>
                     </td>
                 </tr>
@@ -1160,8 +1157,8 @@ body {
                         Fame: <b style="color:white">0</b><br>
                         Eff: <b style="color:white">0</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9919">
-                        Troféus: <b style="color:white">9919</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="9921">
+                        Troféus: <b style="color:white">9921</b><br>
                         Donates: <b style="color:white">94</b>
                     </td>
                 </tr>
@@ -1257,40 +1254,9 @@ body {
 
     <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
-    function downloadPDF() {
-        const btn = document.getElementById('btn-export-pdf');
-        const originalText = btn.innerText;
-        btn.innerText = "Gerando...";
-        btn.disabled = true;
-
-        // Get the shadow content
-        const source = document.getElementById('pdf-hidden-source');
-        
-        // Create a temporary visible container
-        const tempContainer = document.createElement('div');
-        tempContainer.innerHTML = source.innerHTML;
-        tempContainer.classList.add('pdf-render-stage');
-        document.body.appendChild(tempContainer);
-
-        const opt = {
-            margin: [10, 10, 10, 10],
-            filename: 'Relatorio_Guerra_' + new Date().toISOString().slice(0,10) + '.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, logging: false, windowWidth: 800 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-
-        html2pdf().set(opt).from(tempContainer).save().then(function(){
-            document.body.removeChild(tempContainer);
-            btn.innerText = originalText;
-            btn.disabled = false;
-        }).catch(function(err) {
-            console.error(err);
-            if(document.body.contains(tempContainer)) document.body.removeChild(tempContainer);
-            btn.innerText = "Erro";
-            btn.disabled = false;
-        });
-    }
+    // [GT-Z] Server-Side PDF Generation Active
+    // WeasyPrint (Python) replaces Client-Side JS.
+    </script>
 
     document.addEventListener('DOMContentLoaded', function() {
         const tables = document.querySelectorAll('.custom-table');
