@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 108198,
+    "clanScore": 108195,
     "clanWarTrophies": 3257,
     "location": {
         "id": 57000038,
@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 10000,
-    "donationsPerWeek": 10012,
+    "donationsPerWeek": 10022,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -52,7 +52,7 @@
             "clanRank": 2,
             "previousClanRank": 2,
             "donations": 380,
-            "donationsReceived": 200,
+            "donationsReceived": 210,
             "clanChestPoints": 0
         },
         {
@@ -149,7 +149,7 @@
             "tag": "#8U008PQU8",
             "name": "RobaFrag",
             "role": "elder",
-            "lastSeen": "20260123T150141.000Z",
+            "lastSeen": "20260123T151758.000Z",
             "expLevel": 67,
             "trophies": 11000,
             "arena": {
@@ -159,7 +159,7 @@
             },
             "clanRank": 8,
             "previousClanRank": 8,
-            "donations": 1182,
+            "donations": 1192,
             "donationsReceived": 560,
             "clanChestPoints": 0
         },
@@ -383,9 +383,9 @@
             "tag": "#2VLR9U90",
             "name": "EDDIE",
             "role": "coLeader",
-            "lastSeen": "20260123T143422.000Z",
+            "lastSeen": "20260123T151312.000Z",
             "expLevel": 72,
-            "trophies": 10532,
+            "trophies": 10505,
             "arena": {
                 "id": 54000130,
                 "name": "Royal Road",

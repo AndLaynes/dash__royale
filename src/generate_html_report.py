@@ -887,27 +887,57 @@ def generate_html_report():
 
     # HTML Construction
     
-    def render_list(items, value_key, icon, color_style=""):
+    # HTML Construction - PREMIUM UI OVERHAUL (GT-Z 2.2)
+    
+    def render_player_cards(items, value_key, icon, theme="blue"):
         html = ""
+        colors = {
+            "blue": "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%)",
+            "gold": "linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%)"
+        }
+        border_colors = {
+            "blue": "rgba(59, 130, 246, 0.3)",
+            "gold": "rgba(251, 191, 36, 0.3)"
+        }
+        
+        bg_style = colors.get(theme, colors["blue"])
+        border_style = border_colors.get(theme, border_colors["blue"])
+        
         for i, p in enumerate(items):
-            rank_display = f"{i+1}."
+            rank = i + 1
+            rank_badge = ""
+            if rank <= 3:
+                rank_icon = ["🥇", "🥈", "🥉"][rank-1]
+                rank_badge = f'<div class="rank-medal">{rank_icon}</div>'
+            else:
+                rank_badge = f'<div class="rank-number">#{rank}</div>'
+                
             html += f"""
-            <div class="list-item">
-                <span class="rank-num">{rank_display}</span>
-                <span class="badgex" style="{color_style}">{icon} {p[value_key]}</span>
-                <span class="p-name">{p['name']}</span>
+            <div class="player-card" style="background: {bg_style}; border: 1px solid {border_style};">
+                <div class="card-left">
+                    {rank_badge}
+                    <div class="player-info">
+                        <div class="p-name">{p['name']}</div>
+                        <div class="p-tag">{p['tag']}</div>
+                    </div>
+                </div>
+                <div class="card-right">
+                    <div class="p-value">
+                        <span class="p-icon">{icon}</span>
+                        {p[value_key]}
+                    </div>
+                </div>
             </div>
             """
         return html
         
-    donors_html = render_list(top_donors, 'donations', '🃏')
-    mvp_html = render_list(top_trophies, 'trophies', '🏆', "background:#fbbf24; color:#000;")
+    donors_html = render_player_cards(top_donors, 'donations', '🃏', "blue")
+    mvp_html = render_player_cards(top_trophies, 'trophies', '🏆', "gold")
 
-    # EXTRAÇÃO DE DADOS HISTÓRICOS PARA O GRÁFICO
+    # EXTRAÇÃO DE DADOS HISTÓRICOS PARA O GRÁFICO (MANTIDO)
     chart_dates = []
     chart_scores = []
     
-    # Tag Alvo (Normalizada)
     TARGET_TAG_CLEAN = "9PJRJRPC"
 
     if os.path.exists(os.path.join(DATA_DIR, 'riverracelog.json')):
@@ -915,24 +945,17 @@ def generate_html_report():
             with open(os.path.join(DATA_DIR, 'riverracelog.json'), 'r', encoding='utf-8') as f:
                 r_log = json.load(f)
                 items_list = r_log.get('items', [])
-                
-                # Iterar REVERSO para ter ordem cronológica (Antigo -> Novo)
                 for item in reversed(items_list):
-                    # Achar meu clã (Robust Scan)
                     my_clan = None
                     for standing in item.get('standings', []):
                         clan_info = standing.get('clan', {})
                         raw_tag = clan_info.get('tag', '')
                         processed_tag = raw_tag.replace('#', '').strip().upper()
-
-                        # Comparação "Forensic": Remove #, strip whitespace, uppercase
                         if processed_tag == TARGET_TAG_CLEAN:
                             my_clan = clan_info
                             break
                     
                     if my_clan:
-                        # Data formatada (Dia/Mês)
-                        # Exemplo: 20260112T095005.000Z
                         c_date = item.get('createdDate', '')
                         if c_date:
                             try:
@@ -941,101 +964,155 @@ def generate_html_report():
                                 chart_dates.append(d_str)
                                 chart_scores.append(my_clan.get('clanScore', 0))
                             except ValueError:
-                                # Tenta formato sem milissegundos se falhar
                                 try:
                                     dt = datetime.strptime(c_date, '%Y%m%dT%H%M%SZ')
                                     d_str = dt.strftime('%d/%m')
                                     chart_dates.append(d_str)
                                     chart_scores.append(my_clan.get('clanScore', 0))
-                                except:
-                                    pass
+                                except: pass
         except Exception as e:
             print(f"Erro ao gerar dados do gráfico: {e}")
 
-    # Converter para JSON string para o JS
     js_dates = json.dumps(chart_dates)
     js_scores = json.dumps(chart_scores)
 
     index_content = f"""
-    <div class="dashboard-grid" style="display:block;">
-        <!-- 1. GRÁFICO DE HISTÓRICO DE TROFÉUS (Ocupa largura total) -->
-        <div class="dash-card" style="margin-bottom:20px; border-top: 3px solid #fbbf24;">
-            <div class="card-header">
-                <h3>📈 EVOLUÇÃO DE TROFÉUS (HISTÓRICO)</h3>
-                <span class="status-badge status-complete">{league_name}</span>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    
+    <style>
+        .player-card {{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: transform 0.2s;
+        }}
+        .player-card:hover {{ transform: translateX(5px); }}
+        .card-left {{ display: flex; align-items: center; gap: 12px; }}
+        .rank-medal {{ font-size: 20px; }}
+        .rank-number {{ 
+            font-size: 12px; font-weight: bold; color: #a0aec0; 
+            width: 24px; text-align: center;
+        }}
+        .player-info {{ display: flex; flex-direction: column; }}
+        .p-name {{ font-weight: 700; font-size: 14px; color: white; }}
+        .p-tag {{ font-size: 10px; color: #718096; }}
+        .p-value {{ font-weight: 800; font-size: 14px; color: white; display: flex; align-items: center; gap: 5px; }}
+        
+        /* War Status Visuals */
+        .war-status-container {{ display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }}
+        .war-metric-box {{
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 3px solid #4a5568;
+        }}
+        .war-metric-box.accent {{ border-left-color: #fbbf24; }}
+        .war-metric-label {{ font-size: 11px; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }}
+        .war-metric-value {{ font-size: 20px; font-weight: 800; color: white; }}
+        
+        .war-progress-steps {{ 
+            margin-top: 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            position: relative; 
+        }}
+        .war-progress-steps::before {{
+            content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: #2d3748; z-index: 0;
+        }}
+        .step-dot {{
+            width: 12px; height: 12px; border-radius: 50%; background: #2d3748; z-index: 1; border: 2px solid #1a202c;
+        }}
+        .step-dot.active {{ background: #10b981; border-color: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }}
+    </style>
+
+    <!-- 1. GRÁFICO PREMIUM -->
+    <div class="dash-card" style="margin-bottom:20px; border-top: 3px solid #fbbf24; background: linear-gradient(180deg, #1a202c 0%, #171923 100%);">
+        <div class="card-header">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:24px">📈</span>
+                <div>
+                    <h3 style="margin:0; font-size:18px;">Evolução de Troféus</h3>
+                    <div style="font-size:12px; color:#718096;">Histórico de Performance do Clã</div>
+                </div>
             </div>
-            <div style="position: relative; height:320px; width:100%">
-                <canvas id="trophyChart"></canvas>
-            </div>
+            <span class="status-badge status-complete">{league_name}</span>
+        </div>
+        <div style="position: relative; height:350px; width:100%; padding: 10px;">
+            <canvas id="trophyChart"></canvas>
         </div>
     </div>
 
-    <!-- CARDS INFERIORES (GRID 3 COLUNAS) -->
-    <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+    <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
         
-        <!-- 2. STATUS DE GUERRA / PERFIL -->
-        <div class="dash-card war-card">
+        <!-- 2. WAR STATUS CARD -->
+        <div class="dash-card" style="background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); border: 1px solid #4a5568;">
             <div class="card-header">
-                <h3>⚔️ Status de Guerra</h3>
-                <span class="badgex" style="background:#e53e3e">Season {season_id}</span>
+                <div>
+                    <h3 style="color:#fbbf24;">⚔️ Status de Guerra</h3>
+                    <div style="font-size:11px; color:#a0aec0;">SEASON {season_id}</div>
+                </div>
+                <div style="text-align:right;">
+                    <div style="font-size:10px; color:#a0aec0;">TROFÉUS ATUAIS</div>
+                    <div style="font-size:24px; font-weight:800; color:#fbbf24;">{clan_war_trophies} 🏆</div>
+                </div>
             </div>
+            
             <div class="card-body">
-                <div class="stat-row">
-                    <span>Rank Última Guerra</span>
-                    <span class="value accent">{war_rank}</span>
+                <div class="war-status-container">
+                    <div class="war-metric-box accent">
+                        <div class="war-metric-label">Rank Anterior</div>
+                        <div class="war-metric-value">{war_rank}</div>
+                    </div>
+                    <div class="war-metric-box" style="border-left-color: #10b981;">
+                        <div class="war-metric-label">Participação Total</div>
+                        <div class="war-metric-value">{part_full} <span style="font-size:12px; opacity:0.7;">/ 50</span></div>
+                    </div>
                 </div>
-                <div class="stat-row">
-                    <span>Participação (4+ Decks)</span>
-                    <span class="value">{part_full} Jogadores</span>
-                </div>
-                <div class="stat-row">
-                    <span>Parcialmente Ativos</span>
-                    <span class="value">{part_idling} Jogadores</span>
-                </div>
-                <div class="stat-row">
-                    <span>Ausentes (0 Decks)</span>
-                    <span class="value" style="color:#e53e3e">{part_none} Jogadores</span>
-                </div>
-                <div style="margin-top:20px; padding-top:10px; border-top:1px solid #ffffff10;">
-                    <div class="stat-label" style="text-align:center; margin-bottom:5px;">TROFÉUS ATUAIS</div>
-                    <div class="stat-value" style="text-align:center; font-size:32px;">🏆 {clan_war_trophies}</div>
+                
+                <div style="margin-top:20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                     <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <span style="font-size:12px; color:#a0aec0;">Parciais (Incompletos)</span>
+                        <span style="font-size:12px; font-weight:bold; color:#fbbf24;">{part_idling}</span>
+                     </div>
+                     <div style="display:flex; justify-content:space-between;">
+                        <span style="font-size:12px; color:#a0aec0;">Ausentes (0 Decks)</span>
+                        <span style="font-size:12px; font-weight:bold; color:#ef4444;">{part_none}</span>
+                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 3. TOP DOAÇÕES -->
-        <div class="dash-card donation-card">
+        <div class="dash-card">
             <div class="card-header">
                 <h3>🃏 Top Doadores</h3>
-                <div class="stat-label">Total: {total_donations}</div>
+                <span class="badge" style="background:#3182ce;">{total_donations} Cards</span>
             </div>
-            <div class="scrollable-list">
+            <div class="scrollable-list" style="max-height: 400px; overflow-y: auto;">
                 {donors_html}
             </div>
         </div>
 
         <!-- 4. MVP TROFÉUS -->
-        <div class="dash-card mvp-card">
+        <div class="dash-card">
             <div class="card-header">
-                <h3>🏆 MVPs (Ladder)</h3>
-                <div class="stat-label">Top Ladder</div>
+                <h3>🏆 Top Ladder (MVPs)</h3>
+                <span class="badge" style="background:#d69e2e;">Habilidade</span>
             </div>
-            <div class="scrollable-list">
+            <div class="scrollable-list" style="max-height: 400px; overflow-y: auto;">
                 {mvp_html}
             </div>
         </div>
     </div>
 
-    <style>
-        .dashboard-grid {{
-            display: grid;
-            gap: 20px;
-            margin-top: 20px;
-        }}
-    </style>
-
     <script>
     document.addEventListener('DOMContentLoaded', function() {{
+        Chart.register(ChartDataLabels); // Register Plugin
+        
         const ctx = document.getElementById('trophyChart');
         if (ctx) {{
             new Chart(ctx, {{
@@ -1043,41 +1120,57 @@ def generate_html_report():
                 data: {{
                     labels: {js_dates},
                     datasets: [{{
-                        label: 'Troféus do Clã',
+                        label: 'Troféus',
                         data: {js_scores},
                         borderColor: '#fbbf24',
-                        backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                        backgroundColor: (context) => {{
+                            const ctx = context.chart.ctx;
+                            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                            gradient.addColorStop(0, 'rgba(251, 191, 36, 0.4)');
+                            gradient.addColorStop(1, 'rgba(251, 191, 36, 0.0)');
+                            return gradient;
+                        }},
                         borderWidth: 3,
-                        pointBackgroundColor: '#fff',
+                        pointBackgroundColor: '#1a202c',
                         pointBorderColor: '#fbbf24',
-                        pointRadius: 4,
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
                         fill: true,
-                        tension: 0.4
+                        tension: 0.3
                     }}]
                 }},
                 options: {{
                     responsive: true,
                     maintainAspectRatio: false,
+                    layout: {{ padding: {{ top: 30, right: 20, left: 10, bottom: 10 }} }},
                     plugins: {{
                         legend: {{ display: false }},
+                        datalabels: {{
+                            color: '#fbbf24',
+                            align: 'top',
+                            offset: 6,
+                            font: {{ weight: 'bold', size: 12 }},
+                            formatter: function(value) {{ return value; }}
+                        }},
                         tooltip: {{
-                            backgroundColor: '#1a202c',
+                            backgroundColor: 'rgba(0,0,0,0.8)',
                             titleColor: '#fbbf24',
-                            bodyColor: '#fff',
-                            borderColor: '#2d3748',
-                            borderWidth: 1,
-                            padding: 10,
-                            displayColors: false
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {{
+                                label: function(context) {{ return '🏆 ' + context.parsed.y; }}
+                            }}
                         }}
                     }},
                     scales: {{
                         y: {{
-                            grid: {{ color: '#2d3748' }},
-                            ticks: {{ color: '#9ca3af' }}
+                            grid: {{ color: 'rgba(45, 55, 72, 0.5)' }},
+                            ticks: {{ color: '#a0aec0', font: {{ size: 10 }} }}
                         }},
                         x: {{
                             grid: {{ display: false }},
-                            ticks: {{ color: '#9ca3af' }}
+                            ticks: {{ color: '#a0aec0', font: {{ size: 11 }} }}
                         }}
                     }}
                 }}
