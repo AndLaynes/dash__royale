@@ -302,7 +302,7 @@ def get_page_template(active_page, content):
     </div>
 
     <script>
-    // [GT-Z] Scripts Cleaned
+    // [GT-Z] Scripts Cleaned (Sorting Restoration)
 
     document.addEventListener('DOMContentLoaded', function() {{
         const tables = document.querySelectorAll('.custom-table');

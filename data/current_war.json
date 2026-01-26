@@ -8,6 +8,15 @@
         "repairPoints": 0,
         "participants": [
             {
+                "tag": "#PL0RJ9GP",
+                "name": "BieuL",
+                "fame": 0,
+                "repairPoints": 0,
+                "boatAttacks": 0,
+                "decksUsed": 0,
+                "decksUsedToday": 0
+            },
+            {
                 "tag": "#2LY2GLJQL",
                 "name": "JOSA",
                 "fame": 0,
@@ -5076,6 +5085,15 @@
             "fame": 0,
             "repairPoints": 0,
             "participants": [
+                {
+                    "tag": "#PL0RJ9GP",
+                    "name": "BieuL",
+                    "fame": 0,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 0,
+                    "decksUsedToday": 0
+                },
                 {
                     "tag": "#2LY2GLJQL",
                     "name": "JOSA",
