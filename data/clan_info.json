@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 109005,
+    "clanScore": 108990,
     "clanWarTrophies": 3267,
     "location": {
         "id": 57000038,
@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 9000,
-    "donationsPerWeek": 1894,
+    "donationsPerWeek": 1904,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -110,24 +110,6 @@
             "clanChestPoints": 0
         },
         {
-            "tag": "#GV8UJJ",
-            "name": "I'm inevitable",
-            "role": "member",
-            "lastSeen": "20260126T224137.000Z",
-            "expLevel": 61,
-            "trophies": 11251,
-            "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
-            },
-            "clanRank": 6,
-            "previousClanRank": 0,
-            "donations": 162,
-            "donationsReceived": 40,
-            "clanChestPoints": 0
-        },
-        {
             "tag": "#2LY2GLJQL",
             "name": "JOSA",
             "role": "member",
@@ -139,10 +121,28 @@
                 "name": "Musketeer Street",
                 "rawName": "Arena_L13"
             },
-            "clanRank": 7,
+            "clanRank": 6,
             "previousClanRank": 5,
             "donations": 44,
             "donationsReceived": 80,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#GV8UJJ",
+            "name": "I'm inevitable",
+            "role": "member",
+            "lastSeen": "20260126T224137.000Z",
+            "expLevel": 61,
+            "trophies": 11221,
+            "arena": {
+                "id": 54000131,
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
+            },
+            "clanRank": 7,
+            "previousClanRank": 0,
+            "donations": 162,
+            "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
@@ -520,7 +520,7 @@
             "clanRank": 28,
             "previousClanRank": 25,
             "donations": 40,
-            "donationsReceived": 30,
+            "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
@@ -653,7 +653,7 @@
             "tag": "#VUQ0PV8PV",
             "name": "andrebts",
             "role": "coLeader",
-            "lastSeen": "20260126T201409.000Z",
+            "lastSeen": "20260126T224804.000Z",
             "expLevel": 53,
             "trophies": 10003,
             "arena": {
@@ -663,7 +663,7 @@
             },
             "clanRank": 36,
             "previousClanRank": 29,
-            "donations": 0,
+            "donations": 10,
             "donationsReceived": 40,
             "clanChestPoints": 0
         },

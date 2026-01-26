@@ -116,7 +116,7 @@ def main():
     # Mensagem Final Refinada (Ground Truth)
     print("\n\033[92mProcesso de atualização e sincronização concluído com sucesso!\033[0m")
     print("1. Dados coletados e processados.")
-    print("2. Relatórios HTML gerados (incl. PDF Feature).")
+    print("2. Relatórios HTML gerados.")
     print("3. Repositório atualizado automaticamente.")
     print("Status: PRONTO PARA OPERAÇÃO.")
 
