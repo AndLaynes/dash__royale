@@ -4,7 +4,7 @@
     "type": "open",
     "description": "Seja bem vindo(a) Clã focado em guerras, 1600 Pontos mÍnimo por Guerra ! Guerras De Quinta a Domingo ! pra cima !!! 🎆🏆🏆🏆🎆",
     "badgeId": 16000058,
-    "clanScore": 108534,
+    "clanScore": 109005,
     "clanWarTrophies": 3267,
     "location": {
         "id": 57000038,
@@ -13,11 +13,11 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 9000,
-    "donationsPerWeek": 1860,
+    "donationsPerWeek": 1894,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
-    "members": 46,
+    "members": 47,
     "memberList": [
         {
             "tag": "#UGUULGQ8Y",
@@ -106,7 +106,25 @@
             "clanRank": 5,
             "previousClanRank": 3,
             "donations": 84,
-            "donationsReceived": 56,
+            "donationsReceived": 64,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#GV8UJJ",
+            "name": "I'm inevitable",
+            "role": "member",
+            "lastSeen": "20260126T224137.000Z",
+            "expLevel": 61,
+            "trophies": 11251,
+            "arena": {
+                "id": 54000131,
+                "name": "Musketeer Street",
+                "rawName": "Arena_L13"
+            },
+            "clanRank": 6,
+            "previousClanRank": 0,
+            "donations": 162,
+            "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
@@ -121,28 +139,10 @@
                 "name": "Musketeer Street",
                 "rawName": "Arena_L13"
             },
-            "clanRank": 6,
+            "clanRank": 7,
             "previousClanRank": 5,
             "donations": 44,
             "donationsReceived": 80,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#GV8UJJ",
-            "name": "I'm inevitable",
-            "role": "member",
-            "lastSeen": "20260126T224137.000Z",
-            "expLevel": 61,
-            "trophies": 11221,
-            "arena": {
-                "id": 54000131,
-                "name": "Musketeer Street",
-                "rawName": "Arena_L13"
-            },
-            "clanRank": 7,
-            "previousClanRank": 0,
-            "donations": 162,
-            "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
@@ -326,6 +326,24 @@
             "clanChestPoints": 0
         },
         {
+            "tag": "#VYYRPJG",
+            "name": "SpartanBr444",
+            "role": "member",
+            "lastSeen": "20260126T224601.000Z",
+            "expLevel": 58,
+            "trophies": 10823,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 18,
+            "previousClanRank": 0,
+            "donations": 34,
+            "donationsReceived": 0,
+            "clanChestPoints": 0
+        },
+        {
             "tag": "#2LR0RR89Q",
             "name": "Chetto",
             "role": "member",
@@ -337,7 +355,7 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 18,
+            "clanRank": 19,
             "previousClanRank": 16,
             "donations": 18,
             "donationsReceived": 40,
@@ -355,7 +373,7 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 19,
+            "clanRank": 20,
             "previousClanRank": 17,
             "donations": 48,
             "donationsReceived": 80,
@@ -373,7 +391,7 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 20,
+            "clanRank": 21,
             "previousClanRank": 20,
             "donations": 0,
             "donationsReceived": 0,
@@ -391,7 +409,7 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 21,
+            "clanRank": 22,
             "previousClanRank": 18,
             "donations": 52,
             "donationsReceived": 40,
@@ -409,7 +427,7 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 22,
+            "clanRank": 23,
             "previousClanRank": 19,
             "donations": 0,
             "donationsReceived": 0,
@@ -427,7 +445,7 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 23,
+            "clanRank": 24,
             "previousClanRank": 22,
             "donations": 0,
             "donationsReceived": 0,
@@ -445,7 +463,7 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 24,
+            "clanRank": 25,
             "previousClanRank": 21,
             "donations": 54,
             "donationsReceived": 40,
@@ -463,7 +481,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 25,
+            "clanRank": 26,
             "previousClanRank": 23,
             "donations": 18,
             "donationsReceived": 0,
@@ -481,7 +499,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 26,
+            "clanRank": 27,
             "previousClanRank": 24,
             "donations": 86,
             "donationsReceived": 80,
@@ -499,10 +517,10 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 27,
+            "clanRank": 28,
             "previousClanRank": 25,
             "donations": 40,
-            "donationsReceived": 20,
+            "donationsReceived": 30,
             "clanChestPoints": 0
         },
         {
@@ -517,7 +535,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 28,
+            "clanRank": 29,
             "previousClanRank": 26,
             "donations": 34,
             "donationsReceived": 50,
@@ -535,7 +553,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 29,
+            "clanRank": 30,
             "previousClanRank": 27,
             "donations": 10,
             "donationsReceived": 120,
@@ -553,7 +571,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 30,
+            "clanRank": 31,
             "previousClanRank": 28,
             "donations": 26,
             "donationsReceived": 40,
@@ -571,7 +589,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 31,
+            "clanRank": 32,
             "previousClanRank": 31,
             "donations": 0,
             "donationsReceived": 0,
@@ -589,7 +607,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 32,
+            "clanRank": 33,
             "previousClanRank": 32,
             "donations": 0,
             "donationsReceived": 40,
@@ -607,10 +625,10 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 33,
+            "clanRank": 34,
             "previousClanRank": 30,
             "donations": 10,
-            "donationsReceived": 60,
+            "donationsReceived": 68,
             "clanChestPoints": 0
         },
         {
@@ -625,7 +643,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 34,
+            "clanRank": 35,
             "previousClanRank": 33,
             "donations": 18,
             "donationsReceived": 50,
@@ -643,7 +661,7 @@
                 "name": "Lumberlove Cabin",
                 "rawName": "Arena_L11"
             },
-            "clanRank": 35,
+            "clanRank": 36,
             "previousClanRank": 29,
             "donations": 0,
             "donationsReceived": 40,
@@ -661,7 +679,7 @@
                 "name": "Legendary Arena",
                 "rawName": "Arena_L10"
             },
-            "clanRank": 36,
+            "clanRank": 37,
             "previousClanRank": 34,
             "donations": 70,
             "donationsReceived": 80,
@@ -679,7 +697,7 @@
                 "name": "Legendary Arena",
                 "rawName": "Arena_L10"
             },
-            "clanRank": 37,
+            "clanRank": 38,
             "previousClanRank": 35,
             "donations": 18,
             "donationsReceived": 40,
@@ -697,7 +715,7 @@
                 "name": "Valkalla",
                 "rawName": "Arena_L9"
             },
-            "clanRank": 38,
+            "clanRank": 39,
             "previousClanRank": 37,
             "donations": 0,
             "donationsReceived": 0,
@@ -715,7 +733,7 @@
                 "name": "Valkalla",
                 "rawName": "Arena_L9"
             },
-            "clanRank": 39,
+            "clanRank": 40,
             "previousClanRank": 38,
             "donations": 116,
             "donationsReceived": 40,
@@ -733,7 +751,7 @@
                 "name": "Valkalla",
                 "rawName": "Arena_L9"
             },
-            "clanRank": 40,
+            "clanRank": 41,
             "previousClanRank": 39,
             "donations": 0,
             "donationsReceived": 40,
@@ -751,7 +769,7 @@
                 "name": "Valkalla",
                 "rawName": "Arena_L9"
             },
-            "clanRank": 41,
+            "clanRank": 42,
             "previousClanRank": 40,
             "donations": 0,
             "donationsReceived": 40,
@@ -769,10 +787,10 @@
                 "name": "PANCAKES!",
                 "rawName": "Arena_L8"
             },
-            "clanRank": 42,
+            "clanRank": 43,
             "previousClanRank": 41,
             "donations": 8,
-            "donationsReceived": 64,
+            "donationsReceived": 72,
             "clanChestPoints": 0
         },
         {
@@ -787,7 +805,7 @@
                 "name": "PANCAKES!",
                 "rawName": "Arena_L8"
             },
-            "clanRank": 43,
+            "clanRank": 44,
             "previousClanRank": 42,
             "donations": 0,
             "donationsReceived": 40,
@@ -805,7 +823,7 @@
                 "name": "Clash Fest",
                 "rawName": "Arena_L7"
             },
-            "clanRank": 44,
+            "clanRank": 45,
             "previousClanRank": 43,
             "donations": 0,
             "donationsReceived": 0,
@@ -823,7 +841,7 @@
                 "name": "Royal Crypt",
                 "rawName": "Arena_L3"
             },
-            "clanRank": 45,
+            "clanRank": 46,
             "previousClanRank": 45,
             "donations": 36,
             "donationsReceived": 40,
@@ -841,7 +859,7 @@
                 "name": "Royal Crypt",
                 "rawName": "Arena_L3"
             },
-            "clanRank": 46,
+            "clanRank": 47,
             "previousClanRank": 46,
             "donations": 8,
             "donationsReceived": 40,
