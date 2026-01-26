@@ -57,7 +57,7 @@ def git_auto_sync():
     
     commands = [
         ["git", "add", "."],
-        ["git", "commit", "-m", "chore(auto): pipeline update & logic validation"],
+        ["git", "commit", "-m", "chore(auto): pipeline update & logic validation [skip ci]"],
         ["git", "push", "origin", "main"]
     ]
 

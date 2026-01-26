@@ -199,23 +199,7 @@ body {
     gap: 5px;
 }
 
-.btn-pdf {
-    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s;
-    font-size: 14px;
-    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
-}
-.btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3); }
-.btn-pdf:disabled { opacity: 0.7; cursor: wait; }
+
 
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
@@ -249,242 +233,8 @@ body {
 }
 
 
-/* PDF EXPORT STYLES (Ultra-Clean Document Mode - GT-Z) */
-.pdf-header {
-    display: none;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-.pdf-header h1 {
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-.pdf-header p {
-    font-size: 14px;
-    color: #444;
-}
-
-.pdf-mode .pdf-header { display: block; }
-.pdf-mode .main-header, .pdf-mode .btn-pdf, .pdf-mode .nav-pills, .pdf-mode .audit-timestamp { display: none !important; }
-
-/* DOCUMENT ROOT STYLES */
-.pdf-mode {
-    background: #ffffff !important;
-    color: #000000 !important;
-    background-image: none !important;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-    font-size: 11px !important; /* Slightly smaller for density */
-    line-height: 1.4;
-    width: 794px !important; /* A4 Width @ 96 DPI - FORCE DESKTOP LAYOUT */
-    min-width: 794px !important;
-    margin: 0 auto !important;
-    overflow: visible !important;
-}
-
-.pdf-mode .container {
-    width: 100% !important;
-    max-width: none !important;
-    padding: 0 20px !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-}
-
-/* TYPOGRAPHY */
-.pdf-mode h1, .pdf-mode h2, .pdf-mode h3 {
-    color: #000000 !important;
-    text-shadow: none !important;
-    font-weight: 700;
-    letter-spacing: normal;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-.pdf-mode .page-title-section {
-    background: none !important;
-    border-bottom: none !important;
-    margin-bottom: 20px;
-    padding-bottom: 0;
-    text-align: left;
-}
-.pdf-mode .page-subtitle { 
-    color: #333 !important;
-    font-size: 14px;
-    font-style: italic;
-}
-
-/* METRICS (Simplified to Text Key-Value) */
-.pdf-mode .audit-stats {
-    display: table; /* Force table layout for strict alignment */
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-    background: none !important;
-    border: 1px solid #000;
-}
-.pdf-mode .stat-box {
-    display: table-cell;
-    background: none !important;
-    border: none !important;
-    border-right: 1px solid #000 !important;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-    box-shadow: none !important;
-}
-.pdf-mode .stat-box:last-child { border-right: none !important; }
-.pdf-mode .stat-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    color: #444 !important;
-    display: block;
-    margin-bottom: 5px;
-}
-.pdf-mode .stat-value {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000 !important;
-}
-.pdf-mode .stat-green, .pdf-mode .stat-yellow, .pdf-mode .stat-red { color: #000 !important; }
-
-/* TABLES (Standard Document Border) */
-.pdf-mode .custom-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 11px;
-    border: 1px solid #000;
-    box-shadow: none !important;
-}
-.pdf-mode .custom-table thead {
-    display: table-header-group; /* Repeats heavily on print, helpful */
-}
-.pdf-mode .custom-table th {
-    background: #f0f0f0 !important;
-    color: #000 !important;
-    font-weight: bold;
-    border: 1px solid #000;
-    padding: 6px;
-    text-align: left;
-    text-transform: uppercase;
-}
-.pdf-mode .custom-table td {
-    background: #fff !important;
-    color: #000 !important;
-    border: 1px solid #000; /* Distinct grid lines */
-    padding: 5px 6px;
-    vertical-align: middle;
-}
-.pdf-mode .custom-table tr.data-row:hover { transform: none; background: none; }
-
-/* STATUS INDICATORS (Textual or Simple Box) */
-.pdf-mode .status-badge {
-    background: none !important;
-    border: 1px solid #000 !important;
-    color: #000 !important;
-    padding: 2px 6px;
-    border-radius: 0; /* Squared edges */
-    font-weight: bold;
-    display: inline-block;
-}
-.pdf-mode .missing-badge {
-    color: #000 !important;
-    background: none !important;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* INFO BOXES (Simple Paragraphs) */
-.pdf-mode .info-box {
-    border: 1px solid #000;
-    background: none !important;
-    color: #000 !important;
-    box-shadow: none;
-    margin-top: 20px;
-    padding: 15px;
-}
-.pdf-mode .info-title { color: #000 !important; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-.pdf-mode .info-content { color: #000 !important; }
-
-/* HIDE NON-ESSENTIALS */
-.pdf-mode canvas { 
-    /* Ideally charts are optional or simplified. 
-       We'll add a white bg to them just in case. */
-    background-color: #fff !important; 
-    border: 1px solid #ccc;
-}
-
-/* Print Optimization */
-@media print {
-    .btn-pdf { display: none !important; }
-}
-
-/* PDF SHADOW VIEW STYLES - NUCLEAR OPTION */
-.pdf-render-stage {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 794px !important;
-    min-height: 1123px !important; /* A4 Height */
-    background: #ffffff !important;
-    color: #000000 !important;
-    padding: 20px !important;
-    z-index: 2147483647 !important; /* Max Z-Index */
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Force ALL children to be visible and black */
-.pdf-render-stage * {
-    color: #000000 !important;
-    background: transparent !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-}
-
-.pdf-table { 
-    width: 100% !important; 
-    border-collapse: collapse !important; 
-    font-family: Arial, sans-serif !important; 
-    font-size: 11px !important; 
-    table-layout: fixed !important;
-}
-
-.pdf-table th { 
-    border: 1px solid #000 !important; 
-    padding: 6px !important; 
-    background: #e0e0e0 !important; /* Explicit Grey */
-    color: #000 !important;
-    font-weight: bold !important;
-    text-align: left !important; 
-}
-
-.pdf-table td { 
-    border: 1px solid #000 !important; 
-    padding: 6px !important; 
-    color: #000 !important;
-}
-
-.pdf-header-doc { 
-    margin-bottom: 15px !important; 
-    border-bottom: 2px solid #000 !important; 
-    padding-bottom: 10px !important; 
-    font-family: Arial, sans-serif !important; 
-}
-
-.pdf-summary { 
-    margin-bottom: 15px !important; 
-    font-family: Arial, sans-serif !important; 
-    font-size: 12px !important; 
-    border: 1px solid #000 !important; 
-    padding: 10px !important; 
-    background: #f9f9f9 !important;
-}
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- [GT-Z] html2pdf REMOVED (Server-Side Migration) -->
 </head>
 <body>
     <header class="main-header">
@@ -504,7 +254,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 16:39</strong>
+                    <strong style="color:#cbd5e0">26/01/2026 19:44</strong>
                 </div>
             </div>
         </div>
@@ -550,682 +300,542 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="1">🥇 #1</td>
                     <td style="font-weight:600;" data-value="RobaFrag">RobaFrag</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="87.3">87.3</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="23350">
-                        Fame: <b style="color:white">23350</b><br>
-                        Eff: <b style="color:white">145</b>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="88.8">88.8</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="24125">
+                        Fame: <b style="color:white">24125</b><br>
+                        Eff: <b style="color:white">150</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="11000">
                         Troféus: <b style="color:white">11000</b><br>
-                        Donates: <b style="color:white">1210</b>
+                        Donates: <b style="color:white">344</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="2">🥈 #2</td>
-                    <td style="font-weight:600;" data-value="joão3:16">joão3:16</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="87.0">87.0</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="27100">
-                        Fame: <b style="color:white">27100</b><br>
+                    <td style="font-weight:600;" data-value="Dockz">Dockz</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="87.5">87.5</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="26475">
+                        Fame: <b style="color:white">26475</b><br>
                         Eff: <b style="color:white">169</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10342">
-                        Troféus: <b style="color:white">10342</b><br>
-                        Donates: <b style="color:white">32</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11087">
+                        Troféus: <b style="color:white">11087</b><br>
+                        Donates: <b style="color:white">58</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="3">🥉 #3</td>
-                    <td style="font-weight:600;" data-value="ZackThunder">ZackThunder</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="86.9">86.9</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="26150">
-                        Fame: <b style="color:white">26150</b><br>
-                        Eff: <b style="color:white">173</b>
+                    <td style="font-weight:600;" data-value="joão3:16">joão3:16</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="87.2">87.2</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="27350">
+                        Fame: <b style="color:white">27350</b><br>
+                        Eff: <b style="color:white">170</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11168">
-                        Troféus: <b style="color:white">11168</b><br>
-                        Donates: <b style="color:white">48</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10407">
+                        Troféus: <b style="color:white">10407</b><br>
+                        Donates: <b style="color:white">18</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="4"> #4</td>
-                    <td style="font-weight:600;" data-value="Dockz">Dockz</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="85.8">85.8</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="25800">
-                        Fame: <b style="color:white">25800</b><br>
-                        Eff: <b style="color:white">169</b>
+                    <td style="font-weight:600;" data-value="ZackThunder">ZackThunder</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="86.8">86.8</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="26500">
+                        Fame: <b style="color:white">26500</b><br>
+                        Eff: <b style="color:white">175</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11000">
-                        Troféus: <b style="color:white">11000</b><br>
-                        Donates: <b style="color:white">70</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11198">
+                        Troféus: <b style="color:white">11198</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="5"> #5</td>
-                    <td style="font-weight:600;" data-value="Luciano">Luciano</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="84.5">84.5</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="26100">
-                        Fame: <b style="color:white">26100</b><br>
-                        Eff: <b style="color:white">165</b>
+                    <td style="font-weight:600;" data-value="Mila">Mila</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="85.0">85.0</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="25600">
+                        Fame: <b style="color:white">25600</b><br>
+                        Eff: <b style="color:white">168</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10177">
-                        Troféus: <b style="color:white">10177</b><br>
-                        Donates: <b style="color:white">50</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10611">
+                        Troféus: <b style="color:white">10611</b><br>
+                        Donates: <b style="color:white">54</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="6"> #6</td>
-                    <td style="font-weight:600;" data-value="Mila">Mila</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="83.3">83.3</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="25100">
-                        Fame: <b style="color:white">25100</b><br>
-                        Eff: <b style="color:white">165</b>
+                    <td style="font-weight:600;" data-value="Luciano">Luciano</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="84.4">84.4</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="26350">
+                        Fame: <b style="color:white">26350</b><br>
+                        Eff: <b style="color:white">166</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10561">
-                        Troféus: <b style="color:white">10561</b><br>
-                        Donates: <b style="color:white">68</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10211">
+                        Troféus: <b style="color:white">10211</b><br>
+                        Donates: <b style="color:white">10</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="7"> #7</td>
-                    <td style="font-weight:600;" data-value="O GUARDIÃO">O GUARDIÃO</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="82.6">82.6</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="24800">
-                        Fame: <b style="color:white">24800</b><br>
-                        Eff: <b style="color:white">155</b>
+                    <td style="font-weight:600;" data-value="Sotto ツ">Sotto ツ</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="82.8">82.8</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="23600">
+                        Fame: <b style="color:white">23600</b><br>
+                        Eff: <b style="color:white">171</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10233">
-                        Troféus: <b style="color:white">10233</b><br>
-                        Donates: <b style="color:white">277</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11057">
+                        Troféus: <b style="color:white">11057</b><br>
+                        Donates: <b style="color:white">74</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="8"> #8</td>
-                    <td style="font-weight:600;" data-value="Gustavo Clash">Gustavo Clash</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="82.4">82.4</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="25000">
-                        Fame: <b style="color:white">25000</b><br>
-                        Eff: <b style="color:white">156</b>
+                    <td style="font-weight:600;" data-value="Asten Acady">Asten Acady</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="82.5">82.5</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="21550">
+                        Fame: <b style="color:white">21550</b><br>
+                        Eff: <b style="color:white">169</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9619">
-                        Troféus: <b style="color:white">9619</b><br>
-                        Donates: <b style="color:white">283</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="12000">
+                        Troféus: <b style="color:white">12000</b><br>
+                        Donates: <b style="color:white">158</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="9"> #9</td>
                     <td style="font-weight:600;" data-value="Daniele❤">Daniele❤</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="82.3">82.3</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="25050">
-                        Fame: <b style="color:white">25050</b><br>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="81.6">81.6</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="25250">
+                        Fame: <b style="color:white">25250</b><br>
                         Eff: <b style="color:white">157</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="10866">
                         Troféus: <b style="color:white">10866</b><br>
-                        Donates: <b style="color:white">50</b>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="10"> #10</td>
                     <td style="font-weight:600;" data-value="mathi❄️">mathi❄️</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="82.0">82.0</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="23325">
-                        Fame: <b style="color:white">23325</b><br>
-                        Eff: <b style="color:white">170</b>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="81.4">81.4</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="23650">
+                        Fame: <b style="color:white">23650</b><br>
+                        Eff: <b style="color:white">167</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="10791">
                         Troféus: <b style="color:white">10791</b><br>
-                        Donates: <b style="color:white">190</b>
+                        Donates: <b style="color:white">48</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="11"> #11</td>
-                    <td style="font-weight:600;" data-value="⭐O SENTINELA ⭐">⭐O SENTINELA ⭐</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="81.7">81.7</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="25100">
-                        Fame: <b style="color:white">25100</b><br>
+                    <td style="font-weight:600;" data-value="O GUARDIÃO">O GUARDIÃO</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="81.2">81.2</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="25000">
+                        Fame: <b style="color:white">25000</b><br>
                         Eff: <b style="color:white">156</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9918">
-                        Troféus: <b style="color:white">9918</b><br>
-                        Donates: <b style="color:white">114</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10233">
+                        Troféus: <b style="color:white">10233</b><br>
+                        Donates: <b style="color:white">34</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="12"> #12</td>
-                    <td style="font-weight:600;" data-value="Sotto ツ">Sotto ツ</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="81.0">81.0</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="21550">
-                        Fame: <b style="color:white">21550</b><br>
-                        Eff: <b style="color:white">165</b>
+                    <td style="font-weight:600;" data-value="⭐O SENTINELA ⭐">⭐O SENTINELA ⭐</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="81.2">81.2</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="25300">
+                        Fame: <b style="color:white">25300</b><br>
+                        Eff: <b style="color:white">158</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11085">
-                        Troféus: <b style="color:white">11085</b><br>
-                        Donates: <b style="color:white">490</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10026">
+                        Troféus: <b style="color:white">10026</b><br>
+                        Donates: <b style="color:white">18</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="13"> #13</td>
-                    <td style="font-weight:600;" data-value="EDDIE">EDDIE</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="79.9">79.9</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="23300">
-                        Fame: <b style="color:white">23300</b><br>
-                        Eff: <b style="color:white">145</b>
+                    <td style="font-weight:600;" data-value="super">super</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="81.0">81.0</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="24850">
+                        Fame: <b style="color:white">24850</b><br>
+                        Eff: <b style="color:white">155</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10543">
-                        Troféus: <b style="color:white">10543</b><br>
-                        Donates: <b style="color:white">402</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10301">
+                        Troféus: <b style="color:white">10301</b><br>
+                        Donates: <b style="color:white">40</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="14"> #14</td>
-                    <td style="font-weight:600;" data-value="andrebts">andrebts</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="79.8">79.8</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="24500">
-                        Fame: <b style="color:white">24500</b><br>
-                        Eff: <b style="color:white">154</b>
+                    <td style="font-weight:600;" data-value="51 é pinga">51 é pinga</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="80.1">80.1</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="24000">
+                        Fame: <b style="color:white">24000</b><br>
+                        Eff: <b style="color:white">150</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10044">
-                        Troféus: <b style="color:white">10044</b><br>
-                        Donates: <b style="color:white">51</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10361">
+                        Troféus: <b style="color:white">10361</b><br>
+                        Donates: <b style="color:white">86</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="15"> #15</td>
-                    <td style="font-weight:600;" data-value="super">super</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="79.6">79.6</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="24450">
-                        Fame: <b style="color:white">24450</b><br>
-                        Eff: <b style="color:white">152</b>
+                    <td style="font-weight:600;" data-value="Gustavo Clash">Gustavo Clash</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="78.6">78.6</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="24500">
+                        Fame: <b style="color:white">24500</b><br>
+                        Eff: <b style="color:white">153</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10301">
-                        Troféus: <b style="color:white">10301</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="9618">
+                        Troféus: <b style="color:white">9618</b><br>
                         Donates: <b style="color:white">18</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="16"> #16</td>
-                    <td style="font-weight:600;" data-value="gabiggoughost">gabiggoughost</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="79.5">79.5</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="23000">
-                        Fame: <b style="color:white">23000</b><br>
+                    <td style="font-weight:600;" data-value="andrebts">andrebts</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="78.3">78.3</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="24350">
+                        Fame: <b style="color:white">24350</b><br>
                         Eff: <b style="color:white">153</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10885">
-                        Troféus: <b style="color:white">10885</b><br>
-                        Donates: <b style="color:white">230</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10003">
+                        Troféus: <b style="color:white">10003</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="17"> #17</td>
-                    <td style="font-weight:600;" data-value="51 é pinga">51 é pinga</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="78.6">78.6</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="23700">
-                        Fame: <b style="color:white">23700</b><br>
-                        Eff: <b style="color:white">148</b>
+                    <td style="font-weight:600;" data-value="isp">isp</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="78.1">78.1</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="24750">
+                        Fame: <b style="color:white">24750</b><br>
+                        Eff: <b style="color:white">154</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10260">
-                        Troféus: <b style="color:white">10260</b><br>
-                        Donates: <b style="color:white">150</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="8972">
+                        Troféus: <b style="color:white">8972</b><br>
+                        Donates: <b style="color:white">8</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="18"> #18</td>
-                    <td style="font-weight:600;" data-value="^_^^_^">^_^^_^</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="78.4">78.4</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="21500">
-                        Fame: <b style="color:white">21500</b><br>
-                        Eff: <b style="color:white">173</b>
+                    <td style="font-weight:600;" data-value="gabiggoughost">gabiggoughost</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="77.7">77.7</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="23300">
+                        Fame: <b style="color:white">23300</b><br>
+                        Eff: <b style="color:white">155</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11000">
-                        Troféus: <b style="color:white">11000</b><br>
-                        Donates: <b style="color:white">81</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10885">
+                        Troféus: <b style="color:white">10885</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="19"> #19</td>
                     <td style="font-weight:600;" data-value="Nico">Nico</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="78.0">78.0</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="16550">
-                        Fame: <b style="color:white">16550</b><br>
-                        Eff: <b style="color:white">177</b>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="77.6">77.6</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="19650">
+                        Fame: <b style="color:white">19650</b><br>
+                        Eff: <b style="color:white">180</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="12000">
                         Troféus: <b style="color:white">12000</b><br>
-                        Donates: <b style="color:white">909</b>
+                        Donates: <b style="color:white">56</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="20"> #20</td>
-                    <td style="font-weight:600;" data-value="Chetto">Chetto</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="77.6">77.6</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="21400">
-                        Fame: <b style="color:white">21400</b><br>
-                        Eff: <b style="color:white">153</b>
+                    <td style="font-weight:600;" data-value="^_^^_^">^_^^_^</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="76.7">76.7</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="21350">
+                        Fame: <b style="color:white">21350</b><br>
+                        Eff: <b style="color:white">172</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10788">
-                        Troféus: <b style="color:white">10788</b><br>
-                        Donates: <b style="color:white">360</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11000">
+                        Troféus: <b style="color:white">11000</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="21"> #21</td>
                     <td style="font-weight:600;" data-value="DGJ-DAVI">DGJ-DAVI</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="77.3">77.3</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="24150">
-                        Fame: <b style="color:white">24150</b><br>
-                        Eff: <b style="color:white">157</b>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="76.0">76.0</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="23950">
+                        Fame: <b style="color:white">23950</b><br>
+                        Eff: <b style="color:white">156</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="8334">
-                        Troféus: <b style="color:white">8334</b><br>
-                        Donates: <b style="color:white">24</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="8380">
+                        Troféus: <b style="color:white">8380</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="22"> #22</td>
-                    <td style="font-weight:600;" data-value="Asten Acady">Asten Acady</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="76.9">76.9</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="18800">
-                        Fame: <b style="color:white">18800</b><br>
-                        Eff: <b style="color:white">169</b>
+                    <td style="font-weight:600;" data-value="EDDIE">EDDIE</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="75.8">75.8</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="23200">
+                        Fame: <b style="color:white">23200</b><br>
+                        Eff: <b style="color:white">145</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11776">
-                        Troféus: <b style="color:white">11776</b><br>
-                        Donates: <b style="color:white">442</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10657">
+                        Troféus: <b style="color:white">10657</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="23"> #23</td>
-                    <td style="font-weight:600;" data-value="isp">isp</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="76.5">76.5</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="23650">
-                        Fame: <b style="color:white">23650</b><br>
+                    <td style="font-weight:600;" data-value="Chetto">Chetto</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="75.2">75.2</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="21800">
+                        Fame: <b style="color:white">21800</b><br>
                         Eff: <b style="color:white">153</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="8851">
-                        Troféus: <b style="color:white">8851</b><br>
-                        Donates: <b style="color:white">24</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10818">
+                        Troféus: <b style="color:white">10818</b><br>
+                        Donates: <b style="color:white">18</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="24"> #24</td>
-                    <td style="font-weight:600;" data-value="Rodolfos">Rodolfos</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="75.8">75.8</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="22875">
-                        Fame: <b style="color:white">22875</b><br>
-                        Eff: <b style="color:white">149</b>
+                    <td style="font-weight:600;" data-value="Bruno">Bruno</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="74.8">74.8</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="21050">
+                        Fame: <b style="color:white">21050</b><br>
+                        Eff: <b style="color:white">164</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10036">
-                        Troféus: <b style="color:white">10036</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10778">
+                        Troféus: <b style="color:white">10778</b><br>
                         Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="25"> #25</td>
-                    <td style="font-weight:600;" data-value="OneDePrata">OneDePrata</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="74.5">74.5</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="20500">
-                        Fame: <b style="color:white">20500</b><br>
-                        Eff: <b style="color:white">149</b>
+                    <td style="font-weight:600;" data-value="Rodolfos">Rodolfos</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="74.2">74.2</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="22475">
+                        Fame: <b style="color:white">22475</b><br>
+                        Eff: <b style="color:white">147</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9278">
-                        Troféus: <b style="color:white">9278</b><br>
-                        Donates: <b style="color:white">496</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="26"> #26</td>
-                    <td style="font-weight:600;" data-value="Bruno">Bruno</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="74.4">74.4</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="20700">
-                        Fame: <b style="color:white">20700</b><br>
-                        Eff: <b style="color:white">161</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10762">
-                        Troféus: <b style="color:white">10762</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10106">
+                        Troféus: <b style="color:white">10106</b><br>
                         Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="27"> #27</td>
-                    <td style="font-weight:600;" data-value="tavin">tavin</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="73.6">73.6</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="20000">
-                        Fame: <b style="color:white">20000</b><br>
-                        Eff: <b style="color:white">151</b>
+                    <td style="font-weight:bold; font-size:16px;" data-value="26"> #26</td>
+                    <td style="font-weight:600;" data-value="OneDePrata">OneDePrata</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="73.1">73.1</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="20600">
+                        Fame: <b style="color:white">20600</b><br>
+                        Eff: <b style="color:white">148</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10695">
-                        Troféus: <b style="color:white">10695</b><br>
-                        Donates: <b style="color:white">245</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="9242">
+                        Troféus: <b style="color:white">9242</b><br>
+                        Donates: <b style="color:white">116</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="27"> #27</td>
+                    <td style="font-weight:600;" data-value="domador de but">domador de but</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="71.6">71.6</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="20350">
+                        Fame: <b style="color:white">20350</b><br>
+                        Eff: <b style="color:white">145</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="9736">
+                        Troféus: <b style="color:white">9736</b><br>
+                        Donates: <b style="color:white">70</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="28"> #28</td>
-                    <td style="font-weight:600;" data-value="domador de but">domador de but</td>
+                    <td style="font-weight:600;" data-value="Alvaro">Alvaro</td>
                     <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="71.0">71.0</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="20000">
-                        Fame: <b style="color:white">20000</b><br>
-                        Eff: <b style="color:white">144</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="21150">
+                        Fame: <b style="color:white">21150</b><br>
+                        Eff: <b style="color:white">148</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9651">
-                        Troféus: <b style="color:white">9651</b><br>
-                        Donates: <b style="color:white">202</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="9325">
+                        Troféus: <b style="color:white">9325</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="29"> #29</td>
-                    <td style="font-weight:600;" data-value="Alvaro">Alvaro</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="70.4">70.4</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="20250">
-                        Fame: <b style="color:white">20250</b><br>
-                        Eff: <b style="color:white">147</b>
+                    <td style="font-weight:600;" data-value="tavin">tavin</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="70.0">70.0</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="19400">
+                        Fame: <b style="color:white">19400</b><br>
+                        Eff: <b style="color:white">152</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9359">
-                        Troféus: <b style="color:white">9359</b><br>
-                        Donates: <b style="color:white">65</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10700">
+                        Troféus: <b style="color:white">10700</b><br>
+                        Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="30"> #30</td>
-                    <td style="font-weight:600;" data-value="polaris">polaris</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="67.0">67.0</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="20000">
-                        Fame: <b style="color:white">20000</b><br>
-                        Eff: <b style="color:white">125</b>
+                    <td style="font-weight:600;" data-value="luck">luck</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="69.9">69.9</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="18300">
+                        Fame: <b style="color:white">18300</b><br>
+                        Eff: <b style="color:white">161</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10039">
-                        Troféus: <b style="color:white">10039</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11217">
+                        Troféus: <b style="color:white">11217</b><br>
                         Donates: <b style="color:white">0</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="31"> #31</td>
-                    <td style="font-weight:600;" data-value="luck">luck</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="66.0">66.0</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="15700">
-                        Fame: <b style="color:white">15700</b><br>
-                        Eff: <b style="color:white">161</b>
+                    <td style="font-weight:600;" data-value="polaris">polaris</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="64.6">64.6</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="19175">
+                        Fame: <b style="color:white">19175</b><br>
+                        Eff: <b style="color:white">120</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11127">
-                        Troféus: <b style="color:white">11127</b><br>
-                        Donates: <b style="color:white">44</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10042">
+                        Troféus: <b style="color:white">10042</b><br>
+                        Donates: <b style="color:white">10</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="32"> #32</td>
-                    <td style="font-weight:600;" data-value="Zenitsu愛">Zenitsu愛</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="62.3">62.3</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="14650">
-                        Fame: <b style="color:white">14650</b><br>
-                        Eff: <b style="color:white">160</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10151">
-                        Troféus: <b style="color:white">10151</b><br>
-                        Donates: <b style="color:white">0</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="33"> #33</td>
                     <td style="font-weight:600;" data-value="WvCly">WvCly</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="59.4">59.4</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10900">
-                        Fame: <b style="color:white">10900</b><br>
-                        Eff: <b style="color:white">157</b>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="60.4">60.4</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="13100">
+                        Fame: <b style="color:white">13100</b><br>
+                        Eff: <b style="color:white">154</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11632">
-                        Troféus: <b style="color:white">11632</b><br>
-                        Donates: <b style="color:white">308</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="34"> #34</td>
-                    <td style="font-weight:600;" data-value="nivelador">nivelador</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="58.9">58.9</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10600">
-                        Fame: <b style="color:white">10600</b><br>
-                        Eff: <b style="color:white">163</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10159">
-                        Troféus: <b style="color:white">10159</b><br>
-                        Donates: <b style="color:white">451</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="35"> #35</td>
-                    <td style="font-weight:600;" data-value="Pedro PH">Pedro PH</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="52.1">52.1</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="8300">
-                        Fame: <b style="color:white">8300</b><br>
-                        Eff: <b style="color:white">150</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10730">
-                        Troféus: <b style="color:white">10730</b><br>
-                        Donates: <b style="color:white">264</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="36"> #36</td>
-                    <td style="font-weight:600;" data-value="Grimmer 狼">Grimmer 狼</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="50.1">50.1</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="5500">
-                        Fame: <b style="color:white">5500</b><br>
-                        Eff: <b style="color:white">152</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11000">
-                        Troféus: <b style="color:white">11000</b><br>
-                        Donates: <b style="color:white">576</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="37"> #37</td>
-                    <td style="font-weight:600;" data-value="GabiMalvadeza">GabiMalvadeza</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="40.7">40.7</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="2100">
-                        Fame: <b style="color:white">2100</b><br>
-                        Eff: <b style="color:white">140</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11620">
-                        Troféus: <b style="color:white">11620</b><br>
-                        Donates: <b style="color:white">314</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="38"> #38</td>
-                    <td style="font-weight:600;" data-value="RaiNascimento">RaiNascimento</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="40.7">40.7</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="2400">
-                        Fame: <b style="color:white">2400</b><br>
-                        Eff: <b style="color:white">150</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10032">
-                        Troféus: <b style="color:white">10032</b><br>
-                        Donates: <b style="color:white">326</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="39"> #39</td>
-                    <td style="font-weight:600;" data-value="filho de duque">filho de duque</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="34.3">34.3</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="2200">
-                        Fame: <b style="color:white">2200</b><br>
-                        Eff: <b style="color:white">137</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="7527">
-                        Troféus: <b style="color:white">7527</b><br>
-                        Donates: <b style="color:white">185</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="40"> #40</td>
-                    <td style="font-weight:600;" data-value="Teixeirazzqw">Teixeirazzqw</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="34.1">34.1</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="3200">
-                        Fame: <b style="color:white">3200</b><br>
-                        Eff: <b style="color:white">123</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="6307">
-                        Troféus: <b style="color:white">6307</b><br>
-                        Donates: <b style="color:white">367</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="41"> #41</td>
-                    <td style="font-weight:600;" data-value="StelaAby">StelaAby</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="31.0">31.0</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="1200">
-                        Fame: <b style="color:white">1200</b><br>
-                        Eff: <b style="color:white">150</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="5811">
-                        Troféus: <b style="color:white">5811</b><br>
-                        Donates: <b style="color:white">53</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="42"> #42</td>
-                    <td style="font-weight:600;" data-value="Kauan">Kauan</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="15.2">15.2</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10825">
-                        Troféus: <b style="color:white">10825</b><br>
-                        Donates: <b style="color:white">202</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="43"> #43</td>
-                    <td style="font-weight:600;" data-value="juniorllou">juniorllou</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="13.4">13.4</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="8721">
-                        Troféus: <b style="color:white">8721</b><br>
-                        Donates: <b style="color:white">304</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="44"> #44</td>
-                    <td style="font-weight:600;" data-value="gnvx v">gnvx v</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="13.2">13.2</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9921">
-                        Troféus: <b style="color:white">9921</b><br>
-                        Donates: <b style="color:white">94</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="45"> #45</td>
-                    <td style="font-weight:600;" data-value="Meliodas">Meliodas</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="12.7">12.7</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10128">
-                        Troféus: <b style="color:white">10128</b><br>
-                        Donates: <b style="color:white">0</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="46"> #46</td>
-                    <td style="font-weight:600;" data-value="user_123">user_123</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="12.5">12.5</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10027">
-                        Troféus: <b style="color:white">10027</b><br>
-                        Donates: <b style="color:white">0</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="47"> #47</td>
-                    <td style="font-weight:600;" data-value="juliancho">juliancho</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="12.1">12.1</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9715">
-                        Troféus: <b style="color:white">9715</b><br>
-                        Donates: <b style="color:white">0</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="48"> #48</td>
-                    <td style="font-weight:600;" data-value="Felipee">Felipee</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="11.6">11.6</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9124">
-                        Troféus: <b style="color:white">9124</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11664">
+                        Troféus: <b style="color:white">11664</b><br>
                         Donates: <b style="color:white">18</b>
                     </td>
                 </tr>
                 
                 <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="49"> #49</td>
+                    <td style="font-weight:bold; font-size:16px;" data-value="33"> #33</td>
+                    <td style="font-weight:600;" data-value="Pedro PH">Pedro PH</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="56.5">56.5</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11000">
+                        Fame: <b style="color:white">11000</b><br>
+                        Eff: <b style="color:white">154</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10730">
+                        Troféus: <b style="color:white">10730</b><br>
+                        Donates: <b style="color:white">52</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="34"> #34</td>
+                    <td style="font-weight:600;" data-value="JOSA">JOSA</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="54.8">54.8</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11825">
+                        Fame: <b style="color:white">11825</b><br>
+                        Eff: <b style="color:white">128</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11242">
+                        Troféus: <b style="color:white">11242</b><br>
+                        Donates: <b style="color:white">44</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="35"> #35</td>
+                    <td style="font-weight:600;" data-value="Grimmer 狼">Grimmer 狼</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="50.1">50.1</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="7550">
+                        Fame: <b style="color:white">7550</b><br>
+                        Eff: <b style="color:white">145</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11033">
+                        Troféus: <b style="color:white">11033</b><br>
+                        Donates: <b style="color:white">80</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="36"> #36</td>
+                    <td style="font-weight:600;" data-value="GabiMalvadeza">GabiMalvadeza</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="44.1">44.1</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="4300">
+                        Fame: <b style="color:white">4300</b><br>
+                        Eff: <b style="color:white">138</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11620">
+                        Troféus: <b style="color:white">11620</b><br>
+                        Donates: <b style="color:white">84</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="37"> #37</td>
+                    <td style="font-weight:600;" data-value="RaiNascimento">RaiNascimento</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="42.1">42.1</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="4650">
+                        Fame: <b style="color:white">4650</b><br>
+                        Eff: <b style="color:white">145</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10188">
+                        Troféus: <b style="color:white">10188</b><br>
+                        Donates: <b style="color:white">26</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="38"> #38</td>
+                    <td style="font-weight:600;" data-value="Kauan">Kauan</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="40.7">40.7</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="1700">
+                        Fame: <b style="color:white">1700</b><br>
+                        Eff: <b style="color:white">154</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10825">
+                        Troféus: <b style="color:white">10825</b><br>
+                        Donates: <b style="color:white">92</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="39"> #39</td>
                     <td style="font-weight:600;" data-value="Diih">Diih</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="11.5">11.5</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="39.3">39.3</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="2650">
+                        Fame: <b style="color:white">2650</b><br>
+                        Eff: <b style="color:white">165</b>
                     </td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="9206">
                         Troféus: <b style="color:white">9206</b><br>
@@ -1234,16 +844,100 @@ body {
                 </tr>
                 
                 <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="50"> #50</td>
+                    <td style="font-weight:bold; font-size:16px;" data-value="40"> #40</td>
+                    <td style="font-weight:600;" data-value="Teixeirazzqw">Teixeirazzqw</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="35.6">35.6</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="5200">
+                        Fame: <b style="color:white">5200</b><br>
+                        Eff: <b style="color:white">123</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="6281">
+                        Troféus: <b style="color:white">6281</b><br>
+                        Donates: <b style="color:white">36</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="41"> #41</td>
+                    <td style="font-weight:600;" data-value="AUGUSTO">AUGUSTO</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="35.3">35.3</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="550">
+                        Fame: <b style="color:white">550</b><br>
+                        Eff: <b style="color:white">137</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11957">
+                        Troféus: <b style="color:white">11957</b><br>
+                        Donates: <b style="color:white">10</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="42"> #42</td>
+                    <td style="font-weight:600;" data-value="StelaAby">StelaAby</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="32.9">32.9</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="3300">
+                        Fame: <b style="color:white">3300</b><br>
+                        Eff: <b style="color:white">137</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="6069">
+                        Troféus: <b style="color:white">6069</b><br>
+                        Donates: <b style="color:white">8</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="43"> #43</td>
+                    <td style="font-weight:600;" data-value="juniorllou">juniorllou</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="31.9">31.9</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="1800">
+                        Fame: <b style="color:white">1800</b><br>
+                        Eff: <b style="color:white">128</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="8627">
+                        Troféus: <b style="color:white">8627</b><br>
+                        Donates: <b style="color:white">0</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="44"> #44</td>
                     <td style="font-weight:600;" data-value="Fafazin10">Fafazin10</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="11.4">11.4</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="29.3">29.3</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="1250">
+                        Fame: <b style="color:white">1250</b><br>
+                        Eff: <b style="color:white">113</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="9000">
+                        Troféus: <b style="color:white">9000</b><br>
+                        Donates: <b style="color:white">0</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="45"> #45</td>
+                    <td style="font-weight:600;" data-value="gnvx v">gnvx v</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="28.8">28.8</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="1550">
+                        Fame: <b style="color:white">1550</b><br>
+                        Eff: <b style="color:white">96</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10064">
+                        Troféus: <b style="color:white">10064</b><br>
+                        Donates: <b style="color:white">0</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="46"> #46</td>
+                    <td style="font-weight:600;" data-value="I'm inevitable">I'm inevitable</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="18.7">18.7</td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="0">
                         Fame: <b style="color:white">0</b><br>
                         Eff: <b style="color:white">0</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="9000">
-                        Troféus: <b style="color:white">9000</b><br>
-                        Donates: <b style="color:white">22</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11221">
+                        Troféus: <b style="color:white">11221</b><br>
+                        Donates: <b style="color:white">162</b>
                     </td>
                 </tr>
                 
@@ -1252,10 +946,8 @@ body {
         
     </div>
 
-    <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
-    // [GT-Z] Server-Side PDF Generation Active
-    // WeasyPrint (Python) replaces Client-Side JS.
+    // [GT-Z] Scripts Cleaned
     </script>
 
     document.addEventListener('DOMContentLoaded', function() {

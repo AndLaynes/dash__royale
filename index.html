@@ -199,23 +199,7 @@ body {
     gap: 5px;
 }
 
-.btn-pdf {
-    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s;
-    font-size: 14px;
-    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
-}
-.btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3); }
-.btn-pdf:disabled { opacity: 0.7; cursor: wait; }
+
 
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
@@ -249,242 +233,8 @@ body {
 }
 
 
-/* PDF EXPORT STYLES (Ultra-Clean Document Mode - GT-Z) */
-.pdf-header {
-    display: none;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-.pdf-header h1 {
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-.pdf-header p {
-    font-size: 14px;
-    color: #444;
-}
-
-.pdf-mode .pdf-header { display: block; }
-.pdf-mode .main-header, .pdf-mode .btn-pdf, .pdf-mode .nav-pills, .pdf-mode .audit-timestamp { display: none !important; }
-
-/* DOCUMENT ROOT STYLES */
-.pdf-mode {
-    background: #ffffff !important;
-    color: #000000 !important;
-    background-image: none !important;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-    font-size: 11px !important; /* Slightly smaller for density */
-    line-height: 1.4;
-    width: 794px !important; /* A4 Width @ 96 DPI - FORCE DESKTOP LAYOUT */
-    min-width: 794px !important;
-    margin: 0 auto !important;
-    overflow: visible !important;
-}
-
-.pdf-mode .container {
-    width: 100% !important;
-    max-width: none !important;
-    padding: 0 20px !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-}
-
-/* TYPOGRAPHY */
-.pdf-mode h1, .pdf-mode h2, .pdf-mode h3 {
-    color: #000000 !important;
-    text-shadow: none !important;
-    font-weight: 700;
-    letter-spacing: normal;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-.pdf-mode .page-title-section {
-    background: none !important;
-    border-bottom: none !important;
-    margin-bottom: 20px;
-    padding-bottom: 0;
-    text-align: left;
-}
-.pdf-mode .page-subtitle { 
-    color: #333 !important;
-    font-size: 14px;
-    font-style: italic;
-}
-
-/* METRICS (Simplified to Text Key-Value) */
-.pdf-mode .audit-stats {
-    display: table; /* Force table layout for strict alignment */
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-    background: none !important;
-    border: 1px solid #000;
-}
-.pdf-mode .stat-box {
-    display: table-cell;
-    background: none !important;
-    border: none !important;
-    border-right: 1px solid #000 !important;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-    box-shadow: none !important;
-}
-.pdf-mode .stat-box:last-child { border-right: none !important; }
-.pdf-mode .stat-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    color: #444 !important;
-    display: block;
-    margin-bottom: 5px;
-}
-.pdf-mode .stat-value {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000 !important;
-}
-.pdf-mode .stat-green, .pdf-mode .stat-yellow, .pdf-mode .stat-red { color: #000 !important; }
-
-/* TABLES (Standard Document Border) */
-.pdf-mode .custom-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 11px;
-    border: 1px solid #000;
-    box-shadow: none !important;
-}
-.pdf-mode .custom-table thead {
-    display: table-header-group; /* Repeats heavily on print, helpful */
-}
-.pdf-mode .custom-table th {
-    background: #f0f0f0 !important;
-    color: #000 !important;
-    font-weight: bold;
-    border: 1px solid #000;
-    padding: 6px;
-    text-align: left;
-    text-transform: uppercase;
-}
-.pdf-mode .custom-table td {
-    background: #fff !important;
-    color: #000 !important;
-    border: 1px solid #000; /* Distinct grid lines */
-    padding: 5px 6px;
-    vertical-align: middle;
-}
-.pdf-mode .custom-table tr.data-row:hover { transform: none; background: none; }
-
-/* STATUS INDICATORS (Textual or Simple Box) */
-.pdf-mode .status-badge {
-    background: none !important;
-    border: 1px solid #000 !important;
-    color: #000 !important;
-    padding: 2px 6px;
-    border-radius: 0; /* Squared edges */
-    font-weight: bold;
-    display: inline-block;
-}
-.pdf-mode .missing-badge {
-    color: #000 !important;
-    background: none !important;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* INFO BOXES (Simple Paragraphs) */
-.pdf-mode .info-box {
-    border: 1px solid #000;
-    background: none !important;
-    color: #000 !important;
-    box-shadow: none;
-    margin-top: 20px;
-    padding: 15px;
-}
-.pdf-mode .info-title { color: #000 !important; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-.pdf-mode .info-content { color: #000 !important; }
-
-/* HIDE NON-ESSENTIALS */
-.pdf-mode canvas { 
-    /* Ideally charts are optional or simplified. 
-       We'll add a white bg to them just in case. */
-    background-color: #fff !important; 
-    border: 1px solid #ccc;
-}
-
-/* Print Optimization */
-@media print {
-    .btn-pdf { display: none !important; }
-}
-
-/* PDF SHADOW VIEW STYLES - NUCLEAR OPTION */
-.pdf-render-stage {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 794px !important;
-    min-height: 1123px !important; /* A4 Height */
-    background: #ffffff !important;
-    color: #000000 !important;
-    padding: 20px !important;
-    z-index: 2147483647 !important; /* Max Z-Index */
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Force ALL children to be visible and black */
-.pdf-render-stage * {
-    color: #000000 !important;
-    background: transparent !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-}
-
-.pdf-table { 
-    width: 100% !important; 
-    border-collapse: collapse !important; 
-    font-family: Arial, sans-serif !important; 
-    font-size: 11px !important; 
-    table-layout: fixed !important;
-}
-
-.pdf-table th { 
-    border: 1px solid #000 !important; 
-    padding: 6px !important; 
-    background: #e0e0e0 !important; /* Explicit Grey */
-    color: #000 !important;
-    font-weight: bold !important;
-    text-align: left !important; 
-}
-
-.pdf-table td { 
-    border: 1px solid #000 !important; 
-    padding: 6px !important; 
-    color: #000 !important;
-}
-
-.pdf-header-doc { 
-    margin-bottom: 15px !important; 
-    border-bottom: 2px solid #000 !important; 
-    padding-bottom: 10px !important; 
-    font-family: Arial, sans-serif !important; 
-}
-
-.pdf-summary { 
-    margin-bottom: 15px !important; 
-    font-family: Arial, sans-serif !important; 
-    font-size: 12px !important; 
-    border: 1px solid #000 !important; 
-    padding: 10px !important; 
-    background: #f9f9f9 !important;
-}
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- [GT-Z] html2pdf REMOVED (Server-Side Migration) -->
 </head>
 <body>
     <header class="main-header">
@@ -504,7 +254,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">23/01/2026 16:39</strong>
+                    <strong style="color:#cbd5e0">26/01/2026 19:44</strong>
                 </div>
             </div>
         </div>
@@ -592,7 +342,7 @@ body {
             </div>
             <div style="text-align:right;">
                 <div style="font-size:10px; color:#a0aec0;">TROFÉUS ATUAIS</div>
-                <div style="font-size:24px; font-weight:800; color:#fbbf24;">3257 🏆</div>
+                <div style="font-size:24px; font-weight:800; color:#fbbf24;">3267 🏆</div>
             </div>
         </div>
         
@@ -600,22 +350,22 @@ body {
             <div class="war-status-container">
                 <div class="war-metric-box accent">
                     <div class="war-metric-label">Rank Anterior</div>
-                    <div class="war-metric-value">#3</div>
+                    <div class="war-metric-value">#2</div>
                 </div>
                 <div class="war-metric-box" style="border-left-color: #10b981;">
                     <div class="war-metric-label">Participação Total</div>
-                    <div class="war-metric-value">43 <span style="font-size:12px; opacity:0.7;">/ 50</span></div>
+                    <div class="war-metric-value">46 <span style="font-size:12px; opacity:0.7;">/ 50</span></div>
                 </div>
             </div>
             
             <div style="margin-top:20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
                     <span style="font-size:12px; color:#a0aec0;">Parciais (Incompletos)</span>
-                    <span style="font-size:12px; font-weight:bold; color:#fbbf24;">2</span>
+                    <span style="font-size:12px; font-weight:bold; color:#fbbf24;">1</span>
                     </div>
                     <div style="display:flex; justify-content:space-between;">
                     <span style="font-size:12px; color:#a0aec0;">Ausentes (0 Decks)</span>
-                    <span style="font-size:12px; font-weight:bold; color:#ef4444;">22</span>
+                    <span style="font-size:12px; font-weight:bold; color:#ef4444;">30</span>
                     </div>
             </div>
         </div>
@@ -627,7 +377,7 @@ body {
         <div class="dash-card">
             <div class="card-header">
                 <h3>🃏 Doadores (Top 5)</h3>
-                <span class="badge" style="background:#3182ce;">10109 Cards</span>
+                <span class="badge" style="background:#3182ce;">1850 Cards</span>
             </div>
             <div class="scrollable-list">
                 
@@ -642,7 +392,7 @@ body {
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🃏</span>
-                            1210
+                            344
                         </div>
                     </div>
                 </div>
@@ -653,13 +403,13 @@ body {
                     <div class="card-left">
                         <div class="rank-medal">🥈</div>
                         <div class="player-info">
-                            <div class="p-name">Nico</div>
+                            <div class="p-name">I'm inevitable</div>
                         </div>
                     </div>
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🃏</span>
-                            909
+                            162
                         </div>
                     </div>
                 </div>
@@ -670,13 +420,13 @@ body {
                     <div class="card-left">
                         <div class="rank-medal">🥉</div>
                         <div class="player-info">
-                            <div class="p-name">Grimmer 狼</div>
+                            <div class="p-name">Asten Acady</div>
                         </div>
                     </div>
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🃏</span>
-                            576
+                            158
                         </div>
                     </div>
                 </div>
@@ -693,7 +443,7 @@ body {
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🃏</span>
-                            496
+                            116
                         </div>
                     </div>
                 </div>
@@ -704,13 +454,13 @@ body {
                     <div class="card-left">
                         <div class="rank-number">#5</div>
                         <div class="player-info">
-                            <div class="p-name">Sotto ツ</div>
+                            <div class="p-name">Kauan</div>
                         </div>
                     </div>
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🃏</span>
-                            490
+                            92
                         </div>
                     </div>
                 </div>
@@ -732,7 +482,7 @@ body {
                     <div class="card-left">
                         <div class="rank-medal">🥇</div>
                         <div class="player-info">
-                            <div class="p-name">Nico</div>
+                            <div class="p-name">Asten Acady</div>
                         </div>
                     </div>
                     <div class="card-right">
@@ -749,13 +499,13 @@ body {
                     <div class="card-left">
                         <div class="rank-medal">🥈</div>
                         <div class="player-info">
-                            <div class="p-name">Asten Acady</div>
+                            <div class="p-name">Nico</div>
                         </div>
                     </div>
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🏆</span>
-                            11776
+                            12000
                         </div>
                     </div>
                 </div>
@@ -766,13 +516,13 @@ body {
                     <div class="card-left">
                         <div class="rank-medal">🥉</div>
                         <div class="player-info">
-                            <div class="p-name">WvCly</div>
+                            <div class="p-name">AUGUSTO</div>
                         </div>
                     </div>
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🏆</span>
-                            11632
+                            11957
                         </div>
                     </div>
                 </div>
@@ -783,13 +533,13 @@ body {
                     <div class="card-left">
                         <div class="rank-number">#4</div>
                         <div class="player-info">
-                            <div class="p-name">GabiMalvadeza</div>
+                            <div class="p-name">WvCly</div>
                         </div>
                     </div>
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🏆</span>
-                            11620
+                            11664
                         </div>
                     </div>
                 </div>
@@ -800,13 +550,13 @@ body {
                     <div class="card-left">
                         <div class="rank-number">#5</div>
                         <div class="player-info">
-                            <div class="p-name">ZackThunder</div>
+                            <div class="p-name">GabiMalvadeza</div>
                         </div>
                     </div>
                     <div class="card-right">
                         <div class="p-value">
                             <span class="p-icon">🏆</span>
-                            11168
+                            11620
                         </div>
                     </div>
                 </div>
@@ -825,10 +575,10 @@ body {
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ["17/11", "24/11", "01/12", "08/12", "15/12", "22/12", "29/12", "05/01", "12/01", "19/01"],
+                    labels: ["24/11", "01/12", "08/12", "15/12", "22/12", "29/12", "05/01", "12/01", "19/01", "26/01"],
                     datasets: [{
                         label: 'Troféus',
-                        data: [3077, 3097, 3117, 3167, 3187, 3202, 3212, 3222, 3272, 3262],
+                        data: [3097, 3117, 3167, 3187, 3202, 3212, 3222, 3272, 3262, 3257],
                         borderColor: '#fbbf24',
                         backgroundColor: (context) => {
                             const ctx = context.chart.ctx;
@@ -888,10 +638,8 @@ body {
     
     </div>
 
-    <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
-    // [GT-Z] Server-Side PDF Generation Active
-    // WeasyPrint (Python) replaces Client-Side JS.
+    // [GT-Z] Scripts Cleaned
     </script>
 
     document.addEventListener('DOMContentLoaded', function() {

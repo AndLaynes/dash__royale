@@ -13,16 +13,7 @@ OUTPUT_DIR = os.path.dirname(os.path.dirname(__file__))
 # Fuso Horário Brasil (GMT-3)
 BRAZIL_TZ = timezone(timedelta(hours=-3))
 
-# [GT-Z] PDF GENERATION DEPENDENCY
-try:
-    from weasyprint import HTML, CSS
-    WEASYPRINT_AVAILABLE = True
-except OSError:
-    print("WARNING: WeasyPrint (GTK) not found. PDF generation disabled locally.")
-    WEASYPRINT_AVAILABLE = False
-except ImportError:
-    print("WARNING: WeasyPrint module not installed. PDF generation disabled.")
-    WEASYPRINT_AVAILABLE = False
+# [GT-Z] PDF FUNCTIONALITY DELETED PER USER REQUEST (2026-01-26)
 
 # ==========================================
 # TEMPLATES CSS & HTML (O DESIGN FIEL)
@@ -222,23 +213,7 @@ body {
     gap: 5px;
 }
 
-.btn-pdf {
-    background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s;
-    font-size: 14px;
-    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
-}
-.btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3); }
-.btn-pdf:disabled { opacity: 0.7; cursor: wait; }
+
 
 /* RESPONSIVE SUB-768px */
 @media (max-width: 768px) {
@@ -272,239 +247,6 @@ body {
 }
 
 
-/* PDF EXPORT STYLES (Ultra-Clean Document Mode - GT-Z) */
-.pdf-header {
-    display: none;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-.pdf-header h1 {
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-.pdf-header p {
-    font-size: 14px;
-    color: #444;
-}
-
-.pdf-mode .pdf-header { display: block; }
-.pdf-mode .main-header, .pdf-mode .btn-pdf, .pdf-mode .nav-pills, .pdf-mode .audit-timestamp { display: none !important; }
-
-/* DOCUMENT ROOT STYLES */
-.pdf-mode {
-    background: #ffffff !important;
-    color: #000000 !important;
-    background-image: none !important;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-    font-size: 11px !important; /* Slightly smaller for density */
-    line-height: 1.4;
-    width: 794px !important; /* A4 Width @ 96 DPI - FORCE DESKTOP LAYOUT */
-    min-width: 794px !important;
-    margin: 0 auto !important;
-    overflow: visible !important;
-}
-
-.pdf-mode .container {
-    width: 100% !important;
-    max-width: none !important;
-    padding: 0 20px !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-}
-
-/* TYPOGRAPHY */
-.pdf-mode h1, .pdf-mode h2, .pdf-mode h3 {
-    color: #000000 !important;
-    text-shadow: none !important;
-    font-weight: 700;
-    letter-spacing: normal;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-.pdf-mode .page-title-section {
-    background: none !important;
-    border-bottom: none !important;
-    margin-bottom: 20px;
-    padding-bottom: 0;
-    text-align: left;
-}
-.pdf-mode .page-subtitle { 
-    color: #333 !important;
-    font-size: 14px;
-    font-style: italic;
-}
-
-/* METRICS (Simplified to Text Key-Value) */
-.pdf-mode .audit-stats {
-    display: table; /* Force table layout for strict alignment */
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-    background: none !important;
-    border: 1px solid #000;
-}
-.pdf-mode .stat-box {
-    display: table-cell;
-    background: none !important;
-    border: none !important;
-    border-right: 1px solid #000 !important;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-    box-shadow: none !important;
-}
-.pdf-mode .stat-box:last-child { border-right: none !important; }
-.pdf-mode .stat-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    color: #444 !important;
-    display: block;
-    margin-bottom: 5px;
-}
-.pdf-mode .stat-value {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000 !important;
-}
-.pdf-mode .stat-green, .pdf-mode .stat-yellow, .pdf-mode .stat-red { color: #000 !important; }
-
-/* TABLES (Standard Document Border) */
-.pdf-mode .custom-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 11px;
-    border: 1px solid #000;
-    box-shadow: none !important;
-}
-.pdf-mode .custom-table thead {
-    display: table-header-group; /* Repeats heavily on print, helpful */
-}
-.pdf-mode .custom-table th {
-    background: #f0f0f0 !important;
-    color: #000 !important;
-    font-weight: bold;
-    border: 1px solid #000;
-    padding: 6px;
-    text-align: left;
-    text-transform: uppercase;
-}
-.pdf-mode .custom-table td {
-    background: #fff !important;
-    color: #000 !important;
-    border: 1px solid #000; /* Distinct grid lines */
-    padding: 5px 6px;
-    vertical-align: middle;
-}
-.pdf-mode .custom-table tr.data-row:hover { transform: none; background: none; }
-
-/* STATUS INDICATORS (Textual or Simple Box) */
-.pdf-mode .status-badge {
-    background: none !important;
-    border: 1px solid #000 !important;
-    color: #000 !important;
-    padding: 2px 6px;
-    border-radius: 0; /* Squared edges */
-    font-weight: bold;
-    display: inline-block;
-}
-.pdf-mode .missing-badge {
-    color: #000 !important;
-    background: none !important;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* INFO BOXES (Simple Paragraphs) */
-.pdf-mode .info-box {
-    border: 1px solid #000;
-    background: none !important;
-    color: #000 !important;
-    box-shadow: none;
-    margin-top: 20px;
-    padding: 15px;
-}
-.pdf-mode .info-title { color: #000 !important; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-.pdf-mode .info-content { color: #000 !important; }
-
-/* HIDE NON-ESSENTIALS */
-.pdf-mode canvas { 
-    /* Ideally charts are optional or simplified. 
-       We'll add a white bg to them just in case. */
-    background-color: #fff !important; 
-    border: 1px solid #ccc;
-}
-
-/* Print Optimization */
-@media print {
-    .btn-pdf { display: none !important; }
-}
-
-/* PDF SHADOW VIEW STYLES - NUCLEAR OPTION */
-.pdf-render-stage {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 794px !important;
-    min-height: 1123px !important; /* A4 Height */
-    background: #ffffff !important;
-    color: #000000 !important;
-    padding: 20px !important;
-    z-index: 2147483647 !important; /* Max Z-Index */
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Force ALL children to be visible and black */
-.pdf-render-stage * {
-    color: #000000 !important;
-    background: transparent !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-}
-
-.pdf-table { 
-    width: 100% !important; 
-    border-collapse: collapse !important; 
-    font-family: Arial, sans-serif !important; 
-    font-size: 11px !important; 
-    table-layout: fixed !important;
-}
-
-.pdf-table th { 
-    border: 1px solid #000 !important; 
-    padding: 6px !important; 
-    background: #e0e0e0 !important; /* Explicit Grey */
-    color: #000 !important;
-    font-weight: bold !important;
-    text-align: left !important; 
-}
-
-.pdf-table td { 
-    border: 1px solid #000 !important; 
-    padding: 6px !important; 
-    color: #000 !important;
-}
-
-.pdf-header-doc { 
-    margin-bottom: 15px !important; 
-    border-bottom: 2px solid #000 !important; 
-    padding-bottom: 10px !important; 
-    font-family: Arial, sans-serif !important; 
-}
-
-.pdf-summary { 
-    margin-bottom: 15px !important; 
-    font-family: Arial, sans-serif !important; 
-    font-size: 12px !important; 
-    border: 1px solid #000 !important; 
-    padding: 10px !important; 
-    background: #f9f9f9 !important;
-}
 """
 
 def get_page_template(active_page, content):
@@ -530,7 +272,6 @@ def get_page_template(active_page, content):
     <title>OS GUARDIÕES - {active_page}</title>
     <style>{STYLE_CSS}</style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- [GT-Z] html2pdf REMOVED (Server-Side Migration) -->
 </head>
 <body>
     <header class="main-header">
@@ -560,10 +301,8 @@ def get_page_template(active_page, content):
         {content}
     </div>
 
-    <!-- SCRIPTS PARA INTERATIVIDADE E PDF -->
     <script>
-    // [GT-Z] Server-Side PDF Generation Active
-    // WeasyPrint (Python) replaces Client-Side JS.
+    // [GT-Z] Scripts Cleaned
     </script>
 
     document.addEventListener('DOMContentLoaded', function() {{
@@ -635,103 +374,10 @@ def format_clash_date(date_str):
 
 def generate_static_pdf(rows, meta_decks, counts, war_label, output_dir):
     """
-    [GT-Z] SERVER-SIDE PDF GENERATOR
-    Gera um arquivo PDF estático (A4) usando WeasyPrint.
-    Substitui a solução Client-Side instável.
+    [GT-Z] PDF GENERATION DELETED.
+    Function stub kept for interface stability but empty.
     """
-    if not WEASYPRINT_AVAILABLE:
-        return
-
-    print("Gerando PDF Estático (Server-Side)...")
-    
-    # 1. CSS Específico para Impressão (Clean & High Contrast)
-    pdf_css = CSS(string="""
-    @page { size: A4; margin: 15mm; }
-    body { font-family: Helvetica, Arial, sans-serif; font-size: 11px; color: #000; }
-    h1 { font-size: 18px; margin-bottom: 5px; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 10px; }
-    .meta-header { font-size: 12px; margin-bottom: 20px; color: #444; }
-    .summary-box { border: 1px solid #000; padding: 10px; margin-bottom: 20px; background: #f0f0f0; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th { background: #000; color: #fff; padding: 8px; text-align: left; font-size: 10px; text-transform: uppercase; }
-    td { border-bottom: 1px solid #ccc; padding: 6px 8px; }
-    .status-ok { color: green; font-weight: bold; }
-    .status-warn { color: orange; font-weight: bold; }
-    .status-bad { color: red; font-weight: bold; }
-    .footer { position: fixed; bottom: 0; left: 0; right: 0; font-size: 9px; text-align: center; color: #666; }
-    """)
-
-    # 2. Construir HTML Limpo
-    rows_html = ""
-    for r in rows:
-        status_style = "status-bad"
-        if r['status'] == "EM DIA": status_style = "status-ok"
-        elif r['status'] == "INCOMPLETO": status_style = "status-warn"
-        
-        rows_html += f'''
-        <tr>
-            <td>
-                <strong>{r['name']}</strong><br>
-                <span style="font-size:9px; color:#555">{r['tag']}</span>
-            </td>
-            <td>{r['cargo']}</td>
-            <td>{r['decks']} / {meta_decks}</td>
-            <td>{r['faltam']}</td>
-            <td>{r['fame']}</td>
-            <td class="{status_style}">{r['status']}</td>
-        </tr>
-        '''
-
-    html_content = f'''
-    <!DOCTYPE html>
-    <html>
-    <head><meta charset="UTF-8"></head>
-    <body>
-        <h1>Relatório de Operações de Guerra</h1>
-        <div class="meta-header">
-            <strong>CLÃ:</strong> OS GUARDIÕES (#9PJRJRPC)<br>
-            <strong>DATA DE EXTRAÇÃO:</strong> {datetime.now(BRAZIL_TZ).strftime('%d/%m/%Y %H:%M')}<br>
-            <strong>REFERÊNCIA:</strong> {war_label}
-        </div>
-
-        <div class="summary-box">
-            <strong>RESUMO TÁTICO:</strong><br>
-            Meta do Dia: {meta_decks} Decks<br>
-            <span style="color:green">✔ Em Dia: {counts['ok']}</span> | 
-            <span style="color:orange">⚠ Incompletos: {counts['warn']}</span> | 
-            <span style="color:red">✖ Zerados: {counts['bad']}</span>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Agente</th>
-                    <th>Patente</th>
-                    <th>Decks</th>
-                    <th>Pendência</th>
-                    <th>Fama</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {rows_html}
-            </tbody>
-        </table>
-
-        <div class="footer">
-            Gerado automaticamente pelo Sistema de Auditoria Ground Truth (GT-Z).
-            Clash Royale War Analytics.
-        </div>
-    </body>
-    </html>
-    '''
-
-    # 3. Renderizar PDF
-    try:
-        pdf_file = os.path.join(output_dir, 'daily_war.pdf')
-        HTML(string=html_content).write_pdf(pdf_file, stylesheets=[pdf_css])
-        print(f"PDF gerado com sucesso: {pdf_file}")
-    except Exception as e:
-        print(f"ERRO CRÍTICO AO GERAR PDF: {e}")
+    return
 
 def generate_html_report():
     print("Iniciando geração de relatórios...")
@@ -792,6 +438,11 @@ def generate_html_report():
             # Pega a última guerra (Item 0) - que é a última fechada
             if r_log.get('items'):
                 last_war = r_log['items'][0]
+                
+                # [GT-Z] DEFINE WAR LABEL FOR AUDIT CONTENT
+                s_id = last_war.get('seasonId', '?')
+                s_idx = last_war.get('sectionIndex', '?')
+                war_label = f"Temporada {s_id} | Semana {s_idx} (Finalizada)"
                 
                 # Meta Fechada = 16 Decks
                 meta_decks = 16
@@ -982,80 +633,13 @@ def generate_html_report():
         </tr>
         """
 
-    # 4.1 Gerar HTML do PDF Shadow View (Clean A4)
-    pdf_rows_html = ""
-    for row in top_50_rows:
-        pdf_rows_html += f"""
-        <tr>
-            <td>
-                <strong>{row['name']}</strong><br>
-                <small>{row['tag']}</small>
-            </td>
-            <td>{row['decks']} / {meta_decks}</td>
-            <td>{row['faltam']}</td>
-            <td>{row['fame']}</td>
-            <td><strong>{row['status']}</strong></td>
-        </tr>
-        """
-
-    pdf_shadow_content = f"""
-    <div id="pdf-hidden-source" style="display:none;">
-        <div class="pdf-header-doc">
-            <h1>RELATÓRIO DE GUERRA: OS GUARDIÕES</h1>
-            <p>Data: {datetime.now(BRAZIL_TZ).strftime('%d/%m/%Y %H:%M')} | Ref: {war_label}</p>
-        </div>
-        <div class="pdf-summary">
-            <strong>RESUMO OPERACIONAL:</strong><br>
-            Meta do Dia: {meta_decks} Decks<br>
-            Situação: {count_em_dia} Em Dia | {count_incompleto} Incompletos | {count_zerado} Zerados
-        </div>
-        <table class="pdf-table">
-            <thead>
-                <tr>
-                    <th>JOGADOR</th>
-                    <th>DECKS</th>
-                    <th>FALTAM</th>
-                    <th>FAMA</th>
-                    <th>STATUS</th>
-                </tr>
-            </thead>
-            <tbody>
-                {pdf_rows_html}
-            </tbody>
-        </table>
-        <div style="margin-top:20px; font-size:10px; color:#555;">
-            * Este documento é gerado automaticamente pelo Sistema de Auditoria Ground Truth.
-        </div>
-    </div>
-    """
+    pdf_shadow_content = ""
 
     # 5. Montar Conteúdo Daily War
-    audit_content = f"""
-    <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
-        <!-- [GT-Z] STATIC PDF LINK -->
-        <a href="daily_war.pdf" target="_blank" class="btn-pdf" style="text-decoration:none;">
-            <span>📄</span> Baixar Relatório Oficial (PDF)
-        </a>
-    </div>
+    # [GT-Z] PDF BUTTON REMOVED
 
+    audit_content = f"""
     <div id="printable-area">
-        <!-- HEADER EXCLUSIVO PARA O PDF (Recriando Identidade) -->
-        <div class="pdf-header" id="pdf-header-id">
-            <div style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:15px;">
-                    <!-- Logo Placeholder (Circle) -->
-                    <div style="width:50px; height:50px; background:#fbbf24; border-radius:50%; display:flex; align-items:center; justify-content:center; color: #0f1420; font-weight:bold; font-size:24px;">G</div>
-                    <div>
-                        <h1>Os Guardiões</h1>
-                        <div class="pdf-watermark">Relatório de Inteligência de Guerra • #9PJRJRPC</div>
-                    </div>
-                </div>
-                <div style="text-align:right;">
-                    <div style="font-size:12px; color:#cbd5e0;">GERADO EM</div>
-                    <div style="font-size:16px; font-weight:bold; color:#fff;">{datetime.now(BRAZIL_TZ).strftime('%d/%m/%Y %H:%M')}</div>
-                </div>
-            </div>
-        </div>
 
         <!-- HEADER DO PAGINA (Carimbo) -->
         <div class="page-title-section">
@@ -1140,9 +724,8 @@ def generate_html_report():
     with open(os.path.join(OUTPUT_DIR, 'daily_war.html'), 'w', encoding='utf-8') as f:
         f.write(get_page_template("Guerra", audit_content))
 
-    # [GT-Z] GERAR PDF STATIC ASSET (chamada da nova função)
-    counts = {'ok': count_em_dia, 'warn': count_incompleto, 'bad': count_zerado}
-    generate_static_pdf(top_50_rows, meta_decks, counts, war_label, OUTPUT_DIR)
+    # [GT-Z] STATIC PDF GENERATION CALL REMOVED
+    # generate_static_pdf(top_50_rows, meta_decks, counts, war_label, OUTPUT_DIR)
 
     # 6. Gerar Página INDEX (Dashboard Geral)
     print("Gerando Dashboard (Index)...")
