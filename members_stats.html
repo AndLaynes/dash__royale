@@ -240,13 +240,17 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
+    color: #000000 !important;
+}
 .pdf-clean-mode table {
     page-break-inside: auto !important;
     width: 100% !important;
-    table-layout: fixed !important; /* Garante que respeite as larguras */
+    table-layout: fixed !important;
+    border-collapse: collapse !important; /* Grid Sólido: Garante fechamento */
+    border: 1px solid #000000 !important; /* Borda externa da tabela */
 }
 .pdf-clean-mode thead { 
-    display: table-header-group !important; /* Repete cabeçalho na quebra de página */
+    display: table-header-group !important;
 }
 .pdf-clean-mode tr { 
     page-break-inside: avoid !important; 
@@ -280,10 +284,15 @@ body {
     border-collapse: collapse !important;
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
-    border: 1px solid #000000 !important;
-    padding: 4px !important; /* Reduzido padding */
-    font-size: 11px !important; /* Fonte levemente menor para caber */
+    border: 1px solid #000000 !important; /* Garante linhas verticais e horizontais em TUDO */
+    padding: 4px !important;
+    font-size: 11px !important;
     word-wrap: break-word !important;
+    background: #ffffff !important;
+}
+/* Forçar fechamento visual explícito no último filho se necessário, mas collapse já resolve */
+.pdf-clean-mode td:last-child, .pdf-clean-mode th:last-child {
+    border-right: 1px solid #000000 !important;
 }
 /* Otimização de Colunas para PDF */
 .pdf-clean-mode th:nth-child(3), 
@@ -552,13 +561,17 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
+    color: #000000 !important;
+}
 .pdf-clean-mode table {
     page-break-inside: auto !important;
     width: 100% !important;
-    table-layout: fixed !important; /* Garante que respeite as larguras */
+    table-layout: fixed !important;
+    border-collapse: collapse !important; /* Grid Sólido: Garante fechamento */
+    border: 1px solid #000000 !important; /* Borda externa da tabela */
 }
 .pdf-clean-mode thead { 
-    display: table-header-group !important; /* Repete cabeçalho na quebra de página */
+    display: table-header-group !important;
 }
 .pdf-clean-mode tr { 
     page-break-inside: avoid !important; 
@@ -592,10 +605,15 @@ body {
     border-collapse: collapse !important;
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
-    border: 1px solid #000000 !important;
-    padding: 4px !important; /* Reduzido padding */
-    font-size: 11px !important; /* Fonte levemente menor para caber */
+    border: 1px solid #000000 !important; /* Garante linhas verticais e horizontais em TUDO */
+    padding: 4px !important;
+    font-size: 11px !important;
     word-wrap: break-word !important;
+    background: #ffffff !important;
+}
+/* Forçar fechamento visual explícito no último filho se necessário, mas collapse já resolve */
+.pdf-clean-mode td:last-child, .pdf-clean-mode th:last-child {
+    border-right: 1px solid #000000 !important;
 }
 /* Otimização de Colunas para PDF */
 .pdf-clean-mode th:nth-child(3), 
@@ -649,7 +667,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">26/01/2026 21:53</strong>
+                    <strong style="color:#cbd5e0">26/01/2026 21:58</strong>
                 </div>
             </div>
         </div>
@@ -707,7 +725,7 @@ body {
                 <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
                 <td data-value="10530"><span style="color:#fbbf24">🏆 10530</span></td>
                 <td data-value="40"><span style="color:#34d399"> cards 40</span></td>
-                <td style="color:#a0aec0" data-value="20260126T232649.000Z">26/01/2026 20:26</td>
+                <td style="color:#a0aec0" data-value="20260127T005741.000Z">26/01/2026 21:57</td>
             </tr>
             
             <tr class="data-row">

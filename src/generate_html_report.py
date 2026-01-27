@@ -254,13 +254,17 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
+    color: #000000 !important;
+}
 .pdf-clean-mode table {
     page-break-inside: auto !important;
     width: 100% !important;
-    table-layout: fixed !important; /* Garante que respeite as larguras */
+    table-layout: fixed !important;
+    border-collapse: collapse !important; /* Grid Sólido: Garante fechamento */
+    border: 1px solid #000000 !important; /* Borda externa da tabela */
 }
 .pdf-clean-mode thead { 
-    display: table-header-group !important; /* Repete cabeçalho na quebra de página */
+    display: table-header-group !important;
 }
 .pdf-clean-mode tr { 
     page-break-inside: avoid !important; 
@@ -294,10 +298,15 @@ body {
     border-collapse: collapse !important;
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
-    border: 1px solid #000000 !important;
-    padding: 4px !important; /* Reduzido padding */
-    font-size: 11px !important; /* Fonte levemente menor para caber */
+    border: 1px solid #000000 !important; /* Garante linhas verticais e horizontais em TUDO */
+    padding: 4px !important;
+    font-size: 11px !important;
     word-wrap: break-word !important;
+    background: #ffffff !important;
+}
+/* Forçar fechamento visual explícito no último filho se necessário, mas collapse já resolve */
+.pdf-clean-mode td:last-child, .pdf-clean-mode th:last-child {
+    border-right: 1px solid #000000 !important;
 }
 /* Otimização de Colunas para PDF */
 .pdf-clean-mode th:nth-child(3), 

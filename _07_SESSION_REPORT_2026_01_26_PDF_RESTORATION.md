@@ -1,40 +1,25 @@
-# RELATÓRIO DE SESSÃO: RESTAURAÇÃO DE PDF EXPORT (2026-01-26)
+# RELATÓRIO DE SESSÃO: REFINAMENTO DE PDF (2026-01-26)
 
 **STATUS:** [CONCLUÍDO]
 **AGENTE:** Antigravity (GT-Z Protocol)
 
-## 1. Implementação Realizada ("Zero-Frills")
+## 1. Refinamentos Visuais Realizados
 
-Atendendo à solicitação para restaurar a exportação de PDF de forma simples e direta ("Fundo branco, letras pretas"), foram realizadas as seguintes alterações em `src/generate_html_report.py`:
+Em resposta ao feedback e análise dos screenshots "comendo a margem", o código foi refinado para garantir uma impressão **estritamente utilitária**:
 
-### A. Injeção de Dependência Frontend
-- Adicionado script CDN: `html2pdf.bundle.min.js` (v0.10.1).
-- Motivo: Permite gerar o PDF direto do navegador, garantindo que "o que você vê é o que você leva", sem instabilidade de servidor.
+### A. Correção de Margens e Layout
+- **Responsividade de Colunas:** A coluna "Decks Usados" foi apertada (`width: 60px`) e com texto centralizado para liberar espaço na direita.
+- **Quebras de Página:** Adicionado CSS `page-break-inside: avoid` em linhas e `display: table-header-group` no `<thead>` para forçar a repetição do cabeçalho em todas as páginas do PDF.
+- **Limpeza Total:** Removidas as bordas arredondadas e círculos das colunas "Faltam" e "Status". Agora é **apenas texto**, conforme solicitado.
 
-### B. Modo de Impressão "Clean" (CSS)
-Criada a classe `.pdf-clean-mode` que é injetada temporariamente durante a geração:
-- **Fundo:** Branco absoluto (`#ffffff`).
-- **Texto:** Preto absoluto (`#000000`).
-- **Remoção:** Header, Menu de Navegação, Rodapés e Botões são ocultados (`display: none`).
-- **Tabelas:** Linhas de borda simples e pretas para alta legibilidade.
+### B. Injeção de Dados ("Membros Ativos")
+- Adicionado um novo card estatístico no cabeçalho do PDF/HTML: **MEMBROS ATIVOS**.
+- Exibe a contagem exata de pessoas listadas na tabela (Top 50), dando clareza sobre o universo auditado.
 
-### C. Botão de Ação
-- Adicionado botão "📄 Exportar PDF" no topo da página `daily_war.html`.
-- Função JS `downloadPDF()` acionada pelo clique.
+## 2. Validação de Execução
+O script `run_update.py` rodou com sucesso (Exit Code: 0) e o deploy foi feito automaticamente (`git push`).
 
-## 2. Validação Forense
-
-### Arquivos Modificados
-- `src/generate_html_report.py`: Injeção de logs CSS/JS.
-- `daily_war.html`: Regenerado com sucesso contendo as novas tags `<script>` e `<style>`.
-
-### Teste de Integridade
-- A função foi verificada via `grep` no arquivo gerado.
-- Strings confirmadas: `pdf-export-btn`, `html2pdf`, `.pdf-clean-mode`.
-
-## 3. Próximos Passos
-- O sistema já realizou o `git push` automático.
-- A funcionalidade estará disponível assim que o GitHub Pages atualizar (aprox. 1-2 minutos).
+**Aguarde 1-2 minutos** para a atualização do GitHub Pages, recarregue a página com `Ctrl+F5` e teste o botão "Exportar PDF" novamente. O resultado deve ser um documento limpo, alinhado e sem cortes.
 
 ---
-*Documento gerado sem alucinação, reportando estritamente a alteração de código efetuada.*
+*Assinado: Antigravity - Ground Truth Enforcement.*
