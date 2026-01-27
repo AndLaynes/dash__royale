@@ -247,6 +247,56 @@ body {
 }
 
 
+
+/* PDF CLEAN MODE (GT-Z Print Style) */
+.pdf-clean-mode {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+}
+.pdf-clean-mode * {
+    color: #000000 !important;
+    border-color: #000000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+.pdf-clean-mode .main-header,
+.pdf-clean-mode .nav-pills,
+.pdf-clean-mode .info-box,
+.pdf-clean-mode .audit-timestamp,
+.pdf-clean-mode #pdf-export-btn { 
+    display: none !important; 
+}
+.pdf-clean-mode .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.pdf-clean-mode .stat-box {
+    border: 1px solid #000000 !important;
+    color: #000000 !important;
+}
+.pdf-clean-mode table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+.pdf-clean-mode th, .pdf-clean-mode td {
+    border: 1px solid #000000 !important;
+    padding: 6px !important;
+    font-size: 12px !important;
+}
+.pdf-clean-mode .status-badge {
+    border: 1px solid #000000 !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    padding: 2px 8px !important;
+}
+.pdf-clean-mode .missing-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+}
 """
 
 def get_page_template(active_page, content):
@@ -271,7 +321,9 @@ def get_page_template(active_page, content):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OS GUARDIÕES - {active_page}</title>
     <style>{STYLE_CSS}</style>
+    <style>{STYLE_CSS}</style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -300,6 +352,31 @@ def get_page_template(active_page, content):
     <div class="container">
         {content}
     </div>
+
+    <script>
+    function downloadPDF() {{
+        const element = document.body;
+        const btn = document.getElementById('pdf-export-btn');
+        
+        // Add Clean Mode Class
+        element.classList.add('pdf-clean-mode');
+        
+        // Options
+        var opt = {{
+          margin:       5,
+          filename:     'Relatorio_Guerra_DashRoyale.pdf',
+          image:        {{ type: 'jpeg', quality: 0.98 }},
+          html2canvas:  {{ scale: 2, useCORS: true }},
+          jsPDF:        {{ unit: 'mm', format: 'a4', orientation: 'portrait' }}
+        }};
+
+        // Generate
+        html2pdf().set(opt).from(element).save().then(function(){{
+            // Remove Clean Mode Class after save
+            element.classList.remove('pdf-clean-mode');
+        }});
+    }}
+    </script>
 
     <script>
     // [GT-Z] Scripts Cleaned (Sorting Restoration)
@@ -655,6 +732,11 @@ def generate_html_report():
                     </span>
                 </div>
             </div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; margin-top: -30px; margin-bottom: 20px;">
+            <button id="pdf-export-btn" onclick="downloadPDF()" style="background:#fbbf24; color:#0f1420; border:none; padding:8px 16px; border-radius:6px; font-weight:bold; cursor:pointer; display:flex; align-items:center; gap:8px;">
+                <span>📄</span> Exportar PDF
+            </button>
         </div>
         <div class="audit-stats">
              <!-- META AGORA É UM STAT-BOX PARA ALINHAMENTO -->

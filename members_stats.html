@@ -233,8 +233,339 @@ body {
 }
 
 
+
+/* PDF CLEAN MODE (GT-Z Print Style) */
+.pdf-clean-mode {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+}
+.pdf-clean-mode * {
+    color: #000000 !important;
+    border-color: #000000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+.pdf-clean-mode .main-header,
+.pdf-clean-mode .nav-pills,
+.pdf-clean-mode .info-box,
+.pdf-clean-mode .audit-timestamp,
+.pdf-clean-mode #pdf-export-btn { 
+    display: none !important; 
+}
+.pdf-clean-mode .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.pdf-clean-mode .stat-box {
+    border: 1px solid #000000 !important;
+    color: #000000 !important;
+}
+.pdf-clean-mode table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+.pdf-clean-mode th, .pdf-clean-mode td {
+    border: 1px solid #000000 !important;
+    padding: 6px !important;
+    font-size: 12px !important;
+}
+.pdf-clean-mode .status-badge {
+    border: 1px solid #000000 !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    padding: 2px 8px !important;
+}
+.pdf-clean-mode .missing-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+}
+</style>
+    <style>
+:root {
+    --bg-dark: #0f1420;
+    --bg-panel: #1a202c;
+    --bg-header: #151a30;
+    --primary-yellow: #fbbf24;
+    --primary-red: #ef4444;
+    --primary-green: #10b981;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --border-color: #2d3748;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    background-image: repeating-linear-gradient(45deg, #0f1420, #0f1420 10px, #111623 10px, #111623 20px);
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* HEADER */
+.main-header {
+    background-color: var(--bg-header);
+    border-bottom: 2px solid #252b42;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.clan-identity { display: flex; align-items: center; gap: 15px; }
+
+.clan-logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #fbbf24;
+}
+
+.clan-info h1 {
+    font-size: 24px;
+    color: #fbbf24;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.clan-badges { display: flex; gap: 10px; }
+.badge {
+    background: #2d3748;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #cbd5e0;
+}
+.trophy-icon { color: #fbbf24; }
+
+/* NAV PILLS */
+.nav-pills { display: flex; gap: 10px; }
+
+.nav-item {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #a0aec0;
+    background: #232a3b;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.nav-item:hover { background: #2d3748; color: white; }
+
+.nav-item.active {
+    background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+    color: white;
+    box-shadow: 0 2px 10px rgba(239, 68, 68, 0.3);
+}
+
+/* PAGE CONTENT */
+.page-title-section {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid #2d3748;
+    padding-bottom: 20px;
+}
+
+.page-title h2 { font-size: 28px; font-weight: 700; margin-bottom: 5px; }
+.page-subtitle { color: #a0aec0; font-size: 14px; }
+
+.meta-box {
+    background: #2d3748;
+    color: #fbbf24;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #fbbf24;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* CARDS ESTATISTICOS */
+.audit-stats { display: flex; gap: 15px; }
+.stat-box {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 16px;
+    min-width: 120px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.stat-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: #059669; }
+.stat-yellow { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: #d97706; }
+.stat-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: #dc2626; }
+
+/* INFO BOX */
+.info-box {
+    background: rgba(30, 58, 138, 0.2);
+    border: 1px solid #1e3a8a;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.info-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.info-icon { font-size: 20px; color: #60a5fa; }
+.info-title { font-weight: 700; color: white; font-size: 16px; }
+.info-content { color: #cbd5e0; font-size: 14px; line-height: 1.6; }
+.highlight { color: #fbbf24; font-weight: bold; }
+
+/* TABLE */
+.custom-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+.custom-table th {
+    text-align: left;
+    color: #718096;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 15px 10px 15px;
+}
+.custom-table tr.data-row { background: #1a202c; transition: transform 0.2s; }
+.custom-table tr.data-row:hover { transform: translateY(-2px); background: #2d3748; }
+.custom-table td { padding: 15px; border-top: 1px solid #2d3748; border-bottom: 1px solid #2d3748; color: white; font-size: 14px; font-weight: 500; }
+.custom-table td:first-child { border-left: 1px solid #2d3748; border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+.custom-table td:last-child { border-right: 1px solid #2d3748; border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.status-incomplete { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #d97706; }
+.status-complete { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #059669; }
+.status-zero { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #dc2626; }
+
+.missing-badge {
+    background: #ef4444; color: white;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: bold;
+}
+.audit-timestamp {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 11px;
+    color: #718096;
+    border: 1px solid #2d3748;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #1a202c;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
+/* RESPONSIVE SUB-768px */
+@media (max-width: 768px) {
+    .header-content { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .nav-pills { 
+        width: 100%; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        padding-bottom: 5px; 
+    }
+    .nav-item { white-space: nowrap; font-size: 13px; padding: 8px 15px; }
+    .audit-timestamp { width: 100%; justify-content: center; margin-top: 10px; }
+    
+    .page-title-section { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 15px; 
+    }
+    
+    .audit-stats { 
+        width: 100%; 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px; 
+    }
+    .stat-box { min-width: auto; }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+
+/* PDF CLEAN MODE (GT-Z Print Style) */
+.pdf-clean-mode {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+}
+.pdf-clean-mode * {
+    color: #000000 !important;
+    border-color: #000000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+.pdf-clean-mode .main-header,
+.pdf-clean-mode .nav-pills,
+.pdf-clean-mode .info-box,
+.pdf-clean-mode .audit-timestamp,
+.pdf-clean-mode #pdf-export-btn { 
+    display: none !important; 
+}
+.pdf-clean-mode .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.pdf-clean-mode .stat-box {
+    border: 1px solid #000000 !important;
+    color: #000000 !important;
+}
+.pdf-clean-mode table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+.pdf-clean-mode th, .pdf-clean-mode td {
+    border: 1px solid #000000 !important;
+    padding: 6px !important;
+    font-size: 12px !important;
+}
+.pdf-clean-mode .status-badge {
+    border: 1px solid #000000 !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    padding: 2px 8px !important;
+}
+.pdf-clean-mode .missing-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+}
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -254,7 +585,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">26/01/2026 19:58</strong>
+                    <strong style="color:#cbd5e0">26/01/2026 21:43</strong>
                 </div>
             </div>
         </div>
@@ -266,7 +597,7 @@ body {
             <div>
                 <h2>Membros Oficiais</h2>
                 <p class="page-subtitle">Lista atualizada via Supercell API</p>
-                <div class="meta-box">48 Membros no Clã</div>
+                <div class="meta-box">50 Membros no Clã</div>
             </div>
         </div>
         
@@ -294,17 +625,6 @@ body {
             </tr>
             
             <tr class="data-row">
-                <td data-value="EDDIE">
-                    <div style="font-weight:bold;">EDDIE</div>
-                    <div style="font-size:10px; color:#718096;">#2VLR9U90</div>
-                </td>
-                <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
-                <td data-value="10657"><span style="color:#fbbf24">🏆 10657</span></td>
-                <td data-value="0"><span style="color:#34d399"> cards 0</span></td>
-                <td style="color:#a0aec0" data-value="20260126T211410.000Z">26/01/2026 18:14</td>
-            </tr>
-            
-            <tr class="data-row">
                 <td data-value="Mila">
                     <div style="font-weight:bold;">Mila</div>
                     <div style="font-size:10px; color:#718096;">#90U8CVP90</div>
@@ -313,6 +633,17 @@ body {
                 <td data-value="10611"><span style="color:#fbbf24">🏆 10611</span></td>
                 <td data-value="54"><span style="color:#34d399"> cards 54</span></td>
                 <td style="color:#a0aec0" data-value="20260126T214610.000Z">26/01/2026 18:46</td>
+            </tr>
+            
+            <tr class="data-row">
+                <td data-value="EDDIE">
+                    <div style="font-weight:bold;">EDDIE</div>
+                    <div style="font-size:10px; color:#718096;">#2VLR9U90</div>
+                </td>
+                <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
+                <td data-value="10503"><span style="color:#fbbf24">🏆 10503</span></td>
+                <td data-value="40"><span style="color:#34d399"> cards 40</span></td>
+                <td style="color:#a0aec0" data-value="20260126T232649.000Z">26/01/2026 20:26</td>
             </tr>
             
             <tr class="data-row">
@@ -327,6 +658,17 @@ body {
             </tr>
             
             <tr class="data-row">
+                <td data-value="andrebts">
+                    <div style="font-weight:bold;">andrebts</div>
+                    <div style="font-size:10px; color:#718096;">#VUQ0PV8PV</div>
+                </td>
+                <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
+                <td data-value="10034"><span style="color:#fbbf24">🏆 10034</span></td>
+                <td data-value="10"><span style="color:#34d399"> cards 10</span></td>
+                <td style="color:#a0aec0" data-value="20260126T230551.000Z">26/01/2026 20:05</td>
+            </tr>
+            
+            <tr class="data-row">
                 <td data-value="⭐O SENTINELA ⭐">
                     <div style="font-weight:bold;">⭐O SENTINELA ⭐</div>
                     <div style="font-size:10px; color:#718096;">#99PJ9QQPC</div>
@@ -335,17 +677,6 @@ body {
                 <td data-value="10026"><span style="color:#fbbf24">🏆 10026</span></td>
                 <td data-value="18"><span style="color:#34d399"> cards 18</span></td>
                 <td style="color:#a0aec0" data-value="20260126T124622.000Z">26/01/2026 09:46</td>
-            </tr>
-            
-            <tr class="data-row">
-                <td data-value="andrebts">
-                    <div style="font-weight:bold;">andrebts</div>
-                    <div style="font-size:10px; color:#718096;">#VUQ0PV8PV</div>
-                </td>
-                <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
-                <td data-value="10003"><span style="color:#fbbf24">🏆 10003</span></td>
-                <td data-value="10"><span style="color:#34d399"> cards 10</span></td>
-                <td style="color:#a0aec0" data-value="20260126T224804.000Z">26/01/2026 19:48</td>
             </tr>
             
             <tr class="data-row">
@@ -443,8 +774,8 @@ body {
                 </td>
                 <td><span class="badge" style="background:#4a5568">Ancião</span></td>
                 <td data-value="10866"><span style="color:#fbbf24">🏆 10866</span></td>
-                <td data-value="0"><span style="color:#34d399"> cards 0</span></td>
-                <td style="color:#a0aec0" data-value="20260125T170919.000Z">25/01/2026 14:09</td>
+                <td data-value="26"><span style="color:#34d399"> cards 26</span></td>
+                <td style="color:#a0aec0" data-value="20260127T001548.000Z">26/01/2026 21:15</td>
             </tr>
             
             <tr class="data-row">
@@ -554,7 +885,18 @@ body {
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td data-value="12000"><span style="color:#fbbf24">🏆 12000</span></td>
                 <td data-value="0"><span style="color:#34d399"> cards 0</span></td>
-                <td style="color:#a0aec0" data-value="20260126T225809.000Z">26/01/2026 19:58</td>
+                <td style="color:#a0aec0" data-value="20260126T234003.000Z">26/01/2026 20:40</td>
+            </tr>
+            
+            <tr class="data-row">
+                <td data-value="Poison">
+                    <div style="font-weight:bold;">Poison</div>
+                    <div style="font-size:10px; color:#718096;">#8JCC00YL</div>
+                </td>
+                <td><span class="badge" style="background:#4a5568">Membro</span></td>
+                <td data-value="12000"><span style="color:#fbbf24">🏆 12000</span></td>
+                <td data-value="0"><span style="color:#34d399"> cards 0</span></td>
+                <td style="color:#a0aec0" data-value="20260126T231126.000Z">26/01/2026 20:11</td>
             </tr>
             
             <tr class="data-row">
@@ -563,9 +905,9 @@ body {
                     <div style="font-size:10px; color:#718096;">#VLYU9Y2Y</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td data-value="11957"><span style="color:#fbbf24">🏆 11957</span></td>
+                <td data-value="11927"><span style="color:#fbbf24">🏆 11927</span></td>
                 <td data-value="10"><span style="color:#34d399"> cards 10</span></td>
-                <td style="color:#a0aec0" data-value="20260126T201406.000Z">26/01/2026 17:14</td>
+                <td style="color:#a0aec0" data-value="20260126T234139.000Z">26/01/2026 20:41</td>
             </tr>
             
             <tr class="data-row">
@@ -574,9 +916,9 @@ body {
                     <div style="font-size:10px; color:#718096;">#CJRCPL88P</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td data-value="11664"><span style="color:#fbbf24">🏆 11664</span></td>
+                <td data-value="11728"><span style="color:#fbbf24">🏆 11728</span></td>
                 <td data-value="18"><span style="color:#34d399"> cards 18</span></td>
-                <td style="color:#a0aec0" data-value="20260126T180416.000Z">26/01/2026 15:04</td>
+                <td style="color:#a0aec0" data-value="20260126T235902.000Z">26/01/2026 20:59</td>
             </tr>
             
             <tr class="data-row">
@@ -586,8 +928,8 @@ body {
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td data-value="11620"><span style="color:#fbbf24">🏆 11620</span></td>
-                <td data-value="84"><span style="color:#34d399"> cards 84</span></td>
-                <td style="color:#a0aec0" data-value="20260126T212534.000Z">26/01/2026 18:25</td>
+                <td data-value="92"><span style="color:#34d399"> cards 92</span></td>
+                <td style="color:#a0aec0" data-value="20260126T235446.000Z">26/01/2026 20:54</td>
             </tr>
             
             <tr class="data-row">
@@ -613,25 +955,25 @@ body {
             </tr>
             
             <tr class="data-row">
+                <td data-value="Grimmer 狼">
+                    <div style="font-weight:bold;">Grimmer 狼</div>
+                    <div style="font-size:10px; color:#718096;">#QUVLYY0VY</div>
+                </td>
+                <td><span class="badge" style="background:#4a5568">Membro</span></td>
+                <td data-value="11063"><span style="color:#fbbf24">🏆 11063</span></td>
+                <td data-value="130"><span style="color:#34d399"> cards 130</span></td>
+                <td style="color:#a0aec0" data-value="20260127T001312.000Z">26/01/2026 21:13</td>
+            </tr>
+            
+            <tr class="data-row">
                 <td data-value="Sotto ツ">
                     <div style="font-weight:bold;">Sotto ツ</div>
                     <div style="font-size:10px; color:#718096;">#2P299V0CU</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td data-value="11057"><span style="color:#fbbf24">🏆 11057</span></td>
-                <td data-value="74"><span style="color:#34d399"> cards 74</span></td>
-                <td style="color:#a0aec0" data-value="20260126T162709.000Z">26/01/2026 13:27</td>
-            </tr>
-            
-            <tr class="data-row">
-                <td data-value="Grimmer 狼">
-                    <div style="font-weight:bold;">Grimmer 狼</div>
-                    <div style="font-size:10px; color:#718096;">#QUVLYY0VY</div>
-                </td>
-                <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td data-value="11033"><span style="color:#fbbf24">🏆 11033</span></td>
-                <td data-value="80"><span style="color:#34d399"> cards 80</span></td>
-                <td style="color:#a0aec0" data-value="20260126T175212.000Z">26/01/2026 14:52</td>
+                <td data-value="114"><span style="color:#34d399"> cards 114</span></td>
+                <td style="color:#a0aec0" data-value="20260127T000950.000Z">26/01/2026 21:09</td>
             </tr>
             
             <tr class="data-row">
@@ -674,8 +1016,19 @@ body {
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td data-value="10818"><span style="color:#fbbf24">🏆 10818</span></td>
-                <td data-value="18"><span style="color:#34d399"> cards 18</span></td>
-                <td style="color:#a0aec0" data-value="20260126T223321.000Z">26/01/2026 19:33</td>
+                <td data-value="50"><span style="color:#34d399"> cards 50</span></td>
+                <td style="color:#a0aec0" data-value="20260126T235059.000Z">26/01/2026 20:50</td>
+            </tr>
+            
+            <tr class="data-row">
+                <td data-value="tavin">
+                    <div style="font-weight:bold;">tavin</div>
+                    <div style="font-size:10px; color:#718096;">#U8VP8L8L0</div>
+                </td>
+                <td><span class="badge" style="background:#4a5568">Membro</span></td>
+                <td data-value="10730"><span style="color:#fbbf24">🏆 10730</span></td>
+                <td data-value="16"><span style="color:#34d399"> cards 16</span></td>
+                <td style="color:#a0aec0" data-value="20260127T001051.000Z">26/01/2026 21:10</td>
             </tr>
             
             <tr class="data-row">
@@ -687,17 +1040,6 @@ body {
                 <td data-value="10730"><span style="color:#fbbf24">🏆 10730</span></td>
                 <td data-value="52"><span style="color:#34d399"> cards 52</span></td>
                 <td style="color:#a0aec0" data-value="20260126T102928.000Z">26/01/2026 07:29</td>
-            </tr>
-            
-            <tr class="data-row">
-                <td data-value="tavin">
-                    <div style="font-weight:bold;">tavin</div>
-                    <div style="font-size:10px; color:#718096;">#U8VP8L8L0</div>
-                </td>
-                <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td data-value="10700"><span style="color:#fbbf24">🏆 10700</span></td>
-                <td data-value="0"><span style="color:#34d399"> cards 0</span></td>
-                <td style="color:#a0aec0" data-value="20260125T010959.000Z">24/01/2026 22:09</td>
             </tr>
             
             <tr class="data-row">
@@ -718,8 +1060,8 @@ body {
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td data-value="10188"><span style="color:#fbbf24">🏆 10188</span></td>
-                <td data-value="26"><span style="color:#34d399"> cards 26</span></td>
-                <td style="color:#a0aec0" data-value="20260126T153407.000Z">26/01/2026 12:34</td>
+                <td data-value="42"><span style="color:#34d399"> cards 42</span></td>
+                <td style="color:#a0aec0" data-value="20260127T003240.000Z">26/01/2026 21:32</td>
             </tr>
             
             <tr class="data-row">
@@ -742,6 +1084,17 @@ body {
                 <td data-value="10042"><span style="color:#fbbf24">🏆 10042</span></td>
                 <td data-value="10"><span style="color:#34d399"> cards 10</span></td>
                 <td style="color:#a0aec0" data-value="20260126T220801.000Z">26/01/2026 19:08</td>
+            </tr>
+            
+            <tr class="data-row">
+                <td data-value="Tanjo">
+                    <div style="font-weight:bold;">Tanjo</div>
+                    <div style="font-size:10px; color:#718096;">#LQP8QL8R</div>
+                </td>
+                <td><span class="badge" style="background:#4a5568">Membro</span></td>
+                <td data-value="10034"><span style="color:#fbbf24">🏆 10034</span></td>
+                <td data-value="0"><span style="color:#34d399"> cards 0</span></td>
+                <td style="color:#a0aec0" data-value="20260126T230442.000Z">26/01/2026 20:04</td>
             </tr>
             
             <tr class="data-row">
@@ -794,9 +1147,9 @@ body {
                     <div style="font-size:10px; color:#718096;">#V9QU2YVUQ</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td data-value="6281"><span style="color:#fbbf24">🏆 6281</span></td>
-                <td data-value="36"><span style="color:#34d399"> cards 36</span></td>
-                <td style="color:#a0aec0" data-value="20260126T124644.000Z">26/01/2026 09:46</td>
+                <td data-value="6224"><span style="color:#fbbf24">🏆 6224</span></td>
+                <td data-value="84"><span style="color:#34d399"> cards 84</span></td>
+                <td style="color:#a0aec0" data-value="20260126T232441.000Z">26/01/2026 20:24</td>
             </tr>
             
             <tr class="data-row">
@@ -814,6 +1167,31 @@ body {
         </table>
         
     </div>
+
+    <script>
+    function downloadPDF() {
+        const element = document.body;
+        const btn = document.getElementById('pdf-export-btn');
+        
+        // Add Clean Mode Class
+        element.classList.add('pdf-clean-mode');
+        
+        // Options
+        var opt = {
+          margin:       5,
+          filename:     'Relatorio_Guerra_DashRoyale.pdf',
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2, useCORS: true },
+          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Generate
+        html2pdf().set(opt).from(element).save().then(function(){
+            // Remove Clean Mode Class after save
+            element.classList.remove('pdf-clean-mode');
+        });
+    }
+    </script>
 
     <script>
     // [GT-Z] Scripts Cleaned (Sorting Restoration)

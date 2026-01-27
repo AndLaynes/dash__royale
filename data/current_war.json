@@ -104,7 +104,7 @@
                 "repairPoints": 0,
                 "boatAttacks": 0,
                 "decksUsed": 0,
-                "decksUsedToday": 1
+                "decksUsedToday": 3
             },
             {
                 "tag": "#GV8UJJ",
@@ -239,7 +239,7 @@
                 "repairPoints": 0,
                 "boatAttacks": 0,
                 "decksUsed": 0,
-                "decksUsedToday": 0
+                "decksUsedToday": 4
             },
             {
                 "tag": "#UJRLJY0L2",
@@ -440,6 +440,15 @@
                 "decksUsedToday": 0
             },
             {
+                "tag": "#8JCC00YL",
+                "name": "Poison",
+                "fame": 0,
+                "repairPoints": 0,
+                "boatAttacks": 0,
+                "decksUsed": 0,
+                "decksUsedToday": 0
+            },
+            {
                 "tag": "#CLYJQ2V00",
                 "name": "5C4RF4C3",
                 "fame": 0,
@@ -568,6 +577,15 @@
             {
                 "tag": "#LYGP9PQJ",
                 "name": "Barão Oliveira",
+                "fame": 0,
+                "repairPoints": 0,
+                "boatAttacks": 0,
+                "decksUsed": 0,
+                "decksUsedToday": 0
+            },
+            {
+                "tag": "#LQP8QL8R",
+                "name": "Tanjo",
                 "fame": 0,
                 "repairPoints": 0,
                 "boatAttacks": 0,
@@ -998,7 +1016,7 @@
                     "repairPoints": 0,
                     "boatAttacks": 0,
                     "decksUsed": 0,
-                    "decksUsedToday": 1
+                    "decksUsedToday": 4
                 },
                 {
                     "tag": "#80JG90RR9",
@@ -1025,7 +1043,7 @@
                     "repairPoints": 0,
                     "boatAttacks": 0,
                     "decksUsed": 0,
-                    "decksUsedToday": 0
+                    "decksUsedToday": 4
                 },
                 {
                     "tag": "#PPPGVGCQ",
@@ -1151,7 +1169,7 @@
                     "repairPoints": 0,
                     "boatAttacks": 0,
                     "decksUsed": 0,
-                    "decksUsedToday": 0
+                    "decksUsedToday": 2
                 },
                 {
                     "tag": "#V92UL8CU8",
@@ -1918,7 +1936,7 @@
                     "repairPoints": 0,
                     "boatAttacks": 0,
                     "decksUsed": 0,
-                    "decksUsedToday": 2
+                    "decksUsedToday": 3
                 },
                 {
                     "tag": "#208RUUQUG2",
@@ -1945,7 +1963,7 @@
                     "repairPoints": 0,
                     "boatAttacks": 0,
                     "decksUsed": 0,
-                    "decksUsedToday": 0
+                    "decksUsedToday": 3
                 },
                 {
                     "tag": "#VJQYYC220",
@@ -2555,6 +2573,15 @@
                 {
                     "tag": "#29Q9CP0C9",
                     "name": "OVERLORD",
+                    "fame": 0,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 0,
+                    "decksUsedToday": 0
+                },
+                {
+                    "tag": "#2YUPJPQ9Q",
+                    "name": "МаминаРадо©ть",
                     "fame": 0,
                     "repairPoints": 0,
                     "boatAttacks": 0,
@@ -3453,6 +3480,15 @@
                     "decksUsedToday": 0
                 },
                 {
+                    "tag": "#8L2QCUGL9",
+                    "name": "Zlotos",
+                    "fame": 0,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 0,
+                    "decksUsedToday": 0
+                },
+                {
                     "tag": "#9RL0U9RLQ",
                     "name": "pro100 Maks",
                     "fame": 0,
@@ -3478,6 +3514,15 @@
                     "boatAttacks": 0,
                     "decksUsed": 0,
                     "decksUsedToday": 2
+                },
+                {
+                    "tag": "#CP88QL8V",
+                    "name": "{A}{n}{G}{e}{L}",
+                    "fame": 0,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 0,
+                    "decksUsedToday": 0
                 },
                 {
                     "tag": "#VYR8Q8QQC",
@@ -5182,7 +5227,7 @@
                     "repairPoints": 0,
                     "boatAttacks": 0,
                     "decksUsed": 0,
-                    "decksUsedToday": 1
+                    "decksUsedToday": 3
                 },
                 {
                     "tag": "#GV8UJJ",
@@ -5317,7 +5362,7 @@
                     "repairPoints": 0,
                     "boatAttacks": 0,
                     "decksUsed": 0,
-                    "decksUsedToday": 0
+                    "decksUsedToday": 4
                 },
                 {
                     "tag": "#UJRLJY0L2",
@@ -5518,6 +5563,15 @@
                     "decksUsedToday": 0
                 },
                 {
+                    "tag": "#8JCC00YL",
+                    "name": "Poison",
+                    "fame": 0,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 0,
+                    "decksUsedToday": 0
+                },
+                {
                     "tag": "#CLYJQ2V00",
                     "name": "5C4RF4C3",
                     "fame": 0,
@@ -5646,6 +5700,15 @@
                 {
                     "tag": "#LYGP9PQJ",
                     "name": "Barão Oliveira",
+                    "fame": 0,
+                    "repairPoints": 0,
+                    "boatAttacks": 0,
+                    "decksUsed": 0,
+                    "decksUsedToday": 0
+                },
+                {
+                    "tag": "#LQP8QL8R",
+                    "name": "Tanjo",
                     "fame": 0,
                     "repairPoints": 0,
                     "boatAttacks": 0,
