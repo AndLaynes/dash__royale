@@ -96,7 +96,7 @@
             "role": "member",
             "lastSeen": "20260126T235902.000Z",
             "expLevel": 68,
-            "trophies": 11728,
+            "trophies": 11729,
             "arena": {
                 "id": 54000132,
                 "name": "Summit of Heroes",
@@ -104,7 +104,7 @@
             },
             "clanRank": 6,
             "previousClanRank": 4,
-            "donations": 18,
+            "donations": 43,
             "donationsReceived": 0,
             "clanChestPoints": 0
         },
@@ -321,7 +321,25 @@
             "clanRank": 18,
             "previousClanRank": 14,
             "donations": 26,
-            "donationsReceived": 16,
+            "donationsReceived": 31,
+            "clanChestPoints": 0
+        },
+        {
+            "tag": "#VYYRPJG",
+            "name": "SpartanBr444",
+            "role": "member",
+            "lastSeen": "20260127T004400.000Z",
+            "expLevel": 58,
+            "trophies": 10852,
+            "arena": {
+                "id": 54000130,
+                "name": "Royal Road",
+                "rawName": "Arena_L12"
+            },
+            "clanRank": 19,
+            "previousClanRank": 0,
+            "donations": 60,
+            "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
@@ -336,28 +354,10 @@
                 "name": "Royal Road",
                 "rawName": "Arena_L12"
             },
-            "clanRank": 19,
+            "clanRank": 20,
             "previousClanRank": 15,
             "donations": 92,
             "donationsReceived": 80,
-            "clanChestPoints": 0
-        },
-        {
-            "tag": "#VYYRPJG",
-            "name": "SpartanBr444",
-            "role": "member",
-            "lastSeen": "20260126T224601.000Z",
-            "expLevel": 58,
-            "trophies": 10823,
-            "arena": {
-                "id": 54000130,
-                "name": "Royal Road",
-                "rawName": "Arena_L12"
-            },
-            "clanRank": 20,
-            "previousClanRank": 0,
-            "donations": 34,
-            "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
@@ -429,7 +429,7 @@
             "clanRank": 24,
             "previousClanRank": 19,
             "donations": 16,
-            "donationsReceived": 20,
+            "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
@@ -474,7 +474,7 @@
             "role": "coLeader",
             "lastSeen": "20260126T232649.000Z",
             "expLevel": 72,
-            "trophies": 10503,
+            "trophies": 10530,
             "arena": {
                 "id": 54000130,
                 "name": "Royal Road",
@@ -591,7 +591,7 @@
             "clanRank": 33,
             "previousClanRank": 28,
             "donations": 42,
-            "donationsReceived": 40,
+            "donationsReceived": 56,
             "clanChestPoints": 0
         },
         {

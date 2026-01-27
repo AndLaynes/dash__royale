@@ -240,6 +240,18 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
+.pdf-clean-mode table {
+    page-break-inside: auto !important;
+    width: 100% !important;
+    table-layout: fixed !important; /* Garante que respeite as larguras */
+}
+.pdf-clean-mode thead { 
+    display: table-header-group !important; /* Repete cabeçalho na quebra de página */
+}
+.pdf-clean-mode tr { 
+    page-break-inside: avoid !important; 
+    page-break-after: auto !important;
+}
 .pdf-clean-mode * {
     color: #000000 !important;
     border-color: #000000 !important;
@@ -269,19 +281,39 @@ body {
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
     border: 1px solid #000000 !important;
-    padding: 6px !important;
-    font-size: 12px !important;
+    padding: 4px !important; /* Reduzido padding */
+    font-size: 11px !important; /* Fonte levemente menor para caber */
+    word-wrap: break-word !important;
 }
+/* Otimização de Colunas para PDF */
+.pdf-clean-mode th:nth-child(3), 
+.pdf-clean-mode td:nth-child(3) { /* Decks Used */
+    width: 60px !important; 
+    text-align: center !important;
+}
+.pdf-clean-mode th:nth-child(4),
+.pdf-clean-mode td:nth-child(4) { /* Faltam */
+    width: 40px !important;
+    text-align: center !important;
+}
+
 .pdf-clean-mode .status-badge {
-    border: 1px solid #000000 !important;
-    font-weight: bold !important;
+    border: none !important; /* Remove bordas arredondadas */
+    border-radius: 0 !important;
+    font-weight: normal !important;
     color: #000000 !important;
-    padding: 2px 8px !important;
+    padding: 0 !important;
+    text-transform: uppercase;
 }
 .pdf-clean-mode .missing-badge {
     background: transparent !important;
     color: #000000 !important;
-    border: 1px solid #000000 !important;
+    border: none !important; /* Remove círculo */
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    font-weight: normal !important;
+    display: inline !important;
 }
 </style>
     <style>
@@ -520,6 +552,18 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
+.pdf-clean-mode table {
+    page-break-inside: auto !important;
+    width: 100% !important;
+    table-layout: fixed !important; /* Garante que respeite as larguras */
+}
+.pdf-clean-mode thead { 
+    display: table-header-group !important; /* Repete cabeçalho na quebra de página */
+}
+.pdf-clean-mode tr { 
+    page-break-inside: avoid !important; 
+    page-break-after: auto !important;
+}
 .pdf-clean-mode * {
     color: #000000 !important;
     border-color: #000000 !important;
@@ -549,19 +593,39 @@ body {
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
     border: 1px solid #000000 !important;
-    padding: 6px !important;
-    font-size: 12px !important;
+    padding: 4px !important; /* Reduzido padding */
+    font-size: 11px !important; /* Fonte levemente menor para caber */
+    word-wrap: break-word !important;
 }
+/* Otimização de Colunas para PDF */
+.pdf-clean-mode th:nth-child(3), 
+.pdf-clean-mode td:nth-child(3) { /* Decks Used */
+    width: 60px !important; 
+    text-align: center !important;
+}
+.pdf-clean-mode th:nth-child(4),
+.pdf-clean-mode td:nth-child(4) { /* Faltam */
+    width: 40px !important;
+    text-align: center !important;
+}
+
 .pdf-clean-mode .status-badge {
-    border: 1px solid #000000 !important;
-    font-weight: bold !important;
+    border: none !important; /* Remove bordas arredondadas */
+    border-radius: 0 !important;
+    font-weight: normal !important;
     color: #000000 !important;
-    padding: 2px 8px !important;
+    padding: 0 !important;
+    text-transform: uppercase;
 }
 .pdf-clean-mode .missing-badge {
     background: transparent !important;
     color: #000000 !important;
-    border: 1px solid #000000 !important;
+    border: none !important; /* Remove círculo */
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    font-weight: normal !important;
+    display: inline !important;
 }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -585,7 +649,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">26/01/2026 21:43</strong>
+                    <strong style="color:#cbd5e0">26/01/2026 21:53</strong>
                 </div>
             </div>
         </div>
@@ -641,7 +705,7 @@ body {
                     <div style="font-size:10px; color:#718096;">#2VLR9U90</div>
                 </td>
                 <td><span class="badge" style="background:#d69e2e">Co-Líder</span></td>
-                <td data-value="10503"><span style="color:#fbbf24">🏆 10503</span></td>
+                <td data-value="10530"><span style="color:#fbbf24">🏆 10530</span></td>
                 <td data-value="40"><span style="color:#34d399"> cards 40</span></td>
                 <td style="color:#a0aec0" data-value="20260126T232649.000Z">26/01/2026 20:26</td>
             </tr>
@@ -916,8 +980,8 @@ body {
                     <div style="font-size:10px; color:#718096;">#CJRCPL88P</div>
                 </td>
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td data-value="11728"><span style="color:#fbbf24">🏆 11728</span></td>
-                <td data-value="18"><span style="color:#34d399"> cards 18</span></td>
+                <td data-value="11729"><span style="color:#fbbf24">🏆 11729</span></td>
+                <td data-value="43"><span style="color:#34d399"> cards 43</span></td>
                 <td style="color:#a0aec0" data-value="20260126T235902.000Z">26/01/2026 20:59</td>
             </tr>
             
@@ -988,6 +1052,17 @@ body {
             </tr>
             
             <tr class="data-row">
+                <td data-value="SpartanBr444">
+                    <div style="font-weight:bold;">SpartanBr444</div>
+                    <div style="font-size:10px; color:#718096;">#VYYRPJG</div>
+                </td>
+                <td><span class="badge" style="background:#4a5568">Membro</span></td>
+                <td data-value="10852"><span style="color:#fbbf24">🏆 10852</span></td>
+                <td data-value="60"><span style="color:#34d399"> cards 60</span></td>
+                <td style="color:#a0aec0" data-value="20260127T004400.000Z">26/01/2026 21:44</td>
+            </tr>
+            
+            <tr class="data-row">
                 <td data-value="Kauan">
                     <div style="font-weight:bold;">Kauan</div>
                     <div style="font-size:10px; color:#718096;">#UC2CJ0JR2</div>
@@ -996,17 +1071,6 @@ body {
                 <td data-value="10825"><span style="color:#fbbf24">🏆 10825</span></td>
                 <td data-value="92"><span style="color:#34d399"> cards 92</span></td>
                 <td style="color:#a0aec0" data-value="20260126T140240.000Z">26/01/2026 11:02</td>
-            </tr>
-            
-            <tr class="data-row">
-                <td data-value="SpartanBr444">
-                    <div style="font-weight:bold;">SpartanBr444</div>
-                    <div style="font-size:10px; color:#718096;">#VYYRPJG</div>
-                </td>
-                <td><span class="badge" style="background:#4a5568">Membro</span></td>
-                <td data-value="10823"><span style="color:#fbbf24">🏆 10823</span></td>
-                <td data-value="34"><span style="color:#34d399"> cards 34</span></td>
-                <td style="color:#a0aec0" data-value="20260126T224601.000Z">26/01/2026 19:46</td>
             </tr>
             
             <tr class="data-row">

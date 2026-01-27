@@ -254,6 +254,18 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
+.pdf-clean-mode table {
+    page-break-inside: auto !important;
+    width: 100% !important;
+    table-layout: fixed !important; /* Garante que respeite as larguras */
+}
+.pdf-clean-mode thead { 
+    display: table-header-group !important; /* Repete cabeçalho na quebra de página */
+}
+.pdf-clean-mode tr { 
+    page-break-inside: avoid !important; 
+    page-break-after: auto !important;
+}
 .pdf-clean-mode * {
     color: #000000 !important;
     border-color: #000000 !important;
@@ -283,19 +295,39 @@ body {
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
     border: 1px solid #000000 !important;
-    padding: 6px !important;
-    font-size: 12px !important;
+    padding: 4px !important; /* Reduzido padding */
+    font-size: 11px !important; /* Fonte levemente menor para caber */
+    word-wrap: break-word !important;
 }
+/* Otimização de Colunas para PDF */
+.pdf-clean-mode th:nth-child(3), 
+.pdf-clean-mode td:nth-child(3) { /* Decks Used */
+    width: 60px !important; 
+    text-align: center !important;
+}
+.pdf-clean-mode th:nth-child(4),
+.pdf-clean-mode td:nth-child(4) { /* Faltam */
+    width: 40px !important;
+    text-align: center !important;
+}
+
 .pdf-clean-mode .status-badge {
-    border: 1px solid #000000 !important;
-    font-weight: bold !important;
+    border: none !important; /* Remove bordas arredondadas */
+    border-radius: 0 !important;
+    font-weight: normal !important;
     color: #000000 !important;
-    padding: 2px 8px !important;
+    padding: 0 !important;
+    text-transform: uppercase;
 }
 .pdf-clean-mode .missing-badge {
     background: transparent !important;
     color: #000000 !important;
-    border: 1px solid #000000 !important;
+    border: none !important; /* Remove círculo */
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    font-weight: normal !important;
+    display: inline !important;
 }
 """
 
@@ -684,7 +716,10 @@ def generate_html_report():
     count_incompleto = sum(1 for r in top_50_rows if r['status'] == 'INCOMPLETO')
     count_zerado = sum(1 for r in top_50_rows if r['status'] == 'ZERADO')
 
-    # 4. Gerar HTML da Tabela
+    # 6. Calcular Total de Jogadores Listados
+    total_listed = len(top_50_rows)
+
+    # 7. Gerar HTML da Tabela
     audit_table_html = ""
     for row in top_50_rows:
         status_class = "status-incomplete"
@@ -738,11 +773,17 @@ def generate_html_report():
                 <span>📄</span> Exportar PDF
             </button>
         </div>
+        </div>
+        
         <div class="audit-stats">
              <!-- META AGORA É UM STAT-BOX PARA ALINHAMENTO -->
             <div class="stat-box" style="border: 1px solid #fbbf24; color: #fbbf24; background: rgba(251, 191, 36, 0.1);">
                 <div style="font-size:10px; opacity:0.8;">META DA GUERRA</div>
                 {meta_decks} DECKS
+            </div>
+            <div class="stat-box" style="border: 1px solid #a0aec0; color: #cbd5e0; background: rgba(45, 55, 72, 0.5);">
+                <div style="font-size:10px; opacity:0.8;">MEMBROS ATIVOS</div>
+                {total_listed}
             </div>
             <div class="stat-box stat-green">
                 <div style="font-size:10px; opacity:0.8;">EM DIA</div>

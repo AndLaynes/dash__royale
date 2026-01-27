@@ -240,6 +240,18 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
+.pdf-clean-mode table {
+    page-break-inside: auto !important;
+    width: 100% !important;
+    table-layout: fixed !important; /* Garante que respeite as larguras */
+}
+.pdf-clean-mode thead { 
+    display: table-header-group !important; /* Repete cabeçalho na quebra de página */
+}
+.pdf-clean-mode tr { 
+    page-break-inside: avoid !important; 
+    page-break-after: auto !important;
+}
 .pdf-clean-mode * {
     color: #000000 !important;
     border-color: #000000 !important;
@@ -269,19 +281,39 @@ body {
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
     border: 1px solid #000000 !important;
-    padding: 6px !important;
-    font-size: 12px !important;
+    padding: 4px !important; /* Reduzido padding */
+    font-size: 11px !important; /* Fonte levemente menor para caber */
+    word-wrap: break-word !important;
 }
+/* Otimização de Colunas para PDF */
+.pdf-clean-mode th:nth-child(3), 
+.pdf-clean-mode td:nth-child(3) { /* Decks Used */
+    width: 60px !important; 
+    text-align: center !important;
+}
+.pdf-clean-mode th:nth-child(4),
+.pdf-clean-mode td:nth-child(4) { /* Faltam */
+    width: 40px !important;
+    text-align: center !important;
+}
+
 .pdf-clean-mode .status-badge {
-    border: 1px solid #000000 !important;
-    font-weight: bold !important;
+    border: none !important; /* Remove bordas arredondadas */
+    border-radius: 0 !important;
+    font-weight: normal !important;
     color: #000000 !important;
-    padding: 2px 8px !important;
+    padding: 0 !important;
+    text-transform: uppercase;
 }
 .pdf-clean-mode .missing-badge {
     background: transparent !important;
     color: #000000 !important;
-    border: 1px solid #000000 !important;
+    border: none !important; /* Remove círculo */
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    font-weight: normal !important;
+    display: inline !important;
 }
 </style>
     <style>
@@ -520,6 +552,18 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
+.pdf-clean-mode table {
+    page-break-inside: auto !important;
+    width: 100% !important;
+    table-layout: fixed !important; /* Garante que respeite as larguras */
+}
+.pdf-clean-mode thead { 
+    display: table-header-group !important; /* Repete cabeçalho na quebra de página */
+}
+.pdf-clean-mode tr { 
+    page-break-inside: avoid !important; 
+    page-break-after: auto !important;
+}
 .pdf-clean-mode * {
     color: #000000 !important;
     border-color: #000000 !important;
@@ -549,19 +593,39 @@ body {
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
     border: 1px solid #000000 !important;
-    padding: 6px !important;
-    font-size: 12px !important;
+    padding: 4px !important; /* Reduzido padding */
+    font-size: 11px !important; /* Fonte levemente menor para caber */
+    word-wrap: break-word !important;
 }
+/* Otimização de Colunas para PDF */
+.pdf-clean-mode th:nth-child(3), 
+.pdf-clean-mode td:nth-child(3) { /* Decks Used */
+    width: 60px !important; 
+    text-align: center !important;
+}
+.pdf-clean-mode th:nth-child(4),
+.pdf-clean-mode td:nth-child(4) { /* Faltam */
+    width: 40px !important;
+    text-align: center !important;
+}
+
 .pdf-clean-mode .status-badge {
-    border: 1px solid #000000 !important;
-    font-weight: bold !important;
+    border: none !important; /* Remove bordas arredondadas */
+    border-radius: 0 !important;
+    font-weight: normal !important;
     color: #000000 !important;
-    padding: 2px 8px !important;
+    padding: 0 !important;
+    text-transform: uppercase;
 }
 .pdf-clean-mode .missing-badge {
     background: transparent !important;
     color: #000000 !important;
-    border: 1px solid #000000 !important;
+    border: none !important; /* Remove círculo */
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    font-weight: normal !important;
+    display: inline !important;
 }
 </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -585,7 +649,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">26/01/2026 21:43</strong>
+                    <strong style="color:#cbd5e0">26/01/2026 21:53</strong>
                 </div>
             </div>
         </div>
@@ -902,8 +966,8 @@ body {
                         Fame: <b style="color:white">23200</b><br>
                         Eff: <b style="color:white">145</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10503">
-                        Troféus: <b style="color:white">10503</b><br>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10530">
+                        Troféus: <b style="color:white">10530</b><br>
                         Donates: <b style="color:white">40</b>
                     </td>
                 </tr>
@@ -1065,14 +1129,14 @@ body {
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="32"> #32</td>
                     <td style="font-weight:600;" data-value="WvCly">WvCly</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="60.5">60.5</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="61.2">61.2</td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="13100">
                         Fame: <b style="color:white">13100</b><br>
                         Eff: <b style="color:white">154</b>
                     </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="11728">
-                        Troféus: <b style="color:white">11728</b><br>
-                        Donates: <b style="color:white">18</b>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="11729">
+                        Troféus: <b style="color:white">11729</b><br>
+                        Donates: <b style="color:white">43</b>
                     </td>
                 </tr>
                 
@@ -1274,6 +1338,20 @@ body {
                 
                 <tr class="data-row">
                     <td style="font-weight:bold; font-size:16px;" data-value="47"> #47</td>
+                    <td style="font-weight:600;" data-value="SpartanBr444">SpartanBr444</td>
+                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="15.3">15.3</td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
+                        Fame: <b style="color:white">0</b><br>
+                        Eff: <b style="color:white">0</b>
+                    </td>
+                    <td style="font-size:13px; color:#a0aec0;" data-value="10852">
+                        Troféus: <b style="color:white">10852</b><br>
+                        Donates: <b style="color:white">60</b>
+                    </td>
+                </tr>
+                
+                <tr class="data-row">
+                    <td style="font-weight:bold; font-size:16px;" data-value="48"> #48</td>
                     <td style="font-weight:600;" data-value="BieuL">BieuL</td>
                     <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="15.0">15.0</td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="0">
@@ -1287,7 +1365,7 @@ body {
                 </tr>
                 
                 <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="48"> #48</td>
+                    <td style="font-weight:bold; font-size:16px;" data-value="49"> #49</td>
                     <td style="font-weight:600;" data-value="Poison">Poison</td>
                     <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="15.0">15.0</td>
                     <td style="font-size:13px; color:#a0aec0;" data-value="0">
@@ -1297,20 +1375,6 @@ body {
                     <td style="font-size:13px; color:#a0aec0;" data-value="12000">
                         Troféus: <b style="color:white">12000</b><br>
                         Donates: <b style="color:white">0</b>
-                    </td>
-                </tr>
-                
-                <tr class="data-row">
-                    <td style="font-weight:bold; font-size:16px;" data-value="49"> #49</td>
-                    <td style="font-weight:600;" data-value="SpartanBr444">SpartanBr444</td>
-                    <td style="color:#fbbf24; font-weight:800; font-size:18px;" data-value="14.5">14.5</td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="0">
-                        Fame: <b style="color:white">0</b><br>
-                        Eff: <b style="color:white">0</b>
-                    </td>
-                    <td style="font-size:13px; color:#a0aec0;" data-value="10823">
-                        Troféus: <b style="color:white">10823</b><br>
-                        Donates: <b style="color:white">34</b>
                     </td>
                 </tr>
                 
