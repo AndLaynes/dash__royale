@@ -257,11 +257,12 @@ body {
 
 .pdf-clean-mode table {
     page-break-inside: auto !important;
-    width: 99% !important;
+    width: 98% !important;
     margin: 0 auto !important;
     table-layout: fixed !important;
     border-collapse: collapse !important; /* Grid Sólido: Garante fechamento */
     border: 1px solid #000000 !important; /* Borda externa da tabela */
+    border-right: 1px solid #000000 !important; /* Reforço de fechamento */
 }
 .pdf-clean-mode thead { 
     display: table-header-group !important;
@@ -286,7 +287,7 @@ body {
 }
 .pdf-clean-mode .container {
     max-width: 100% !important;
-    padding: 0 !important;
+    padding: 0 20px !important;
     margin: 0 !important;
 }
 .pdf-clean-mode .stat-box {

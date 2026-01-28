@@ -25,6 +25,14 @@ Para corrigir a visualização "incompleta" na direita e garantir a coerência v
 - Script executado com sucesso.
 - Deploy automático realizado via GitHub Actions.
 
+## 3. Refatoração de Backend (Correção Definitiva)
+- **Problema:** O script gerador (`generate_html_report.py`) duplicava blocos CSS e injetava linhas órfãs, reintroduzindo erros de sintaxe a cada atualização.
+- **Solução:**
+    1.  **Limpeza:** Removidas duplicatas da variável `STYLE_CSS`.
+    2.  **Fix:** A regra `width: 99%` foi aplicada na fonte (Python), garantindo persistência.
+    3.  **Sanidade:** Removidas inserções duplicadas de tags `<style>` no template.
+
+
 Aguarde a atualização do cache (1-2 min) e realize a exportação. O documento agora deve se parecer com uma planilha oficial impressa.
 
 ---
