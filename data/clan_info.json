@@ -13,7 +13,7 @@
         "countryCode": "BR"
     },
     "requiredTrophies": 9000,
-    "donationsPerWeek": 6080,
+    "donationsPerWeek": 6104,
     "clanChestStatus": "inactive",
     "clanChestLevel": 1,
     "clanChestMaxLevel": 0,
@@ -41,7 +41,7 @@
             "tag": "#9RUUG2R8",
             "name": "Nico",
             "role": "member",
-            "lastSeen": "20260128T220939.000Z",
+            "lastSeen": "20260128T222115.000Z",
             "expLevel": 68,
             "trophies": 12000,
             "arena": {
@@ -52,7 +52,7 @@
             "clanRank": 2,
             "previousClanRank": 0,
             "donations": 26,
-            "donationsReceived": 32,
+            "donationsReceived": 40,
             "clanChestPoints": 0
         },
         {
@@ -221,7 +221,7 @@
             "tag": "#YJUG9Y88",
             "name": "Dockz",
             "role": "elder",
-            "lastSeen": "20260128T211551.000Z",
+            "lastSeen": "20260128T222241.000Z",
             "expLevel": 66,
             "trophies": 11087,
             "arena": {
@@ -239,7 +239,7 @@
             "tag": "#2P299V0CU",
             "name": "Sotto ツ",
             "role": "member",
-            "lastSeen": "20260128T154023.000Z",
+            "lastSeen": "20260128T221859.000Z",
             "expLevel": 69,
             "trophies": 11057,
             "arena": {
@@ -249,7 +249,7 @@
             },
             "clanRank": 13,
             "previousClanRank": 13,
-            "donations": 310,
+            "donations": 326,
             "donationsReceived": 80,
             "clanChestPoints": 0
         },
@@ -275,7 +275,7 @@
             "tag": "#8U008PQU8",
             "name": "RobaFrag",
             "role": "elder",
-            "lastSeen": "20260128T200117.000Z",
+            "lastSeen": "20260128T222729.000Z",
             "expLevel": 68,
             "trophies": 11000,
             "arena": {
@@ -285,7 +285,7 @@
             },
             "clanRank": 15,
             "previousClanRank": 15,
-            "donations": 911,
+            "donations": 919,
             "donationsReceived": 360,
             "clanChestPoints": 0
         },
@@ -520,7 +520,7 @@
             "clanRank": 28,
             "previousClanRank": 29,
             "donations": 142,
-            "donationsReceived": 144,
+            "donationsReceived": 160,
             "clanChestPoints": 0
         },
         {

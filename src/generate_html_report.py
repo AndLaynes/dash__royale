@@ -248,92 +248,89 @@ body {
 
 
 
-/* PDF CLEAN MODE (GT-Z Print Style) */
-.pdf-clean-mode {
-    background-color: #ffffff !important;
-    background-image: none !important;
-    color: #000000 !important;
-}
+/* PRINT MEDIA (GT-Z Standard) */
+@media print {
+    @page { margin: 5mm; size: A4 portrait; }
 
-.pdf-clean-mode table {
-    page-break-inside: auto !important;
-    width: 98% !important;
-    margin: 0 auto !important;
-    table-layout: fixed !important;
-    border-collapse: collapse !important; /* Grid Sólido: Garante fechamento */
-    border: 1px solid #000000 !important; /* Borda externa da tabela */
-    border-right: 1px solid #000000 !important; /* Reforço de fechamento */
-}
-.pdf-clean-mode thead { 
-    display: table-header-group !important;
-}
-.pdf-clean-mode tr { 
-    page-break-inside: avoid !important; 
-    page-break-after: auto !important;
-}
-.pdf-clean-mode * {
-    color: #000000 !important;
-    border-color: #000000 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-}
-.pdf-clean-mode .main-header,
-.pdf-clean-mode .nav-pills,
-.pdf-clean-mode .info-box,
-.pdf-clean-mode .audit-timestamp,
-.pdf-clean-mode #pdf-export-btn { 
-    display: none !important; 
-}
-.pdf-clean-mode .container {
-    max-width: 100% !important;
-    padding: 0 20px !important;
-    margin: 0 !important;
-}
-.pdf-clean-mode .stat-box {
-    border: 1px solid #000000 !important;
-    color: #000000 !important;
-}
-.pdf-clean-mode th, .pdf-clean-mode td {
-    border: 1px solid #000000 !important; /* Garante linhas verticais e horizontais em TUDO */
-    padding: 4px !important;
-    font-size: 11px !important;
-    word-wrap: break-word !important;
-    background: #ffffff !important;
-}
-/* Forçar fechamento visual explícito no último filho se necessário, mas collapse já resolve */
-.pdf-clean-mode td:last-child, .pdf-clean-mode th:last-child {
-    border-right: 1px solid #000000 !important;
-}
-/* Otimização de Colunas para PDF */
-.pdf-clean-mode th:nth-child(3), 
-.pdf-clean-mode td:nth-child(3) { /* Decks Used */
-    width: 60px !important; 
-    text-align: center !important;
-}
-.pdf-clean-mode th:nth-child(4),
-.pdf-clean-mode td:nth-child(4) { /* Faltam */
-    width: 40px !important;
-    text-align: center !important;
-}
+    body {
+        background-color: #ffffff !important;
+        background-image: none !important;
+        color: #000000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
 
-.pdf-clean-mode .status-badge {
-    border: none !important; /* Remove bordas arredondadas */
-    border-radius: 0 !important;
-    font-weight: normal !important;
-    color: #000000 !important;
-    padding: 0 !important;
-    text-transform: uppercase;
-}
-.pdf-clean-mode .missing-badge {
-    background: transparent !important;
-    color: #000000 !important;
-    border: none !important; /* Remove círculo */
-    border-radius: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    font-weight: normal !important;
-    display: inline !important;
+    /* Hide Navigation & UI Elements */
+    .main-header,
+    .nav-pills,
+    .info-box,
+    .audit-timestamp,
+    #pdf-export-btn { 
+        display: none !important; 
+    }
+
+    /* Layout Adjustments */
+    .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 10px !important; /* Safety Buffer */
+        margin: 0 !important;
+    }
+
+    /* Stat Boxes (Simplified for Print) */
+    .stat-box {
+        border: 1px solid #000000 !important;
+        color: #000000 !important;
+        break-inside: avoid;
+    }
+
+    /* Table Typography */
+    .custom-table th, 
+    .custom-table td {
+        border: 1px solid #000000 !important;
+        padding: 4px !important;
+        font-size: 11px !important;
+        color: #000000 !important;
+        background: #ffffff !important;
+    }
+
+    /* Table Structure */
+    .custom-table {
+        width: 98% !important; /* Safety Zone */
+        margin: 0 auto !important;
+        border-collapse: collapse !important;
+        border: 1px solid #000000 !important;
+        border-right: 1px solid #000000 !important; /* Explicit Close */
+        page-break-inside: auto;
+    }
+
+    .custom-table thead {
+        display: table-header-group !important; /* REPEATS HEADER */
+    }
+
+    .custom-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    /* Badges & text */
+    .status-badge {
+        border: none !important;
+        color: #000000 !important;
+        background: transparent !important;
+    }
+    
+    .missing-badge {
+        color: #000000 !important;
+        background: transparent !important;
+    }
+    
+    /* Column Optimization */
+    .custom-table th:nth-child(3), 
+    .custom-table td:nth-child(3) { width: 60px !important; text-align: center !important; }
+    
+    .custom-table th:nth-child(4),
+    .custom-table td:nth-child(4) { width: 40px !important; text-align: center !important; }
 }
 """
 
@@ -363,7 +360,7 @@ def get_page_template(active_page, content):
     <style>{STYLE_CSS}</style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -395,26 +392,9 @@ def get_page_template(active_page, content):
 
     <script>
     function downloadPDF() {{
-        const element = document.body;
-        const btn = document.getElementById('pdf-export-btn');
-        
-        // Add Clean Mode Class
-        element.classList.add('pdf-clean-mode');
-        
-        // Options
-        var opt = {{
-          margin:       5,
-          filename:     'Relatorio_Guerra_DashRoyale.pdf',
-          image:        {{ type: 'jpeg', quality: 0.98 }},
-          html2canvas:  {{ scale: 2, useCORS: true }},
-          jsPDF:        {{ unit: 'mm', format: 'a4', orientation: 'portrait' }}
-        }};
-
-        // Generate
-        html2pdf().set(opt).from(element).save().then(function(){{
-            // Remove Clean Mode Class after save
-            element.classList.remove('pdf-clean-mode');
-        }});
+        // [GT-Z] Native Browser Print
+        // Uses @media print CSS for perfect layout and header repetition.
+        window.print();
     }}
     </script>
 

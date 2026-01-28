@@ -10,7 +10,11 @@ Para corrigir a visualização "incompleta" na direita e garantir a coerência v
 ### A. Grade Sólida (Grid System)
 - Alterado o modelo CSS da tabela para `border-collapse: collapse`.
 - O que isso faz: Funde as bordas de células adjacentes em uma única linha preta de 1px.
-- Resultado: A tabela agora é um **bloco fechado e geométrico**. Não existem "linhas flutuantes". Toda célula está cercada por bordas, garantindo que o lado direito termine exatamente na linha vertical final da tabela.
+- Resultado: A tabela agora é um **bloco fechado**.
+    - **Width:** Reduzido para `98%` (Buffer anti-clipping).
+    - **Container Padding:** `0 20px` (Margem de segurança lateral).
+    - **Borda Direita:** Inserida `border-right: 1px solid #000000` explícita na tag `<table>`.
+
 
 ### B. Cabeçalho Recorrente
 - Aplicado `thead { display: table-header-group; }`.
