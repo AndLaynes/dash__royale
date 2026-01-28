@@ -34,10 +34,13 @@ Para corrigir a visualização "incompleta" na direita e garantir a coerência v
 - **Solução:**
     1.  **Limpeza:** Removidas duplicatas da variável `STYLE_CSS`.
     2.  **Fix:** A regra `width: 99%` foi aplicada na fonte (Python), garantindo persistência.
-    3.  **Sanidade:** Removidas inserções duplicadas de tags `<style>` no template.
-
-
-Aguarde a atualização do cache (1-2 min) e realize a exportação. O documento agora deve se parecer com uma planilha oficial impressa.
+    
+### 4. Transição para Native Print (GT-Z)
+- **Problema:** A biblioteca `html2pdf.js` gerava uma imagem estática da tabela, impedindo a repetição inteligente do cabeçalho em múltiplas páginas.
+- **Solução:**
+    1.  **Remoção de Código Zumbi:** Biblioteca `html2pdf.bundle.min.js` deletada.
+    2.  **Motor Nativo:** Função `downloadPDF()` migrada para `window.print()`.
+    3.  **Estilização Semântica:** Adicionado bloco `@media print` real. O navegador agora entende `thead { display: table-header-group; }` e repete o cabeçalho automaticamente em cada quebra de página.
 
 ---
 *Assinado: Antigravity - Ground Truth Enforcement.*

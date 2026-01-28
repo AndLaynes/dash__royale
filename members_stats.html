@@ -238,12 +238,15 @@ body {
 @media print {
     @page { margin: 5mm; size: A4 portrait; }
 
-    body {
+    body, html {
         background-color: #ffffff !important;
         background-image: none !important;
         color: #000000 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        overflow: visible !important; /* ENABLE SCROLL/PAGINATION */
+        height: auto !important;
+        display: block !important; /* DISABLE FLEX/GRID */
     }
 
     /* Hide Navigation & UI Elements */
@@ -261,6 +264,9 @@ body {
         width: 100% !important;
         padding: 0 10px !important; /* Safety Buffer */
         margin: 0 !important;
+        overflow: visible !important;
+        display: block !important; /* CRITICAL: NO FLEX allowed */
+        height: auto !important;
     }
 
     /* Stat Boxes (Simplified for Print) */
@@ -341,7 +347,7 @@ body {
                 </nav>
                 <div class="audit-timestamp">
                     <span>🕒 Atualizado:</span>
-                    <strong style="color:#cbd5e0">28/01/2026 19:32</strong>
+                    <strong style="color:#cbd5e0">28/01/2026 19:40</strong>
                 </div>
             </div>
         </div>
@@ -630,7 +636,7 @@ body {
                 <td><span class="badge" style="background:#4a5568">Membro</span></td>
                 <td data-value="12000"><span style="color:#fbbf24">🏆 12000</span></td>
                 <td data-value="26"><span style="color:#34d399"> cards 26</span></td>
-                <td style="color:#a0aec0" data-value="20260128T222115.000Z">28/01/2026 19:21</td>
+                <td style="color:#a0aec0" data-value="20260128T223239.000Z">28/01/2026 19:32</td>
             </tr>
             
             <tr class="data-row">

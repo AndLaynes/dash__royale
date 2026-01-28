@@ -252,12 +252,15 @@ body {
 @media print {
     @page { margin: 5mm; size: A4 portrait; }
 
-    body {
+    body, html {
         background-color: #ffffff !important;
         background-image: none !important;
         color: #000000 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        overflow: visible !important; /* ENABLE SCROLL/PAGINATION */
+        height: auto !important;
+        display: block !important; /* DISABLE FLEX/GRID */
     }
 
     /* Hide Navigation & UI Elements */
@@ -275,6 +278,9 @@ body {
         width: 100% !important;
         padding: 0 10px !important; /* Safety Buffer */
         margin: 0 !important;
+        overflow: visible !important;
+        display: block !important; /* CRITICAL: NO FLEX allowed */
+        height: auto !important;
     }
 
     /* Stat Boxes (Simplified for Print) */
