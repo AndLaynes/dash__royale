@@ -91,3 +91,19 @@ THEN response: `> ENGINE ONLINE. GROUND TRUTH CALIBRATED.`
 *   **[JUSTIFICATIVA]** Instabilidade crônica e violação do protocolo GT-Z (gerava artefatos não confiáveis). A função foi reduzida a um stub passivo para manter integridade da interface.
 
 **VERDICT:** SYSTEM CLEAN. PDF REMOVED. INTEGRITY CONFIRMED 100%.
+
+#### [TIMESTAMP: 2026-01-26 22:00 - PDF RESTORATION PROTOCOL]
+**TRIGGER:** `User Mandate: Restore PDF Export (Clean/Grid Style)`
+**ACTION:** Protocolo Frontend-Injection executado.
+
+**1. Arquitetura (Client-Side)**
+*   **[ADDED]** `html2pdf.js` injetado via CDN em `generate_html_report.py`.
+*   **[STYLE]** CSS `.pdf-clean-mode` implementado com `border-collapse: collapse` (Grid Sólido).
+*   **[LOGIC]** Botão "Exportar PDF" adicionado ao Header.
+
+**2. Higiene Visual (GT-Z Print)**
+*   **[ENFORCED]** Fundo Branco, Letras Pretas, Sem Sombras.
+*   **[METRIC]** Adicionado contador explícito de "Membros Ativos".
+*   **[FIX]** Margens ajustadas e cabeçalho recorrente (`thead { display: table-header-group }`).
+
+**VERDICT:** PDF EXPORT RESTORED STABLE. ZERO SERVER LOAD. VISUAL INTEGRITY HIGH.

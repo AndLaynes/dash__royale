@@ -294,7 +294,8 @@ body {
     color: #000000 !important;
 }
 .pdf-clean-mode table {
-    width: 100% !important;
+    width: 99% !important;
+    margin: 0 auto !important;
     border-collapse: collapse !important;
 }
 .pdf-clean-mode th, .pdf-clean-mode td {

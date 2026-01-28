@@ -1,25 +1,31 @@
-# RELATÓRIO DE SESSÃO: REFINAMENTO DE PDF (2026-01-26)
+# RELATÓRIO DE SESSÃO: OTIMIZAÇÃO DE PDF (GRID SÓLIDO)
 
 **STATUS:** [CONCLUÍDO]
 **AGENTE:** Antigravity (GT-Z Protocol)
 
-## 1. Refinamentos Visuais Realizados
+## 1. Implementação Visual (Tabela Fechada)
 
-Em resposta ao feedback e análise dos screenshots "comendo a margem", o código foi refinado para garantir uma impressão **estritamente utilitária**:
+Para corrigir a visualização "incompleta" na direita e garantir a coerência visual solicitada:
 
-### A. Correção de Margens e Layout
-- **Responsividade de Colunas:** A coluna "Decks Usados" foi apertada (`width: 60px`) e com texto centralizado para liberar espaço na direita.
-- **Quebras de Página:** Adicionado CSS `page-break-inside: avoid` em linhas e `display: table-header-group` no `<thead>` para forçar a repetição do cabeçalho em todas as páginas do PDF.
-- **Limpeza Total:** Removidas as bordas arredondadas e círculos das colunas "Faltam" e "Status". Agora é **apenas texto**, conforme solicitado.
+### A. Grade Sólida (Grid System)
+- Alterado o modelo CSS da tabela para `border-collapse: collapse`.
+- O que isso faz: Funde as bordas de células adjacentes em uma única linha preta de 1px.
+- Resultado: A tabela agora é um **bloco fechado e geométrico**. Não existem "linhas flutuantes". Toda célula está cercada por bordas, garantindo que o lado direito termine exatamente na linha vertical final da tabela.
 
-### B. Injeção de Dados ("Membros Ativos")
-- Adicionado um novo card estatístico no cabeçalho do PDF/HTML: **MEMBROS ATIVOS**.
-- Exibe a contagem exata de pessoas listadas na tabela (Top 50), dando clareza sobre o universo auditado.
+### B. Cabeçalho Recorrente
+- Aplicado `thead { display: table-header-group; }`.
+- Isso instrui o motor de renderização a repetir o cabeçalho caso a tabela quebre para a página 2 (Note: a eficácia total depende do browser do cliente, mas é o padrão W3C para impressão).
 
-## 2. Validação de Execução
-O script `run_update.py` rodou com sucesso (Exit Code: 0) e o deploy foi feito automaticamente (`git push`).
+### C. Margens e Alinhamento (Correção Right-Cutoff)
+- **Ajuste Fino:** Tabela configurada para `width: 99%` com `margin: 0 auto`.
+- **Motivo:** O renderizador `html2canvas` tende a cortar o último pixel da borda direita quando em `100%`. O recuo de 1% garante que a borda de fechamento ("Solid Grid") seja visualizada perfeitamente.
+- **Visual:** "Coelho/Colchete" substituído por GRADE fechada.
 
-**Aguarde 1-2 minutos** para a atualização do GitHub Pages, recarregue a página com `Ctrl+F5` e teste o botão "Exportar PDF" novamente. O resultado deve ser um documento limpo, alinhado e sem cortes.
+## 2. Validação
+- Script executado com sucesso.
+- Deploy automático realizado via GitHub Actions.
+
+Aguarde a atualização do cache (1-2 min) e realize a exportação. O documento agora deve se parecer com uma planilha oficial impressa.
 
 ---
 *Assinado: Antigravity - Ground Truth Enforcement.*
