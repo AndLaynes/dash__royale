@@ -254,11 +254,11 @@ body {
     background-image: none !important;
     color: #000000 !important;
 }
-    color: #000000 !important;
-}
+
 .pdf-clean-mode table {
     page-break-inside: auto !important;
-    width: 100% !important;
+    width: 99% !important;
+    margin: 0 auto !important;
     table-layout: fixed !important;
     border-collapse: collapse !important; /* Grid Sólido: Garante fechamento */
     border: 1px solid #000000 !important; /* Borda externa da tabela */
@@ -292,11 +292,6 @@ body {
 .pdf-clean-mode .stat-box {
     border: 1px solid #000000 !important;
     color: #000000 !important;
-}
-.pdf-clean-mode table {
-    width: 99% !important;
-    margin: 0 auto !important;
-    border-collapse: collapse !important;
 }
 .pdf-clean-mode th, .pdf-clean-mode td {
     border: 1px solid #000000 !important; /* Garante linhas verticais e horizontais em TUDO */
@@ -341,6 +336,8 @@ body {
 }
 """
 
+
+
 def get_page_template(active_page, content):
     nav_items = [
         ("index.html", "Visão Geral", "🏠", "Visão Geral"),
@@ -363,7 +360,7 @@ def get_page_template(active_page, content):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OS GUARDIÕES - {active_page}</title>
     <style>{STYLE_CSS}</style>
-    <style>{STYLE_CSS}</style>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
