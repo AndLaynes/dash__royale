@@ -283,13 +283,6 @@ body {
         height: auto !important;
     }
 
-    /* [GT-Z Fix] Unlock #printable-area for correct pagination */
-    #printable-area, .info-box, .audit-stats {
-        display: block !important;
-        overflow: visible !important;
-        height: auto !important;
-    }
-
     /* Stat Boxes (Simplified for Print) */
     .stat-box {
         border: 1px solid #000000 !important;

@@ -1,8 +1,8 @@
 [
     "Iniciando processamento de dados...",
     "Verificando dados da guerra atual (`current_war.json`)...",
-    "-> Sucesso: 83 participantes encontrados na guerra atual.",
-    "Gerando relatório para 83 jogadores com base em: 'Guerra Atual'.",
+    "-> Sucesso: 85 participantes encontrados na guerra atual.",
+    "Gerando relatório para 85 jogadores com base em: 'Guerra Atual'.",
     "Analisando dados do histórico de guerras (`riverracelog.json`)...",
     "-> Encontrados 10 registros de guerra no histórico.",
     "-> Buscando pelo CLAN_TAG (normalizado): '9PJRJRPC' no histórico...",

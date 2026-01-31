@@ -9,8 +9,8 @@ def run_script(script_path):
     """
     print(f"--- Executando {script_path} ---")
     try:
-        # Detecta a codificação de caracteres preferida do sistema (ex: 'cp1252' no Windows)
-        system_encoding = locale.getpreferredencoding(False)
+        # [GT-Z Hardening] Força UTF-8 para alinhar com chcp 65001 do .bat
+        system_encoding = 'utf-8'
 
         # subprocess.run é uma forma mais moderna e segura de executar processos.
         # - check=True: Levanta uma exceção (CalledProcessError) se o script retornar um erro.
@@ -70,7 +70,7 @@ def git_auto_sync():
                 check=True,
                 capture_output=True,
                 text=True,
-                encoding=locale.getpreferredencoding(False)
+                encoding='utf-8'
             )
             if result.stdout:
                 # Filtrar saída para não poluir demais, mas mostrar progresso

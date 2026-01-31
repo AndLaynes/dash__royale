@@ -3,6 +3,9 @@ chcp 65001 > nul
 title DASH ROYALE :: MANUAL UPDATE BOT
 color 0A
 
+:: [GT-Z Hardening] Garante que o script rode no diretorio do arquivo
+cd /d "%~dp0"
+
 echo ========================================================
 echo     DASH ROYALE -- SISTEMA DE ATUALIZACAO MANUAL
 echo     PROTOCOLO GT-Z :: AMBIENTE LOCAL
@@ -29,6 +32,15 @@ echo       - get_data.py
 echo       - process_data.py
 echo       - generate_html_report.py
 echo       - git_auto_sync (Push automatico)
+
+if not exist run_update.py (
+    color 0C
+    echo [ERRO CRITICO] Arquivo 'run_update.py' nao encontrado.
+    echo Verifique se o arquivo esta na mesma pasta deste script.
+    pause
+    exit /b 1
+)
+
 python run_update.py
 if %errorlevel% neq 0 (
     color 0C

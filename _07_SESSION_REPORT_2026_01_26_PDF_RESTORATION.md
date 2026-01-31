@@ -36,11 +36,8 @@ Para corrigir a visualização "incompleta" na direita e garantir a coerência v
     2.  **Fix:** A regra `width: 99%` foi aplicada na fonte (Python), garantindo persistência.
     
 ### 4. Transição para Native Print (GT-Z)
-- **Problema:** A biblioteca `html2pdf.js` gerava uma imagem estática da tabela, impedindo a repetição inteligente do cabeçalho em múltiplas páginas.
-- **Solução:**
-    1.  **Remoção de Código Zumbi:** Biblioteca `html2pdf.bundle.min.js` deletada.
-    2.  **Motor Nativo:** Função `downloadPDF()` migrada para `window.print()`.
-    3.  **Estilização Semântica:** Adicionado bloco `@media print` real. O navegador agora entende `thead { display: table-header-group; }` e repete o cabeçalho automaticamente em cada quebra de página.
-
----
-*Assinado: Antigravity - Ground Truth Enforcement.*
+- **Problema:** A funcionalidade anterior (`html2pdf.js`) rasterizava a tabela, impedindo a repetição de cabeçalhos.
+- **Intervenção Forense:**
+    1.  **Desbloqueio de Paginação:** Identificado que contêineres flex/overflow bloqueavam a fragmentação de página.
+    2.  **Fix:** Forçado `overflow: visible !important`, `display: block !important` e `height: auto` em `html, body, .container` via `@media print`.
+    3.  **Resultado:** O navegador agora fragmenta a tabela e repete o `thead` (que está configurado como `table-header-group`) automaticamente.
